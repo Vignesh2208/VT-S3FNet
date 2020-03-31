@@ -1,0 +1,48 @@
+#include "producer.h"
+ringBufS * buffer_ptr;
+
+int main(int argc, char** argv)
+{
+    int shmid;
+    int fd;
+    pid_t prod_pid;
+    pcap_t *descr;
+    char * shm_object_name;
+    FILE * fp;
+    fp = fopen(log_filename,"w");
+    char log_filename[100] = "/home/vignesh/s3fnet-lxc-mod/base/tklxcmngr/debug/";
+    if(argc != 2){
+	fprintf(fp,"Not enough arguments !\n");
+	return 0;
+    }
+    strcat(log_filename,argv[1]);
+    
+    //fp = stdout;
+    fprintf(fp,"Received correct number of arguments\n");
+    shm_object_name = argv[1];    
+    fd = shm_open(shm_object_name,O_CREAT|O_RDWR,S_IRUSR | S_IWUSR);
+    if(fd == -1){
+	fprintf(fp,"Error in shm open\n");
+	return 0;
+    }
+    
+    buffer_ptr = (ringBufS*)mmap(NULL,sizeof(ringBufS),PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
+    close(fd);
+  
+        
+    descr = producer_init(fp);
+    if(descr == NULL){
+	 fprintf(fp,"Descr is NULL\n");
+	 munmap(buffer_ptr,sizeof(ringBufS));
+	return 0;
+    }    
+    else {
+	run(descr,fp);
+    }
+   munmap(buffer_ptr,sizeof(ringBufS));
+   fclose(fp);
+
+ 
+return 0;
+
+}

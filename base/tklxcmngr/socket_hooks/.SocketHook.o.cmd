@@ -1,0 +1,1 @@
+cmd_/home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/SocketHook.o := ld -m elf_i386   -r -o /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/SocketHook.o /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/socket_module.o /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/general_commands.o /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/hooked_functions.o 
