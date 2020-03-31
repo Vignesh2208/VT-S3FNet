@@ -1,1 +1,0 @@
-cmd_/home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/SocketHook.ko := ld -r -m elf_i386 -T /src/linux-3.10.9/scripts/module-common.lds --build-id  -o /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/SocketHook.ko /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/SocketHook.o /home/vignesh/s3fnet-lxc/base/tklxcmngr/socket_hooks/SocketHook.mod.o
