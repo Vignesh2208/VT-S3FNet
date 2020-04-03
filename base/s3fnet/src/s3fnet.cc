@@ -266,14 +266,13 @@ int main(int argc, char** argv)
     clock = sim_inf->advance(STOP_BEFORE_TIME, sim_single_run_time);
     cout << "completed epoch window, advanced time to " << clock << endl;
   }
-  cout << "Finished" << endl;
+  cout << "Finished simulation" << endl;
 
   // simulation runtime speed measurement
   sim_inf->runtime_measurements();
 
-  #ifndef TAP_DISABLED
-  pthread_cancel(sim_inf->get_timeline_interface()->lm->incomingThread);
-  #endif
+
+  //pthread_cancel(sim_inf->get_timeline_interface()->lm->incomingThread);
 
   sim_inf->get_timeline_interface()->lm->isSimulatorRunning = false;
   sleep(2);

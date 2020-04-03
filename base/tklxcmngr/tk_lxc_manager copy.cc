@@ -36,7 +36,9 @@
 // 			LXC Manager Class Functions
 //----------------------------------------------------------------------------
 
-
+void* manageIncomingPacketsThreadHelper(void * ptr) { 
+	return ((LxcManager*)ptr)->manageIncomingPackets();     
+}
 void* manageInitTearDownLXCThreadHelper(void * ptr)
 {
 	launchThreadInfo* ltI = (launchThreadInfo*)ptr;
@@ -116,90 +118,110 @@ void* LxcManager::setUpTearDownLXCs(unsigned int timelineID, int typeFlag)
 	return (void*)NULL;
 }
 
+void* LxcManager::manageIncomingPackets() {
 
-//----------------------------------------------------------------------------
-// 					Other Functions
-//----------------------------------------------------------------------------
+	struct pollfd ufds[listOfProxies.size()];
+	char* packetBuffer = (char*)malloc(sizeof(char) * PACKET_SIZE);
 
-void LxcManager::handleIncomingPacket(vector<LXC_Proxy*>* proxiesToCheck) {
+	// Do not begin polling LXCs until the entire model has been 
+	// completely initialized
+	while (isSimulatorRunning == false){}
 
-
-	struct pollfd ufds[proxiesToCheck->size()];
-	int ret = 0;
-	char buffer[PACKET_SIZE];
-
-	do {
-		for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
-			LXC_Proxy* proxy = (*proxiesToCheck)[i];
+	while(1) {
+		if (isSimulatorRunning == false) break;
+		for (unsigned int i = 0; i < listOfProxies.size(); i++) {
+			LXC_Proxy* proxy = listOfProxies[i];
 			ufds[i].fd = proxy->fd;
 			ufds[i].events  = POLLIN;
 			ufds[i].revents = 0;
 		}
-		ret = poll(ufds, proxiesToCheck->size(), 0);
 
-		if (ret <= 0)
-			break;
+		int ret = poll(ufds, listOfProxies.size(), 3500);
+		if (ret == 0) continue; // no file descriptor has data ready to read
 
-		// find out to see which FD got something
-		for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
-			LXC_Proxy* proxy = (*proxiesToCheck)[i];
-			int incomingFD = proxy->fd;
-			ltime_t arrivalTime = 0;
-			assert(incomingFD > 0);
-
-			if(ufds[i].revents & POLLIN) {
-				assert(incomingFD == ufds[i].fd);
-				memset(buffer, 0, PACKET_SIZE);
-				int nread = cread(incomingFD, buffer, PACKET_SIZE);
-				u_short ethT = 0;
-				
-
-				std::pair<int, unsigned int> res = analyzePacket(buffer, nread,
-																&ethT);
-				unsigned int destIP = res.second;
-				int packet_status   = res.first;
-
-				if (packet_status == PACKET_PARSE_IGNORE_PACKET
-					|| packet_status ==  PACKET_PARSE_UNKNOWN_PACKET) {
-					continue;
-				}
-
-				if (packet_status == PARSE_PACKET_SUCCESS_IP)
-					arrivalTime = get_pkt_send_time(proxy->eqTracerID,
-						packet_hash(buffer, nread));
-				else
-					arrivalTime = proxy->getElapsedTime();
-
-				proxy->last_arrival_time = arrivalTime;
-				
-				// TODO: use std::map to optimize Lookup
-				LXC_Proxy* destinationProxy = findDestProxy(destIP);
-				if (destinationProxy == NULL) {
-					cout << "Dropping packet: No one to give it to !\n");
-					cout << print_packet(buffer, nread);
-				}
-				else {
-
-					EmuPacket* pkt = new EmuPacket(nread);
-					memcpy(pkt->data, buffer, nread);
-					pkt->incomingFD   = incomingFD;
-					pkt->outgoingFD   = destinationProxy->fd;
-					pkt->incomingTime = arrivalTime;
-					pkt->ethernetType = ethT;
-
-					assert(pkt->incomingFD != pkt->outgoingFD);
-
-					s3f::s3fnet::Host* destHost 
-						= (s3f::s3fnet::Host*)proxy->ptrToHost;
-					destHost->inNet()->getTopNet()->injectEmuEvent(
-						destHost, pkt, destIP);
-				}
-			}
+		if (ret < 0 && ret == EINTR) {
+			printf("EINTR\n");
+			continue;
 		}
+
+		if (ret < 0) {
+			perror("LXC Manager Poll Error");
+			exit(1);
+		}
+
+		//handleIncomingPacket(packetBuffer, &listOfProxies, ufds);
+	}
+
+	printf("LXC Incoming Thread Finished\n");
+	return (void*)NULL;
+}
+
+	//----------------------------------------------------------------------------------------------------------------------
+	// 												Other Functions
+	//----------------------------------------------------------------------------------------------------------------------
+
+void LxcManager::handleIncomingPacket(
+	char* buffer, vector<LXC_Proxy*>* proxiesToCheck, struct pollfd* fdSet) {
+
+
+
+	// find out to see which FD got something
+	for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
+		LXC_Proxy* proxy = (*proxiesToCheck)[i];
+		int incomingFD = proxy->fd;		// lets check this Proxy's FD if there is some data awaiting on it
+		
+		ltime_t arrivalTime = 0;
+		assert(incomingFD > 0);
 		
 
-	} // end of do-while
-	
+		if(fdSet[i].revents & POLLIN) {
+			assert(incomingFD == fdSet[i].fd);
+			int nread = cread(incomingFD, buffer, PACKET_SIZE);
+			u_short ethT = 0;
+			
+
+			std::pair<int, unsigned int> res = analyzePacket(buffer, nread,
+															&ethT);
+			unsigned int destIP = res.second;
+			int packet_status   = res.first;
+
+			if (packet_status == PACKET_PARSE_IGNORE_PACKET
+				|| packet_status ==  PACKET_PARSE_UNKNOWN_PACKET) {
+				continue;
+			}
+
+			if (packet_status == PARSE_PACKET_SUCCESS_IP)
+				arrivalTime = get_pkt_send_time(proxy->eqTracerID,
+					packet_hash(buffer, nread));
+			else
+				arrivalTime = proxy->getElapsedTime();
+
+			proxy->last_arrival_time = arrivalTime;
+			
+			// TODO: use std::map to optimize Lookup
+			LXC_Proxy* destinationProxy = findDestProxy(destIP);
+			if (destinationProxy == NULL) {
+				cout << "Dropping packet: No one to give it to !\n");
+				cout << print_packet(buffer, nread);
+			}
+			else {
+
+				EmuPacket* pkt = new EmuPacket(nread);
+				memcpy(pkt->data, buffer, nread);
+				pkt->incomingFD   = incomingFD;
+				pkt->outgoingFD   = destinationProxy->fd;
+				pkt->incomingTime = arrivalTime;
+				pkt->ethernetType = ethT;
+
+				assert(pkt->incomingFD != pkt->outgoingFD);
+
+				s3f::s3fnet::Host* destHost 
+					= (s3f::s3fnet::Host*)proxy->ptrToHost;
+				destHost->inNet()->getTopNet()->injectEmuEvent(destHost, pkt,
+															destIP);
+			}
+		}
+	}
 }
 
 LXC_Proxy* LxcManager::findDestProxy(unsigned int dstIP) {
@@ -218,6 +240,10 @@ LxcManager* LxcManager::get_lxc_manager(Interface* inf) {
 }
 
 void LxcManager::syncUpLXCs() {
+	#ifndef TAP_DISABLED
+	pthread_create(&incomingThread, NULL, manageIncomingPacketsThreadHelper,
+					this);
+	#endif
 
 	long lxcTimestampSec;
 	long lxcTimestampMicroSec;
@@ -306,7 +332,7 @@ void LxcManager::printLXCstats() {
 }
 
 bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
-									   ltime_t timeToAdvanceTo) {
+									ltime_t timeToAdvanceTo) {
 	// Keep track of how many LXCs need to be advanced
 	int numAdvancing = 0;
 
@@ -328,9 +354,6 @@ bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	unsigned long startTime = getWallClockTime();
 	progress_timeline_by((int)timelineID, time_needed_to_advance);
 	unsigned long finishTime = getWallClockTime();
-
-
-	handleIncomingPacket(proxiesOnTimeline);
 
 	vectorOfHowManyTimesTimelineCalledProgress[timelineID]++;
 	vectorOfTotalTimesSpentAdvancing[timelineID] += (finishTime - startTime);

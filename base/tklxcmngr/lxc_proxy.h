@@ -3,7 +3,7 @@
  *
  * \brief LXC Proxy
  *
- * authors : Vladimir Adam
+ * authors : Vignesh Babu
  */
 
 #ifndef __TIMEKEEPER_LXCPROXY_H__
@@ -23,6 +23,12 @@
 #include <sys/ioctl.h>		// ioctl
 
 
+extern "C" 
+{
+	#include <VT_functions.h>   
+}
+
+
 
 
 
@@ -30,11 +36,12 @@
 #define TIME_100_MS_IN_US           100000
 
 
+
 enum LxcCommand {
 	LXC_CREATE,
 	LXC_STOP,
 	LXC_DESTROY,
-	LXC_START_AS_RUNNER,
+	LXC_START_TRACER,
 	LXC_START_PRODUCER
 
 };
@@ -42,10 +49,12 @@ enum LxcCommand {
 class LxcManager;
 
 
+
 /*
- ************************************************************************************************************
- * Emu Packet Class - contains information about packet that is captured by LXC Proxy Through a TAP device
- ************************************************************************************************************
+ ******************************************************************************
+ * Emu Packet Class - contains information about packet that is captured by 
+ * LXC Proxy Through a TAP device
+ ******************************************************************************
  */
 
 class EmuPacket
@@ -68,17 +77,17 @@ class EmuPacket
 };
 
 /*
- ************************************************************************************************************
+ ******************************************************************************
  * LXC Proxy mediates the travel of packets between LXCs and the Simulator
- ************************************************************************************************************
+ ******************************************************************************
  */
 class LXC_Proxy
 {
 	public:
 
-	//-------------------------------------------------------------------------------------------------------
-	// 										Constructors / Destructor
-	//-------------------------------------------------------------------------------------------------------
+		//---------------------------------------------------------------------
+		// 				Constructors / Destructor
+		//---------------------------------------------------------------------
 
 		/*
 		 * Constructor.
@@ -93,28 +102,22 @@ class LXC_Proxy
 
 		/*
 		 * Destructor.
-		 * Stops an LXC, closes the file descriptor used by the TAP device, and destroys the LXC
-		 * (Note) Outgoing Thread should be stopped
+		 * Stops an LXC, closes the file descriptor used by the TAP device, 
+		 * and destroys the LXC. (Note) Outgoing Thread should be stopped
 		 */
 		~LXC_Proxy();
 
 		/*
-		 * Creates an LXC by creating the appropriate bridge and TAP device. Then the LXC is created.
-		 * There is a 200 millisecond delay between LXC Creation and launching
+		 * Creates an LXC by creating the appropriate bridge and TAP device. 
+		 * Then the LXC is created. There is a 200 millisecond delay between 
+		 * LXC Creation and launching
 		 */
 		void launchLXC();
 
-		/*
-		 * First attaches itself to a tap device via tun_alloc(...)
-		 * Next, acquires the parent PID of the LXC and dilates it with a TDF
-		 * Lastly, it calls addToExp() which notifies TimeKeeper that this LXC (and one what timeline it is)
-		 * will be part of this experiment.
-		 */
-		void dilateLXCAndAddToExperiment();
 
-	//-------------------------------------------------------------------------------------------------------
-	//                               Auxiliary information about TAP, LXC, Bridge
-	//-------------------------------------------------------------------------------------------------------
+		//---------------------------------------------------------------------
+		//           Auxiliary information about TAP, LXC, Bridge
+		//---------------------------------------------------------------------
 
 		unsigned int intlxcIP;                    // IP address of host (and also the LXC)
 		int          fd;                          // file descriptor
@@ -123,9 +126,8 @@ class LXC_Proxy
 		char         tapName[100];                // TODO: limits tapname to 100 characters
 		char         lxcName[100];                // TODO: limits lxcName to 100 characters
 		char         brName[100];                 // TODO: limits brName to 100 characters
-		int          PID;                         // PID of the Parent LXC process
 		string       cmndToExec;                  // Single command to execute inside the LXC
-		double       TDF;                         // Time Dilation Factor of LXC
+		int			 eqTracerID;				  // Equivalent tracer ID
 
 		ltime_t      simulationStartSec;          // Absolute time when the LXC is frozen (seconds)
 		ltime_t      simulationStartMicroSec;     // Absolute time when the LXC is frozen (microseconds)
@@ -133,28 +135,10 @@ class LXC_Proxy
 		bool         commandSent;                 // Bool indicating whether a command was sent once
 		ltime_t	     last_arrival_time;
 
-	//-------------------------------------------------------------------------------------------------------
-	// 								             Statistics
-	//-------------------------------------------------------------------------------------------------------
-
-		long packetsSentOut;
-		long totalPacketError;
-
-		long packetsSentLate;
-		long packetsSentEarly;
-		long packetsSentOnTime;
-
-		long packetsInjectedIntoFuture;
-		long totalTimeInjectedIntoFuture;
-
-		long packetsInjectedIntoPast;
-		long totalTimeInjectedIntoPast;
-
-		long packetsInjectedAtCorrectTime;
-
-	//-------------------------------------------------------------------------------------------------------
-	// 									Functions for Modifying and Accessing Proxy
-	//-------------------------------------------------------------------------------------------------------
+	
+		//---------------------------------------------------------------------
+		// 			Functions for Modifying and Accessing Proxy
+		//---------------------------------------------------------------------
 
 		/*
 		 * Prints out debug infor about the LXC Proxy
@@ -176,20 +160,20 @@ class LXC_Proxy
 		 */
 		void sendCommandToLXC();
 
+
+		void setEqTracerID(int tracerID);
+
 		LxcManager* lxcMan;              // Pointer to the LXC Manager
 		Timeline* timelineLXCAlignedOn;  // Timeline the LXC is aligned on
 
-	//-------------------------------------------------------------------------------------------------------
-	// 										  Private Helper Functions
-	//-------------------------------------------------------------------------------------------------------
+		//--------------------------------------------------------------------
+		// 						Private Helper Functions
+		//--------------------------------------------------------------------
+
 
 		/*
-		 * Gets parent PID of LXC
-		 */
-		int getLXCPID(char* lxcname);
-
-		/*
-		 * Creates a file descriptor to read from a TAP device. For more details see the tutorial
+		 * Creates a file descriptor to read from a TAP device. For more 
+		 * details see the tutorial
 		 * http://backreference.org/2010/03/26/tuntap-interface-tutorial/
 		 */
 		int tun_alloc(char *dev, int flags);

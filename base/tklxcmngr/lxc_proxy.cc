@@ -16,15 +16,23 @@
 
 #include <errno.h>
 #include <arpa/inet.h>
-#include "TimeKeeper_functions.h"
-#include "utility_functions.h"
 #include <sys/mman.h>
 #include <sys/shm.h>
+#include "lxc_proxy.h"
 
 
-	//----------------------------------------------------------------------------------------------------------------------
-	// 													Emu Packet Class
-	//----------------------------------------------------------------------------------------------------------------------
+extern "C" 
+{
+	#include <VT_functions.h>   
+}
+
+
+
+extern void ns_2_timeval(s64 nsec, struct timeval * tv);
+
+//----------------------------------------------------------------------------
+// 					Emu Packet Class
+//----------------------------------------------------------------------------
 
 EmuPacket::EmuPacket(int len)
 {
@@ -32,20 +40,16 @@ EmuPacket::EmuPacket(int len)
 	data = new unsigned char[len];
 	outgoingTime = -1;
 	incomingTime = -1;
-
 	incomingFD   = -1;
 	outgoingFD   = -1;
-
 	ethernetType = 0;
 }
 
-EmuPacket::~EmuPacket()
-{
+EmuPacket::~EmuPacket() {
 	if (data) delete data;
 }
 
-EmuPacket* EmuPacket::duplicate()
-{
+EmuPacket* EmuPacket::duplicate() {
 	EmuPacket* ppkt = new EmuPacket(len);
 	memcpy(ppkt->data, data, len);
 	ppkt->incomingTime = incomingTime;
@@ -59,44 +63,29 @@ EmuPacket* EmuPacket::duplicate()
 	return ppkt;
 }
 
-	//----------------------------------------------------------------------------------------------------------------------
-	// 												LXC Proxy Class
-	//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+// 												LXC Proxy Class
+//----------------------------------------------------------------------------------------------------------------------
 
-LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm, Timeline* timel)
-{
+LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm,
+					Timeline* timel) {
 
 	int shm_fd;
 
 	assert(lm    != NULL);
 	assert(timel != NULL);
 
-	packetsSentOut = 0;
-	totalPacketError = 0;
 
 	commandSent = false;
-
-	packetsSentLate = 0;
-	packetsSentEarly = 0 ;
-	packetsSentOnTime = 0;
-
-	  packetsInjectedIntoFuture = 0;
-	totalTimeInjectedIntoFuture = 0;
-
-	  packetsInjectedIntoPast = 0;
-	totalTimeInjectedIntoPast = 0;
-
-	packetsInjectedAtCorrectTime = 0;
 
 	Nhi                  = nhiID;
 	intlxcIP             = ipAddress;
 	lxcMan               = lm;
 	timelineLXCAlignedOn = timel;
-	TDF                  = DEFAULT_TDF;
-	PID                  = -1;
 	fd                   = -1;
 	ptrToHost            = NULL;
 	cmndToExec           = "echo 'no command sent to LXC'";
+	eqTracerID			 = -1;
 
 	// Initialize the TAP Name, LXC Name, and Bridge Name
 	string tempTap = "tap" + Nhi;
@@ -116,67 +105,33 @@ LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm, Timel
 
 }
 
-void LXC_Proxy::launchLXC()
-{
-	string oldcommand;
-	exec_LXC_command(LXC_CREATE);
-	usleep(TIME_200_MS_IN_US);
-	exec_LXC_command(LXC_START_AS_RUNNER);
-	
-	
+void LXC_Proxy::setEqTracerID(int tracerID) {
+	assert(tracerID > 0);
+	this->eqTracerID = tracerID;
 }
 
-void LXC_Proxy::dilateLXCAndAddToExperiment()
-{
-	// Open up a TAP DEVICE since our LXC is already created
-
-	#ifndef TAP_DISABLED
-	fd = tun_alloc(tapName, IFF_TAP | IFF_NO_PI);
-	assert(fd > 0);
-
-	usleep(TIME_100_MS_IN_US);
-
-	#endif
-
-	lxcMan->debugPrint("GET LXC %s TDF %f ", lxcName, TDF);
-	PID = getLXCPID(lxcName);
-	lxcMan->debugPrint("PID %d Finished\n", PID);
-
-	assert(PID > 0);
-
-	dilate_all(PID, TDF); // Will set the TDF of the process with PID and all its children
-
-	if (TDF == 0.0)
-		TDF = 1.0;
-
+void LXC_Proxy::launchLXC() {
+	exec_LXC_command(LxcCommand::LXC_CREATE);
 	usleep(TIME_200_MS_IN_US);
-
-	addToExp(PID, timelineLXCAlignedOn->s3fid()); // Sends a command to Timekeeper to add the PID to the experiment
-	add_lxc_to_socket_monitor(PID, lxcName);
-	#ifdef LXC_INIT_DEBUG
-	printInfo();
-	debugPrint("| Added %s with PID %d on Timeline %u\n", lxcName, PID,  timelineLXCAlignedOn->s3fid());
-	#endif
+	exec_LXC_command(LxcCommand::LXC_START_TRACER);
 }
 
-LXC_Proxy::~LXC_Proxy()
-{
 
-		
-	exec_LXC_command(LXC_STOP);
+LXC_Proxy::~LXC_Proxy() {
+
 	close(fd);
+	cout << "Stopping LXC Proxy. Tracer-ID: " << eqTracerID << endl;
+	exec_LXC_command(LXC_STOP);
 	exec_LXC_command(LXC_DESTROY);
-	
 }
 
-void LXC_Proxy::printInfo()
-{
+void LXC_Proxy::printInfo() {
 	char buffer[20];
 	unsigned int convertedIP = htonl(intlxcIP);
-	const char* result = inet_ntop(AF_INET, &convertedIP, buffer, sizeof(buffer));
+	const char* result = inet_ntop(AF_INET, &convertedIP, buffer,
+								  sizeof(buffer));
 
 	lxcMan->debugPrint("|==========================\n");
-	lxcMan->debugPrint("| PID     : %d \n", PID);
 	lxcMan->debugPrint("| NHI     : %s \n", Nhi.c_str());
 	lxcMan->debugPrint("| LXC     : %s \n", lxcName);
 	lxcMan->debugPrint("| Tap     : %s \n", tapName);
@@ -184,26 +139,23 @@ void LXC_Proxy::printInfo()
 	lxcMan->debugPrint("| IP      : %u (%s) \n", intlxcIP, result);
 	lxcMan->debugPrint("| FD      : %d\n",  fd);
 	lxcMan->debugPrint("| Command : %s\n", cmndToExec.c_str());
-	lxcMan->debugPrint("| TDF     : %f\n", TDF);
 	lxcMan->debugPrint("|==========================\n");
 }
 
-// Gets the elapsed time from the LXC by asking the timekeeper to issue a system call to the process with the given PID (which refers to the LXC)
-ltime_t LXC_Proxy::getElapsedTime()
-{
+// Gets the elapsed time from the LXC by asking the timekeeper to issue a
+// system call to the process with the given PID (which refers to the LXC)
+ltime_t LXC_Proxy::getElapsedTime() {
 	struct timeval incomingPacketTimestamp;
-	gettimepid(PID, &incomingPacketTimestamp, NULL);
-
+	ns_2_timeval(get_current_time_tracer(eqTracerID), &incomingPacketTimestamp);
 	assert(incomingPacketTimestamp.tv_sec >= simulationStartSec);
-
-	long      secElapsed = incomingPacketTimestamp.tv_sec  - simulationStartSec;
-	long microSecElapsed = incomingPacketTimestamp.tv_usec - simulationStartMicroSec;
+	long secElapsed = incomingPacketTimestamp.tv_sec  - simulationStartSec;
+	long microSecElapsed 
+		= incomingPacketTimestamp.tv_usec - simulationStartMicroSec;
 	long elapsedMicroSec = secElapsed * 1000000 +  microSecElapsed;
 	return elapsedMicroSec;
 }
 
-int LXC_Proxy::tun_alloc(char *dev, int flags)
-{
+int LXC_Proxy::tun_alloc(char *dev, int flags) {
 
 	struct ifreq ifr;
 	int fd, err;
@@ -217,8 +169,7 @@ int LXC_Proxy::tun_alloc(char *dev, int flags)
 	*/
 
 	/* open the clone device */
-	if( (fd = open(clonedev, O_RDWR)) < 0 )
-	{
+	if( (fd = open(clonedev, O_RDWR)) < 0 ) {
 		printf("Open Clone Device Success\n");
 		return fd;
 	}
@@ -233,23 +184,16 @@ int LXC_Proxy::tun_alloc(char *dev, int flags)
 	  * the kernel will try to allocate the "next" device of the
 	  * specified type */
 	 strncpy(ifr.ifr_name, dev, IFNAMSIZ);
-	}
-	else
-	{
-		printf("Dev Not Worky\n");
+	} else {
+		perror("Dev Not Working\n");
 	}
 
 
 	/* try to create the device */
-	if( (err = ioctl(fd, TUNSETIFF, (void *) &ifr)) < 0 )
-	{
+	if( (err = ioctl(fd, TUNSETIFF, (void *) &ifr)) < 0 ) {
 		printf("Error Opening Device\n");
 		close(fd);
 		return err;
-	}
-	else
-	{
-
 	}
 
 	/* if the operation was successful, write back the name of the
@@ -263,17 +207,16 @@ int LXC_Proxy::tun_alloc(char *dev, int flags)
 	return fd;
 }
 
-string LXC_Proxy::exec_system_command(char* cmd)
-{
+string LXC_Proxy::exec_system_command(char* cmd) {
     // see
 	// http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c
 
 	FILE* pipe = popen(cmd, "r");
     if (!pipe){
+		printf("exec system command Error!\n");
+ 		return "ERROR";
+	}
 
-	printf("exec system command Error!\n");
- return "ERROR";
-}
     char buffer[128];
     std::string result = "";
     while(!feof(pipe)) {
@@ -281,18 +224,18 @@ string LXC_Proxy::exec_system_command(char* cmd)
     		result += buffer;
     }
     pclose(pipe);
-	cout<<"Result = "<<result<<endl;
+	cout<< " Result = "<<result<<endl;
 
     return result;
 }
 
-void LXC_Proxy::exec_LXC_command(LxcCommand type)
-{
+void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 	string cmd = "";
 	char config[40];
 	char buffer[20];
 	unsigned int convertedIP = htonl(intlxcIP);
-	const char* result = inet_ntop(AF_INET, &convertedIP, buffer, sizeof(buffer));
+	const char* result = inet_ntop(AF_INET, &convertedIP, buffer,
+									sizeof(buffer));
 	string bridge = " " + string(brName);
 	string tap    = " " + string(tapName);
 	string lxc    = " " + string(lxcName);
@@ -304,28 +247,32 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type)
 	{
 		case LXC_CREATE:
 			printf("Called lxc create\n");
-			#ifndef TAP_DISABLED
-			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/create")        + tap + ipAddr + bridge + lxc + string(config);
-			#else
-			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/create-no-tap") + tap + ipAddr + bridge + lxc + string(config);
-			#endif
+			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/create") 
+				+ tap + ipAddr + bridge + lxc + string(config);
+
+			// Open up a TAP DEVICE since our LXC is already created
+			fd = tun_alloc(tapName, IFF_TAP | IFF_NO_PI);
+			assert(fd > 0);
+
+			usleep(TIME_100_MS_IN_US);
 			break;
+
+
 
 		case LXC_STOP:
 			cmd = "lxc-stop -n "  + lxc;
 			break;
 
 		case LXC_DESTROY:
-			//cmd = "lxc-destroy -n "  + lxc;
-			#ifndef TAP_DISABLED
-			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/destroy") + tap + bridge + lxc;
-			#else
-			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/destroy-no-tap") + tap + bridge + lxc;
-			#endif
+			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/destroy") 
+					+ tap + bridge + lxc;
 			break;
 
-		case LXC_START_AS_RUNNER:
-			cmd = "lxc-start -n" + lxc + " -d " + PATH_TO_S3FNETLXC + "/lxc-command/reader";
+		case LXC_START_TRACER:
+			cmd = "lxc-start -n" + lxc + " -d -- " 
+								 + "/bin/tracer -e 2 -t " 
+								 + std::to_string(timelineLXCAlignedOn->s3fid())
+								 + " -i "
 			break;
 		
 		default:
@@ -334,25 +281,25 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type)
 			break;
 	}
 
-	cout << "Create command = "<<cmd << "\n";
-	//cmd += " 2>&1";
+	cout << "Executing LXC command = "<< cmd << "\n";
 	exec_system_command((char*)cmd.c_str());
 }
 
-void LXC_Proxy::advanceLXCBy(ltime_t advanceTime)
-{
+void LXC_Proxy::advanceLXCBy(ltime_t advanceTime) {
 	int TimelineID = (int)(timelineLXCAlignedOn->s3fid());
 
 	#ifdef ADVANCE_DEBUG
-	lxcMan->debugPrint("CALLING SET INTERVAL %ld, on Timeline %u\n", advanceTime, TimelineID);
+	lxcMan->debugPrint("CALLING SET INTERVAL %ld, on Timeline %u\n",
+					   advanceTime, TimelineID);
 	#endif
 
 	setInterval(PID, advanceTime, TimelineID);
 }
 
-// Write to file /tmp/lxcname. The reader process running on the lxc constantly polls for any events on this file and spawns a new process to execute any written command
-void LXC_Proxy::sendCommandToLXC()
-{
+// Write to file /tmp/lxcname. The reader process running on the lxc
+// constantly polls for any events on this file and spawns a new process to 
+// execute any written command
+void LXC_Proxy::sendCommandToLXC() {
 	if (commandSent == false)
 	{
 		char pipeBuff[1024];
@@ -365,15 +312,7 @@ void LXC_Proxy::sendCommandToLXC()
 		int npfd = open(pipeBuff, O_WRONLY | O_NONBLOCK );
 		write(npfd, command, sizeof(command));
 		close(npfd);
-
 		commandSent = true;
 	}
 }
 
-int LXC_Proxy::getLXCPID(char* lxcname)
-{
-	char command[500];
-	sprintf(command, "lxc-info -n %s | grep pid | tr -s ' ' | cut -d ' ' -f 2", lxcname);
-	string result = exec_system_command(command);
-	return atoi(result.c_str());
-}

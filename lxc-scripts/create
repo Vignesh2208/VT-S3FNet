@@ -22,11 +22,17 @@ CONF_FILE=$5
 
 echo "Creating LXC: $LXC_NAME | IP: $IP_ADDR | BR: $BR_NAME | TAP: $TAP_NAME |"
 
-echo "lxc.utsname = $LXC_NAME" 			> $CONF_FILE
-echo "lxc.network.type = veth" 			>> $CONF_FILE
-echo "lxc.network.flags = up"			>> $CONF_FILE
-echo "lxc.network.link = $BR_NAME"		>> $CONF_FILE
-echo "lxc.network.ipv4 = $IP_ADDR/8"	>> $CONF_FILE
+echo "lxc.uts.name = $LXC_NAME" 			> $CONF_FILE
+echo "lxc.net.0.type = veth" 			>> $CONF_FILE
+echo "lxc.net.0.flags = up"			>> $CONF_FILE
+echo "lxc.net.0.link = $BR_NAME"		>> $CONF_FILE
+echo "lxc.net.0.ipv4.address = $IP_ADDR/8"	>> $CONF_FILE
+
+echo "lxc.autodev = 1" >> $CONF_FILE
+echo "lxc.console.path = none" >> $CONF_FILE
+echo "lxc.apparmor.profile = unconfined" >> $CONF_FILE
+echo "lxc.apparmor.allow_incomplete = 1" >> $CONF_FILE
+echo "lxc.mount.auto = proc" >> $CONF_FILE
 
 brctl addbr $BR_NAME
 tunctl -t $TAP_NAME
@@ -34,6 +40,6 @@ ifconfig $TAP_NAME 0.0.0.0 promisc up
 brctl addif $BR_NAME $TAP_NAME
 ifconfig $BR_NAME up
 
-lxc-create -n $LXC_NAME -f $CONF_FILE # -t ubuntu
+lxc-create -n $LXC_NAME -f $CONF_FILE -t none
 
 #rm $CONF_FILE
