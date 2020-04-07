@@ -11,7 +11,7 @@ all: $(PROGRAMS)
 
 # This is how to link the object files to produce the executable.
 s3fnet:	$(S3FNET_OBJECTS) $(S3FLIB) $(RNDLIB) $(AUXLIB)
-	$(CXX) $(S3FNET_OBJECTS) -o $@ $(S3FNET_LDFLAGS) $(S3FNET_LDADD) -L../tklxcmngr/lxcmanagermodule ../tklxcmngr/lxcmanagermodule.a -lrt
+	$(CXX) $(S3FNET_OBJECTS) -o $@ $(S3FNET_LDFLAGS) $(S3FNET_LDADD) -L../tklxcmngr/lxcmanagermodule ../tklxcmngr/lxcmanagermodule.a -lrt -lvtapi
 	
 dmlenv: $(DMLENV_OBJECTS) $(EXTRA_OBJECTS)
 	$(CXX) $(DMLENV_OBJECTS) -o $@ $(DMLENV_LDFLAGS) ${DMLENV_LDADD}

@@ -1,4 +1,4 @@
-SRC    		:= tk_lxc_manager.cc TimeKeeper_functions.cc lxc_proxy.cc utility_functions.cc 
+SRC    		:= tk_lxc_manager.cc lxc_proxy.cc  
 CC	   		:= g++
 DEBUG  		:= -g -Wno-write-strings
 

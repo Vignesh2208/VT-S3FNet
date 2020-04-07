@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 USAGE="Usage: `basename $0` [-h] [-n arg] [-f] [-i] [-d]" 
 PARAMETER="-n\t number of cores used to run make\n-f\t skip building those libraries that only need to be built once (DML, metis)\n-i\t incremental build (update) instead of clean build\n-d\t display S3FNet debug messages\n-h\t display the usage"
@@ -52,6 +52,14 @@ while getopts hn:fid OPT; do
         esac
 done
 
+
+
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+BASE_DIR="$(dirname "$SCRIPT_DIR")"
+
+sed "s|@BASE_DIR@|${BASE_DIR}|g" s3fnet-definitions.template > s3fnet-definitions.h
+
 # Remove the switches we parsed above
 shift `expr $OPTIND - 1`
 
@@ -95,6 +103,8 @@ fi
 make
 cd ..
 
+echo "DML = ", $dml
+echo "INC = ", $inc
 if [ $dml -eq 1 ] && [ $inc -eq 0 ]; then
 echo "--------------------------------"
 echo "Buidling s3f/dml ... "
@@ -103,10 +113,12 @@ cd dml
 aclocal
 autoconf
 automake
+automake --add-missing
 ./configure
 make clean
 make
 cd ..
+fi
 
 echo "--------------------------------"
 echo "Buidling s3f/metis ... "
@@ -115,7 +127,6 @@ cd metis
 rm *.o *.a 
 sh metis.sh
 cd ..
-fi
 
 echo "--------------------------------"
 echo "Buidling s3f/s3fnet ... "
@@ -125,7 +136,7 @@ if [ $inc -eq 0 ]; then
 make clean
 fi
 if [ $debug -eq 0 ]; then
-arg="$arg ENABLE_S3FNET_DEBUG=no"
+arg="$arg ENABLE_S3FNET_DEBUG=yes"
 else
 arg="$arg ENABLE_S3FNET_DEBUG=yes"
 fi

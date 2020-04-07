@@ -1,17 +1,17 @@
 total_timeline 2	
 tick_per_second 6	
-run_time 0.5
+run_time 0.01
 seed 1	
 log_dir 2_LXC_UDP_TDF_2_New	
 
-dilation [ TDF 150.0 ]
+dilation [ TDF 1.0 ]
 
 Net
 [
 	lxcConfig
 	[
-		settings [ lxcNHI 0:0 _extends .dilation cmd "~/s3fnet-lxc/csudp/server 25000 100"      ]
-		settings [ lxcNHI 1:0 _extends .dilation cmd "~/s3fnet-lxc/csudp/client 0:0 25000 100"  ]
+		settings [ lxcNHI 0:0 _extends .dilation cmd "/home/vignesh/VT-S3FNet/csudp/server 25000 100 > /tmp/tracer1.log"      ]
+		settings [ lxcNHI 1:0 _extends .dilation cmd "/home/vignesh/VT-S3FNet/csudp/client 0:0 25000 100 > /tmp/tracer2.log"  ]
 	]	
 	
 	Net 

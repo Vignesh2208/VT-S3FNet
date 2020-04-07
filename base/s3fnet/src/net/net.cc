@@ -65,6 +65,8 @@ Net::~Net()
     delete (Link*)(links[i]);
   }
 
+  NET_DUMP(printf("net deleted !\n"));
+
 }
 
 void Net::config(s3f::dml::Configuration* cfg)
@@ -542,7 +544,6 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
 			}
 			else error_quit("need nhi\n");
 
-			proxy->TDF = TDF;
 			proxy->cmndToExec = command;
 
 			// Check to see if command has NHI instead of IP. If so, figure out the IP and send the command

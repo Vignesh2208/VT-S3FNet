@@ -15,14 +15,8 @@
 
 #include <sys/time.h>
 #include "lxc_proxy.h"
-#include "socket_hooks/hook_defs.h"
 #include <poll.h>
-
-extern "C" 
-{
-	#include <VT_functions.h>   
-}
-
+#include "../s3fnet-definitions.h"
 
 
 #define PACKET_PARSE_SUCCESS        0
@@ -174,8 +168,7 @@ class LxcManager
 		 * parses the packet from a particular LXC and injects
 		 * it into the simulation.
 		 */
-		void LxcManager::handleIncomingPacket(
-			vector<LXC_Proxy*>* proxiesToCheck);
+		void handleIncomingPacket(vector<LXC_Proxy*>* proxiesToCheck);
 
 		//--------------------------------------------------------------------
 		// 					Helper Methods
@@ -243,7 +236,7 @@ class LxcManager
 		/*
 		 * Returns a hash of the packet contents
 		 */
-		int packet_hash(const u_char * s,int size);
+		int packet_hash(char * s,int size);
 };
 
 typedef struct threadInfo {

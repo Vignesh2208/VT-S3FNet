@@ -90,8 +90,8 @@ class NBSocketMaster : public ProtocolSession
   enum {
     ESUCCESS        = 0, /**< Indicates success */
     EGENERIC        = -1, /**< Indicates generic error */
-    EWOULDBLOCK     = -2, /**< Function returned because it would otherwise block. */
-    EINPROGRESS     = -3, /**< Connection is currently in progress. */
+    E_WOULD_BLOCK     = -2, /**< Function returned because it would otherwise block. */
+    E_IN_PROGRESS     = -3, /**< Connection is currently in progress. */
     ECONNECTED      = -4 /**< Socket is already connected. */
   };
 
@@ -201,7 +201,7 @@ class NBSocketMaster : public ProtocolSession
    * @param ip the destination ip address
    * @param port the destination port
    * @param caller the non-blocking socket continuation to allow callback/wakeup
-   * @return status of connect call, returns EWOULDBLOCK instead of blocking
+   * @return status of connect call, returns E_WOULD_BLOCK instead of blocking
    */
   int connect(int sock, IPADDR ip, uint16 port, NBSocketContinuation* caller);
 
@@ -222,7 +222,7 @@ class NBSocketMaster : public ProtocolSession
    * @param make_new_socket whether to fork a new process for incoming connections
    * @param caller the non-blocking socket continuation to allow callback/wakeup
    * @param first_conn_notify contination to notify socket of first connection
-   * @return status of accept call, returns EWOULDBLOCK instead of blocking
+   * @return status of accept call, returns E_WOULD_BLOCK instead of blocking
    */
   int accept(int sock, bool make_new_socket, 
           NBSocketContinuation *caller, 
@@ -240,7 +240,7 @@ class NBSocketMaster : public ProtocolSession
    * @param length the size of the message in bytes
    * @param msg the message byte buffer
    * @param caller the non-blocking socket continuation to allow callback/wakeup
-   * @return status of send call, returns EWOULDBLOCK instead of blocking
+   * @return status of send call, returns E_WOULD_BLOCK instead of blocking
    */
   int send(int sock, uint32 length, byte* msg, NBSocketContinuation *caller);
 
@@ -257,7 +257,7 @@ class NBSocketMaster : public ProtocolSession
    * @param bufsiz the size of the buffer to read into
    * @param buffer the buffer to read into 
    * @param caller the non-blocking socket continuation to allow callback/wakeup
-   * @return status of recv call, returns EWOULDBLOCK instead of blocking
+   * @return status of recv call, returns E_WOULD_BLOCK instead of blocking
    */
   int recv(int sock, uint32 bufsiz, byte* buffer, NBSocketContinuation *caller);
 
@@ -267,7 +267,7 @@ class NBSocketMaster : public ProtocolSession
    * method of the continuation will be called on success.
    * @param sock the socket id
    * @param caller the non-blocking socket continuation to allow callback/wakeup
-   * @return status of close call, returns EWOULDBLOCK instead of blocking
+   * @return status of close call, returns E_WOULD_BLOCK instead of blocking
    */
   int close(int sock, NBSocketContinuation *caller);
 
@@ -280,7 +280,7 @@ class NBSocketMaster : public ProtocolSession
   * Return values are identical to connect().
   * @param sock the socket id
   * @param caller the non-blocking socket continuation to allow callback/wakeup
-  * @return status of connect call, returns EWOULDBLOCK instead of blocking
+  * @return status of connect call, returns E_WOULD_BLOCK instead of blocking
   * @see connect()
   */
   int connect1(int sock, NBSocketContinuation *caller);
@@ -291,7 +291,7 @@ class NBSocketMaster : public ProtocolSession
   * Return values are identical to send().
   * @param sock the socket id
   * @param caller the non-blocking socket continuation to allow callback/wakeup
-  * @return status of send call, returns EWOULDBLOCK instead of blocking
+  * @return status of send call, returns E_WOULD_BLOCK instead of blocking
   * @see send()
   */
   int send1(int sock, NBSocketContinuation *caller);
@@ -302,7 +302,7 @@ class NBSocketMaster : public ProtocolSession
   * Return values are identical to recv().
   * @param sock the socket id
   * @param caller the non-blocking socket continuation to allow callback/wakeup
-  * @return status of recv call, returns EWOULDBLOCK instead of blocking
+  * @return status of recv call, returns E_WOULD_BLOCK instead of blocking
   * @see recv()
   */
   int recv1(int sock, NBSocketContinuation *caller);
@@ -313,7 +313,7 @@ class NBSocketMaster : public ProtocolSession
   * Return values are identical to close().
   * @param sock the socket id
   * @param caller the non-blocking socket continuation to allow callback/wakeup
-  * @return status of close call, returns EWOULDBLOCK instead of blocking
+  * @return status of close call, returns E_WOULD_BLOCK instead of blocking
   * @see close()
   */
   int close1(int sock, NBSocketContinuation *caller);
@@ -326,7 +326,7 @@ class NBSocketMaster : public ProtocolSession
    * @param mask the mask to wait for
    * @param anysignal whether to wake on any signal
    * @param caller the non-blocking socket continuation to allow callback/wakeup
-   * @return the status, generally EWOULDBLOCK is propagated from this call
+   * @return the status, generally E_WOULD_BLOCK is propagated from this call
    */
   int block_till(int sockid, uint32 mask, bool anysignal, NBSocketContinuation* caller);
 

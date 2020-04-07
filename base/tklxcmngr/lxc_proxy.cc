@@ -6,8 +6,8 @@
  * authors : Vladimir Adam
  */
 
+#include <arpa/inet.h>
 #include <s3f.h>
-
 #include <sstream>
 #include <iomanip>
 
@@ -15,10 +15,14 @@
 #include <algorithm>
 
 #include <errno.h>
-#include <arpa/inet.h>
 #include <sys/mman.h>
 #include <sys/shm.h>
-#include "lxc_proxy.h"
+#include <sys/time.h>
+
+#include <sys/socket.h>
+#include <linux/if.h>
+#include <linux/if_tun.h>
+#include <sys/ioctl.h>		// ioctl
 
 
 extern "C" 
@@ -26,9 +30,7 @@ extern "C"
 	#include <VT_functions.h>   
 }
 
-
-
-extern void ns_2_timeval(s64 nsec, struct timeval * tv);
+extern "C" void ns_2_timeval(s64 currTstamp, struct timeval * tv);
 
 //----------------------------------------------------------------------------
 // 					Emu Packet Class
@@ -70,7 +72,6 @@ EmuPacket* EmuPacket::duplicate() {
 LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm,
 					Timeline* timel) {
 
-	int shm_fd;
 
 	assert(lm    != NULL);
 	assert(timel != NULL);
@@ -121,8 +122,9 @@ LXC_Proxy::~LXC_Proxy() {
 
 	close(fd);
 	cout << "Stopping LXC Proxy. Tracer-ID: " << eqTracerID << endl;
-	exec_LXC_command(LXC_STOP);
+	//exec_LXC_command(LXC_STOP);
 	exec_LXC_command(LXC_DESTROY);
+	cout << "Stopped LXC Proxy. Tracer-ID: " << eqTracerID << endl;
 }
 
 void LXC_Proxy::printInfo() {
@@ -224,7 +226,7 @@ string LXC_Proxy::exec_system_command(char* cmd) {
     		result += buffer;
     }
     pclose(pipe);
-	cout<< " Result = "<<result<<endl;
+    //cout<< " Result = "<<result<<endl;
 
     return result;
 }
@@ -269,10 +271,11 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 			break;
 
 		case LXC_START_TRACER:
-			cmd = "lxc-start -n" + lxc + " -d -- " 
-								 + "/bin/tracer -e 2 -t " 
+			cmd = "lxc-start -n" + lxc + " -d " + " -l /tmp/lxc-" + std::to_string(eqTracerID) + ".log" + " -- " 
+								 + "/usr/bin/tracer -e 2 -t " 
 								 + std::to_string(timelineLXCAlignedOn->s3fid())
-								 + " -i "
+								 + " -i " + std::to_string(eqTracerID)
+								 + " -c \"" + cmndToExec + "\"";
 			break;
 		
 		default:
@@ -285,16 +288,6 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 	exec_system_command((char*)cmd.c_str());
 }
 
-void LXC_Proxy::advanceLXCBy(ltime_t advanceTime) {
-	int TimelineID = (int)(timelineLXCAlignedOn->s3fid());
-
-	#ifdef ADVANCE_DEBUG
-	lxcMan->debugPrint("CALLING SET INTERVAL %ld, on Timeline %u\n",
-					   advanceTime, TimelineID);
-	#endif
-
-	setInterval(PID, advanceTime, TimelineID);
-}
 
 // Write to file /tmp/lxcname. The reader process running on the lxc
 // constantly polls for any events on this file and spawns a new process to 

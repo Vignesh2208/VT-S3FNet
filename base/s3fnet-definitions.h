@@ -5,8 +5,8 @@
 #define COMPOSITE_SYNC
 #define LOGGING
 
-#define PATH_TO_S3FNETLXC   "/home/vignesh/s3fnet-lxc"
-#define PATH_TO_READER_DATA "/home/vignesh/s3fnet-lxc/data"
+#define PATH_TO_S3FNETLXC   "/home/vignesh/VT-S3FNet"
+#define PATH_TO_READER_DATA "/home/vignesh/VT-S3FNet/data"
 
 
 #endif /*__S3FNETDEFINITIONS_H__*/

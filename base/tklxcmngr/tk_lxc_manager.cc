@@ -6,6 +6,7 @@
  * authors : Vladimir Adam
  */
 
+#include "pktheader.h"
 #include <s3f.h>
 #include <string.h>
 
@@ -17,14 +18,18 @@
 
 #include <errno.h>
 #include <arpa/inet.h>
-#include "pktheader.h"
 #include <netinet/ip_icmp.h>
 #include <netinet/udp.h>
 #include <netinet/ip.h>
+#include <netinet/tcp.h>
 #include <fstream>
 #include <cstdarg>
-#include "tk_lxc_manager.h"
 
+extern "C" 
+{
+	#include <VT_functions.h>   
+	
+}
 
 #define ETHER_TYPE_IP    (0x0800)
 #define ETHER_TYPE_ARP   (0x0806)
@@ -32,17 +37,25 @@
 #define ETHER_TYPE_IPV6  (0x86DD)
 #define PACKET_SIZE 1600
 
+extern "C" void ns_2_timeval(s64 currTstamp, struct timeval * tv);
+
+/*
+void print_ip(unsigned int ip)
+{
+    unsigned char bytes[4];
+    bytes[0] = ip & 0xFF;
+    bytes[1] = (ip >> 8) & 0xFF;
+    bytes[2] = (ip >> 16) & 0xFF;
+    bytes[3] = (ip >> 24) & 0xFF;   
+    printf("%d.%d.%d.%d\n", bytes[3], bytes[2], bytes[1], bytes[0]);        
+}*/
+
+
 //----------------------------------------------------------------------------
 // 			LXC Manager Class Functions
 //----------------------------------------------------------------------------
 
 
-void* manageInitTearDownLXCThreadHelper(void * ptr)
-{
-	launchThreadInfo* ltI = (launchThreadInfo*)ptr;
-	return ltI->lxcManager->setUpTearDownLXCs(ltI->timelineID, ltI->typeFlag);
-
-}
 
 LxcManager::LxcManager(Interface* inf)
 {
@@ -79,18 +92,15 @@ void LxcManager::init(char* outputDir)
 		vectorOfHowManyTimesTimelineCalledProgress.push_back(0);
 	}
 
-	for (unsigned int i = 0; i < listOfProxies.size(); i++) {
-			LXC_Proxy* proxy = listOfProxies[i];
-			proxy->setEqTracerID(i + 1);
-	}
+
 	assert(vectorOfTotalTimesSpentAdvancing.size() == numTimelines);
 }
 
 LxcManager::~LxcManager() {}
 
-	//----------------------------------------------------------------------------------------------------------------------
-	// 												Thread Functions
-	//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+// 												Thread Functions
+//----------------------------------------------------------------------------------------------------------------------
 
 void* LxcManager::setUpTearDownLXCs(unsigned int timelineID, int typeFlag)
 {
@@ -171,11 +181,12 @@ void LxcManager::handleIncomingPacket(vector<LXC_Proxy*>* proxiesToCheck) {
 					arrivalTime = proxy->getElapsedTime();
 
 				proxy->last_arrival_time = arrivalTime;
-				
+				struct in_addr ip_addr;
+    				ip_addr.s_addr = destIP;
 				// TODO: use std::map to optimize Lookup
 				LXC_Proxy* destinationProxy = findDestProxy(destIP);
 				if (destinationProxy == NULL) {
-					cout << "Dropping packet: No one to give it to !\n");
+					printf("Dropping packet intended for destIP: %s: No one to give it to !\n", inet_ntoa(ip_addr));
 					cout << print_packet(buffer, nread);
 				}
 				else {
@@ -198,7 +209,7 @@ void LxcManager::handleIncomingPacket(vector<LXC_Proxy*>* proxiesToCheck) {
 		}
 		
 
-	} // end of do-while
+	} while (ret > 0); // end of do-while
 	
 }
 
@@ -221,9 +232,18 @@ void LxcManager::syncUpLXCs() {
 
 	long lxcTimestampSec;
 	long lxcTimestampMicroSec;
+	int numTimelines, numTracers;
 	struct timeval tv_lxcTimestamp;
 
 	printInfoAboutHashTable();
+
+	numTimelines = siminf->get_numTimelines();
+	numTracers = listOfProxies.size();
+	debugPrint("|==================================================\n");
+	debugPrint("| Initializing VT experiment                     \n");
+	debugPrint("|==================================================\n\n");
+
+	initialize_VT_Exp(EXP_CS, numTimelines, numTracers);
 
 	debugPrint("|==================================================\n");
 	debugPrint("| Creating and Launching LXCs                      \n");
@@ -232,6 +252,7 @@ void LxcManager::syncUpLXCs() {
 
 	for (unsigned int i = 0; i < listOfProxies.size(); i++) {
 		LXC_Proxy* proxy = listOfProxies[i];
+		proxy->setEqTracerID(i + 1);
 		proxy->launchLXC();
 	}
 
@@ -306,35 +327,45 @@ void LxcManager::printLXCstats() {
 }
 
 bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
-									   ltime_t timeToAdvanceTo) {
+				       ltime_t timeToAdvanceTo) {
 	// Keep track of how many LXCs need to be advanced
-	int numAdvancing = 0;
 
 	vector<LXC_Proxy*> proxiesBeingAdvanced;
 	vector<LXC_Proxy*>* proxiesOnTimeline = listOfProxiesByTimeline[timelineID];
 
-	// this timeline does not have any proxies - don't advance it
-	if (proxiesOnTimeline->size() == 0)
-		return false;
+
 
 	ltime_t lxc_actual_vt          = (*proxiesOnTimeline)[0]->getElapsedTime();
 	ltime_t desired_vt             = timeToAdvanceTo;
-	ltime_t time_needed_to_advance = desired_vt - lxc_actual_vt;
+	ltime_t time_needed_to_advance_us = desired_vt - lxc_actual_vt;
 
-	if (time_needed_to_advance <= 0)
-			return true;
+	vectorOfHowManyTimesTimelineCalledProgress[timelineID]++;
 
+	//if (vectorOfHowManyTimesTimelineCalledProgress[timelineID] < 100)
+	debugPrint("|----------- Advancing Timeline: %d by %llu (us). timeToAdvanceTo: %llu (us). ElapsedTime: %llu (us) -----------|\n",
+		    timelineID, time_needed_to_advance_us, timeToAdvanceTo, lxc_actual_vt);
+
+	// this timeline does not have any proxies - don't advance it
+	if (proxiesOnTimeline->size() == 0) {
+		debugPrint("Timeline has no proxies !\n");
+		return false;
+	}
+
+	if (time_needed_to_advance_us <= 0)
+		return false;
+
+	
 
 	unsigned long startTime = getWallClockTime();
-	progress_timeline_by((int)timelineID, time_needed_to_advance);
+	progress_timeline_by((int)timelineID, time_needed_to_advance_us*1000);
 	unsigned long finishTime = getWallClockTime();
 
 
 	handleIncomingPacket(proxiesOnTimeline);
 
-	vectorOfHowManyTimesTimelineCalledProgress[timelineID]++;
+	
 	vectorOfTotalTimesSpentAdvancing[timelineID] += (finishTime - startTime);
-	return true;
+	return false;
 }
 
 LXC_Proxy* LxcManager::getLXCProxyWithNHI(string nhi)
@@ -382,16 +413,21 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 	assert(ethT != NULL);
 	sniff_ethernet* ether = (sniff_ethernet*)pkt_ptr;
 	u_short ether_type    = ntohs(ether->ether_type);
-	unsigned short sum;
-
+	
 	int ether_offset     = 0;
-	int dstIPAddr_offset = 0;
-	int srcIPAddr_offset = 0;
+	int dstIPAddr_offset = 0, srcIPAddr_offset = 0;
 	int parse_packet_type = PARSE_PACKET_SUCCESS_IP;
+	int is_udp = 0, is_tcp = 0;
 
 	struct icmphdr* hdr;
 	struct iphdr* tk_ip_header;
 	struct udphdr* tk_udp_header;
+	struct tcphdr* tk_tcp_header;
+
+	char* ptrToDstIPAddr;
+	char * ptrToSrcIPAddr;
+
+	unsigned int dstIP, srcIP;
 
 	u_short udp_src_port;
 	(*ethT) = ether_type;
@@ -401,8 +437,7 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 			ether_offset = 14;
 			dstIPAddr_offset = 16;
 			srcIPAddr_offset = 12;
-			hdr  = (struct icmphdr*)(pkt_ptr + ether_offset + 20);
-			assert(hdr != NULL);
+
 			//if      (hdr->type == ICMP_ECHO)      printf("REQUEST ---%hu----", ntohs(hdr->un.echo.sequence));
 			//else if (hdr->type == ICMP_ECHOREPLY) printf("REPLY ---%hu----", ntohs(hdr->un.echo.sequence));
 
@@ -410,17 +445,25 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 			// It try to send out some sort DHCP/ Bootstrap protocol to get an IP address (or something)
 			// We ignore this packet and do not send it through the simulator.
 			tk_ip_header = (struct iphdr*)(pkt_ptr + ether_offset);
+			tk_ip_header = (struct iphdr*)(pkt_ptr + ether_offset);
 			if (tk_ip_header->protocol == 0x11)	// UDP
 			{
-				tk_udp_header = (struct udphdr*)(pkt_ptr + ether_offset + 20);
+				tk_udp_header = (struct udphdr*)(pkt_ptr + ether_offset + tk_ip_header->ihl*4);
 				udp_src_port = ntohs(tk_udp_header->source);
-				sum = (unsigned short)tk_udp_header->check;
-				unsigned short udpLen = htons(tk_udp_header->len);
+				is_udp = 1;
 				
+				// For dubugging
+				//debugPrint("UDP Checksum = %d, UDP Len = %d\n",sum,udpLen);
 
 				if (udp_src_port == 68)
-					return pair<int, unsigned int>(
-						PACKET_PARSE_IGNORE_PACKET, -1);
+					return pair<int, unsigned int>(PACKET_PARSE_IGNORE_PACKET, -1);
+			}
+			if (tk_ip_header->protocol == 0x06)	// TCP
+			{
+				is_tcp = 1;
+				tk_tcp_header = (struct tcphdr*)(pkt_ptr + ether_offset + tk_ip_header->ihl*4);
+				
+
 			}
 			parse_packet_type = PARSE_PACKET_SUCCESS_IP;
 			break;
@@ -451,11 +494,82 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 			break;
 	}
 
-	char* ptrToIPAddr = (pkt_ptr + ether_offset + dstIPAddr_offset);
-	unsigned int dstIP = *(unsigned int*)(ptrToIPAddr);
+	if (parse_packet_type == PARSE_PACKET_SUCCESS_IP) {
+	 	
+	 	dstIP = tk_ip_header->daddr;
+		srcIP = tk_ip_header->saddr;
 
-	char* ptrToSrcIPAddr = (pkt_ptr + ether_offset + srcIPAddr_offset);
-	unsigned int srcIP = *(unsigned int*)(ptrToSrcIPAddr);
+	} else {
+
+		ptrToDstIPAddr = (pkt_ptr + ether_offset + dstIPAddr_offset);
+		dstIP = *(unsigned int*)(ptrToDstIPAddr);
+
+		ptrToSrcIPAddr = (pkt_ptr + ether_offset + srcIPAddr_offset);
+		srcIP = *(unsigned int*)(ptrToSrcIPAddr);
+	}
+
+	char buffer[20];
+	const char* result=inet_ntop(AF_INET, &dstIP,buffer,sizeof(buffer));
+	char buffer_2[20];
+	const char* result_2 = inet_ntop(AF_INET, &srcIP,buffer_2,sizeof(buffer_2));
+
+
+	if(is_tcp){
+		debugPrint("######################################\n");
+		debugPrint("\n~~~~~~~~~~~~~~~~~~TCP :	");
+		debugPrint("Ether Type: 0x%.4x\n", ether_type);
+		debugPrint("Src IP string: %s\n",result_2);
+		debugPrint("Dest IP string: %s\n", result);
+
+		debugPrint("TCP source port : %d\n", tk_tcp_header->source);
+		debugPrint("TCP dest port : %d\n", tk_tcp_header->dest);
+		debugPrint("TCP seq : %d\n", tk_tcp_header->seq);
+		debugPrint("TCP ack_seq : %d\n", tk_tcp_header->ack_seq);
+
+		
+		debugPrint("TCP syn : %d\n", tk_tcp_header->syn);
+		debugPrint("TCP ack : %d\n", tk_tcp_header->ack);
+		debugPrint("TCP rst : %d\n", tk_tcp_header->rst);
+		debugPrint("TCP urg : %d\n", tk_tcp_header->urg);
+		debugPrint("TCP fin : %d\n", tk_tcp_header->fin);
+		debugPrint("TCP window : %d\n", tk_tcp_header->window);
+		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	
+
+
+	}
+
+	if(is_udp){
+		debugPrint("######################################\n");
+		debugPrint("\n~~~~~~~~~~~~~~~~~~UDP :	");
+		debugPrint("Ether Type: 0x%.4x\n", ether_type);
+		debugPrint("Src IP string: %s\n",result_2);
+		debugPrint("Dest IP string: %s\n", result);
+		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+
+	}
+
+	if(!is_tcp && !is_udp){
+
+		debugPrint("######################################\n");
+		if(parse_packet_type == PARSE_PACKET_SUCCESS_ARP)
+			debugPrint("~~~~~~~~~~~~~~~~ARP~~~~~~~~~~~~~~~~~~\n");
+		else
+			debugPrint("~~~~~~~~~~~~~~~~UNKNOWN~~~~~~~~~~~~~~~~~~\n");
+
+		debugPrint("Ether Type: 0x%.4x\n", ether_type);
+		if (parse_packet_type == PARSE_PACKET_SUCCESS_IP) {
+			debugPrint("IP Protocol Number: %d\n", tk_ip_header->protocol); 
+		}
+		debugPrint("Src IP string: %s\n",result_2);
+		debugPrint("Dest IP string: %s\n", result);
+		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");		
+
+	}
+
+	//if (parse_packet_type != PACKET_PARSE_IGNORE_PACKET)
+	//	dstIP = *(unsigned int*)(ptrToIPAddr);
+
 
 	assert(dstIP > 0);
 	return pair<int, unsigned int>(parse_packet_type, ntohl(dstIP));
@@ -572,33 +686,31 @@ unsigned long LxcManager::getWallClockTime() {
 }
 
 // for getting packet send time
-int LxcManager::packet_hash(const u_char * s, int total_pkt_len) {
+int LxcManager::packet_hash(char * pkt, int total_pkt_len) {
 
     int hash = 0;
-    const u_char * payload;
+    char * payload;
     int i = 0;
 	int size = total_pkt_len;
 
-	sniff_ethernet* ether = (sniff_ethernet*)s;
-	u_short ether_type    = ntohs(ether->ether_type);
 	struct iphdr* ip_header;
 	struct tcphdr * tcp_header;
-	int ether_offset = 14;
+	int ether_offset = sizeof(sniff_ethernet);
 	int tcphdrlen, iphdrlen;
 
-	ip_header = (struct iphdr*)(pkt_ptr + ether_offset);
+	ip_header = (struct iphdr*)(pkt + ether_offset);
 	if (ip_header->protocol == 0x11) {
 		// UDP
 		iphdrlen = ip_header->ihl*sizeof (uint32_t);
-		payload = (char *)(s + ether_offset + iphdrlen + sizeof(struct udphdr));
+		payload = (char *)(pkt + ether_offset + iphdrlen + sizeof(struct udphdr));
 		size = total_pkt_len - (ether_offset + iphdrlen + sizeof(struct udphdr));
 
 	} else if (ip_header->protocol == 0x6) {
 		// TCP
 		iphdrlen = ip_header->ihl*sizeof (uint32_t);
-		tcp_header = (struct tcphdr *)(s + ether_offset + iphdrlen);
+		tcp_header = (struct tcphdr *)(pkt + ether_offset + iphdrlen);
 		tcphdrlen = sizeof (uint32_t) * tcp_header->doff;
-		payload = (char *)(s + ether_offset + iphdrlen + tcphdrlen);
+		payload = (char *)(pkt + ether_offset + iphdrlen + tcphdrlen);
 		size = total_pkt_len - (ether_offset + iphdrlen + tcphdrlen);
 
 	} else {

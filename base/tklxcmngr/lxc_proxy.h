@@ -14,22 +14,9 @@
 #include <fcntl.h>			// O_RDWR
 
 #include <unistd.h> 		// close
-
-#include <sys/time.h>
-
-#include <sys/socket.h>
-#include <linux/if.h>
-#include <linux/if_tun.h>
-#include <sys/ioctl.h>		// ioctl
-
-
-extern "C" 
-{
-	#include <VT_functions.h>   
-}
-
-
-
+//#include <linux/if.h>
+//#include <linux/if_tun.h>
+//#include <sys/ioctl.h>	
 
 
 #define TIME_200_MS_IN_US           200000
@@ -150,10 +137,6 @@ class LXC_Proxy
 		 */
 		ltime_t getElapsedTime();
 
-		/*
-		 * Calls the the setInterval(...) function for the LXC Proxy
-		 */
-		void advanceLXCBy(ltime_t advanceTime);
 
 		/*
 		 * Sends a cmndToExec once to the LXC

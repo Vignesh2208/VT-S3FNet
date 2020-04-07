@@ -145,7 +145,7 @@ int LxcemuSession::pop(Activation msg, ProtocolSession* lo_sess, void* extinfo,
 
 	proxy->lxcMan->cwrite(proxy->fd, (char*) pkt->data, pkt->len );
 
-	ltime_t proxyVT = proxy->getElapsedTime();
+	/*ltime_t proxyVT = proxy->getElapsedTime();
 	long difference = (timelineTime - proxyVT);
 	if (difference < 0) //Timeline time < virtual time meaning it was sent early
 		proxy->packetsSentLate++;
@@ -155,7 +155,7 @@ int LxcemuSession::pop(Activation msg, ProtocolSession* lo_sess, void* extinfo,
 		proxy->packetsSentOnTime++;
 
 	proxy->totalPacketError += labs(difference);
-	proxy->packetsSentOut++;
+	proxy->packetsSentOut++;*/
 
 	delete pkt;
 	dmsg->erase_all();
@@ -181,7 +181,7 @@ void LxcemuSession::injectEvent(EmuPacket* packet, IPADDR srcIP, IPADDR destIP)
 
 	LXC_Proxy* proxy = owner_host->proxy;
 
-	if (timelineTime > packetIncomingTime)
+	/*if (timelineTime > packetIncomingTime)
 	{
 		proxy->packetsInjectedIntoPast++;
 		proxy->totalTimeInjectedIntoPast += (timelineTime - packetIncomingTime);
@@ -194,7 +194,7 @@ void LxcemuSession::injectEvent(EmuPacket* packet, IPADDR srcIP, IPADDR destIP)
 	else
 	{
 		proxy->packetsInjectedAtCorrectTime++;
-	}
+	}*/
 
 	//printf("Injecting Event! Timeline %u Time %ld | Incoming Time %ld\n", inHost()->alignment()->s3fid(),
 	//		timelineTime, packetIncomingTime );

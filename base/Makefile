@@ -1,6 +1,5 @@
 NUM_CORES := 4
 
-CLEAN_EXPERIMENT = bash CLEAN_EXPERIMENT
 
 all: 
 	echo "inc | rebuild | debuginc | debug"
@@ -12,7 +11,6 @@ rebuild: lxcman
 	./build.sh -f -n  $(NUM_CORES)
 	
 fullbuild: lxcman
-	cd tklxcmngr/socket_hooks/; make clean; make;
 	./build.sh -n $(NUM_CORES)
 
 debuginc: lxcman
@@ -24,16 +22,17 @@ debug: lxcman
 lxcman:
 	cd tklxcmngr; make clean; make;
 
+csudp:
+	cd ../csudp; make;
+
 
 
 
 examplerun:
-	$(CLEAN_EXPERIMENT)	
-	cd s3fnet/test/lxc_tests/huge_with_traffic/; make clean; make; make test
+	cd s3fnet/test/lxc_tests/small_2_udp/; make clean; make; make test
 	chmod -R 777 ../experiment-data
 
-run:
-	$(CLEAN_EXPERIMENT)	
+run:	
 	# cd s3fnet/test/lxc_tests/small_2_udp_tiny_delay/; make clean; make; make test
 	# cd s3fnet/test/lxc_tests/small_2_udp_2_emu_1_router/; make clean; make; make test
 	# cd s3fnet/test/lxc_tests/sandbox/; make clean; make; make test
