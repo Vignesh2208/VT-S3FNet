@@ -55,7 +55,7 @@ static void strsub(S3FNET_STRING& cp, S3FNET_STRING oldstr, S3FNET_STRING newstr
 
 SimInterface::~SimInterface()
 {
-	delete topnet;
+	
 }
 
 SimInterface* sim_inf;
@@ -278,13 +278,19 @@ int main(int argc, char** argv)
   sleep(2);
   sim_inf->get_timeline_interface()->lm->stopExperiment();
   sim_inf->get_timeline_interface()->lm->printLXCstats();
-  delete sim_inf;
+  //delete sim_inf;
+
+  printf("Cleaning up SimInterface !\n");
+  delete sim_inf->topnet;
+  printf("Cleaned up SimInterface !\n");
 
   printf(".--------------------------------------------------------------------------------------.\n");
   printf("|                                                                                      |\n");
   printf("|                           SUCCESSFUL SIMULATION COMPLETION                           |\n");
   printf("|                                                                                      |\n");
   printf("'--------------------------------------------------------------------------------------'\n");
+
+ 
 
   return 0;
 }

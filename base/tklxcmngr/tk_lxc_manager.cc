@@ -127,6 +127,110 @@ void* LxcManager::setUpTearDownLXCs(unsigned int timelineID, int typeFlag)
 }
 
 
+int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
+	int incomingFD = proxy->fd;
+	u_short ethT = 0;
+	ltime_t arrivalTime = 0;
+	assert(incomingFD > 0);
+	memset(buffer, 0, PACKET_SIZE);
+
+	int nread = cread(incomingFD, buffer, PACKET_SIZE);
+
+	if (nread <= 0)
+		return 0;
+
+	std::pair<int, unsigned int> res = analyzePacket(buffer, nread, &ethT);
+	unsigned int destIP = res.second;
+	int packet_status   = res.first;
+        int payload_hash = 0, payload_len = 0;
+	int numConsumedBytes = 0;
+
+	if (packet_status == PACKET_PARSE_IGNORE_PACKET
+	    || packet_status ==  PACKET_PARSE_UNKNOWN_PACKET) {
+		return 0;
+	}
+
+	if (packet_status == PARSE_PACKET_SUCCESS_IP) {
+		res = packet_hash(buffer, nread);
+		payload_hash = res.first;
+		payload_len = res.second;
+
+		printf("Detected IP payload hash: %d, payload_len: %d\n", payload_hash, payload_len);
+		numConsumedBytes = payload_len;
+
+		if (!payload_hash) {
+			arrivalTime = proxy->getElapsedTime();
+		} else {
+
+			struct timeval incomingPacketTimestamp;
+			ns_2_timeval(get_pkt_send_time(proxy->eqTracerID,
+			      				payload_hash),
+				     &incomingPacketTimestamp);
+
+			long secElapsed = incomingPacketTimestamp.tv_sec  - proxy->simulationStartSec;
+			long microSecElapsed 
+				= incomingPacketTimestamp.tv_usec - proxy->simulationStartMicroSec;
+			arrivalTime = secElapsed * 1000000 +  microSecElapsed;
+		}
+	} else {
+		numConsumedBytes = 0;
+		arrivalTime = proxy->getElapsedTime();
+	}
+
+	proxy->last_arrival_time = arrivalTime;
+	struct in_addr ip_addr;
+	ip_addr.s_addr = destIP;
+	
+	LXC_Proxy* destinationProxy = findDestProxy(destIP);
+	if (destinationProxy == NULL) {
+		printf("Dropping packet intended for destIP: %s: No one to give it to !\n", inet_ntoa(ip_addr));
+		cout << print_packet(buffer, nread);	
+	}
+	else {
+
+		EmuPacket* pkt = new EmuPacket(nread);
+		memcpy(pkt->data, buffer, nread);
+		pkt->incomingFD   = incomingFD;
+		pkt->outgoingFD   = destinationProxy->fd;
+		pkt->incomingTime = arrivalTime;
+		pkt->ethernetType = ethT;
+
+		assert(pkt->incomingFD != pkt->outgoingFD);
+
+		s3f::s3fnet::Host* destHost 
+			= (s3f::s3fnet::Host*)proxy->ptrToHost;
+		destHost->inNet()->getTopNet()->injectEmuEvent(
+			destHost, pkt, destIP);
+	}
+	return numConsumedBytes;
+}
+
+void LxcManager::handleAllEnqueuedPackets(vector<LXC_Proxy*>* proxiesToCheck) {
+	struct pollfd ufds[proxiesToCheck->size()];
+	int ret = 0;
+	char buffer[PACKET_SIZE];
+	for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
+		LXC_Proxy* proxy = (*proxiesToCheck)[i];
+		
+		int numEnqueuedBytes = get_num_enqueued_bytes(proxy->eqTracerID);
+		int numDequeuedBytes = 0;
+		
+		if (numEnqueuedBytes <= 0)
+			continue;
+
+		printf("Num Enqueued Bytes is positive and = %d\n", numEnqueuedBytes);
+		while (numDequeuedBytes < numEnqueuedBytes) {
+			// there is some data which will become available shortly
+			numDequeuedBytes += readAndProcessNxtPacket(proxy, buffer);
+		}
+		
+	}
+
+
+}
+
+
+
 //----------------------------------------------------------------------------
 // 					Other Functions
 //----------------------------------------------------------------------------
@@ -138,7 +242,11 @@ void LxcManager::handleIncomingPacket(vector<LXC_Proxy*>* proxiesToCheck) {
 	int ret = 0;
 	char buffer[PACKET_SIZE];
 
+	//handleAllEnqueuedPackets(proxiesToCheck);
+
+	// handle anything left-over
 	do {
+		
 		for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
 			LXC_Proxy* proxy = (*proxiesToCheck)[i];
 			ufds[i].fd = proxy->fd;
@@ -149,65 +257,14 @@ void LxcManager::handleIncomingPacket(vector<LXC_Proxy*>* proxiesToCheck) {
 
 		if (ret <= 0)
 			break;
-
+		
 		// find out to see which FD got something
 		for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
 			LXC_Proxy* proxy = (*proxiesToCheck)[i];
-			int incomingFD = proxy->fd;
-			ltime_t arrivalTime = 0;
-			assert(incomingFD > 0);
-
 			if(ufds[i].revents & POLLIN) {
-				assert(incomingFD == ufds[i].fd);
-				memset(buffer, 0, PACKET_SIZE);
-				int nread = cread(incomingFD, buffer, PACKET_SIZE);
-				u_short ethT = 0;
-				
-
-				std::pair<int, unsigned int> res = analyzePacket(buffer, nread,
-																&ethT);
-				unsigned int destIP = res.second;
-				int packet_status   = res.first;
-
-				if (packet_status == PACKET_PARSE_IGNORE_PACKET
-					|| packet_status ==  PACKET_PARSE_UNKNOWN_PACKET) {
-					continue;
-				}
-
-				if (packet_status == PARSE_PACKET_SUCCESS_IP)
-					arrivalTime = get_pkt_send_time(proxy->eqTracerID,
-						packet_hash(buffer, nread));
-				else
-					arrivalTime = proxy->getElapsedTime();
-
-				proxy->last_arrival_time = arrivalTime;
-				struct in_addr ip_addr;
-    				ip_addr.s_addr = destIP;
-				// TODO: use std::map to optimize Lookup
-				LXC_Proxy* destinationProxy = findDestProxy(destIP);
-				if (destinationProxy == NULL) {
-					printf("Dropping packet intended for destIP: %s: No one to give it to !\n", inet_ntoa(ip_addr));
-					cout << print_packet(buffer, nread);
-				}
-				else {
-
-					EmuPacket* pkt = new EmuPacket(nread);
-					memcpy(pkt->data, buffer, nread);
-					pkt->incomingFD   = incomingFD;
-					pkt->outgoingFD   = destinationProxy->fd;
-					pkt->incomingTime = arrivalTime;
-					pkt->ethernetType = ethT;
-
-					assert(pkt->incomingFD != pkt->outgoingFD);
-
-					s3f::s3fnet::Host* destHost 
-						= (s3f::s3fnet::Host*)proxy->ptrToHost;
-					destHost->inNet()->getTopNet()->injectEmuEvent(
-						destHost, pkt, destIP);
-				}
+				readAndProcessNxtPacket(proxy, buffer);
 			}
 		}
-		
 
 	} while (ret > 0); // end of do-while
 	
@@ -409,7 +466,7 @@ void LxcManager::printInfoAboutHashTable() {
 }
 
 std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
-														u_short* ethT) {
+						       u_short* ethT) {
 	assert(ethT != NULL);
 	sniff_ethernet* ether = (sniff_ethernet*)pkt_ptr;
 	u_short ether_type    = ntohs(ether->ether_type);
@@ -438,9 +495,6 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 			dstIPAddr_offset = 16;
 			srcIPAddr_offset = 12;
 
-			//if      (hdr->type == ICMP_ECHO)      printf("REQUEST ---%hu----", ntohs(hdr->un.echo.sequence));
-			//else if (hdr->type == ICMP_ECHOREPLY) printf("REPLY ---%hu----", ntohs(hdr->un.echo.sequence));
-
 			// These statements deal with a packet that is sent out when an LXC is started as a DAEMON.
 			// It try to send out some sort DHCP/ Bootstrap protocol to get an IP address (or something)
 			// We ignore this packet and do not send it through the simulator.
@@ -452,9 +506,6 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 				udp_src_port = ntohs(tk_udp_header->source);
 				is_udp = 1;
 				
-				// For dubugging
-				//debugPrint("UDP Checksum = %d, UDP Len = %d\n",sum,udpLen);
-
 				if (udp_src_port == 68)
 					return pair<int, unsigned int>(PACKET_PARSE_IGNORE_PACKET, -1);
 			}
@@ -554,8 +605,9 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 		debugPrint("######################################\n");
 		if(parse_packet_type == PARSE_PACKET_SUCCESS_ARP)
 			debugPrint("~~~~~~~~~~~~~~~~ARP~~~~~~~~~~~~~~~~~~\n");
-		else
+		else {
 			debugPrint("~~~~~~~~~~~~~~~~UNKNOWN~~~~~~~~~~~~~~~~~~\n");
+		}
 
 		debugPrint("Ether Type: 0x%.4x\n", ether_type);
 		if (parse_packet_type == PARSE_PACKET_SUCCESS_IP) {
@@ -566,10 +618,6 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");		
 
 	}
-
-	//if (parse_packet_type != PACKET_PARSE_IGNORE_PACKET)
-	//	dstIP = *(unsigned int*)(ptrToIPAddr);
-
 
 	assert(dstIP > 0);
 	return pair<int, unsigned int>(parse_packet_type, ntohl(dstIP));
@@ -686,36 +734,36 @@ unsigned long LxcManager::getWallClockTime() {
 }
 
 // for getting packet send time
-int LxcManager::packet_hash(char * pkt, int total_pkt_len) {
+std::pair<int, unsigned int> LxcManager::packet_hash(char * pkt, int total_pkt_len) {
 
     int hash = 0;
     char * payload;
     int i = 0;
-	int size = total_pkt_len;
+    int size = total_pkt_len;
 
-	struct iphdr* ip_header;
-	struct tcphdr * tcp_header;
-	int ether_offset = sizeof(sniff_ethernet);
-	int tcphdrlen, iphdrlen;
+    struct iphdr* ip_header;
+    struct tcphdr * tcp_header;
+    int ether_offset = sizeof(sniff_ethernet);
+    int tcphdrlen, iphdrlen;
 
-	ip_header = (struct iphdr*)(pkt + ether_offset);
-	if (ip_header->protocol == 0x11) {
-		// UDP
-		iphdrlen = ip_header->ihl*sizeof (uint32_t);
-		payload = (char *)(pkt + ether_offset + iphdrlen + sizeof(struct udphdr));
-		size = total_pkt_len - (ether_offset + iphdrlen + sizeof(struct udphdr));
+    ip_header = (struct iphdr*)(pkt + ether_offset);
+    if (ip_header->protocol == 0x11) {
+	// UDP
+	iphdrlen = ip_header->ihl*sizeof (uint32_t);
+	payload = (char *)(pkt + ether_offset + iphdrlen + sizeof(struct udphdr));
+	size = total_pkt_len - (ether_offset + iphdrlen + sizeof(struct udphdr));
 
-	} else if (ip_header->protocol == 0x6) {
-		// TCP
-		iphdrlen = ip_header->ihl*sizeof (uint32_t);
-		tcp_header = (struct tcphdr *)(pkt + ether_offset + iphdrlen);
-		tcphdrlen = sizeof (uint32_t) * tcp_header->doff;
-		payload = (char *)(pkt + ether_offset + iphdrlen + tcphdrlen);
-		size = total_pkt_len - (ether_offset + iphdrlen + tcphdrlen);
+    } else if (ip_header->protocol == 0x6) {
+	// TCP
+	iphdrlen = ip_header->ihl*sizeof (uint32_t);
+	tcp_header = (struct tcphdr *)(pkt + ether_offset + iphdrlen);
+	tcphdrlen = sizeof (uint32_t) * tcp_header->doff;
+	payload = (char *)(pkt + ether_offset + iphdrlen + tcphdrlen);
+	size = total_pkt_len - (ether_offset + iphdrlen + tcphdrlen);
 
-	} else {
-		return 0;
-	}
+    } else {
+	return pair<int, unsigned int>(0, total_pkt_len);
+    }
     
     for(i = 0; i < size; i++) {
     	hash += *payload;
@@ -728,9 +776,9 @@ int LxcManager::packet_hash(char * pkt, int total_pkt_len) {
     hash ^= (hash >> 11);
     hash += (hash << 15);
 
-	if (hash < 0)
-		return -1 * hash;
+    if (hash < 0)
+    	hash = -1 * hash;
 
-    return hash;
+    return pair<int, unsigned int>(hash, size);
 }
 

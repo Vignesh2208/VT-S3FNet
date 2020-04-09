@@ -236,7 +236,13 @@ class LxcManager
 		/*
 		 * Returns a hash of the packet contents
 		 */
-		int packet_hash(char * s,int size);
+		std::pair<int, unsigned int> packet_hash(char * s,int size);
+
+
+		void handleAllEnqueuedPackets(vector<LXC_Proxy*>* proxiesToCheck);
+
+		
+		int readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer);
 };
 
 typedef struct threadInfo {

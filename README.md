@@ -11,3 +11,7 @@ To get lxc-start to work, Apparmor profile must be disabled.
 Verify that lxc-start profile no longer exists with the following command:
 
 >> sudo aa-status
+
+Dependencies:
+
+Install flex
