@@ -45,6 +45,7 @@ EmuPacket::EmuPacket(int len)
 	incomingFD   = -1;
 	outgoingFD   = -1;
 	ethernetType = 0;
+	destProxy = NULL;
 }
 
 EmuPacket::~EmuPacket() {
@@ -59,6 +60,7 @@ EmuPacket* EmuPacket::duplicate() {
 	ppkt->ethernetType = ethernetType;
 	ppkt->incomingFD   = incomingFD;
 	ppkt->outgoingFD   = outgoingFD;
+	ppkt->destProxy = destProxy;
 	assert(ppkt->len == len);
 	printf("Duplicate called\n");
 	exit(0);
@@ -307,5 +309,69 @@ void LXC_Proxy::sendCommandToLXC() {
 		close(npfd);
 		commandSent = true;
 	}
+}
+
+
+void LXC_Proxy::updateNextEarliestArrivalTime(int pktHash,
+									   	  s64 pktEarliestArrivalTime) {
+	pktsInTransitQueueMutex.lock();
+
+	pktsInTransit.push(std::make_pair(pktEarliestArrivalTime, pktHash));
+	pktsInTransitQueueMutex.unlock();
+	
+}
+
+void LXC_Proxy::signalPacketDelivery(int pktHash) {
+
+	std::vector<lPair> tmpVector;
+
+	s64 currTimestamp = get_current_time_tracer(eqTracerID); 
+
+	pktsInTransitQueueMutex.lock();
+	while(!pktsInTransit.empty()) {
+		int topHash = pktsInTransit.top().second;
+
+		if(topHash == pktHash) {
+			pktsInTransit.pop();
+			break;
+		} else {
+			s64 topPktEAT = pktsInTransit.top().first;
+			pktsInTransit.pop();
+			tmpVector.push_back(std::make_pair(topPktEAT, topHash));			
+		}
+	}
+
+	for (int i = 0; i < tmpVector.size(); i++) {
+		pktsInTransit.push(std::make_pair(
+			tmpVector[i].first, tmpVector[i].second));
+	}
+	pktsInTransitQueueMutex.unlock();
+
+}
+
+
+s64 LXC_Proxy::getNextEarliestArrivalTime() {
+
+	s64 eat;
+	s64 currTimestamp = get_current_time_tracer(eqTracerID); 
+	double nearestHostDistsecs 
+		= lxcMan->timelineGraph->getNearestHostDist(
+			ptrToHost->getGraphNodeID());
+	s64 eatIfNoPktsInQueue = currTimestamp + (nearestHostDistsecs*NS_IN_SECS); 
+	pktsInTransitQueueMutex.lock();
+	if (pktsInTransit.empty())
+		eat = eatIfNoPktsInQueue;
+	else {
+		eat = pktsInTransit.top().first;
+
+		if (eat > eatIfNoPktsInQueue) {
+			eat = eatIfNoPktsInQueue; // we are being safe here
+		} else if (eat < currTimestamp) {
+			eat = currTimestamp;
+		}
+	}
+	pktsInTransitQueueMutex.unlock();
+
+	return eat;
 }
 

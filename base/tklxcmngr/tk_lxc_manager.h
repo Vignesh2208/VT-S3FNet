@@ -26,6 +26,7 @@
 #define PARSE_PACKET_SUCCESS_ARP    4
 
 class LXC_Proxy;
+class Graph;
 
 #define START_LXCS 100
 #define STOP_LXCS  200
@@ -96,6 +97,9 @@ class LxcManager
 
 		string  logFolder;                                           // path to the folder where information about each run will be stored
 		FILE*   fpLogFile;                                           // file pointer to the log file
+
+		Graph * timelineGraph;
+		int totalNumHosts;
 		
 		//--------------------------------------------------------------------
 		// 						Statistics Printing
@@ -243,6 +247,15 @@ class LxcManager
 
 		
 		int readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer);
+
+
+		void setHostGraphNodeIDs(void * subnet, int* startIDNumber);
+
+		void processHostsInAllSubNets(void * subnet); 
+
+		void composeTimelineGraph(void * topNet);
+
+
 };
 
 typedef struct threadInfo {

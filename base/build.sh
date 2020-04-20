@@ -136,7 +136,7 @@ if [ $inc -eq 0 ]; then
 make clean
 fi
 if [ $debug -eq 0 ]; then
-arg="$arg ENABLE_S3FNET_DEBUG=yes"
+arg="$arg ENABLE_S3FNET_DEBUG=no"
 else
 arg="$arg ENABLE_S3FNET_DEBUG=yes"
 fi

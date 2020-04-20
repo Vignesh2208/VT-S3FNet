@@ -29,7 +29,7 @@ csudp:
 
 
 examplerun:
-	cd s3fnet/test/lxc_tests/small_2_udp/; make clean; make; make test
+	cd s3fnet/test/lxc_tests/large_emu_only_2/; make clean; make; make test
 	chmod -R 777 ../experiment-data
 
 run:	

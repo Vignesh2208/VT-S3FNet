@@ -242,12 +242,16 @@ int main(int argc, char** argv)
   // initialize the entities (hosts)
   sim_inf->InitModel();
 
+  // composing timelineGraph to find all shortest paths
+  sim_inf->get_timeline_interface()->lm->composeTimelineGraph(sim_inf->topnet);
+
   // run it some window increments
   int num_epoch = 1; //number of epoch to run, currently epoch is set to 1
 
+  /*
+
   sim_inf->get_timeline_interface()->lm->createFileWithLXCNames();
   sim_inf->get_timeline_interface()->lm->syncUpLXCs();
-  //sim_inf->get_timeline_interface()->lm->generateRandomPingCommands();
   sim_inf->get_timeline_interface()->lm->isSimulatorRunning = true;
 
   printf(".--------------------------------------------------------------------------------------.\n");
@@ -279,6 +283,8 @@ int main(int argc, char** argv)
   sim_inf->get_timeline_interface()->lm->stopExperiment();
   sim_inf->get_timeline_interface()->lm->printLXCstats();
   //delete sim_inf;
+
+  */
 
   printf("Cleaning up SimInterface !\n");
   delete sim_inf->topnet;

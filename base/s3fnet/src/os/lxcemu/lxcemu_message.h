@@ -51,6 +51,10 @@ class LxcemuMessage : public ProtocolMessage {
 
   // Packet containing payload
   EmuPacket* ppkt;
+
+  // overloading base-class method
+  virtual void erase_all();
+
 };
 
 }; // namespace s3fnet

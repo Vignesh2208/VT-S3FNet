@@ -1,4 +1,4 @@
-SRC    		:= tk_lxc_manager.cc lxc_proxy.cc  
+SRC    		:= tk_lxc_manager.cc lxc_proxy.cc graph_utils.cc
 CC	   		:= g++
 DEBUG  		:= -g -Wno-write-strings
 

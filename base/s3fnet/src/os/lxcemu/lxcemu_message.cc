@@ -67,5 +67,20 @@ int LxcemuMessage::realByteCount()
 	return realBytes;
 }
 
+void LxcemuMessage::erase_all() {
+	
+	assert(this->ppkt->destProxy != NULL);
+	std::pair<int, unsigned int> res 
+		= this->ppkt->destProxy->lxcMan->packet_hash(this->ppkt->data,
+													 this->ppkt->len);
+	int pktHash = res.first;
+
+	printf("Signalling packet delivery at: Proxy: %d for pktHash: %d\n", 
+			this->destProxy->eqTracerID, pktHash);
+	this->ppkt->destProxy->signalPacketDelivery(pktHash);
+	delete this->ppkt;
+	ProtocolMessage::erase_all();
+}
+
 }; // namespace s3fnet
 }; // namespace s3f

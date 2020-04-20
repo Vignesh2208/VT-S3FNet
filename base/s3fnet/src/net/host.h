@@ -119,7 +119,12 @@ class Host : public Entity, public DmlObject, public ProtocolGraph {
 
   LXC_Proxy* proxy;
   bool isEmulated;
+  int graphNodeID;
   void initLxcProxy(s3f::dml::Configuration* cfg);
+
+  void setGraphNodeID(int nodeID) { this->graphNodeID = nodeID; }
+  
+  int getGraphNodeID() {return this->graphNodeID; }
 
  protected:
   /**
@@ -162,6 +167,8 @@ class Host : public Entity, public DmlObject, public ProtocolGraph {
   /** This is the virtual method defined in ProtocolGraph. Here it
       returns a pointer to itself. */
   virtual Host* getHost() { return this; }
+
+  
 
   char disp_now_buf[32];
 

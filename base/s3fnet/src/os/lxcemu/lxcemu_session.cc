@@ -157,7 +157,6 @@ int LxcemuSession::pop(Activation msg, ProtocolSession* lo_sess, void* extinfo,
 	proxy->totalPacketError += labs(difference);
 	proxy->packetsSentOut++;*/
 
-	delete pkt;
 	dmsg->erase_all();
 
 	// returning 0 indicates success

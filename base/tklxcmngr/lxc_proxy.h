@@ -12,6 +12,8 @@
 #include <sys/types.h>		// O_RDWR
 #include <sys/stat.h>		// O_RDWR
 #include <fcntl.h>			// O_RDWR
+#include <queue>
+#include <mutex>
 
 #include <unistd.h> 		// close
 //#include <linux/if.h>
@@ -21,6 +23,8 @@
 
 #define TIME_200_MS_IN_US           200000
 #define TIME_100_MS_IN_US           100000
+
+#define NS_IN_SECS 1000000000
 
 
 
@@ -34,6 +38,9 @@ enum LxcCommand {
 };
 
 class LxcManager;
+class LXC_Proxy;
+
+typedef std::pair<long long, int> lPair; 
 
 
 
@@ -57,6 +64,8 @@ class EmuPacket
 		int     outgoingFD;
 
 		unsigned char *data;                // packet payload pointer
+
+		LXC_Proxy * destProxy;				// pointer to destProxy which should recv packet
 
 		EmuPacket(int len);                 // contructor
 		virtual ~EmuPacket();               // destructor
@@ -122,6 +131,11 @@ class LXC_Proxy
 		bool         commandSent;                 // Bool indicating whether a command was sent once
 		ltime_t	     last_arrival_time;
 
+		std::mutex pktsInTransitQueueMutex;		
+
+		std::priority_queue< lPair, std::vector<lPair> ,
+							std::greater<lPair> > pktsInTransit; 
+
 	
 		//---------------------------------------------------------------------
 		// 			Functions for Modifying and Accessing Proxy
@@ -170,6 +184,13 @@ class LXC_Proxy
 		 * Executes the LXC command
 		 */
 		void exec_LXC_command(LxcCommand type);
+
+
+		void updateNextEarliestArrivalTime(int pktHash,
+									   long long pktEarliestArrivalTime);
+
+
+		long long getNextEarliestArrivalTime();
 };
 
 #endif

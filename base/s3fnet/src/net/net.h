@@ -123,6 +123,9 @@ class Net: public DmlObject {
   /** Return all links in this level of net. */
   S3FNET_POINTER_VECTOR& getLinks() { return links; }
 
+  /** Return aligned timeline */
+  int getAlignedTimelineID() { return alignment; }
+
   /** Return global name resolution service. */
   NameService* getNameService();
 

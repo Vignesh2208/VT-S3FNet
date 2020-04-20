@@ -14,6 +14,10 @@
 #include <iomanip>
 
 #include <s3fnet/src/net/host.h>
+#include <s3fnet/src/net/net.h>
+#include <s3fnet/src/net/link.h>
+#include <s3fnet/src/net/network_interface.h>
+#include <s3fnet/src/util/shstl.h>
 #include <algorithm>
 
 #include <errno.h>
@@ -24,6 +28,8 @@
 #include <netinet/tcp.h>
 #include <fstream>
 #include <cstdarg>
+
+#include "graph_utils.h"
 
 extern "C" 
 {
@@ -67,6 +73,110 @@ LxcManager::LxcManager(Interface* inf)
 	incomingThread = -1;
 }
 
+
+void LxcManager::setHostGraphNodeIDs(void * net,
+									int* startIDNumber) {
+
+	if (!net || !startIDNumber)
+		return;
+
+	s3f::s3fnet::Net * subnet = (s3f::s3fnet::Net *)net;
+
+	s3f::s3fnet::S3FNET_INT2PTR_MAP& hosts = subnet->getHosts();
+	s3f::s3fnet::S3FNET_INT2PTR_MAP& nets = subnet->getNets();
+
+	for(unsigned i=0; i < hosts.size(); i++) {
+		s3f::s3fnet::Host * currHost = (s3f::s3fnet::Host *)hosts[i];
+		assert(currHost->getGraphNodeID() == -1);
+
+		if (currHost->isRouter())
+			std::cout << "Setting graphNodeID: " << *startIDNumber << " to switch: " << std::endl;
+		else
+			std::cout << "Setting graphNodeID: " << *startIDNumber << " to host:  " << std::endl;
+		std::cout << "Net details: " << std::endl;
+		subnet->display();
+		std::cout << std::endl;
+
+		std::cout << "Host/Switch details: " << std::endl;
+		currHost->display();
+		std::cout << std::endl;
+
+		currHost->setGraphNodeID(*startIDNumber);
+		*startIDNumber = *startIDNumber + 1;
+	}
+
+	for(s3f::s3fnet::S3FNET_INT2PTR_MAP::iterator iter = nets.begin();
+		iter != nets.end(); iter++) {
+		s3f::s3fnet::Net* nextNet = (s3f::s3fnet::Net*)(iter->second);
+
+		if (nextNet)
+			setHostGraphNodeIDs(nextNet, startIDNumber);
+  	} 
+}
+
+
+void LxcManager::processHostsInAllSubNets(void * net) {
+
+	if (!net)
+		return;
+
+	s3f::s3fnet::Net * subnet = (s3f::s3fnet::Net *)net;
+	s3f::s3fnet::S3FNET_POINTER_VECTOR& links = subnet->getLinks();
+	s3f::s3fnet::S3FNET_INT2PTR_MAP& nets = subnet->getNets();
+
+	for(unsigned i=0; i < links.size(); i++) {
+		s3f::s3fnet::Link* pLink = (s3f::s3fnet::Link*)links[i];
+		vector<s3f::s3fnet::NetworkInterface*> ifaces 
+				= pLink->getNetworkInterfaces();
+		for(unsigned j = 0; j < ifaces.size(); j++) {
+			s3f::s3fnet::Host * attachedHost1 = ifaces[j]->getHost();
+
+			assert(attachedHost1->getGraphNodeID() >= 0);
+			for(unsigned k = 0; k < ifaces.size(); k++) {
+				if (k == j)
+					continue;
+				s3f::s3fnet::Host * attachedHost2 = ifaces[k]->getHost();
+				assert(attachedHost2->getGraphNodeID() >= 0);
+				timelineGraph->addEdge(
+					attachedHost1->getGraphNodeID(),
+					attachedHost1->inNet()->getAlignedTimelineID(),
+					attachedHost2->getGraphNodeID(),
+					attachedHost2->inNet()->getAlignedTimelineID(),
+					pLink->getDelay(),
+					attachedHost1->isRouter(),
+					attachedHost2->isRouter());
+			}
+			
+		}
+	}
+
+
+	for(s3f::s3fnet::S3FNET_INT2PTR_MAP::iterator iter = nets.begin();
+		iter != nets.end(); iter++) {
+		s3f::s3fnet::Net* nextNet = (s3f::s3fnet::Net*)(iter->second);
+
+		if (nextNet)
+			processHostsInAllSubNets(nextNet);
+  	} 
+}
+
+void LxcManager::composeTimelineGraph(void * net) {
+
+	if (!net)
+		return;
+
+	s3f::s3fnet::Net * top_net = (s3f::s3fnet::Net * )net;
+	int numHosts = 0;
+	setHostGraphNodeIDs(top_net, &numHosts);
+	if (numHosts) {
+		timelineGraph = new Graph(numHosts, siminf->get_numTimelines());
+		processHostsInAllSubNets(top_net);
+		timelineGraph->populateAllShortestPaths();
+	}
+
+	this->totalNumHosts = numHosts;
+}
+
 void LxcManager::init(char* outputDir)
 {
 	struct timeval runTimestamp;
@@ -92,11 +202,13 @@ void LxcManager::init(char* outputDir)
 		vectorOfHowManyTimesTimelineCalledProgress.push_back(0);
 	}
 
-
 	assert(vectorOfTotalTimesSpentAdvancing.size() == numTimelines);
 }
 
-LxcManager::~LxcManager() {}
+
+LxcManager::~LxcManager() {
+	delete timelineGraph;
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 // 												Thread Functions
@@ -142,7 +254,7 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 	std::pair<int, unsigned int> res = analyzePacket(buffer, nread, &ethT);
 	unsigned int destIP = res.second;
 	int packet_status   = res.first;
-        int payload_hash = 0, payload_len = 0;
+    int payload_hash = 0, payload_len = 0;
 	int numConsumedBytes = 0;
 
 	if (packet_status == PACKET_PARSE_IGNORE_PACKET
@@ -150,30 +262,37 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 		return 0;
 	}
 
-	if (packet_status == PARSE_PACKET_SUCCESS_IP) {
-		res = packet_hash(buffer, nread);
-		payload_hash = res.first;
-		payload_len = res.second;
+	struct timeval incomingPacketTimestamp;
+	s64 incomingPacketTimeNS;
 
+
+	res = packet_hash(buffer, nread);
+	payload_hash = res.first;
+	payload_len = res.second;
+	
+	if (packet_status == PARSE_PACKET_SUCCESS_IP) {
+		
 		printf("Detected IP payload hash: %d, payload_len: %d\n", payload_hash, payload_len);
 		numConsumedBytes = payload_len;
 
 		if (!payload_hash) {
+			incomingPacketTimeNS = get_current_time_tracer(proxy->eqTracerID);
 			arrivalTime = proxy->getElapsedTime();
 		} else {
 
-			struct timeval incomingPacketTimestamp;
-			ns_2_timeval(get_pkt_send_time(proxy->eqTracerID,
-			      				payload_hash),
-				     &incomingPacketTimestamp);
+			incomingPacketTimeNS = get_pkt_send_time(proxy->eqTracerID,
+			      									 payload_hash);
+			ns_2_timeval(incomingPacketTimeNS, &incomingPacketTimestamp);
 
-			long secElapsed = incomingPacketTimestamp.tv_sec  - proxy->simulationStartSec;
+			long secElapsed 
+				= incomingPacketTimestamp.tv_sec - proxy->simulationStartSec;
 			long microSecElapsed 
 				= incomingPacketTimestamp.tv_usec - proxy->simulationStartMicroSec;
 			arrivalTime = secElapsed * 1000000 +  microSecElapsed;
 		}
 	} else {
 		numConsumedBytes = 0;
+		incomingPacketTimeNS = get_current_time_tracer(proxy->eqTracerID);
 		arrivalTime = proxy->getElapsedTime();
 	}
 
@@ -183,7 +302,8 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 	
 	LXC_Proxy* destinationProxy = findDestProxy(destIP);
 	if (destinationProxy == NULL) {
-		printf("Dropping packet intended for destIP: %s: No one to give it to !\n", inet_ntoa(ip_addr));
+		printf("Dropping packet intended for destIP: %s: "
+			   "No one to give it to !\n", inet_ntoa(ip_addr));
 		cout << print_packet(buffer, nread);	
 	}
 	else {
@@ -194,20 +314,32 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 		pkt->outgoingFD   = destinationProxy->fd;
 		pkt->incomingTime = arrivalTime;
 		pkt->ethernetType = ethT;
+		pkt->destProxy = destinationProxy;
 
 		assert(pkt->incomingFD != pkt->outgoingFD);
 
-		s3f::s3fnet::Host* destHost 
+		s3f::s3fnet::Host* srcHost 
 			= (s3f::s3fnet::Host*)proxy->ptrToHost;
-		destHost->inNet()->getTopNet()->injectEmuEvent(
-			destHost, pkt, destIP);
+
+		s3f::s3fnet::Host* dstHost 
+			= (s3f::s3fnet::Host*)destinationProxy->ptrToHost;
+
+		s64 shortestDistNS = (timelineGraph->getShortestDist(
+								srcHost->getGraphNodeID(),
+								dstHost->getGraphNodeID()) * NSEC_PER_SEC);
+		
+
+		srcHost->inNet()->getTopNet()->injectEmuEvent(
+			srcHost, pkt, destIP);
+		destinationProxy->updateNextEarliestArrivalTime(payload_hash,
+			incomingPacketTimeNS + shortestDistNS);
 	}
 	return numConsumedBytes;
 }
 
 void LxcManager::handleAllEnqueuedPackets(vector<LXC_Proxy*>* proxiesToCheck) {
-	struct pollfd ufds[proxiesToCheck->size()];
-	int ret = 0;
+	//struct pollfd ufds[proxiesToCheck->size()];
+	//int ret = 0;
 	char buffer[PACKET_SIZE];
 	for (unsigned int i = 0; i < proxiesToCheck->size(); i++) {
 		LXC_Proxy* proxy = (*proxiesToCheck)[i];
@@ -390,9 +522,14 @@ bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	vector<LXC_Proxy*> proxiesBeingAdvanced;
 	vector<LXC_Proxy*>* proxiesOnTimeline = listOfProxiesByTimeline[timelineID];
 
-
-
-	ltime_t lxc_actual_vt          = (*proxiesOnTimeline)[0]->getElapsedTime();
+	// this timeline does not have any proxies - don't advance it
+	if (proxiesOnTimeline->size() == 0) {
+		debugPrint("Timeline has no proxies !\n");
+		return false;
+	}
+	
+	
+	ltime_t lxc_actual_vt          = (*proxiesOnTimeline)[0]->getElapsedTime(); // all lxcs will be frozen at same time. so just get one.
 	ltime_t desired_vt             = timeToAdvanceTo;
 	ltime_t time_needed_to_advance_us = desired_vt - lxc_actual_vt;
 
@@ -402,14 +539,19 @@ bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	debugPrint("|----------- Advancing Timeline: %d by %llu (us). timeToAdvanceTo: %llu (us). ElapsedTime: %llu (us) -----------|\n",
 		    timelineID, time_needed_to_advance_us, timeToAdvanceTo, lxc_actual_vt);
 
-	// this timeline does not have any proxies - don't advance it
-	if (proxiesOnTimeline->size() == 0) {
-		debugPrint("Timeline has no proxies !\n");
-		return false;
-	}
+	
 
 	if (time_needed_to_advance_us <= 0)
 		return false;
+
+	for (unsigned int i = 0; i < proxiesOnTimeline->size(); i++) {
+		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[i];
+
+		// set eat here. This could be used by emulated processes when they run
+		// this round.
+		set_earliest_arrival_time(proxyOnTimeline->eqTracerID,
+								  proxyOnTimeline->getNextEarliestArrivalTime());
+	}
 
 	
 
@@ -474,9 +616,9 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 	int ether_offset     = 0;
 	int dstIPAddr_offset = 0, srcIPAddr_offset = 0;
 	int parse_packet_type = PARSE_PACKET_SUCCESS_IP;
-	int is_udp = 0, is_tcp = 0;
+	int is_udp = 0, is_tcp = 0, is_icmp = 0;
 
-	struct icmphdr* hdr;
+	struct icmphdr* tk_icmp_hdr;
 	struct iphdr* tk_ip_header;
 	struct udphdr* tk_udp_header;
 	struct tcphdr* tk_tcp_header;
@@ -512,9 +654,17 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 			if (tk_ip_header->protocol == 0x06)	// TCP
 			{
 				is_tcp = 1;
-				tk_tcp_header = (struct tcphdr*)(pkt_ptr + ether_offset + tk_ip_header->ihl*4);
+				tk_tcp_header = (struct tcphdr*)(pkt_ptr + ether_offset 
+												+ tk_ip_header->ihl*4);
 				
 
+			}
+
+			if (tk_up_header->protocol == 0x01) //ICMP
+			{
+				is_icmp = 1;
+				tk_icmp_header = (struct icmphdr *)(pkt_ptr + ether_offset
+													+ tk_ip_header->ihl*4);
 			}
 			parse_packet_type = PARSE_PACKET_SUCCESS_IP;
 			break;
@@ -597,10 +747,19 @@ std::pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 		debugPrint("Src IP string: %s\n",result_2);
 		debugPrint("Dest IP string: %s\n", result);
 		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-
 	}
 
-	if(!is_tcp && !is_udp){
+	if (is_icmp) {
+		debugPrint("######################################\n");
+		debugPrint("\n~~~~~~~~~~~~~~~~~~ICMP :	");
+		debugPrint("Ether Type: 0x%.4x\n", ether_type);
+		debugPrint("Src IP string: %s\n",result_2);
+		debugPrint("Dest IP string: %s\n", result);
+		debugPrint("ICMP Message Type: %d\n", tk_icmp_header->type);
+		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	}
+
+	if(!is_tcp && !is_udp && !is_icmp){
 
 		debugPrint("######################################\n");
 		if(parse_packet_type == PARSE_PACKET_SUCCESS_ARP)
@@ -734,7 +893,8 @@ unsigned long LxcManager::getWallClockTime() {
 }
 
 // for getting packet send time
-std::pair<int, unsigned int> LxcManager::packet_hash(char * pkt, int total_pkt_len) {
+std::pair<int, unsigned int> LxcManager::packet_hash(char * pkt,
+													 int total_pkt_len) {
 
     int hash = 0;
     char * payload;
@@ -743,26 +903,38 @@ std::pair<int, unsigned int> LxcManager::packet_hash(char * pkt, int total_pkt_l
 
     struct iphdr* ip_header;
     struct tcphdr * tcp_header;
+	struct icmphdr * icmp_header;
     int ether_offset = sizeof(sniff_ethernet);
     int tcphdrlen, iphdrlen;
 
     ip_header = (struct iphdr*)(pkt + ether_offset);
     if (ip_header->protocol == 0x11) {
-	// UDP
-	iphdrlen = ip_header->ihl*sizeof (uint32_t);
-	payload = (char *)(pkt + ether_offset + iphdrlen + sizeof(struct udphdr));
-	size = total_pkt_len - (ether_offset + iphdrlen + sizeof(struct udphdr));
+		// UDP
+		iphdrlen = ip_header->ihl*sizeof (uint32_t);
+		payload = (char *)(pkt + ether_offset 
+							+ iphdrlen + sizeof(struct udphdr));
+		size = total_pkt_len - (ether_offset 
+								+ iphdrlen + sizeof(struct udphdr));
 
     } else if (ip_header->protocol == 0x6) {
-	// TCP
-	iphdrlen = ip_header->ihl*sizeof (uint32_t);
-	tcp_header = (struct tcphdr *)(pkt + ether_offset + iphdrlen);
-	tcphdrlen = sizeof (uint32_t) * tcp_header->doff;
-	payload = (char *)(pkt + ether_offset + iphdrlen + tcphdrlen);
-	size = total_pkt_len - (ether_offset + iphdrlen + tcphdrlen);
+		// TCP
+		iphdrlen = ip_header->ihl*sizeof (uint32_t);
+		tcp_header = (struct tcphdr *)(pkt + ether_offset + iphdrlen);
+		tcphdrlen = sizeof (uint32_t) * tcp_header->doff;
+		payload = (char *)(pkt + ether_offset + iphdrlen + tcphdrlen);
+		size = total_pkt_len - (ether_offset + iphdrlen + tcphdrlen);
 
-    } else {
-	return pair<int, unsigned int>(0, total_pkt_len);
+    } else if(ip_header->protocol == 0x01) { 
+		// ICMP
+
+		iphdrlen = ip_header->ihl*sizeof (uint32_t);
+		payload = (char *)(pkt + ether_offset + iphdrlen 
+							+ sizeof(struct icmphdr));
+		size = total_pkt_len - (ether_offset 
+								+ iphdrlen + sizeof(struct icmphdr));
+	
+	} else {
+		return pair<int, unsigned int>(0, total_pkt_len);
     }
     
     for(i = 0; i < size; i++) {
