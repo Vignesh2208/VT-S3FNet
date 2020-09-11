@@ -75,7 +75,7 @@ LxcManager::LxcManager(Interface* inf)
 
 
 void LxcManager::setHostGraphNodeIDs(void * net,
-									int* startIDNumber) {
+									 int* startIDNumber) {
 
 	if (!net || !startIDNumber)
 		return;
@@ -276,11 +276,11 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 		numConsumedBytes = payload_len;
 
 		if (!payload_hash) {
-			incomingPacketTimeNS = get_current_time_tracer(proxy->eqTracerID);
+			incomingPacketTimeNS = GetCurrentTimeTracer(proxy->eqTracerID);
 			arrivalTime = proxy->getElapsedTime();
 		} else {
 
-			incomingPacketTimeNS = get_pkt_send_time(proxy->eqTracerID,
+			incomingPacketTimeNS = GetPktSendTimeAPI(proxy->eqTracerID,
 			      									 payload_hash);
 			ns_2_timeval(incomingPacketTimeNS, &incomingPacketTimestamp);
 
@@ -292,7 +292,7 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 		}
 	} else {
 		numConsumedBytes = 0;
-		incomingPacketTimeNS = get_current_time_tracer(proxy->eqTracerID);
+		incomingPacketTimeNS = GetCurrentTimeTracer(proxy->eqTracerID);
 		arrivalTime = proxy->getElapsedTime();
 	}
 
@@ -432,7 +432,7 @@ void LxcManager::syncUpLXCs() {
 	debugPrint("| Initializing VT experiment                     \n");
 	debugPrint("|==================================================\n\n");
 
-	initialize_VT_Exp(EXP_CS, numTimelines, numTracers);
+	InitializeVtExp(EXP_CS, numTimelines, numTracers);
 
 	debugPrint("|==================================================\n");
 	debugPrint("| Creating and Launching LXCs                      \n");
@@ -453,11 +453,11 @@ void LxcManager::syncUpLXCs() {
 	debugPrint("|==================================================\n\n");
 
 	if (listOfProxies.size() != 0)
-		synchronizeAndFreeze();
+		SynchronizeAndFreeze();
 
 	for (unsigned int i = 0; i < listOfProxies.size(); i++) {
 		LXC_Proxy* proxy = listOfProxies[i];
-		ns_2_timeval(get_current_time_tracer(proxy->eqTracerID),
+		ns_2_timeval(GetCurrentTimeTracer(proxy->eqTracerID),
 					&tv_lxcTimestamp);
 		lxcTimestampSec      = tv_lxcTimestamp.tv_sec;
 		lxcTimestampMicroSec = tv_lxcTimestamp.tv_usec;
@@ -514,9 +514,31 @@ void LxcManager::printLXCstats() {
 	debugPrint(
 		"|============================================================|\n");
 }
+ltime_t getProxiesLookahead(int srcTimelineID, int destTimelineID) {
+	vector<LXC_Proxy*>* proxiesOnTimeline = listOfProxiesByTimeline[srcTimelineID];
 
-bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
-				       ltime_t timeToAdvanceTo) {
+	if (proxiesOnTimeline->size() == 0)
+		return 0;
+
+	ltime_t min_lookahead = -1;
+	ltime_t curr_lookahead = 0;
+	for (unsigned int i = 0; i < proxiesOnTimeline->size(); i++) {
+		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[i];
+		Host * proxyHost = proxyOnTimeline->ptrToHost;
+		assert(proxyHost);
+		curr_lookahead = 
+			GetTracerLookahead(proxyOnTimeline->eqTracerID) + 
+			(timelineGraph->getNearestTimelineDist(proxyHost->getGraphNodeID(),
+				destTimelineID) * NSEC_PER_SEC);
+		if (min_lookahead == -1 || min_lookahead > curr_lookahead)
+			min_lookahead = curr_lookahead;
+	}
+	min_lookahead = min_lookahead > 0 ? min_lookahead : 0;
+	return min_lookahead;
+
+}
+void LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
+				       				   ltime_t timeToAdvanceTo) {
 	// Keep track of how many LXCs need to be advanced
 
 	vector<LXC_Proxy*> proxiesBeingAdvanced;
@@ -525,13 +547,18 @@ bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	// this timeline does not have any proxies - don't advance it
 	if (proxiesOnTimeline->size() == 0) {
 		debugPrint("Timeline has no proxies !\n");
-		return false;
+		return;
 	}
 	
 	
 	ltime_t lxc_actual_vt          = (*proxiesOnTimeline)[0]->getElapsedTime(); // all lxcs will be frozen at same time. so just get one.
 	ltime_t desired_vt             = timeToAdvanceTo;
 	ltime_t time_needed_to_advance_us = desired_vt - lxc_actual_vt;
+	ltime_t min_lookahead = -1;
+	ltimt_t curr_lookahead;
+
+	if (desired_vt <= lxc_actual_vt && next_make_appt_tl)
+		return;
 
 	vectorOfHowManyTimesTimelineCalledProgress[timelineID]++;
 
@@ -542,29 +569,27 @@ bool LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	
 
 	if (time_needed_to_advance_us <= 0)
-		return false;
+		return;
 
 	for (unsigned int i = 0; i < proxiesOnTimeline->size(); i++) {
 		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[i];
 
 		// set eat here. This could be used by emulated processes when they run
 		// this round.
-		set_earliest_arrival_time(proxyOnTimeline->eqTracerID,
-								  proxyOnTimeline->getNextEarliestArrivalTime());
+		SetEarliestArrivalTime(proxyOnTimeline->eqTracerID,
+							   proxyOnTimeline->getNextEarliestArrivalTime());
 	}
 
 	
 
 	unsigned long startTime = getWallClockTime();
-	progress_timeline_by((int)timelineID, time_needed_to_advance_us*1000);
+	ProgressTimelineBy((int)timelineID, time_needed_to_advance_us*1000);
 	unsigned long finishTime = getWallClockTime();
 
 
 	handleIncomingPacket(proxiesOnTimeline);
 
-	
-	vectorOfTotalTimesSpentAdvancing[timelineID] += (finishTime - startTime);
-	return false;
+	return;
 }
 
 LXC_Proxy* LxcManager::getLXCProxyWithNHI(string nhi)
@@ -812,19 +837,6 @@ int LxcManager::cwrite(int fd, char *buf, int n) {
 	return nwrite;
 }
 
-void LxcManager::createFileWithLXCNames() {
-	ofstream myfile;
-	string outFileStr = string(PATH_TO_S3FNETLXC) + string(
-		"/lxc-command/ListOfLXCS.txt");
-
-	myfile.open (outFileStr.c_str());
-
-	for (unsigned int i = 0; i < listOfProxies.size(); i++) {
-		LXC_Proxy* proxy = listOfProxies[i];
-		myfile << proxy->lxcName << "\n";
-	}
-	myfile.close();
-}
 
 void LxcManager::stopExperiment() {
 	for (unsigned int i = 0; i < siminf->get_numTimelines(); i++) {
@@ -848,7 +860,7 @@ void LxcManager::stopExperiment() {
 	debugPrint("|==================================================\n");
 	debugPrint("| Calling STOP EXPERIMENT\n");
 	debugPrint("|==================================================\n");
-	stopExp();
+	StopExp();
 }
 
 void LxcManager::setupLog() {

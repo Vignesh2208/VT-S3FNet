@@ -29,9 +29,7 @@ class pq {
   virtual bool empty_lockless() = 0;
   virtual EventPtr top_lockless() = 0;
   virtual void pop_lockless() = 0;
-
-
-
+  virtual EventPtr nxt_relevant_netsim_event() = 0;
 };
 
 

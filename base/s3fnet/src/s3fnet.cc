@@ -248,7 +248,7 @@ int main(int argc, char** argv)
   // run it some window increments
   int num_epoch = 1; //number of epoch to run, currently epoch is set to 1
 
-  /*
+  
 
   sim_inf->get_timeline_interface()->lm->createFileWithLXCNames();
   sim_inf->get_timeline_interface()->lm->syncUpLXCs();
@@ -284,7 +284,7 @@ int main(int argc, char** argv)
   sim_inf->get_timeline_interface()->lm->printLXCstats();
   //delete sim_inf;
 
-  */
+  
 
   printf("Cleaning up SimInterface !\n");
   delete sim_inf->topnet;

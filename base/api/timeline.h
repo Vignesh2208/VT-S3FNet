@@ -53,7 +53,7 @@ public:
 	friend void*  proxy_function(void *);
 
 	LxcManager*		 simCtrl;
-	pthread_mutex_t  timekeeperTimelineTimeMutex;
+	pthread_mutex_t  titanTimelineTimeMutex;
 
 	/**
 	 *   At creation a Timeline is given a pointer to a data structure
@@ -69,9 +69,9 @@ public:
 	 */
 	ltime_t               now()
 	{
-		pthread_mutex_lock(&timekeeperTimelineTimeMutex);
+		pthread_mutex_lock(&titanTimelineTimeMutex);
 		ltime_t timelineTime = __time;
-		pthread_mutex_unlock(&timekeeperTimelineTimeMutex);
+		pthread_mutex_unlock(&titanTimelineTimeMutex);
 		return timelineTime;
 	}
 
@@ -158,6 +158,8 @@ protected:
 	friend class Interface;
 	friend class OutChannel;
 	friend class InChannel;
+
+	ltime_t	getLookahead(int destTimelineID, ltime_t proxies_lookahead);
 
 	/**
 	 *  Schedule the given process activation, at the given time,

@@ -85,6 +85,32 @@ public:
 	{
 		evtList.pop();
 	}
+
+	EventPtr nxt_relevant_netsim_event() {
+		std::vector<EventPtr> tmpHolder;
+		EventPtr relevant_netsim_event = NULL;
+
+		if (evList.empty())
+			return relevant_netsim_event;
+		pthread_mutex_lock(&MUTEX);
+		while (evList.size()) {
+			relevant_netsim_event = evList.pop();
+			tmpHolder.push_back(relevant_netsim_event);
+
+			if (relevant_netsim_event->get_evtype() == EVTYPE_MAKE_APPT ||
+				relevant_netsim_event->get_evtype() == EVTYPE_CANCEL)
+				break;
+		} 
+		for (auto it = tmpHolder.begin(); it != tmpHolder.end(); it++) {
+			evList.push(*it);
+		}
+		pthread_mutex_unlock(&MUTEX);	
+
+		if (relevant_netsim_event->get_evtype() != EVTYPE_MAKE_APPT ||
+			relevant_netsim_event->get_evtype() != EVTYPE_CANCEL)
+			return relevant_netsim_event;
+		return NULL;
+	}
 };
 #endif /* __STL_EVENTLIST_H */
 

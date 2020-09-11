@@ -25,14 +25,14 @@ Timeline::Timeline (TimelineInterface* tli) :
 	// mutex guarding __window_list must be initialized
 	pthread_mutex_init(&__events_mutex,NULL); 
 
-	pthread_mutex_init(&timekeeperTimelineTimeMutex,NULL);
+	pthread_mutex_init(&titanTimelineTimeMutex,NULL);
 
 	pthread_cond_init(&__appointment_cond_var, NULL);
 
 	// always start at time 0.  Change this?
-	pthread_mutex_lock(&timekeeperTimelineTimeMutex);
+	pthread_mutex_lock(&titanTimelineTimeMutex);
 	__time = 0;
-	pthread_mutex_unlock(&timekeeperTimelineTimeMutex);
+	pthread_mutex_unlock(&titanTimelineTimeMutex);
 
 	__window = 0;
 
@@ -475,6 +475,26 @@ void* Timeline::thread_function() {
 	return (void *)NULL;
 }
 
+ltime_t Timeline::getLookahead(int destTimelineID, ltime_t proxies_lookahead) {
+	EventPtr next_relevant_netsim_event = __events.nxt_relevant_netsim_event();
+	if (!next_relevant_netsim_event)
+		return proxies_lookahead;
+
+	if (next_relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT) {
+		return std::min(proxies_lookahead,
+			next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);	
+	}
+
+	Host * associatedHost = (Host *)next_relevant_netsim_event->get_proc()->owner();
+	assert(associatedHost);
+
+	ltime_t host_lookahead = next_relevant_netsim_event->get_time() + 
+		simCtrl->timelineGraph->getNearestTimelineDist(
+			associatedHost->getGraphNodeID(), destTimelineID) * 1000; // in nano seconds
+	return std::min(proxies_lookahead, host_lookahead);
+	
+}
+
 /* *******************************************************************
 
  void Timeline::sync_window()
@@ -492,6 +512,7 @@ void Timeline::sync_window() {
 	OutChannel* oc;
 	InChannel* ic;
 	ltime_t delay;
+	ltime_t proxies_lookahead;
 	unsigned int tl;
 	Timeline* dest_tl;
 	InAppointment* in_appt;
@@ -519,8 +540,7 @@ void Timeline::sync_window() {
 		// lock
 		pthread_mutex_lock(&__events.MUTEX);
 
-		if (__events.empty_lockless())
-		{
+		if (__events.empty_lockless()) {
 			pthread_mutex_unlock(&__events.MUTEX);
 			break;
 		}
@@ -531,21 +551,15 @@ void Timeline::sync_window() {
 		// check added to make sure that LXCs dont advance past a timelines virtual time
 		// this could happen if the next event is the next epoch but the simulation does not
 		// enter the next epoch.
-		if (nxt_evt->get_time() <= __stop_before )
-		{
-			if (simCtrl->advanceLXCsOnTimeline(s3fid(), nxt_evt->get_time()))
-			{
-				continue;
-			}
+		if (nxt_evt->get_time() <= __stop_before ) {
+			simCtrl->advanceLXCsOnTimeline(s3fid(), nxt_evt->get_time());
 		}
 
-		nxt_evt= __events.top();
-		if (nxt_evt->get_time() < __stop_before )
-		{
+		nxt_evt = __events.top();
+		if (nxt_evt->get_time() < __stop_before ) {
 			__events.pop();
 		}
-		else
-		{
+		else {
 			//pthread_mutex_unlock(&__events.MUTEX);
 			break;
 		}
@@ -559,9 +573,9 @@ void Timeline::sync_window() {
 
 		// advance simulation time this far
 		// __time  = nxt_node->get_time();
-		pthread_mutex_lock(&timekeeperTimelineTimeMutex);
+		pthread_mutex_lock(&titanTimelineTimeMutex);
 		__time  = nxt_evt->get_time();
-		pthread_mutex_unlock(&timekeeperTimelineTimeMutex);
+		pthread_mutex_unlock(&titanTimelineTimeMutex);
 
 		// get a pointer to the event
 		// nxt_evt = nxt_node->get_evt();
@@ -682,6 +696,13 @@ void Timeline::sync_window() {
 			// turn that into a pointer to the timeline
 			dest_tl = timeline_adrs[tl];
 
+			proxies_lookahead = simCtrl->getProxiesLookahead(s3fid(), tl);
+
+			if (proxies_lookahead) {
+				assert (now() < proxies_lookahead);
+				proxies_lookahead = getLookahead(tl, proxies_lookahead);
+			}
+
 			// recover pointer to the InAppointment structure on the destination,
 			// using own timeline identity index into destination's incoming appt array
 			in_appt = &dest_tl->__in_appt[__s3fid];
@@ -690,7 +711,10 @@ void Timeline::sync_window() {
 			pthread_mutex_lock( &in_appt->appt_mutex );
 
 			// write the new appointment into it
-			in_appt->appointment = now() + __out_appt[tl].lookahead;
+			if (proxies_lookahead > now() + __out_appt[tl].lookahead)
+				in_appt->appointment = proxies_lookahead;
+			else
+				in_appt->appointment = now() + __out_appt[tl].lookahead;
 
 			// if the target timeline is waiting it needs a signal to its
 			// condition variable
@@ -937,9 +961,9 @@ void Timeline::sync_window() {
 	}	
 
 	// we're done with this synchronization window.  Time advances to the very end of it.
-	pthread_mutex_lock(&timekeeperTimelineTimeMutex);
+	pthread_mutex_lock(&titanTimelineTimeMutex);
 	__time = __stop_before-1;
-	pthread_mutex_unlock(&timekeeperTimelineTimeMutex);
+	pthread_mutex_unlock(&titanTimelineTimeMutex);
 
 #ifdef SYNC_WIN_EVENT_COUNT
 	printf("now = %ld, timeline = %d, window# = %d, total events = %ld, work events = %ld, sync events = %ld\n", 

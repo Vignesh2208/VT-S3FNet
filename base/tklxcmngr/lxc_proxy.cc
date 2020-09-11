@@ -150,7 +150,7 @@ void LXC_Proxy::printInfo() {
 // system call to the process with the given PID (which refers to the LXC)
 ltime_t LXC_Proxy::getElapsedTime() {
 	struct timeval incomingPacketTimestamp;
-	ns_2_timeval(get_current_time_tracer(eqTracerID), &incomingPacketTimestamp);
+	ns_2_timeval(GetCurrentTimeTracer(eqTracerID), &incomingPacketTimestamp);
 	assert(incomingPacketTimestamp.tv_sec >= simulationStartSec);
 	long secElapsed = incomingPacketTimestamp.tv_sec  - simulationStartSec;
 	long microSecElapsed 
@@ -291,29 +291,9 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 }
 
 
-// Write to file /tmp/lxcname. The reader process running on the lxc
-// constantly polls for any events on this file and spawns a new process to 
-// execute any written command
-void LXC_Proxy::sendCommandToLXC() {
-	if (commandSent == false)
-	{
-		char pipeBuff[1024];
-		char command [1024];
-
-		sprintf(command, "%s", cmndToExec.c_str());
-		sprintf(pipeBuff, "/tmp/%s" , lxcName);
-
-		// Write the command to the Named Pipe - the LXC is listening
-		int npfd = open(pipeBuff, O_WRONLY | O_NONBLOCK );
-		write(npfd, command, sizeof(command));
-		close(npfd);
-		commandSent = true;
-	}
-}
-
 
 void LXC_Proxy::updateNextEarliestArrivalTime(int pktHash,
-									   	  s64 pktEarliestArrivalTime) {
+									   	  	  s64 pktEarliestArrivalTime) {
 	pktsInTransitQueueMutex.lock();
 
 	pktsInTransit.push(std::make_pair(pktEarliestArrivalTime, pktHash));
@@ -325,7 +305,7 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 
 	std::vector<lPair> tmpVector;
 
-	s64 currTimestamp = get_current_time_tracer(eqTracerID); 
+	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID); 
 
 	pktsInTransitQueueMutex.lock();
 	while(!pktsInTransit.empty()) {
@@ -353,7 +333,7 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 s64 LXC_Proxy::getNextEarliestArrivalTime() {
 
 	s64 eat;
-	s64 currTimestamp = get_current_time_tracer(eqTracerID); 
+	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID); 
 	double nearestHostDistsecs 
 		= lxcMan->timelineGraph->getNearestHostDist(
 			ptrToHost->getGraphNodeID());

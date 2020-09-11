@@ -142,10 +142,10 @@ class LxcManager
 		/*
 		 * Advances LXCs on a given timeline to the absolute time timeToAdvance
 		 */
-		bool advanceLXCsOnTimeline(unsigned int id, ltime_t timeToAdvance);
+		void advanceLXCsOnTimeline(unsigned int id, ltime_t timeToAdvance);
 
 		/*
-		 * Starts all LXCs and calls synchronizeAndFreeze
+		 * Starts all LXCs and calls SynchronizeAndFreeze
 		 */
 		void syncUpLXCs();
 
@@ -159,7 +159,7 @@ class LxcManager
 		//----------------------------------------------------------------
 
 		/*
-		 * Calls stopExp() which cleans up the experiment. 
+		 * Calls StopExp() which cleans up the experiment. 
 		 * It also unfreezes all the LXCs. At this point, it is safe
 		 * to rmmod the TimeKeeper module
 		 */
@@ -188,14 +188,6 @@ class LxcManager
 		 */
 		void printInfoAboutHashTable();
 
-		/*
-		 * Creates a file with all the LXC names in the case of a crash. 
-		 * That way, it is much easier to destroy the LXCs
-		 * that do not get automatically cleaned up. This writes a file into 
-		 * s3fnet-lxc/lxc-command. For easy clean up
-		 * do "sudo ./command ListOfLXCs", type exit, and hit enter.
-		 */
-		void createFileWithLXCNames();
 
 		/*
 		 * Prints the content of a captured packet. Useful for analysis. 
@@ -254,6 +246,8 @@ class LxcManager
 		void processHostsInAllSubNets(void * subnet); 
 
 		void composeTimelineGraph(void * topNet);
+
+		ltime_t getProxiesLookahead(int src_tl, int dest_tl);
 
 
 };

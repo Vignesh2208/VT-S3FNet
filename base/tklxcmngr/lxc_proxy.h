@@ -152,12 +152,6 @@ class LXC_Proxy
 		ltime_t getElapsedTime();
 
 
-		/*
-		 * Sends a cmndToExec once to the LXC
-		 */
-		void sendCommandToLXC();
-
-
 		void setEqTracerID(int tracerID);
 
 		LxcManager* lxcMan;              // Pointer to the LXC Manager
