@@ -94,7 +94,7 @@ class LXC_Proxy
 		 * 4th Param - Timeline this LXC is aligned on
 		 * TODO: 4th Param can be replaced with actual ID
 		 */
-		LXC_Proxy(string, unsigned int, LxcManager* c, Timeline* timel);
+		LXC_Proxy(string, unsigned int, LxcManager* c, Timeline* timeline);
 
 		/*
 		 * Destructor.
@@ -123,7 +123,11 @@ class LXC_Proxy
 		char         lxcName[100];                // TODO: limits lxcName to 100 characters
 		char         brName[100];                 // TODO: limits brName to 100 characters
 		string       cmndToExec;                  // Single command to execute inside the LXC
+		string 		 ttnProjectName;			  // Titan Project Name under which command was compiled
+												  // It will be empty for INS-VT execution types.
+		double	     relCPUSpeed;				  // Relative CPU Speed
 		int			 eqTracerID;				  // Equivalent tracer ID
+		bool		 isCompilerAssisted;		  // True if virtual time advancement is compiler assisted
 
 		ltime_t      simulationStartSec;          // Absolute time when the LXC is frozen (seconds)
 		ltime_t      simulationStartMicroSec;     // Absolute time when the LXC is frozen (microseconds)
@@ -131,8 +135,10 @@ class LXC_Proxy
 		bool         commandSent;                 // Bool indicating whether a command was sent once
 		ltime_t	     last_arrival_time;
 
+		// Used only when isCompilerAssisted is True
 		std::mutex pktsInTransitQueueMutex;		
 
+		// Used only when isCompilerAssisted is True
 		std::priority_queue< lPair, std::vector<lPair> ,
 							std::greater<lPair> > pktsInTransit; 
 
@@ -180,10 +186,16 @@ class LXC_Proxy
 		void exec_LXC_command(LxcCommand type);
 
 
+		/*
+		 *	Executed only if isCompilerAssisted is true
+		 */
 		void updateNextEarliestArrivalTime(int pktHash,
-									   long long pktEarliestArrivalTime);
+									   	   long long pktEarliestArrivalTime);
 
 
+		/*
+		 *	Used only when isCompilerAssisted is true
+		 */
 		long long getNextEarliestArrivalTime();
 };
 

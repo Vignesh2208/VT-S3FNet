@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 
 	/* check command line arguments */
 	if (argc != 4) {
-		fprintf(stderr,"usage: %s <hostname> <port>\n", argv[0]);
+		fprintf(stderr,"usage: %s <hostname> <port> <numMessages>\n", argv[0]);
 		exit(0);
 	}
 
@@ -100,9 +100,7 @@ int main(int argc, char **argv) {
 
 		if (n < 0) {
 		  error("ERROR in recvfrom");
-		}
-		//printf("Echo from server: %s\n", buf);
-	
+		}	
 	}
 
 	return 0;

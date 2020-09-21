@@ -15,9 +15,12 @@ import sys
 numHostsInNet  = 4
 numTimelines   = 4
 simulationTime = 0.1
-logDIR         = "Sample_Out"
-traffic        = 1
-TDF            = 300
+logDIR         = "HUGE_WITH_TRAFFIC"
+REL_CPU_SPEED  = 1.0
+
+
+GROUP1_CMD = "~/VT-S3FNET/csudp/server 25000 300"
+GROUP2_CMD = "~/VT-S3FNET/csudp/client {destTimelineID}:{destTimelineHostID} 25000 300"
 
 dmlFile      = open("test.dml", 'w')	
 netWorksFile = open("custom_net.dml", 'w')
@@ -85,25 +88,15 @@ dmlFile.write( "Net\n" )
 dmlFile.write( "[\n" )
 
 # LXC settings
+dmlFile.write( "\tlxcConfig\n\t[\n" )
+for tl in range(0, numTimelines,2):
+	for host in range(1, numHostsInNet + 1):
+		group2_cmd = GROUP2_CMD.format(destTimelineID=tl, destTimelineHostID=host)
+		dmlFile.write( "\t\t settings [ lxcNHI %s:%s REL_CPU_SPEED %s cmd \"%s\" ] \n" % (tl , host, REL_CPU_SPEED, GROUP1_CMD));
+		dmlFile.write( "\t\t settings [ lxcNHI %s:%s REL_CPU_SPEED %s cmd \"%s\" ] \n" % (tl+1 , host, REL_CPU_SPEED, group2_cmd));
 
-if (traffic == 1):
-	dmlFile.write( "\tlxcConfig\n\t[\n" )
-	for tl in range(0, numTimelines,2):
-		for host in range(1, numHostsInNet + 1):
-			destinationTL = (tl + 1) % numTimelines 
-			dmlFile.write( "\t\t settings [ lxcNHI %s:%s TDF %s cmd \"ls\" ] \n" % (tl , host, TDF));
-			dmlFile.write( "\t\t settings [ lxcNHI %s:%s TDF %s cmd \"ping %s:%s -c 2\" ] \n" % (tl+1 , host, TDF, tl, host));
-			# dmlFile.write( "\t\t settings [ lxcNHI %s:%s TDF %s cmd \"~/csudp/client %s:%s 25000 2\" ] \n" % (tl+1 , host, TDF, tl, host));
+dmlFile.write( "\t]\n")
 
-	dmlFile.write( "\t]\n")
-else:
-	dmlFile.write( "\tlxcConfig\n\t[\n" )
-	for tl in range(0, numTimelines,2):
-		for host in range(1, numHostsInNet + 1):
-			destinationTL = (tl + 1) % numTimelines 
-			dmlFile.write( "\t\t settings [ lxcNHI %s:%s TDF %s cmd \"ls\" ] \n" % (tl , host, TDF));
-			dmlFile.write( "\t\t settings [ lxcNHI %s:%s TDF %s cmd \"ls\" ] \n" % (tl+1 , host, TDF));
-	dmlFile.write( "\t]\n")
 
 
 for x in range(0, numTimelines):
@@ -135,14 +128,11 @@ routerIDStart = 40
 
 for x in range(0 + routerIDStart, numTimelines + routerIDStart):
 	
-	startID = (x - routerIDStart)       % numTimelines + routerIDStart;
+	startID = (x - routerIDStart) % numTimelines + routerIDStart;
 	endID   = (x - routerIDStart + 1) % numTimelines + routerIDStart; 
-	
-	# print(str(startID) + "-" + str(endID)) 
 	
 	start = counter % 2
 	end = (counter + 1) % 2
-	# print x
 	
 	dmlFile.write( "\tlink [ attach 60:%s(%s) attach 60:%s(%s)  _extends .dict.link_delay_50us  ]\n" % (startID,start, endID, end)  )
 

@@ -294,6 +294,10 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 
 void LXC_Proxy::updateNextEarliestArrivalTime(int pktHash,
 									   	  	  s64 pktEarliestArrivalTime) {
+
+	if (!isCompilerAssisted)
+		return;
+
 	pktsInTransitQueueMutex.lock();
 
 	pktsInTransit.push(std::make_pair(pktEarliestArrivalTime, pktHash));
@@ -304,6 +308,9 @@ void LXC_Proxy::updateNextEarliestArrivalTime(int pktHash,
 void LXC_Proxy::signalPacketDelivery(int pktHash) {
 
 	std::vector<lPair> tmpVector;
+
+	if (!isCompilerAssisted)
+		return;
 
 	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID); 
 
@@ -333,7 +340,11 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 s64 LXC_Proxy::getNextEarliestArrivalTime() {
 
 	s64 eat;
-	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID); 
+	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID);
+
+	if (!isCompilerAssisted)
+		return currTimestamp;
+		 
 	double nearestHostDistsecs 
 		= lxcMan->timelineGraph->getNearestHostDist(
 			ptrToHost->getGraphNodeID());

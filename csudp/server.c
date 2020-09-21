@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 		 (struct sockaddr *) &clientaddr, &clientlen);
     if (n < 0)
       error("ERROR in recvfrom");
-	numReceived++;
+	  numReceived++;
 	
 
     hostaddrp = inet_ntoa(clientaddr.sin_addr);

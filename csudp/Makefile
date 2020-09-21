@@ -1,11 +1,7 @@
 all:
-	clang client.c -lvtllogic -o client
-	clang server.c -lvtllogic -o server
-	#clang ping.c  -lvtllogic -o ping_vtl -mllvm -no-vt-insertion
-	#clang ping.c  -o ping_vtl -mllvm -no-vt-insertion
-	clang ping.c  -lvtllogic -o ping_vtl
-	#sudo chown root:root ping_vtl
-	#sudo chmod u+s ping_vtl
+	clang -O1 client.c -lvtllogic -o client
+	clang -O1 server.c -lvtllogic -o server
+	clang -O1 ping.c  -lvtllogic -o ping_vtl
 
 clean:
 	rm -f client

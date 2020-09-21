@@ -475,7 +475,7 @@ void Net::finish_config_top_net(s3f::dml::Configuration* cfg)
 
 void Net::configLxcCommands(s3f::dml::Configuration* cfg)
 {
-	double TDF      = 0;
+	double REL_CPU_SPEED    = 0;
 	long delay      = 0;
 
 	string proxyNHI = "";
@@ -511,9 +511,8 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
 				std::stringstream tempSS;
 				if (myParent) tempSS << id << ":" << lxcNHI;	// non-topnet
 				else          tempSS <<              lxcNHI;	// topnet
-
 				proxyNHI = tempSS.str();
-				//cout << proxyNHI << "\n";
+
 			}
 			else error_quit("need nhi\n");
 
@@ -524,15 +523,17 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
 				continue;
 			}
 
-			// ========================= TDF ============================
-			char* lxcTDF = (char*)pcfg->findSingle("TDF");
-			if(lxcTDF)
+			// ========================= REL_CPU_SPEED ============================
+			char* lxcRelCPUSpeed = (char*)pcfg->findSingle("REL_CPU_SPEED");
+			if(lxcRelCPUSpeed)
 			{
-				if(s3f::dml::dmlConfig::isConf(lxcTDF))
+				if(s3f::dml::dmlConfig::isConf(lxcRelCPUSpeed))
 					error_quit("ERROR: Net::configLxcCommands(), invalid traffic settings.lxcNHI attribute.\n");
-				TDF = atof(lxcTDF);
+				REL_CPU_SPEED = atof(lxcRelCPUSpeed);
 			}
-			else error_quit("need TDF (though this can set default to 0.0)\n");
+			else {
+        REL_CPU_SPEED = 1.0;
+      };
 
 			// ========================= Command ============================
 			char* lxcCmd = (char*)pcfg->findSingle("cmd");
@@ -545,6 +546,32 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
 			else error_quit("need nhi\n");
 
 			proxy->cmndToExec = command;
+
+      // ========================= isCompilerAssisted ============================
+      proxy->isCompilerAssisted = true;
+			char* isCompilerAssisted = (char*)pcfg->findSingle("isCompilerAssisted");
+			if(isCompilerAssisted)
+			{
+				if(s3f::dml::dmlConfig::isConf(isCompilerAssisted))
+					error_quit("ERROR: Net::configLxcCommands(), invalid traffic settings.lxcNHI attribute.\n");
+				if strcmp(isCompilerAssisted, "false") {
+          proxy->isCompilerAssisted = false;
+        }
+			}
+
+      char* ttnProject = (char*)pcfg->findSingle("ttnProject");
+			if(ttnProject)
+			{
+				if(s3f::dml::dmlConfig::isConf(ttnProject))
+					error_quit("ERROR: Net::configLxcCommands(), invalid traffic settings.lxcNHI attribute.\n");
+				proxy->ttnProjectName = string(ttnProject)
+			} else if (proxy->isCompilerAssisted) {
+        error_quit("ERROR: Net::configLxcCommands(), ttnProjectName must be specified for compiler assisted virtual time manged lxc commands.\n");
+      }
+
+      proxy->relCPUSpeed = REL_CPU_SPEED;
+
+      
 
 			// Check to see if command has NHI instead of IP. If so, figure out the IP and send the command
 			// accordingly

@@ -564,21 +564,9 @@ void Timeline::sync_window() {
 			break;
 		}
 
-	//}*/
-
-	// event list loop.  Do all events with times strictly less than __stop_before
-	//
-	//while ( !__events.empty() &&
-	//		(nxt_evt=__events.top())->get_time() < __stop_before ) {
-
-		// advance simulation time this far
-		// __time  = nxt_node->get_time();
 		pthread_mutex_lock(&titanTimelineTimeMutex);
 		__time  = nxt_evt->get_time();
 		pthread_mutex_unlock(&titanTimelineTimeMutex);
-
-		// get a pointer to the event
-		// nxt_evt = nxt_node->get_evt();
 
 		// process the event, depending on event type
 		//

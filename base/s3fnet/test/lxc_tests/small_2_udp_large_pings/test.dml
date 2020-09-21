@@ -2,16 +2,16 @@ total_timeline 2
 tick_per_second 6	
 run_time 10
 seed 1	
-log_dir "MULTI_RUN_3/TDF_20"		
+log_dir "2_LXC_UDP_100us_DELAY"		
 
-dilation [ TDF 1.0 ]
+dilation [ REL_CPU_SPEED 1.0 ]
 
 Net
 [
 	lxcConfig
 	[
-		settings [ lxcNHI 0:0 _extends .dilation cmd "~/s3fnet-lxc/csudp/server 25000"           ]
-		settings [ lxcNHI 1:0 _extends .dilation cmd "~/s3fnet-lxc/csudp/client 0:0 25000 3000"  ]
+		settings [ lxcNHI 0:0 _extends .dilation cmd "~/VT-S3FNET/csudp/server 25000 300"           ]
+		settings [ lxcNHI 1:0 _extends .dilation cmd "~/VT-S3FNET/csudp/client 0:0 25000 3000"  ]
 	]	
 	
 	Net 
