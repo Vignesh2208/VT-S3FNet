@@ -1,4 +1,4 @@
-SRC    		:= tk_lxc_manager.cc lxc_proxy.cc graph_utils.cc
+SRC    		:= tk_lxc_manager.cc lxc_proxy.cc graph_utils.cc virtual_time_manager.cc
 CC	   		:= g++
 DEBUG  		:= -g -Wno-write-strings
 
@@ -20,7 +20,7 @@ lxcmanagermodule.a	: $(OBJ)
 	ar cq $@ $(OBJ)
 
 %.o :	%.cc $(HDR)
-	$(CC) $(CFLAGS) $(MY_INCLUDES) -c $< 
+	$(CC) $(CFLAGS) $(MY_INCLUDES) -DENABLED_VT_MANAGER_TITAN -c $< 
 
 print-%  : ; @echo $* = $($*)
 
@@ -28,6 +28,3 @@ print-%  : ; @echo $* = $($*)
 clean:
 	rm -f *.o *.a
 
-
-#all:
-#	$(CC) $(CFLAGS) $(SRC) $(MY_INCLUDES)

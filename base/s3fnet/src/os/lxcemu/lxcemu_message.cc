@@ -8,6 +8,8 @@
 
 #include "os/lxcemu/lxcemu_message.h"
 
+#define PACKET_SIZE 1600
+
 namespace s3f {
 namespace s3fnet {
 
@@ -69,14 +71,15 @@ int LxcemuMessage::realByteCount()
 
 void LxcemuMessage::erase_all() {
 	
-	assert(this->ppkt->destProxy != NULL);
+	assert(this->ppkt->destProxy != NULL && this->ppkt->len <= PACKET_SIZE);
+
+	//memcpy(pkt_copy, this->ppkt->data, this->ppkt->len);
 	std::pair<int, unsigned int> res 
-		= this->ppkt->destProxy->lxcMan->packet_hash(this->ppkt->data,
-													 this->ppkt->len);
+		= this->ppkt->destProxy->lxcMan->packet_hash((char *)this->ppkt->data, this->ppkt->len);
 	int pktHash = res.first;
 
 	printf("Signalling packet delivery at: Proxy: %d for pktHash: %d\n", 
-			this->destProxy->eqTracerID, pktHash);
+			this->ppkt->destProxy->eqTracerID, pktHash);
 	this->ppkt->destProxy->signalPacketDelivery(pktHash);
 	delete this->ppkt;
 	ProtocolMessage::erase_all();

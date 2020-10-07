@@ -5,19 +5,19 @@ all:
 	echo "inc | rebuild | debuginc | debug"
 
 inc: lxcman
-	./build.sh -i -n $(NUM_CORES)
+	./build.sh -i -t -n $(NUM_CORES)
 
 rebuild: lxcman
-	./build.sh -f -n  $(NUM_CORES)
+	./build.sh -f -t -n  $(NUM_CORES)
 	
 fullbuild: lxcman
-	./build.sh -n $(NUM_CORES)
+	./build.sh -t -n $(NUM_CORES)
 
 debuginc: lxcman
-	./build.sh -i -f -d -n $(NUM_CORES)
+	./build.sh -i -t -f -d -n $(NUM_CORES)
 
 debug: lxcman
-	./build.sh -f -d -n $(NUM_CORES)
+	./build.sh -f -t -d -n $(NUM_CORES)
 
 lxcman:
 	cd tklxcmngr; make clean; make;
@@ -26,7 +26,9 @@ csudp:
 	cd ../csudp; make;
 
 
-
+small_2_udp_large_pings:
+	cd s3fnet/test/lxc_tests/small_2_udp_large_pings/; make clean; make; make test
+	chmod -R 777 ../experiment-data	
 
 examplerun:
 	cd s3fnet/test/lxc_tests/large_emu_only_2/; make clean; make; make test

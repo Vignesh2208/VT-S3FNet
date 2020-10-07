@@ -33,6 +33,7 @@ Host::Host(Timeline* tl, Net* parent, long hostid) : Entity(tl), DmlObject(paren
   }
   disp_now_buf[31]='\0';
   graphNodeID = -1;
+  isHost = true;
   
 }
 

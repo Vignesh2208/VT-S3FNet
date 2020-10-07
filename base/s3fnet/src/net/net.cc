@@ -535,6 +535,8 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
         REL_CPU_SPEED = 1.0;
       };
 
+      proxy->relCPUSpeed = REL_CPU_SPEED;
+
 			// ========================= Command ============================
 			char* lxcCmd = (char*)pcfg->findSingle("cmd");
 			if(lxcCmd)
@@ -547,33 +549,19 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
 
 			proxy->cmndToExec = command;
 
-      // ========================= isCompilerAssisted ============================
-      proxy->isCompilerAssisted = true;
-			char* isCompilerAssisted = (char*)pcfg->findSingle("isCompilerAssisted");
-			if(isCompilerAssisted)
-			{
-				if(s3f::dml::dmlConfig::isConf(isCompilerAssisted))
-					error_quit("ERROR: Net::configLxcCommands(), invalid traffic settings.lxcNHI attribute.\n");
-				if strcmp(isCompilerAssisted, "false") {
-          proxy->isCompilerAssisted = false;
-        }
-			}
 
-      char* ttnProject = (char*)pcfg->findSingle("ttnProject");
-			if(ttnProject)
-			{
-				if(s3f::dml::dmlConfig::isConf(ttnProject))
-					error_quit("ERROR: Net::configLxcCommands(), invalid traffic settings.lxcNHI attribute.\n");
-				proxy->ttnProjectName = string(ttnProject)
-			} else if (proxy->isCompilerAssisted) {
-        error_quit("ERROR: Net::configLxcCommands(), ttnProjectName must be specified for compiler assisted virtual time manged lxc commands.\n");
+      if (proxy->lxcMan->IsVirtualTimeManagerTitan()) {  
+        char* ttnProject = (char*)pcfg->findSingle("ttnProject");
+        if(ttnProject) {
+          if(s3f::dml::dmlConfig::isConf(ttnProject))
+            error_quit("ERROR: Net::configLxcCommands(), invalid ttnProject settings.lxcNHI attribute.\n");
+          proxy->ttnProjectName = string(ttnProject);
+        } else {
+          error_quit("ERROR: Net::configLxcCommands(), ttnProjectName must be specified for TITAN controlled experiments.\n");
+        }
       }
 
-      proxy->relCPUSpeed = REL_CPU_SPEED;
-
-      
-
-			// Check to see if command has NHI instead of IP. If so, figure out the IP and send the command
+    	// Check to see if command has NHI instead of IP. If so, figure out the IP and send the command
 			// accordingly
 
 			regmatch_t matches[1];

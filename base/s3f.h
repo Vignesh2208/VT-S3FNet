@@ -115,6 +115,8 @@ typedef void* Object;
 #include <utility>
 #include <string>
 #include <sstream>
+#include <queue>
+#include <mutex>
 #include <tr1/memory>
 #include <pthread.h>
 #include <math.h>
@@ -124,9 +126,10 @@ typedef void* Object;
 #include <sys/time.h>
 #include <sys/resource.h>
 
+
 #include "s3fnet-definitions.h"
 
-using namespace std;
+//using namespace std;
 
 /**
  * \namespace s3f S3F Scalable Simulation Framework
@@ -160,7 +163,7 @@ class LxcManager;
 #include <api/timeline.h>
 #include <tklxcmngr/tk_lxc_manager.h>
 
-}
+};
 
 using namespace s3f;
 

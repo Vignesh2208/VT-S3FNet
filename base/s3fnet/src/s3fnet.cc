@@ -159,6 +159,9 @@ int main(int argc, char** argv)
   int tick_per_second;
   ltime_t sim_single_run_time;
   int seed;
+  int isLookaheadEnabled = 0;
+  ltime_t maxLookaheadUs = DEFAULT_MAX_LOOKAHEAD_US;
+  VirtualTimeManagerType vtManagerType = VirtualTimeManagerType::TITAN;
 
   // parse DML inputs
   str = (char*)dml_cfg->findSingle("total_timeline");
@@ -212,6 +215,12 @@ int main(int argc, char** argv)
       error_quit("ERROR: seed attribute must be a non-negative integer.\n");
   }
 
+  str = (char*)dml_cfg->findSingle("max_lookahead_us");
+  if(!str) maxLookaheadUs = DEFAULT_MAX_LOOKAHEAD_US;
+  else {
+    maxLookaheadUs = atoi(str);
+  }
+
   char outDirBuf[1000];
   str = (char*)dml_cfg->findSingle("log_dir");
   if(!str) sprintf(outDirBuf, "%s/experiment-data", PATH_TO_S3FNETLXC);
@@ -224,6 +233,34 @@ int main(int argc, char** argv)
   MAIN_DUMP(printf("total_timeline = %d, tick_per_second= %d, sim_single_run_time = %ld, seed = %d\n",
 		  total_timeline, tick_per_second, sim_single_run_time, seed));
 
+  #ifdef ENABLED_VT_MANAGER_TITAN
+    str = (char*)dml_cfg->findSingle("virtual_time_manager");
+    if (!str) {
+      vtManagerType = VirtualTimeManagerType::TITAN;
+    } 
+    else {
+      if (strcmp(str, "KRONOS") == 0) {
+        vtManagerType = VirtualTimeManagerType::KRONOS;
+      } else {
+        vtManagerType = VirtualTimeManagerType::TITAN;
+      }
+    }
+  #else
+    vtManagerType = VirtualTimeManager::KRONOS;
+  #endif
+
+  if (vtManagerType == VirtualTimeManagerType::TITAN) {
+    str = (char*)dml_cfg->findSingle("enable_lookahead");
+    if (!str) {
+      isLookaheadEnabled = 0;
+    } else {
+      isLookaheadEnabled = atoi(str);
+      if (isLookaheadEnabled != 0)
+        isLookaheadEnabled = 1;
+    }
+  }
+  
+
   /* Generate the first random number stream according the seed value.
    * Seed i means that we use the ith random number stream as the first one. */
   for (int i=0; i<seed; i++)
@@ -234,7 +271,9 @@ int main(int argc, char** argv)
 
   // create total timelines and timescale
   sim_inf = new SimInterface( total_timeline, tick_per_second );
-  sim_inf->get_timeline_interface()->lm->init(outDirBuf);
+  sim_inf->get_timeline_interface()->lm->init(outDirBuf, vtManagerType,
+    isLookaheadEnabled);
+  sim_inf->get_timeline_interface()->lm->maxLookaheadUs = maxLookaheadUs;
 
   // build and configure the simulation model
   sim_inf->BuildModel( dml_cfg );
@@ -249,8 +288,6 @@ int main(int argc, char** argv)
   int num_epoch = 1; //number of epoch to run, currently epoch is set to 1
 
   
-
-  sim_inf->get_timeline_interface()->lm->createFileWithLXCNames();
   sim_inf->get_timeline_interface()->lm->syncUpLXCs();
   sim_inf->get_timeline_interface()->lm->isSimulatorRunning = true;
 

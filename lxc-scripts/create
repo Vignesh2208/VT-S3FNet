@@ -2,11 +2,11 @@
 
 
 display_usage() { 
-	echo "[Tap Name] [IP Addr] [BridgeName] [LXC_NAME] [CONFIG_FILE]" 
+	echo "[Tap Name] [IP Addr] [HW_ADDR] [BridgeName] [LXC_NAME] [CONFIG_FILE]" 
 	echo -e "\nUsage:\n$0 [arguments] \n" 
 } 
 
-if [  $# -le 3 ] 
+if [  $# -le 5 ] 
 	then 
 		display_usage
 		exit 1
@@ -16,9 +16,10 @@ echo "Create script called"
 
 TAP_NAME=$1
 IP_ADDR=$2
-BR_NAME=$3
-LXC_NAME=$4
-CONF_FILE=$5
+HW_ADDR=$3
+BR_NAME=$4
+LXC_NAME=$5
+CONF_FILE=$6
 
 echo "Creating LXC: $LXC_NAME | IP: $IP_ADDR | BR: $BR_NAME | TAP: $TAP_NAME |"
 
@@ -27,12 +28,14 @@ echo "lxc.net.0.type = veth" 			>> $CONF_FILE
 echo "lxc.net.0.flags = up"			>> $CONF_FILE
 echo "lxc.net.0.link = $BR_NAME"		>> $CONF_FILE
 echo "lxc.net.0.ipv4.address = $IP_ADDR/8"	>> $CONF_FILE
+echo "lxc.net.0.hwaddr = $HW_ADDR" >> $CONF_FILE
 
 echo "lxc.autodev = 1" >> $CONF_FILE
 echo "lxc.console.path = none" >> $CONF_FILE
 echo "lxc.apparmor.profile = unconfined" >> $CONF_FILE
 echo "lxc.apparmor.allow_incomplete = 1" >> $CONF_FILE
 echo "lxc.mount.auto = proc" >> $CONF_FILE
+echo "lxc.environment = HOME=$HOME" >> $CONF_FILE
 
 brctl addbr $BR_NAME
 tunctl -t $TAP_NAME

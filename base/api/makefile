@@ -5,7 +5,7 @@ HDR  = $(SRC:.cc=.h) $(THDR) ../s3f.h
 
 OBJ  = $(SRC:.cc=.o) 
 CC	= g++
-#DEFINE  = -DSAFE_EVT_PTR -DSAFE_MSG_PTR
+#DEFINE  = -DENABLED_VT_MANAGER_TITAN
 DEBUG	= -g
 #CFLAGS	= -Wall -c $(DEFINE) -I../ -O3
 CFLAGS	= -Wall -c $(DEBUG) $(DEFINE) -I../ -O3

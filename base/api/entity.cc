@@ -52,6 +52,8 @@ using namespace s3f;
 
     // do the rest of the construction work
 	BuildEntity(tl);
+
+  isHost = false;
   } 
 
  Entity::~Entity() {

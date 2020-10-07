@@ -1,7 +1,7 @@
 #!/bin/bash
 
-USAGE="Usage: `basename $0` [-h] [-n arg] [-f] [-i] [-d]" 
-PARAMETER="-n\t number of cores used to run make\n-f\t skip building those libraries that only need to be built once (DML, metis)\n-i\t incremental build (update) instead of clean build\n-d\t display S3FNet debug messages\n-h\t display the usage"
+USAGE="Usage: `basename $0` [-h] [-n arg] [-f] [-i] [-d] [-t]" 
+PARAMETER="-n\t number of cores used to run make\n-f\t skip building those libraries that only need to be built once (DML, metis)\n-i\t incremental build (update) instead of clean build\n-d\t display S3FNet debug messages\n-t\t Build with Titan\n-h\t display the usage"
 OVERVIEW="Script for building the S3F project"
 EXAMPLE="e.g., `basename $0` -n 4 -f \n Use 4 cores to clean build the S3F project excluding those libraries that only need to be built once"
 
@@ -10,9 +10,10 @@ nc=1  # number core used to build the project = 1
 dml=1 # to build dml  
 inc=0 # no incremental build, i.e., clean build
 debug=0 # not show s3fnet debug messages
+titan=0
 
 # Parse command line options
-while getopts hn:fid OPT; do
+while getopts hn:fidt OPT; do
     case "$OPT" in 
         h)
             echo $OVERVIEW
@@ -23,11 +24,6 @@ while getopts hn:fid OPT; do
             ;;
         n)
             nc=$OPTARG
-            #if [[ $nc != *[!0-9]* ]]; then
-            #if (("$nc")) >/dev/null 2>&1; then
-            #    echo "error: -n arg is not a number"
-            #    exit 1
-            #fi
             if [ $nc -le 0 ]; then
                 nc=1
             fi
@@ -40,6 +36,8 @@ while getopts hn:fid OPT; do
             ;;
         i)
             inc=1
+            ;;
+        t)  titan=1
             ;;
         \?)
             # getopts issues an error message
@@ -139,6 +137,10 @@ if [ $debug -eq 0 ]; then
 arg="$arg ENABLE_S3FNET_DEBUG=no"
 else
 arg="$arg ENABLE_S3FNET_DEBUG=yes"
+fi
+
+if [ $debug -eq 1 ]; then
+arg="$arg ENABLED_VT_MANAGER_TITAN=1"
 fi
 echo "ARG = "
 echo $arg

@@ -119,8 +119,7 @@ void Graph::addEdge(int endpoint_1, int endpoint_1_timeline,
 
 void Graph::computeShortestPathsFrom(int startnode) {
     double * distance;
-    int i, j, N;
-    long mindistance;
+    int i, N;
     N = numVertices;
     Node * currNode;
 

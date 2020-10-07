@@ -159,7 +159,10 @@ protected:
 	friend class OutChannel;
 	friend class InChannel;
 
-	ltime_t	getLookahead(int destTimelineID, ltime_t proxies_lookahead);
+	// Retrieves a lower bound on the earlies time at which this timeline
+	// can send a packet to destTimelineID.
+	ltime_t	pruneLookahead(int destTimelineID, ltime_t proxies_lookahead,
+						   bool ignore_proxies_lookahead);
 
 	/**
 	 *  Schedule the given process activation, at the given time,
@@ -266,10 +269,10 @@ protected:
 
 	/* *****************************************************************
          METHODS USED INTERNALLY
-   bool logical_advance()
-    supports stopping when a logical condition is meet. A boolean indicates
-    whether a pointer to a function should be called. If not, true is
-    return, else the complement of the function return
+		bool logical_advance()
+		supports stopping when a logical condition is meet. A boolean indicates
+		whether a pointer to a function should be called. If not, true is
+		return, else the complement of the function return
 	 ******************************************************************/
 
 	/**
@@ -485,6 +488,7 @@ public:
 	/** minimum possible scheduling priority, used only by a timeline, not a user priority */
 	static int              min_sched_pri;
 	static vector<Timeline*> timeline_adrs;
+	int timelineNumMakeAppts;
 #ifdef PTHREAD_BARRIER
 	static pthread_mutex_t bottom_barrier_min_value_mutex;
 	static ltime_t bottom_barrier_min_value;

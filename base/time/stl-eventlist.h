@@ -90,23 +90,24 @@ public:
 		std::vector<EventPtr> tmpHolder;
 		EventPtr relevant_netsim_event = NULL;
 
-		if (evList.empty())
+		if (evtList.empty())
 			return relevant_netsim_event;
 		pthread_mutex_lock(&MUTEX);
-		while (evList.size()) {
-			relevant_netsim_event = evList.pop();
+		while (evtList.size()) {
+			relevant_netsim_event = evtList.top();
+			evtList.pop();
 			tmpHolder.push_back(relevant_netsim_event);
 
-			if (relevant_netsim_event->get_evtype() == EVTYPE_MAKE_APPT ||
-				relevant_netsim_event->get_evtype() == EVTYPE_CANCEL)
+			if (relevant_netsim_event->get_evtype() != EVTYPE_MAKE_APPT &&
+				relevant_netsim_event->get_evtype() != EVTYPE_CANCEL)
 				break;
 		} 
 		for (auto it = tmpHolder.begin(); it != tmpHolder.end(); it++) {
-			evList.push(*it);
+			evtList.push(*it);
 		}
 		pthread_mutex_unlock(&MUTEX);	
 
-		if (relevant_netsim_event->get_evtype() != EVTYPE_MAKE_APPT ||
+		if (relevant_netsim_event->get_evtype() != EVTYPE_MAKE_APPT &&
 			relevant_netsim_event->get_evtype() != EVTYPE_CANCEL)
 			return relevant_netsim_event;
 		return NULL;

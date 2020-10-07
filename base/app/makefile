@@ -4,12 +4,10 @@ HDR  = $(SRC:.cc=.h)
 HDR2  = $(SRC2:.cc=.h)
 OBJ  = $(SRC:.cc=.o)
 OBJ2  = $(SRC2:.cc=.o)
-#DEFINE = -DSAFE_EVT_PTR -DSAFE_MSG_PTR
+DEFINE = -DENABLED_VT_MANAGER_TITAN
 CC	= g++
 DEBUG	= -g
-#CFLAGS	= -Wall -c $(DEFINE) -I../ -O3
 CFLAGS	= -Wall -c $(DEBUG) $(DEFINE) -I../ -O3
-#CFLAGS	= -Wall -c $(DEBUG) $(DEFINE) -I../ -O0
 LFLAGS	= -Wall $(DEBUG) -L../api ../api/s3f.a -L../tklxcmngr/lxcmanagermodule ../tklxcmngr/lxcmanagermodule.a -lpthread -lvtapi
 S3FLIB	= ../api/s3f.a
 RNDLIB  = ../rng/rng.a

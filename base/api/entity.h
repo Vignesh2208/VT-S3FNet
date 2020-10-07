@@ -224,6 +224,9 @@ public:
 	ltime_t 			d2t(double d, int s);
 
 
+	bool isHost;
+
+
 	/* ****************************************************************
           INTERFACE FOR ACCESS BY FRIEND CLASSES AND
           ENTITY METHODS

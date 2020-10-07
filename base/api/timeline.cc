@@ -36,6 +36,8 @@ Timeline::Timeline (TimelineInterface* tli) :
 
 	__window = 0;
 
+	timelineNumMakeAppts = 0;
+
 	// interface tells us what the timescale is, remember it                                  
 	__log_ticks_per_sec = tli->get_log_ticks_per_sec();
 
@@ -348,6 +350,10 @@ void* Timeline::thread_function() {
 			nxt_time = next_time();
 
 			if( __interface_control->get_numTimelines() > 1 ) {
+
+				if (__window >= 1)
+					simCtrl->SetEatSyncWindow();
+
 				// if either there is no event on the event list, or no outbound connections
 				// that span Timelines, offer __window_size to the barrier
 				if( nxt_time < 0 || __min_sync_cross_timeline_delay < 0  )  {
@@ -424,7 +430,8 @@ void* Timeline::thread_function() {
 					__stop_before = min(__stop_before, epoch_end);
 
 			} else __stop_before = epoch_end;
-
+			
+			//__stop_before = epoch_end;
 			// do the simulation work for the window.
 			//
 			change_state(RUNNING);
@@ -475,25 +482,53 @@ void* Timeline::thread_function() {
 	return (void *)NULL;
 }
 
-ltime_t Timeline::getLookahead(int destTimelineID, ltime_t proxies_lookahead) {
+ltime_t Timeline::pruneLookahead(int destTimelineID, ltime_t proxies_lookahead, bool ignore_proxies_lookahead) {
 	EventPtr next_relevant_netsim_event = __events.nxt_relevant_netsim_event();
-	if (!next_relevant_netsim_event)
-		return proxies_lookahead;
+	if (!next_relevant_netsim_event) {
+		assert(false);
 
-	if (next_relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT) {
-		return std::min(proxies_lookahead,
-			next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);	
+		if (!ignore_proxies_lookahead)
+			return proxies_lookahead;
+
+		return now() + __out_appt[destTimelineID].lookahead;
 	}
 
-	Host * associatedHost = (Host *)next_relevant_netsim_event->get_proc()->owner();
-	assert(associatedHost);
+	
+	if (next_relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT) {
 
-	ltime_t host_lookahead = next_relevant_netsim_event->get_time() + 
-		simCtrl->timelineGraph->getNearestTimelineDist(
-			associatedHost->getGraphNodeID(), destTimelineID) * 1000; // in nano seconds
-	return std::min(proxies_lookahead, host_lookahead);
+		if (!ignore_proxies_lookahead) {
+			if (simCtrl->isTimelineFullyEmulated(s3fid())
+				&& !simCtrl->arePktsInTransit(s3fid()))
+				return proxies_lookahead;
+
+			return std::min(proxies_lookahead,
+				next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+		}
+
+		return next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead;
+	}
+	
+	if (next_relevant_netsim_event->get_proc() && next_relevant_netsim_event->get_proc()->owner()) {
+		Entity * eventExecEntity = (Entity *)next_relevant_netsim_event->get_proc()->owner();
+		if (eventExecEntity->isHost) {
+			ltime_t host_lookahead = next_relevant_netsim_event->get_time() + 
+			simCtrl->getHostLookahead((void *)eventExecEntity, destTimelineID);
+
+			if (!ignore_proxies_lookahead)
+				return std::min(proxies_lookahead, host_lookahead);
+
+			return host_lookahead;
+		}
+	}
+	
+	if (!ignore_proxies_lookahead)
+		return std::min(proxies_lookahead,
+			next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+
+	return 	next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead;
 	
 }
+
 
 /* *******************************************************************
 
@@ -688,7 +723,11 @@ void Timeline::sync_window() {
 
 			if (proxies_lookahead) {
 				assert (now() < proxies_lookahead);
-				proxies_lookahead = getLookahead(tl, proxies_lookahead);
+				proxies_lookahead = this->pruneLookahead(tl, proxies_lookahead, false);
+			} else if (simCtrl->isVtLookaheadEnabled()) {
+				proxies_lookahead = this->pruneLookahead(tl, 0, true);
+			} else {
+				proxies_lookahead = 0;
 			}
 
 			// recover pointer to the InAppointment structure on the destination,
@@ -703,6 +742,8 @@ void Timeline::sync_window() {
 				in_appt->appointment = proxies_lookahead;
 			else
 				in_appt->appointment = now() + __out_appt[tl].lookahead;
+
+			timelineNumMakeAppts ++;
 
 			// if the target timeline is waiting it needs a signal to its
 			// condition variable
@@ -953,6 +994,8 @@ void Timeline::sync_window() {
 	__time = __stop_before-1;
 	pthread_mutex_unlock(&titanTimelineTimeMutex);
 
+/*printf("now = %ld, timeline = %d, window# = %d, total events = %ld, work events = %ld, sync events = %ld\n", 
+			now(), s3fid(), __window, __executed_one_window, __work_executed_one_window, __sync_executed_one_window);*/
 #ifdef SYNC_WIN_EVENT_COUNT
 	printf("now = %ld, timeline = %d, window# = %d, total events = %ld, work events = %ld, sync events = %ld\n", 
 			now(), s3fid(), __window, __executed_one_window, __work_executed_one_window, __sync_executed_one_window);
@@ -1021,6 +1064,8 @@ Timeline:: ~Timeline() {
 	for(unsigned int i=0; i<__out_appt.size(); i++) {
 		pthread_mutex_destroy(&__out_appt[i].appt_mutex);
 	}
+
+	
 } 
 
 

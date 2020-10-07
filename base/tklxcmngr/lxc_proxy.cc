@@ -25,11 +25,18 @@
 #include <sys/ioctl.h>		// ioctl
 
 
-extern "C" 
-{
-	#include <VT_functions.h>   
-}
+#include "graph_utils.h"
+#include "virtual_time_manager.h"
 
+#ifdef ENABLED_VT_MANAGER_TITAN
+extern "C" {
+	#include <VT_functions.h>
+}
+#else
+extern "C" {
+	#include <Kronos_functions.h>
+}
+#endif
 extern "C" void ns_2_timeval(s64 currTstamp, struct timeval * tv);
 
 //----------------------------------------------------------------------------
@@ -78,9 +85,6 @@ LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm,
 	assert(lm    != NULL);
 	assert(timel != NULL);
 
-
-	commandSent = false;
-
 	Nhi                  = nhiID;
 	intlxcIP             = ipAddress;
 	lxcMan               = lm;
@@ -108,6 +112,29 @@ LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm,
 
 }
 
+std::pair<string, string> LXC_Proxy::getIPAndMacAddr() {
+	char buffer[20];
+	memset(buffer, 0, 20);
+	unsigned int convertedIP = htonl(intlxcIP);
+	const char* result = inet_ntop(AF_INET, &convertedIP, buffer,
+								   sizeof(buffer));
+	std::string myIP = string(result);
+	std::stringstream stream;
+	stream << std::hex << eqTracerID;
+	std::string myMacHex( stream.str() );
+	std::string myMac = "";
+
+	while (myMacHex.length() != 12)
+		myMacHex += "0";
+
+	for (int i = 0; i < myMacHex.length(); i++) {
+		myMac += myMacHex[i];
+		if (i % 2 == 1 && i != myMacHex.length() - 1)
+			myMac += ":";
+	}
+	return std::pair<std::string, std::string>(myIP, myMac);
+}
+
 void LXC_Proxy::setEqTracerID(int tracerID) {
 	assert(tracerID > 0);
 	this->eqTracerID = tracerID;
@@ -130,17 +157,20 @@ LXC_Proxy::~LXC_Proxy() {
 }
 
 void LXC_Proxy::printInfo() {
-	char buffer[20];
+	/*char buffer[20];
 	unsigned int convertedIP = htonl(intlxcIP);
 	const char* result = inet_ntop(AF_INET, &convertedIP, buffer,
-								  sizeof(buffer));
+								  sizeof(buffer));*/
+
+	std::pair<std::string, std::string> res = getIPAndMacAddr();
 
 	lxcMan->debugPrint("|==========================\n");
 	lxcMan->debugPrint("| NHI     : %s \n", Nhi.c_str());
 	lxcMan->debugPrint("| LXC     : %s \n", lxcName);
 	lxcMan->debugPrint("| Tap     : %s \n", tapName);
 	lxcMan->debugPrint("| Bridge  : %s \n", brName);
-	lxcMan->debugPrint("| IP      : %u (%s) \n", intlxcIP, result);
+	lxcMan->debugPrint("| IP      : %u (%s) \n", intlxcIP, res.first.c_str());
+	lxcMan->debugPrint("| MAC     : (%s) \n", res.second.c_str());
 	lxcMan->debugPrint("| FD      : %d\n",  fd);
 	lxcMan->debugPrint("| Command : %s\n", cmndToExec.c_str());
 	lxcMan->debugPrint("|==========================\n");
@@ -150,7 +180,9 @@ void LXC_Proxy::printInfo() {
 // system call to the process with the given PID (which refers to the LXC)
 ltime_t LXC_Proxy::getElapsedTime() {
 	struct timeval incomingPacketTimestamp;
-	ns_2_timeval(GetCurrentTimeTracer(eqTracerID), &incomingPacketTimestamp);
+	ns_2_timeval(
+		this->lxcMan->vtManagerInterface->GetCurrentVirtualTimeTracer(eqTracerID),
+		&incomingPacketTimestamp);
 	assert(incomingPacketTimestamp.tv_sec >= simulationStartSec);
 	long secElapsed = incomingPacketTimestamp.tv_sec  - simulationStartSec;
 	long microSecElapsed 
@@ -235,24 +267,28 @@ string LXC_Proxy::exec_system_command(char* cmd) {
 
 void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 	string cmd = "";
-	char config[40];
+	char config[200];
 	char buffer[20];
-	unsigned int convertedIP = htonl(intlxcIP);
+	memset(config, 0, 200);
+	/*unsigned int convertedIP = htonl(intlxcIP);
 	const char* result = inet_ntop(AF_INET, &convertedIP, buffer,
-									sizeof(buffer));
+									sizeof(buffer));*/
+	std::pair<string, string> res = getIPAndMacAddr();
 	string bridge = " " + string(brName);
 	string tap    = " " + string(tapName);
 	string lxc    = " " + string(lxcName);
-	string ipAddr = " " + string(result);
+	string ipAddr = " " + string(res.first);
+	string macAddr = " " + string(res.second);
 
-	sprintf(config, " %u", timelineLXCAlignedOn->s3fid());
+	sprintf(config, " %s/lxc-scripts/lxc-config/%u",
+			PATH_TO_S3FNETLXC, timelineLXCAlignedOn->s3fid());
 
 	switch(type)
 	{
 		case LXC_CREATE:
 			printf("Called lxc create\n");
 			cmd = string(PATH_TO_S3FNETLXC) + string("/lxc-scripts/create") 
-				+ tap + ipAddr + bridge + lxc + string(config);
+				+ tap + ipAddr + macAddr + bridge + lxc + string(config);
 
 			// Open up a TAP DEVICE since our LXC is already created
 			fd = tun_alloc(tapName, IFF_TAP | IFF_NO_PI);
@@ -260,8 +296,6 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 
 			usleep(TIME_100_MS_IN_US);
 			break;
-
-
 
 		case LXC_STOP:
 			cmd = "lxc-stop -n "  + lxc;
@@ -273,17 +307,16 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 			break;
 
 		case LXC_START_TRACER:
-			cmd = "lxc-start -n" + lxc + " -d " + " -l /tmp/lxc-" + std::to_string(eqTracerID) + ".log" + " -- " 
-								 + "/usr/bin/tracer -e 2 -t " 
-								 + std::to_string(timelineLXCAlignedOn->s3fid())
-								 + " -i " + std::to_string(eqTracerID)
-								 + " -c \"" + cmndToExec + "\"";
+			cmd = this->lxcMan->vtManagerInterface->GetEncalsulatedTracerCommand(
+				eqTracerID, timelineLXCAlignedOn->s3fid(), relCPUSpeed,
+				ttnProjectName, cmndToExec);
+			std::cout << "Tracer: " << eqTracerID << " Encapsulated CMD = " << cmd << std::endl; 
+			cmd = "lxc-start -n" + lxc + " -d " + " -f" + string(config) + " -- " + cmd;
 			break;
 		
 		default:
-			printf("Unknown LXC command.... Exiting\n");
+			std::cout << "Unknown LXC command.... Exiting\n";
 			exit(1);
-			break;
 	}
 
 	cout << "Executing LXC command = "<< cmd << "\n";
@@ -294,30 +327,17 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 
 void LXC_Proxy::updateNextEarliestArrivalTime(int pktHash,
 									   	  	  s64 pktEarliestArrivalTime) {
-
-	if (!isCompilerAssisted)
-		return;
-
 	pktsInTransitQueueMutex.lock();
-
 	pktsInTransit.push(std::make_pair(pktEarliestArrivalTime, pktHash));
 	pktsInTransitQueueMutex.unlock();
-	
 }
 
 void LXC_Proxy::signalPacketDelivery(int pktHash) {
 
 	std::vector<lPair> tmpVector;
-
-	if (!isCompilerAssisted)
-		return;
-
-	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID); 
-
 	pktsInTransitQueueMutex.lock();
 	while(!pktsInTransit.empty()) {
 		int topHash = pktsInTransit.top().second;
-
 		if(topHash == pktHash) {
 			pktsInTransit.pop();
 			break;
@@ -328,7 +348,7 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 		}
 	}
 
-	for (int i = 0; i < tmpVector.size(); i++) {
+	for (int i = 0; i < (int)tmpVector.size(); i++) {
 		pktsInTransit.push(std::make_pair(
 			tmpVector[i].first, tmpVector[i].second));
 	}
@@ -340,21 +360,17 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 s64 LXC_Proxy::getNextEarliestArrivalTime() {
 
 	s64 eat;
-	s64 currTimestamp = GetCurrentTimeTracer(eqTracerID);
-
-	if (!isCompilerAssisted)
-		return currTimestamp;
-		 
+	s64 currTimestamp = this->lxcMan->vtManagerInterface->GetCurrentVirtualTimeTracer(eqTracerID);
+	 
 	double nearestHostDistsecs 
 		= lxcMan->timelineGraph->getNearestHostDist(
-			ptrToHost->getGraphNodeID());
+			((s3f::s3fnet::Host *)ptrToHost)->getGraphNodeID());
 	s64 eatIfNoPktsInQueue = currTimestamp + (nearestHostDistsecs*NS_IN_SECS); 
 	pktsInTransitQueueMutex.lock();
 	if (pktsInTransit.empty())
 		eat = eatIfNoPktsInQueue;
 	else {
 		eat = pktsInTransit.top().first;
-
 		if (eat > eatIfNoPktsInQueue) {
 			eat = eatIfNoPktsInQueue; // we are being safe here
 		} else if (eat < currTimestamp) {
@@ -363,6 +379,19 @@ s64 LXC_Proxy::getNextEarliestArrivalTime() {
 	}
 	pktsInTransitQueueMutex.unlock();
 
+	if (!this->lxcMan->IsVirtualTimeManagerTitan())
+		return currTimestamp;
+
 	return eat;
+}
+
+
+bool LXC_Proxy::arePktsInTransit() {
+	bool inTransit = false;
+	pktsInTransitQueueMutex.lock();
+	if (!pktsInTransit.empty())
+		inTransit = true;
+	pktsInTransitQueueMutex.unlock();
+	return inTransit;
 }
 

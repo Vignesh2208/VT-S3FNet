@@ -14,7 +14,7 @@ $(MODEL_NAME)-rt.dml:   $(MODEL_NAME).dml
 	$(S3FNET_DIR)/dmlenv -r all $(DICTIONARY) $(NETWORKS) $(PARAMS) $(MODEL_NAME).dml > $@
 
 test:   $(MODEL_NAME)-env.dml $(MODEL_NAME)-rt.dml
-	$(S3FNET_DIR)/s3fnet $(DICTIONARY) $(NETWORKS) *.dml
+	sudo $(S3FNET_DIR)/s3fnet $(DICTIONARY) $(NETWORKS) *.dml
 
 clean:
 	rm -f $(MODEL_NAME)-env.dml $(MODEL_NAME)-rt.dml *~ .tmpdat*

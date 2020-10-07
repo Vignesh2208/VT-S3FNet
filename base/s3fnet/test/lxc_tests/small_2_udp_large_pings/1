@@ -1,5 +1,10 @@
-lxc.utsname = lxc1-0
-lxc.network.type = veth
-lxc.network.flags = up
-lxc.network.link = br-1-0
-lxc.network.ipv4 = 10.10.0.10/8
+lxc.uts.name = lxc1-0
+lxc.net.0.type = veth
+lxc.net.0.flags = up
+lxc.net.0.link = br-1-0
+lxc.net.0.ipv4.address = 10.10.0.10/8
+lxc.autodev = 1
+lxc.console.path = none
+lxc.apparmor.profile = unconfined
+lxc.apparmor.allow_incomplete = 1
+lxc.mount.auto = proc

@@ -4,9 +4,8 @@ OBJ  = $(SRC:.cc=.o)
 OPENVZEMU_INCLUDES=../openvzemu_include
 CC	= g++
 DEBUG	= -g
-#CFLAGS	= -Wall -c -O3 -I../ -I$(OPENVZEMU_INCLUDES)
-CFLAGS	= -Wall -c $(DEBUG) -O3 -I../ -I$(OPENVZEMU_INCLUDES)
-#CFLAGS	= -Wall -c $(DEBUG) -O0 -I../ -I$(OPENVZEMU_INCLUDES)
+DEFINE = -DENABLED_VT_MANAGER_TITAN
+CFLAGS	= -Wall -c $(DEBUG) $(DEFINE) -O3 -I../ -I$(OPENVZEMU_INCLUDES)
 
 aux.a	: $(OBJ)
 	rm -f $@
