@@ -82,6 +82,12 @@ class LxcManager
 		 // pointer to interface
 		Interface* siminf;       
 
+
+		// vector of all proxies maintained by the LXC Manager
+		std::vector<std::vector<int>> dependantTimelines;   
+
+		std::vector<ltime_t> dependantTlShortestDist;                                   
+		
 		// vector of all proxies maintained by the LXC Manager                                   
 		std::vector<LXC_Proxy*> listOfProxies; 
 
@@ -107,6 +113,8 @@ class LxcManager
 
 		// Number of simulated hosts in each timeline
 		vector<int> timelineNumSimulatedHosts;
+
+		vector<ltime_t> syncWindowEAts;
 
 		// Set to 1 if lookahead computation is enabled
 		int isLookaheadEnabled;
@@ -135,7 +143,7 @@ class LxcManager
 		// Interface to handle virtual time manager operations
 		VirtualTimeManagerInterface * vtManagerInterface = NULL;
 		
-		
+
 		//!	Statistics Printing
 		void printLXCstats();
 		
@@ -262,6 +270,10 @@ class LxcManager
 
 		//! Called at global sync window to set earliest arrival times
 		void SetEatSyncWindow();
+
+		ltime_t getTimelineSmallestInTranstTime(int timelineID);
+
+		long long getTimelineExclEat(int timelineID);
 
 
 

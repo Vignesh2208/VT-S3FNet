@@ -22,7 +22,7 @@ public:
     //! Returns encapsulated tracer start command
     std::string GetEncalsulatedTracerCommand(
         int tracer_id, int timeline_id, float rel_cpu_speed, std::string ttn_project,
-        std::string cmd);
+        std::string cmd, std::string ipAddr);
 
 
     //! Initializes a virtual time managed experiment

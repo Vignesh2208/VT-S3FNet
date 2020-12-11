@@ -48,10 +48,14 @@ class EmuPacket
 		int     len;
 		ltime_t outgoingTime;
 		ltime_t incomingTime;
+		ltime_t eat;
 
 		u_short ethernetType;
+		int 	pktNumber;
 		int     incomingFD;
 		int     outgoingFD;
+
+		unsigned int dest_emu_tl;
 
 		 // packet payload pointer
 		unsigned char *data;               
@@ -99,7 +103,9 @@ class LXC_Proxy
 		unsigned int intlxcIP;   
 
 		// file descriptor                 
-		int          fd;                          
+		int          fd;
+
+		int 		 pktIDCounter;                        
 
 		// NHI of the host
 		string       Nhi;                         
@@ -145,7 +151,7 @@ class LXC_Proxy
 		std::priority_queue< lPair, std::vector<lPair> ,
 							std::greater<lPair> > pktsInTransit; 
 
-	
+		std::vector<int> dependantTimelines;
 		
 		//! Prints out debug infor about the LXC Proxy
 		void printInfo();
@@ -186,9 +192,10 @@ class LXC_Proxy
 									   	   long long pktEarliestArrivalTime);
 
 
+		long long getSmallestInTransitTime();
 		
 		//	Useful only when VirtualTimeManager is TITAN
-		long long getNextEarliestArrivalTime();
+		long long getNextEarliestArrivalTime(bool safe=true);
 
 		// Called when a packet is delivered to the LXC
 		void signalPacketDelivery(int pktHash);

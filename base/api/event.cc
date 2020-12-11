@@ -10,32 +10,50 @@
 	__evtnum(evtnum), __EventType(EVTYPE_TIMEOUT),  __proc(proc), __act(act), __home_tl(home_tl)  
 		{ if(act) act->inc_evts();
 		  __time = t; __key2 = key2;
+		  __dst_emu_tl = -1;
+		  __dst_emu_eat = 0;
 		};
  Event::Event(unsigned int etype, ltime_t t, int key2, InChannel* inc, Activation act, Process* proc, Timeline* home_tl, unsigned int evtnum) : 
 	__evtnum(evtnum), __EventType(etype), __proc(proc),
 	__inc(inc), __act(act),  __home_tl(home_tl) 
 		{ if(act) act->inc_evts();
 		  __time = t; __key2 = key2;
+		  __dst_emu_tl = -1;
+		  __dst_emu_eat = 0;
 		} ;
 
 #else
  Event::Event() : __EventType(EVTYPE_NULL) {};
  Event::Event(ltime_t t, int key2, Process* proc, Activation act, Timeline* home_tl, unsigned int evtnum) : 
 	__evtnum(evtnum), __EventType(EVTYPE_TIMEOUT), __proc(proc), __act(act),  __home_tl(home_tl)  
-		{ __time = t; __key2 = key2; };
+		{ __time = t; __key2 = key2; 
+		  __dst_emu_tl = -1;
+		  __dst_emu_eat = 0;
+		};
 
  Event::Event(unsigned int etype, ltime_t t, int key2, InChannel* inc, Activation act, Process* proc, Timeline* home_tl, unsigned int evtnum) : 
 	__evtnum(evtnum), __EventType(etype), __proc(proc), 
 	__inc(inc), __act(act),  __home_tl(home_tl)   
-		{ __time = t; __key2 = key2; };
+		{ __time = t; __key2 = key2;
+		  __dst_emu_tl = -1;
+		  __dst_emu_eat = 0; 
+		};
 #endif
 
 Event::Event(ltime_t t, int key2, unsigned int tl, int type, Timeline* home_tl, unsigned int evtnum ) : 
-	__evtnum(evtnum), __EventType(type), __tl(tl),  __home_tl(home_tl)  
-		{ __time = t; __key2 = key2; };
+	__evtnum(evtnum), __EventType(type), __tl(tl),  __home_tl(home_tl)  { 
+		  __time = t; 
+		  __key2 = key2; 
+		  __proc = NULL; 
+		  __dst_emu_tl = -1;
+		  __dst_emu_eat = 0;
+		};
 Event::Event(ltime_t t, int key2, InChannel* inc, Process* proc, bool bind, unsigned int pri, Timeline* home_tl, unsigned int evtnum) :
 	__evtnum(evtnum), __EventType(EVTYPE_BIND), __proc(proc), __inc(inc), __pri(pri), __bind(bind),  __home_tl(home_tl)  
-		{ __time = t; __key2 = key2; };
+		{ __time = t; __key2 = key2; 
+		  __dst_emu_tl = -1;
+		  __dst_emu_eat = 0;
+		};
 
 Event* Event::get() { return this; }
 

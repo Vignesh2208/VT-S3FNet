@@ -1,0 +1,164 @@
+total_timeline 3	
+tick_per_second 6	
+run_time 0.5
+seed 1	
+log_dir "2_LXC_TCP_100us_DELAY"		
+virtual_time_manager "TITAN"
+max_lookahead_us 1000
+enable_lookahead 0
+
+# ------------- TOPOLOGY --------------- #
+#	  client				   server
+#		10us\		10us	  /10us
+#			router------router
+#		10us/				  \10us
+#	  client				   server
+#
+
+
+Net
+[
+	lxcConfig
+	[
+		settings [ lxcNHI 0:0 ttnProject "s3ftcp" dependants "1" cmd "/home/titan/VT-S3FNet/csudp/tcp/tcp_test client 1:0 7891 > /tmp/client1.log"  ]
+		settings [ lxcNHI 1:0 ttnProject "s3ftcp" dependants "0" cmd "/home/titan/VT-S3FNet/csudp/tcp/tcp_test server 1:0 7891 > /tmp/server1.log"  ]
+		# settings [ lxcNHI 2:0 ttnProject "s3ftcp" dependants "3" cmd "/home/titan/VT-S3FNet/csudp/tcp/tcp_test client 3:0 7891 > /tmp/client2.log"  ]
+		# settings [ lxcNHI 3:0 ttnProject "s3ftcp" dependants "2" cmd "/home/titan/VT-S3FNet/csudp/tcp/tcp_test server 3:0 7891 > /tmp/server2.log"  ]
+	]	
+	
+	Net 
+	[ 
+		id 0
+		alignment 0
+		host 																	# Host 0:0
+		[ 
+			id 0
+			_extends .dict.emuHost
+		]
+	]
+	Net 
+	[ 
+		id 1
+		alignment 1
+		host 																	# Host 1:0
+		[ 
+			id 0
+			_extends .dict.emuHost
+		]
+	]
+	# Net 
+	#[ 
+	#	id 2
+	#	alignment 2
+	#	host 																	# Host 0:0
+	#	[ 
+	#		id 0
+	#		_extends .dict.emuHost
+	#	]
+	#]
+	#Net 
+	#[ 
+	#	id 3
+	#	alignment 3
+	#	host 																	# Host 1:0
+	#	[ 
+	#		id 0
+	#		_extends .dict.emuHost
+	#	]
+	#]
+	Net 
+	[ 
+		id 2
+		alignment 2		
+		router																	# Router 1:2
+		[
+			id 0
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+			# interface [id 2 _extends .dict.1Gb]
+		]
+		router																	# Router 1:2
+		[
+			id 1
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]
+			router																	# Router 1:2
+		[
+			id 2
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]
+			router																	# Router 1:2
+		[
+			id 3
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]
+		router																	# Router 1:2
+		[
+			id 4
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]	
+		router																	# Router 1:2
+		[
+			id 5
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]	
+		router																	# Router 1:2
+		[
+			id 6
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]
+		router																	# Router 1:2
+		[
+			id 7
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+		]
+		router																	# Router 1:2
+		[
+			id 8
+			_find .dict.routerGraph.graph
+			interface [id 0 _extends .dict.1Gb]
+			interface [id 1 _extends .dict.1Gb]
+			# interface [id 2 _extends .dict.1Gb]
+		]
+	]
+	#link [ attach 0:0(0) attach 4:0(0) _extends .dict.link_delay_1us ]
+	#link [ attach 1:0(0) attach 4:8(1) _extends .dict.link_delay_1us ]
+	#link [ attach 2:0(0) attach 4:0(2) _extends .dict.link_delay_1us ]
+	#link [ attach 3:0(0) attach 4:8(2) _extends .dict.link_delay_1us ]
+
+	#link [ attach 4:0(1) attach 4:1(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:1(1) attach 4:2(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:2(1) attach 4:3(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:3(1) attach 4:4(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:4(1) attach 4:5(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:5(1) attach 4:6(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:6(1) attach 4:7(0) _extends .dict.link_delay_1us ]
+	#link [ attach 4:7(1) attach 4:8(0) _extends .dict.link_delay_1us ]
+
+	link [ attach 0:0(0) attach 2:0(0) _extends .dict.link_delay_1us ]
+	link [ attach 1:0(0) attach 2:8(1) _extends .dict.link_delay_1us ]
+	link [ attach 2:0(1) attach 2:1(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:1(1) attach 2:2(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:2(1) attach 2:3(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:3(1) attach 2:4(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:4(1) attach 2:5(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:5(1) attach 2:6(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:6(1) attach 2:7(0) _extends .dict.link_delay_1us ]
+	link [ attach 2:7(1) attach 2:8(0) _extends .dict.link_delay_1us ]
+	
+]

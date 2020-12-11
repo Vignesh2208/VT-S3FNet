@@ -36,6 +36,9 @@ Timeline::Timeline (TimelineInterface* tli) :
 
 	__window = 0;
 
+	__levent_dest_tl = -1;
+	__levent_eat = 0;
+
 	timelineNumMakeAppts = 0;
 
 	// interface tells us what the timescale is, remember it                                  
@@ -111,6 +114,9 @@ HandleCode Timeline::schedule(Process *proc, ltime_t t,
 
 	// create a timeout event to be scheduled on this timeline,
 	Event* e = new Event(t, pri, proc, act, this, __evtnum++);	
+	e->__dst_emu_tl = this->__levent_dest_tl;
+	e->__dst_emu_eat = this->__levent_eat;
+
 	HandleCode h = (void *)e;
 	EventPtr eptr(e);
 
@@ -122,6 +128,35 @@ HandleCode Timeline::schedule(Process *proc, ltime_t t,
 	//  implementation detail
 	//
 	return h;
+}
+
+HandleCode	Timeline::scheduleEmuTaint(
+	Process* proc, ltime_t t, unsigned int pri, Activation act,
+	unsigned int dest_emu_tl, ltime_t eat) {
+
+	// can only directly schedule a Process if its owner
+	//  is on this timeline
+	assert( proc->owner()->alignment() == this );
+
+	// create a timeout event to be scheduled on this timeline,
+	Event* e = new Event(t, pri, proc, act, this, __evtnum++);
+
+	e->__dst_emu_tl = dest_emu_tl;
+	e->__dst_emu_eat = eat;
+
+
+	HandleCode h = (void *)e;
+	EventPtr eptr(e);
+
+	// push onto the priority queue
+	__events.push( eptr );
+
+	// return the handle.  The fact that it is a smart pointer
+	// to an event is not part of the API, but is a useful
+	//  implementation detail
+	//
+	return h;
+
 }
 
 /************************************************************
@@ -156,6 +191,9 @@ HandleCode Timeline::schedule(InChannel *ic, ltime_t t,
 	// thread unsafety problems
 	Timeline* tgt = ic->owner()->alignment();
 	Event* e =new Event(EVTYPE_ACTIVATE,t, 0, ic, act, NULL, tgt, __evtnum++);
+
+	e->__dst_emu_tl = this->__levent_dest_tl;
+	e->__dst_emu_eat = this->__levent_eat;
 
 	// return a smart pointer to the event to be scheduled. That's the 
 	// handle for a cancelation.
@@ -213,6 +251,10 @@ void  Timeline::schedule(InChannel* ic, Process* proc, bool bind, unsigned int p
 	Event* e; 
 	// create an event to happen immediately to implement the attachment 
 	e=new Event(now(), pri, ic,proc,bind,pri,this, __evtnum++);
+
+	e->__dst_emu_tl = this->__levent_dest_tl;
+	e->__dst_emu_eat = this->__levent_eat;
+
 	EventPtr eptr(e);
 	__events.push (eptr);
 }
@@ -354,6 +396,8 @@ void* Timeline::thread_function() {
 				if (__window >= 1)
 					simCtrl->SetEatSyncWindow();
 
+				//std::cout << "window-size = " << __window_size << std::endl;
+
 				// if either there is no event on the event list, or no outbound connections
 				// that span Timelines, offer __window_size to the barrier
 				if( nxt_time < 0 || __min_sync_cross_timeline_delay < 0  )  {
@@ -482,51 +526,72 @@ void* Timeline::thread_function() {
 	return (void *)NULL;
 }
 
-ltime_t Timeline::pruneLookahead(int destTimelineID, ltime_t proxies_lookahead, bool ignore_proxies_lookahead) {
-	EventPtr next_relevant_netsim_event = __events.nxt_relevant_netsim_event();
+ltime_t Timeline::pruneLookahead(int destTimelineID, ltime_t proxies_lookahead, 
+	bool ignore_proxies_lookahead, bool waiting) {
+	EventPtr next_relevant_netsim_event;
+	std::vector<int> emptyVec;
+	if (ignore_proxies_lookahead)
+		next_relevant_netsim_event = __events.nxt_relevant_event_for(
+			destTimelineID, simCtrl->dependantTimelines[destTimelineID]);
+	else
+		next_relevant_netsim_event = __events.nxt_relevant_event_for(
+			s3fid(), emptyVec);
+
 	if (!next_relevant_netsim_event) {
 		assert(false);
-
-		if (!ignore_proxies_lookahead)
-			return proxies_lookahead;
-
-		return now() + __out_appt[destTimelineID].lookahead;
 	}
 
-	
-	if (next_relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT) {
+	if (ignore_proxies_lookahead) {
+		// Ptr to any events left by this timeline on the destTimeline
 
-		if (!ignore_proxies_lookahead) {
-			if (simCtrl->isTimelineFullyEmulated(s3fid())
-				&& !simCtrl->arePktsInTransit(s3fid()))
-				return proxies_lookahead;
+		ltime_t smallestInTransitTime = simCtrl->syncWindowEAts[destTimelineID];
+		
 
-			return std::min(proxies_lookahead,
-				next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+		/*if (waiting && !simCtrl->syncWindowEAts[destTimelineID]) {
+			smallestInTransitTime = simCtrl->getTimelineSmallestInTranstTime(destTimelineID);
+			if (!smallestInTransitTime)
+				smallestInTransitTime = now() + (long)(
+					simCtrl->dependantTlShortestDist[destTimelineID]);
+			else {
+				smallestInTransitTime = 0;
+			}
+			
+		}*/
+
+		simCtrl->syncWindowEAts[destTimelineID] = 0;
+
+		/*if (next_relevant_netsim_event->get_proc() && 
+			next_relevant_netsim_event->get_proc()->owner()) {
+			Entity * eventExecEntity = (Entity *)next_relevant_netsim_event->get_proc()->owner();
+			if (eventExecEntity && eventExecEntity->isHost) {
+				ltime_t host_lookahead = simCtrl->getHostLookahead((void *)eventExecEntity, destTimelineID);
+				host_lookahead += next_relevant_netsim_event->get_time();
+				host_lookahead = std::max(smallestInTransitTime, host_lookahead);
+				return std::max(host_lookahead, 
+					next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+			}
+		}*/
+
+		if (next_relevant_netsim_event->get_evtype() != EVTYPE_WAIT_APPT) {
+			smallestInTransitTime = std::max(
+				smallestInTransitTime,
+				next_relevant_netsim_event->get_dest_emu_eat());
 		}
-
-		return next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead;
-	}
-	
-	if (next_relevant_netsim_event->get_proc() && next_relevant_netsim_event->get_proc()->owner()) {
-		Entity * eventExecEntity = (Entity *)next_relevant_netsim_event->get_proc()->owner();
-		if (eventExecEntity->isHost) {
-			ltime_t host_lookahead = next_relevant_netsim_event->get_time() + 
-			simCtrl->getHostLookahead((void *)eventExecEntity, destTimelineID);
-
-			if (!ignore_proxies_lookahead)
-				return std::min(proxies_lookahead, host_lookahead);
-
-			return host_lookahead;
-		}
-	}
-	
-	if (!ignore_proxies_lookahead)
-		return std::min(proxies_lookahead,
+		
+		return std::max(smallestInTransitTime,
 			next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+		
+	}
 
-	return 	next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead;
+	if (next_relevant_netsim_event->get_evtype() != EVTYPE_WAIT_APPT)
+		return std::min(proxies_lookahead, 
+			next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
 	
+
+	//return proxies_lookahead;
+	return std::max(proxies_lookahead, 
+		next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+
 }
 
 
@@ -601,6 +666,8 @@ void Timeline::sync_window() {
 
 		pthread_mutex_lock(&titanTimelineTimeMutex);
 		__time  = nxt_evt->get_time();
+		this->__levent_dest_tl = nxt_evt->__dst_emu_tl;
+		this->__levent_eat = nxt_evt->__dst_emu_eat;
 		pthread_mutex_unlock(&titanTimelineTimeMutex);
 
 		// process the event, depending on event type
@@ -668,6 +735,9 @@ void Timeline::sync_window() {
 					e = new Event(EVTYPE_EXEC_ACTIVATE, now(), (*list_iter).get_proc()->pri(), ic,
 							nxt_evt->get_act(), (*list_iter).get_proc(),this, __evtnum++);
 
+				e->__dst_emu_eat = this->__levent_eat;
+				e->__dst_emu_tl = this->__levent_dest_tl;
+
 				__events.push(e);
 
 				// Depending on whether the Process was attached to the InChannel by bind()
@@ -721,21 +791,27 @@ void Timeline::sync_window() {
 
 			proxies_lookahead = simCtrl->getProxiesLookahead(s3fid(), tl);
 
-			if (proxies_lookahead) {
-				assert (now() < proxies_lookahead);
-				proxies_lookahead = this->pruneLookahead(tl, proxies_lookahead, false);
-			} else if (simCtrl->isVtLookaheadEnabled()) {
-				proxies_lookahead = this->pruneLookahead(tl, 0, true);
-			} else {
-				proxies_lookahead = 0;
-			}
-
 			// recover pointer to the InAppointment structure on the destination,
 			// using own timeline identity index into destination's incoming appt array
 			in_appt = &dest_tl->__in_appt[__s3fid];
 
 			// gain access to the data in the appointment structure
 			pthread_mutex_lock( &in_appt->appt_mutex );
+
+			if (simCtrl->isVtLookaheadEnabled()) {
+				if (proxies_lookahead) {
+					assert (now() < proxies_lookahead);
+					proxies_lookahead = this->pruneLookahead(tl, proxies_lookahead, false, false);
+				} else if (simCtrl->isVtLookaheadEnabled()) {
+					proxies_lookahead = this->pruneLookahead(tl, 0, true, in_appt->waiting);
+				} else {
+					proxies_lookahead = 0;
+				}
+			} else {
+				proxies_lookahead = 0;
+			}
+
+			
 
 			// write the new appointment into it
 			if (proxies_lookahead > now() + __out_appt[tl].lookahead)

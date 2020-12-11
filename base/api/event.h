@@ -79,9 +79,13 @@ class Event {
   Event* get();
   ltime_t get_time()       { return __time; }
   Timeline* get_home_tl()  { return __home_tl; }  
+  ltime_t get_dest_emu_eat()       { return __dst_emu_eat; }
+  unsigned int get_dest_emu_tl()  { return __dst_emu_tl; } 
   ltime_t     __time;     ///< not used in priority queue but placed here for information
   int         __key2;     ///< priority
   unsigned int  __evtnum; ///< inserted by timeline on scheduling
+  unsigned int __dst_emu_tl;
+  ltime_t  __dst_emu_eat;
  protected:
   unsigned int  __EventType; ///< what to do with this event
   Process*   __proc;      ///< process to exec. on TIMEOUT

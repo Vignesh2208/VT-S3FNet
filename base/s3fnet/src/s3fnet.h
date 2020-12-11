@@ -366,7 +366,7 @@ class SimInterface : public Interface {
     * @param tl the number of simulation threads to create (pthreads).
     * @param ltps the time scale of the clock ticks in terms of log base 10 clock ticks per second.
     */
-   SimInterface(int tl, int ltps) : Interface(tl,ltps), topnet(0) {}
+   SimInterface(int tl, int ltps, int maxLookaheadUs) : Interface(tl,ltps, maxLookaheadUs), topnet(0) {}
 
    /** the destructor */
    virtual ~SimInterface();

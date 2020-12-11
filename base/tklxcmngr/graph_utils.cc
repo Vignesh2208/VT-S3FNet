@@ -10,9 +10,9 @@
 
 using namespace s3f;
 
-typedef std::pair<double, int> ePair; 
+typedef std::pair<long, int> ePair; 
 
-void Node::addEdge(int endpoint, int associatedTimeline, double weight,
+void Node::addEdge(int endpoint, int associatedTimeline, long weight,
                    bool isEndpoint1Router, bool isEndpoint2Router) {
     Edge new_edge;
     int isFound = 0;
@@ -55,10 +55,10 @@ int Node::doesEdgeExistTo(int dest) {
     return 0;
 }
 
-double Node::getEdgeWeight(int dest) {
+long Node::getEdgeWeight(int dest) {
 
     if (dest == this->id)
-        return 0.0;
+        return 0;
 
     for (auto & edge: this->edges) {
         if (edge.endpoint_2 == dest)
@@ -71,26 +71,25 @@ double Node::getEdgeWeight(int dest) {
 
 void Graph::addEdge(int endpoint_1, int endpoint_1_timeline,
                     int endpoint_2, int endpoint_2_timeline,
-                    double weight,
-                    bool isEndpoint1Router, bool isEndpoint2Router) {
+                    long weight, bool isEndpoint1Router, bool isEndpoint2Router) {
 
     auto got_1 = this->Nodes.find(endpoint_1);
     auto got_2 = this->Nodes.find(endpoint_2);
 
     if (isEndpoint1Router && isEndpoint2Router)
-        printf("Adding Edge between: (S%d (%d) - S%d (%d)) with weight: %f\n",
+        printf("Adding Edge between: (S%d (%d) - S%d (%d)) with weight: %lu\n",
             endpoint_1, endpoint_1_timeline, endpoint_2, endpoint_2_timeline,
             weight);
     else if (isEndpoint1Router && !isEndpoint2Router)
-        printf("Adding Edge between: (S%d (%d) - H%d (%d)) with weight: %f\n",
+        printf("Adding Edge between: (S%d (%d) - H%d (%d)) with weight: %lu\n",
             endpoint_1, endpoint_1_timeline, endpoint_2, endpoint_2_timeline,
             weight);
     else if (!isEndpoint1Router && isEndpoint2Router)
-        printf("Adding Edge between: (H%d (%d) - S%d (%d)) with weight: %f\n",
+        printf("Adding Edge between: (H%d (%d) - S%d (%d)) with weight: %lu\n",
             endpoint_1, endpoint_1_timeline, endpoint_2, endpoint_2_timeline,
             weight);
     else
-        printf("Adding Edge between: (H%d (%d) - H%d (%d)) with weight: %f\n",
+        printf("Adding Edge between: (H%d (%d) - H%d (%d)) with weight: %lu\n",
             endpoint_1, endpoint_1_timeline, endpoint_2, endpoint_2_timeline,
             weight);
 
@@ -99,6 +98,7 @@ void Graph::addEdge(int endpoint_1, int endpoint_1_timeline,
     if (got_1 == this->Nodes.end()) {
         node1 = new Node(endpoint_1, endpoint_1_timeline, isEndpoint1Router);
         this->Nodes.insert(std::make_pair(endpoint_1, node1));
+        
     } else {
         node1 = got_1->second;
     }
@@ -118,7 +118,7 @@ void Graph::addEdge(int endpoint_1, int endpoint_1_timeline,
 }
 
 void Graph::computeShortestPathsFrom(int startnode) {
-    double * distance;
+    long * distance;
     int i, N;
     N = numVertices;
     Node * currNode;
@@ -127,15 +127,15 @@ void Graph::computeShortestPathsFrom(int startnode) {
 
     assert(startnode >= 0 && startnode < N);
     
-    distance = new double[N];
+    distance = new long[N];
     for(i = 0; i < N; ++i) {
         distance[i] = INFINITY;
     }  
 
     // Insert source itself in priority queue and initialize 
     // its distance as 0. 
-    pq.push(std::make_pair(0.0, startnode)); 
-    distance[startnode] = 0.0; 
+    pq.push(std::make_pair(0, startnode)); 
+    distance[startnode] = 0; 
   
     /* Looping till priority queue becomes empty (or all 
       distances are not finalized) */
@@ -161,7 +161,7 @@ void Graph::computeShortestPathsFrom(int startnode) {
 
             // Get vertex label and weight of current adjacent 
             // of u. 
-            double weight = cost[u][i]; 
+            long weight = cost[u][i]; 
 
             //printf("u = %d, v = %d\n", u, v);
   
@@ -181,9 +181,9 @@ void Graph::computeShortestPathsFrom(int startnode) {
             shortestDist[startnode][i] = distance[i];
             shortestDist[i][startnode] = distance[i];
 
-            if (startnode == 0)
-                printf("Shortest distance between : (%d)-(%d) = %f units\n",
-                        startnode, i, distance[i]);
+            //if (startnode == 0)
+            printf("Shortest distance between : (%d)-(%d) = %lu units\n",
+                    startnode, i, distance[i]);
         } 
     }
 
@@ -192,7 +192,7 @@ void Graph::computeShortestPathsFrom(int startnode) {
 }
 
 void Graph::setNearestHostDistTo(int startnode) {
-    double minDist = INFINITY;
+    long minDist = INFINITY;
     auto targetNode = this->Nodes.find(startnode);
     assert(targetNode != this->Nodes.end());
     
@@ -206,20 +206,13 @@ void Graph::setNearestHostDistTo(int startnode) {
     }
 
     assert(minDist != INFINITY);
+    std::cout << "Nearest Host Dist for " << startnode << " = " << minDist << "\n";
     targetNode->second->setNearestHostDist(minDist);
-
-    /*if (!targetNode->second->isRouter) {
-        printf("Nearest host to H%d is %f units away\n", startnode,
-            minDist);
-    } else {
-        printf("Nearest host to S%d is %f units away\n", startnode,
-            minDist);
-    }*/
 }
 
 
 void Graph::setNearestTimelineDistTo(int startnode, int targetTimelineID) {
-    double minDist = INFINITY;
+    long minDist = INFINITY;
     auto targetNode = this->Nodes.find(startnode);
 
     assert(targetNode != this->Nodes.end());
@@ -232,46 +225,54 @@ void Graph::setNearestTimelineDistTo(int startnode, int targetTimelineID) {
             && shortestDist[startnode][i] < minDist
             && candidateNode->second->timelineID == targetTimelineID) {
                 minDist = shortestDist[startnode][i];
+            
         }
     }
 
     if (minDist == INFINITY)
         minDist = 0;
-
+    
+    std::cout << "Min Dist[" << startnode << "][" << targetTimelineID << "] = "
+              << minDist << std::endl;
     targetNode->second->setNearestTimelineDist(targetTimelineID, minDist);
 
-    /*if (!targetNode->second->isRouter) {
-        printf("Nearest dist between H%d and Timeline: %d is %f units\n",
-            startnode,  targetTimelineID, minDist);
-    } else {
-        printf("Nearest dist between S%d and Timeline: %d is %f units\n",
-            startnode,  targetTimelineID, minDist);
-    }*/
 }
 
 
-double Graph::getNearestTimelineDist(int startnode, int targetTimelineID) {
+long Graph::getNearestTimelineDist(int startnode, int targetTimelineID) {
     auto targetNode = this->Nodes.find(startnode);
     assert(targetNode != this->Nodes.end());
-
     return targetNode->second->getNearestTimelineDist(targetTimelineID);
 }
 
 
-double Graph::getShortestDist(int endpoint_1, int endpoint_2) {
+long Graph::getTimelineDist(int srcTimeline, int targetTimeline) {
+    long shortestDist = 0;
+    for (auto it = this->Nodes.begin();
+        it != this->Nodes.end(); it++) {
+        
+        if (it->second->timelineID != srcTimeline)
+            continue;
+            
+        long currDist = this->getNearestTimelineDist(it->second->id, targetTimeline);
+        if (shortestDist == 0 || shortestDist > currDist)
+            shortestDist = currDist;
+    }
+    return shortestDist;
+}
+
+long Graph::getShortestDist(int endpoint_1, int endpoint_2) {
 
     assert(shortestDist[endpoint_1][endpoint_2] >= 0);
     return shortestDist[endpoint_1][endpoint_2];
 }
 
-double Graph::getNearestHostDist(int node) {
+long Graph::getNearestHostDist(int node) {
 
     assert(node >= 0 && node < numVertices);
     auto got = this->Nodes.find(node);
 
-    if (got == this->Nodes.end())
-        return -1;
-
+    assert(got != this->Nodes.end());
     return got->second->getNearestHostDist();
 }
 

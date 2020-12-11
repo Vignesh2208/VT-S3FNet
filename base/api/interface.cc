@@ -52,9 +52,9 @@ TimelineInterface::~TimelineInterface() {
 #endif
 }
 
-Interface::Interface(int num_timelines, int ltps) : 
-			__num_timelines(num_timelines), __clock(0), __log_ticks_per_sec(ltps)
-{
+Interface::Interface(int num_timelines, int ltps, ltime_t max_lookahead_us) : 
+			__num_timelines(num_timelines), __clock(0), __log_ticks_per_sec(ltps),
+			__max_lookahead_us(max_lookahead_us) {
 
 	// set the time-scale in the interface
 	__tli.put_log_ticks_per_sec( ltps );
@@ -146,6 +146,7 @@ void Interface::InitModel() {
 	// of timelines times this minimum
 #ifdef COMPOSITE_SYNC
 	thrs = Timeline::__num_timelines*mxtd;
+	thrs = __max_lookahead_us;
 #else
 	thrs = 0;
 #endif

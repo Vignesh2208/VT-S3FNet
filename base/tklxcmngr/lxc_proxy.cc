@@ -52,6 +52,9 @@ EmuPacket::EmuPacket(int len)
 	incomingFD   = -1;
 	outgoingFD   = -1;
 	ethernetType = 0;
+	dest_emu_tl = -1;
+	eat = 0;
+	pktNumber = 0;
 	destProxy = NULL;
 }
 
@@ -68,6 +71,9 @@ EmuPacket* EmuPacket::duplicate() {
 	ppkt->incomingFD   = incomingFD;
 	ppkt->outgoingFD   = outgoingFD;
 	ppkt->destProxy = destProxy;
+	ppkt->pktNumber = pktNumber;
+	ppkt->eat = eat;
+	ppkt->dest_emu_tl = dest_emu_tl;
 	assert(ppkt->len == len);
 	printf("Duplicate called\n");
 	exit(0);
@@ -93,6 +99,7 @@ LXC_Proxy::LXC_Proxy(string nhiID, unsigned int ipAddress, LxcManager* lm,
 	ptrToHost            = NULL;
 	cmndToExec           = "echo 'no command sent to LXC'";
 	eqTracerID			 = -1;
+	pktIDCounter		 =  0;
 
 	// Initialize the TAP Name, LXC Name, and Bridge Name
 	string tempTap = "tap" + Nhi;
@@ -309,7 +316,8 @@ void LXC_Proxy::exec_LXC_command(LxcCommand type) {
 		case LXC_START_TRACER:
 			cmd = this->lxcMan->vtManagerInterface->GetEncalsulatedTracerCommand(
 				eqTracerID, timelineLXCAlignedOn->s3fid(), relCPUSpeed,
-				ttnProjectName, cmndToExec);
+				ttnProjectName, cmndToExec, ipAddr);
+			
 			std::cout << "Tracer: " << eqTracerID << " Encapsulated CMD = " << cmd << std::endl; 
 			cmd = "lxc-start -n" + lxc + " -d " + " -f" + string(config) + " -- " + cmd;
 			break;
@@ -343,6 +351,7 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 			break;
 		} else {
 			s64 topPktEAT = pktsInTransit.top().first;
+			topHash = pktsInTransit.top().second;
 			pktsInTransit.pop();
 			tmpVector.push_back(std::make_pair(topPktEAT, topHash));			
 		}
@@ -357,21 +366,27 @@ void LXC_Proxy::signalPacketDelivery(int pktHash) {
 }
 
 
-s64 LXC_Proxy::getNextEarliestArrivalTime() {
+s64 LXC_Proxy::getNextEarliestArrivalTime(bool safe) {
 
 	s64 eat;
 	s64 currTimestamp = this->lxcMan->vtManagerInterface->GetCurrentVirtualTimeTracer(eqTracerID);
 	 
-	double nearestHostDistsecs 
-		= lxcMan->timelineGraph->getNearestHostDist(
-			((s3f::s3fnet::Host *)ptrToHost)->getGraphNodeID());
-	s64 eatIfNoPktsInQueue = currTimestamp + (nearestHostDistsecs*NS_IN_SECS); 
+	s64 nearestDepTimelineDistNs = 
+		(this->lxcMan->dependantTlShortestDist[timelineLXCAlignedOn->s3fid()] * NS_IN_USEC);
+	/*s64 nearestHostDistNs
+		= (s64)(lxcMan->timelineGraph->getNearestHostDist(
+			((s3f::s3fnet::Host *)ptrToHost)->getGraphNodeID()) * NS_IN_USEC); */
+	//std::cout << "Nearest Host Dist Secs = " << nearestHostDistsecs << " Host = " 
+	//		  << ((s3f::s3fnet::Host *)ptrToHost)->getGraphNodeID() <<"\n";
+	s64 eatIfNoPktsInQueue = currTimestamp + nearestDepTimelineDistNs;
+
+	assert(eatIfNoPktsInQueue >= currTimestamp); 
 	pktsInTransitQueueMutex.lock();
 	if (pktsInTransit.empty())
 		eat = eatIfNoPktsInQueue;
 	else {
 		eat = pktsInTransit.top().first;
-		if (eat > eatIfNoPktsInQueue) {
+		if (eat > eatIfNoPktsInQueue && safe) {
 			eat = eatIfNoPktsInQueue; // we are being safe here
 		} else if (eat < currTimestamp) {
 			eat = currTimestamp;
@@ -382,6 +397,19 @@ s64 LXC_Proxy::getNextEarliestArrivalTime() {
 	if (!this->lxcMan->IsVirtualTimeManagerTitan())
 		return currTimestamp;
 
+	assert(eat >= currTimestamp);
+	return eat;
+}
+
+s64 LXC_Proxy::getSmallestInTransitTime() {
+	s64 eat; 
+	pktsInTransitQueueMutex.lock();
+	if (pktsInTransit.empty())
+		eat = 0;
+	else {
+		eat = pktsInTransit.top().first;
+	}
+	pktsInTransitQueueMutex.unlock();
 	return eat;
 }
 

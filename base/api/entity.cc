@@ -155,6 +155,11 @@ using namespace s3f;
       return alignment()->schedule( proc, now()+delay, user_pri(pri), act);
    }
 
+   HandleCode	Entity::waitForSchedEmu(Process* proc, Activation act, 
+						ltime_t delay, unsigned int pri, unsigned int dest_emu_tl, ltime_t eat) {
+      return alignment()->scheduleEmuTaint(proc, now()+delay, user_pri(pri), act, dest_emu_tl, eat);
+   }
+
    HandleCode Entity::waitFor(Process* proc, ltime_t delay, unsigned int pri ) {
      Message* m = NULL;
      Activation act(m);

@@ -26,6 +26,10 @@ csudp:
 	cd ../csudp; make;
 
 
+small_2_tcp_large_pings:
+	cd s3fnet/test/lxc_tests/small_2_tcp_large_pings/; make clean; make; make test
+	chmod -R 777 ../experiment-data	
+
 small_2_udp_large_pings:
 	cd s3fnet/test/lxc_tests/small_2_udp_large_pings/; make clean; make; make test
 	chmod -R 777 ../experiment-data	

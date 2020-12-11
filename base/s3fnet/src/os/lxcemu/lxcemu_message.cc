@@ -74,13 +74,14 @@ void LxcemuMessage::erase_all() {
 	assert(this->ppkt->destProxy != NULL && this->ppkt->len <= PACKET_SIZE);
 
 	//memcpy(pkt_copy, this->ppkt->data, this->ppkt->len);
-	std::pair<int, unsigned int> res 
-		= this->ppkt->destProxy->lxcMan->packet_hash((char *)this->ppkt->data, this->ppkt->len);
-	int pktHash = res.first;
+	//std::pair<int, unsigned int> res 
+	//	= this->ppkt->destProxy->lxcMan->packet_hash((char *)this->ppkt->data, this->ppkt->len);
+	//int pktHash = res.first;
 
-	printf("Signalling packet delivery at: Proxy: %d for pktHash: %d\n", 
-			this->ppkt->destProxy->eqTracerID, pktHash);
-	this->ppkt->destProxy->signalPacketDelivery(pktHash);
+	//printf("Signalling packet delivery at: Proxy: %d for pktHash: %d\n", 
+	//		this->ppkt->destProxy->eqTracerID, pktHash);
+	
+	this->ppkt->destProxy->signalPacketDelivery(this->ppkt->pktNumber);
 	delete this->ppkt;
 	ProtocolMessage::erase_all();
 }

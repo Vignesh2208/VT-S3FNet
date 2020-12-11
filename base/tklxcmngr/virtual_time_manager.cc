@@ -2,6 +2,7 @@
 #include <s3f.h>
 #include "virtual_time_manager.h"
 
+#define NS_IN_USEC 1000
 
 #ifdef ENABLED_VT_MANAGER_TITAN
 extern "C" 
@@ -80,9 +81,11 @@ s64 VirtualTimeManagerInterface::GetCurrentVirtualTimeTracer(int tracer_id) {
         return -1;
     }
     sprintf(arg.cmd_buf, "%d", tracer_id);
-    return SendToKronosModule(VT_GETTIME_TRACER, &arg);
+    s64 currTime = SendToKronosModule(VT_GETTIME_TRACER, &arg);
+    return ((s64)(currTime / NS_IN_USEC))*NS_IN_USEC;
     #else
-    return getCurrentTimeTracer(tracer_id);
+    s64 currTime = getCurrentTimeTracer(tracer_id);
+    return ((s64)(currTime / NS_IN_USEC))*NS_IN_USEC;
     #endif
 }
 
@@ -90,7 +93,7 @@ s64 VirtualTimeManagerInterface::GetCurrentVirtualTimeTracer(int tracer_id) {
 //! Returns encapsulated tracer start command
 std::string VirtualTimeManagerInterface::GetEncalsulatedTracerCommand(
     int tracer_id, int timeline_id, float rel_cpu_speed, std::string ttn_project,
-    std::string cmd) {
+    std::string cmd, std::string ipAddr) {
     #ifdef ENABLED_VT_MANAGER_TITAN
     if (vtManagerType == VirtualTimeManagerType::KRONOS) {
         return "/usr/bin/tracer -i " + std::to_string(tracer_id) + " -t "
@@ -100,7 +103,7 @@ std::string VirtualTimeManagerInterface::GetEncalsulatedTracerCommand(
     }
     return "/usr/bin/ttn_tracer -i " + std::to_string(tracer_id)
             + " -t " + std::to_string(timeline_id)
-            + " -e 2" + " -p " + ttn_project
+            + " -e 2" + " -p " + ttn_project + " -a" + ipAddr
             + " -c \"" + cmd + "\"";
     #else
         return "/usr/bin/tracer -i " + std::to_string(tracer_id) + " -t "
@@ -219,7 +222,8 @@ int VirtualTimeManagerInterface::SetTracerEarliestArrivalTime(
 s64 VirtualTimeManagerInterface::GetTracerLookaheadTimestamp(int tracer_id) {
     #ifdef ENABLED_VT_MANAGER_TITAN
     if (vtManagerType == VirtualTimeManagerType::TITAN) {
-        return GetTracerLookahead(tracer_id);
+        s64 currTime = GetTracerLookahead(tracer_id);
+        return ((s64)(currTime / NS_IN_USEC))*NS_IN_USEC;
     }
     #endif
     return GetCurrentVirtualTimeTracer(tracer_id);
@@ -228,7 +232,8 @@ s64 VirtualTimeManagerInterface::GetTracerLookaheadTimestamp(int tracer_id) {
 s64 VirtualTimeManagerInterface::GetTracerLookaheadExclTimestamp(int tracer_id) {
     #ifdef ENABLED_VT_MANAGER_TITAN
     if (vtManagerType == VirtualTimeManagerType::TITAN) {
-        return GetTracerNEATLookahead(tracer_id);
+        s64 currTime = GetTracerNEATLookahead(tracer_id);
+        return ((s64)(currTime / NS_IN_USEC))*NS_IN_USEC;
     }
     #endif
     return GetCurrentVirtualTimeTracer(tracer_id);

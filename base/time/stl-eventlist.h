@@ -86,10 +86,10 @@ public:
 		evtList.pop();
 	}
 
-	EventPtr nxt_relevant_netsim_event() {
+	EventPtr nxt_relevant_wait_appt_event() {
 		std::vector<EventPtr> tmpHolder;
 		EventPtr relevant_netsim_event = NULL;
-
+		bool force = false;
 		if (evtList.empty())
 			return relevant_netsim_event;
 		pthread_mutex_lock(&MUTEX);
@@ -98,10 +98,89 @@ public:
 			evtList.pop();
 			tmpHolder.push_back(relevant_netsim_event);
 
-			if (relevant_netsim_event->get_evtype() != EVTYPE_MAKE_APPT &&
-				relevant_netsim_event->get_evtype() != EVTYPE_CANCEL)
+			if (relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT)
 				break;
 		} 
+		for (auto it = tmpHolder.begin(); it != tmpHolder.end(); it++) {
+			evtList.push(*it);
+		}
+		pthread_mutex_unlock(&MUTEX);	
+
+		if (relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT)
+			return relevant_netsim_event;
+		return NULL;
+	}
+
+
+	EventPtr nxt_relevant_event_for(unsigned int timelineID,
+		vector<int>& dependantTimelines) {
+		std::vector<EventPtr> tmpHolder;
+		EventPtr relevant_netsim_event = NULL;
+		bool force = false;
+		if (evtList.empty())
+			return relevant_netsim_event;
+		pthread_mutex_lock(&MUTEX);
+		bool found = false;
+		while (evtList.size() && !found) {
+			relevant_netsim_event = evtList.top();
+			evtList.pop();
+			tmpHolder.push_back(relevant_netsim_event);
+			
+			
+			if (relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT) {
+				if (dependantTimelines.size() == 0) {
+					found = true;
+				} else {
+					for (int i = 0; i < dependantTimelines.size(); i++) {
+						if (relevant_netsim_event->get_tl() == dependantTimelines[i]) {
+							found = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if (relevant_netsim_event->__dst_emu_tl == timelineID)
+				found = true;
+		} 
+		for (auto it = tmpHolder.begin(); it != tmpHolder.end(); it++) {
+			evtList.push(*it);
+		}
+		pthread_mutex_unlock(&MUTEX);	
+
+		if (found)
+			return relevant_netsim_event;
+		return NULL;
+	}
+
+	EventPtr nxt_relevant_netsim_event() {
+		std::vector<EventPtr> tmpHolder;
+		EventPtr relevant_netsim_event = NULL;
+		bool force = false;
+		if (evtList.empty())
+			return relevant_netsim_event;
+		pthread_mutex_lock(&MUTEX);
+
+		if (force) {
+			while (evtList.size()) {
+				relevant_netsim_event = evtList.top();
+				evtList.pop();
+				tmpHolder.push_back(relevant_netsim_event);
+				if (relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT)
+					break;
+			} 
+			
+		} else {
+			while (evtList.size()) {
+				relevant_netsim_event = evtList.top();
+				evtList.pop();
+				tmpHolder.push_back(relevant_netsim_event);
+
+				if (relevant_netsim_event->get_evtype() != EVTYPE_MAKE_APPT &&
+					relevant_netsim_event->get_evtype() != EVTYPE_CANCEL)
+					break;
+			} 
+		}
 		for (auto it = tmpHolder.begin(); it != tmpHolder.end(); it++) {
 			evtList.push(*it);
 		}

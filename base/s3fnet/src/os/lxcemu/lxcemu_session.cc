@@ -179,7 +179,11 @@ void LxcemuSession::injectEvent(EmuPacket* packet, IPADDR srcIP, IPADDR destIP)
 	// by "Scheduling" it onto the list of events to process.
 
 	//printf("__________________________Scheduling an event for %lu\n", wait_time);
-	HandleCode h = owner_host->waitFor( callback_proc, ac, wait_time, owner_host->tie_breaking_seed);
+	//HandleCode h = owner_host->waitFor( callback_proc, ac, wait_time, owner_host->tie_breaking_seed);
+
+	HandleCode h = owner_host->waitForSchedEmu( 
+		callback_proc, ac, wait_time, owner_host->tie_breaking_seed,
+		packet->dest_emu_tl, packet->eat);
 }
 
 LXCEventSessionCallbackActivation::LXCEventSessionCallbackActivation

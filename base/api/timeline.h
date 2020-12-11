@@ -162,7 +162,7 @@ protected:
 	// Retrieves a lower bound on the earlies time at which this timeline
 	// can send a packet to destTimelineID.
 	ltime_t	pruneLookahead(int destTimelineID, ltime_t proxies_lookahead,
-						   bool ignore_proxies_lookahead);
+						   bool ignore_proxies_lookahead, bool waiting);
 
 	/**
 	 *  Schedule the given process activation, at the given time,
@@ -184,6 +184,10 @@ protected:
      *  @param act a smart pointer wrapper around an instance of a class derived from class Message, the payload.
 	 */
 	HandleCode    schedule(Process*,   ltime_t, unsigned int, Activation);
+
+
+	HandleCode	  scheduleEmuTaint(Process*, ltime_t, unsigned int, Activation,
+						unsigned int, ltime_t);
 
 	/**
 	 * 	Schedule the given arrival, at the given time, delivering the provided Activation record.
@@ -458,6 +462,9 @@ private:
 	unsigned long    __sync_executed_one_window;
 
 	unsigned int     __evtnum;
+
+	unsigned int 	 __levent_dest_tl;
+	ltime_t			 __levent_eat;
 
 	bool __no_global_check;
 

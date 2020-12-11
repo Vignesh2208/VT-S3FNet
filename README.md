@@ -1,6 +1,13 @@
 # VT-S3FNet
 S3FNet with virtual time support from Titan
 
+Dependencies:
+
+Install flex
+Install lxc
+Install tunctl
+Install iptables
+
 
 IMPORTANT:
 To get lxc-start to work, Apparmor profile must be disabled.
@@ -12,6 +19,4 @@ Verify that lxc-start profile no longer exists with the following command:
 
 >> sudo aa-status
 
-Dependencies:
 
-Install flex

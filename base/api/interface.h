@@ -151,7 +151,7 @@ public:
 	 *  @param num_timelines Indicate the number of simulation threads to create (pthreads)
 	 *  @param ltps Give the time scale of the clock ticks in terms of log base 10 clock ticks per second.
 	 */
-	Interface(int,int);
+	Interface(int,int, ltime_t);
 
 	Interface();
 
@@ -233,6 +233,7 @@ protected:
 	unsigned long __srt_stime;
 	unsigned long __acc_utime;
 	unsigned long __acc_stime;
+	ltime_t __max_lookahead_us;
 };
 
 #endif /*__INTERFACE_H__*/

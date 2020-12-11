@@ -559,6 +559,33 @@ void Net::configLxcCommands(s3f::dml::Configuration* cfg)
         } else {
           error_quit("ERROR: Net::configLxcCommands(), ttnProjectName must be specified for TITAN controlled experiments.\n");
         }
+
+        std::cout << "Extracting dependants \n";
+        char *dependants = (char *)pcfg->findSingle("dependants");
+        if (dependants) {
+          if(s3f::dml::dmlConfig::isConf(dependants))
+					  error_quit("ERROR: Net::configLxcCommands(), invalid dependants settings.lxcNHI attribute.\n");
+
+
+          std::string dString = std::string(dependants);
+
+          std::cout << "DString = " << dString << "\n";
+          std::string delimiter = ",";
+          size_t pos = 0;
+          std::string token;
+          if (dString.find(delimiter) == std::string::npos) {
+            token = dString;
+            std::cout << "New dependant: " << token << "\n";
+            proxy->dependantTimelines.push_back(std::stoi(token));
+          }
+          while ((pos = dString.find(delimiter)) != std::string::npos) {
+              token = dString.substr(0, pos);
+              std::cout << token << std::endl;
+              dString.erase(0, pos + delimiter.length());
+              std::cout << "New dependant: " << token << "\n";
+              proxy->dependantTimelines.push_back(std::stoi(token));
+          }
+        }
       }
 
     	// Check to see if command has NHI instead of IP. If so, figure out the IP and send the command

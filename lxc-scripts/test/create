@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+display_usage() { 
+	echo "[Tap Name] [BridgeName] [LXC_NAME]" 
+	echo -e "\nUsage:\n$0 [arguments] \n" 
+} 
+
+if [  $# -le 2 ] 
+	then 
+		display_usage
+		exit 1
+fi 
+
+echo "Create script called"
+
+TAP_NAME=$1
+BR_NAME=$2
+LXC_NAME=$3
+
+echo "Creating BR: $BR_NAME | TAP: $TAP_NAME |"
+
+brctl addbr $BR_NAME
+tunctl -t $TAP_NAME
+ifconfig $TAP_NAME 0.0.0.0 promisc up
+brctl addif $BR_NAME $TAP_NAME
+ifconfig $BR_NAME up
+
+lxc-create -n $LXC_NAME -f /home/vignesh/VT-S3FNet/lxc-scripts/test/0 -t none
+
+#rm $CONF_FILE

@@ -7,6 +7,9 @@
 #include <unordered_map>
 #include <vector>
 
+#define US_IN_SEC 1000000
+#define NS_IN_USEC 1000
+
 
 namespace s3f {
 class Graph;
@@ -16,36 +19,37 @@ typedef struct EdgeStruct {
 	int endpoint_1, endpoint_2;
     int endpoint_1_timeline, endpoint_2_timeline;
     bool isEndpoint1Router, isEndpoint2Router; 
-    double weight;
+    long weight;
 } Edge;
 
 // Data structure to store Adjacency list nodes
 class Node {
     private:
-	    int id;
-        double nearestHostDist;
+	    
+        long nearestHostDist;
         std::vector<Edge> edges;
-        std::unordered_map<int, double> nearestTimelineDist;
+        std::unordered_map<int, long> nearestTimelineDist;
 
     public:
+        int id;
         int timelineID;
         bool isRouter;
 
-        void addEdge(int endpoint, int associatedTimeline, double weight,
+        void addEdge(int endpoint, int associatedTimeline, long weight,
                     bool isEndpoint1Router, bool isEndpoint2Router);
         int doesEdgeExistTo(int dest);
-        double getEdgeWeight(int dest);
+        long getEdgeWeight(int dest);
 
-        void setNearestHostDist(double nearestHostDist) { 
-            nearestHostDist = nearestHostDist; };
-        double getNearestHostDist() { return nearestHostDist; };
+        void setNearestHostDist(long nearestHostDist) { 
+            this->nearestHostDist = nearestHostDist; };
+        long getNearestHostDist() { return this->nearestHostDist; };
 
         void setNearestTimelineDist(int targetTimelineID,
-                                    double targetTimelineDist) {
+                                    long targetTimelineDist) {
             this->nearestTimelineDist.insert(
                 std::make_pair(targetTimelineID, targetTimelineDist));
         };
-        double getNearestTimelineDist(int timelineID) {
+        long getNearestTimelineDist(int timelineID) {
             auto got = this->nearestTimelineDist.find(timelineID);
             if (got == this->nearestTimelineDist.end())
                 return -1;
@@ -66,10 +70,10 @@ class Graph {
 
 private:
     std::unordered_map<int, Node*> Nodes;
-	int numVertices;  // number of nodes in the graph
+    
     int numTimelines;
-    double ** shortestDist;
-    double ** cost;
+    long ** shortestDist;
+    long ** cost;
     
     void setNearestHostDistTo(int startnode);
 
@@ -79,16 +83,20 @@ private:
 
 public:
 
+    int numVertices;  // number of nodes in the graph
+    
     void addEdge(int endpoint_1, int endpoint_1_timeline,
                 int endpoint_2, int endpoint_2_timeline,
-                double weight,
-                bool isEndpoint1Router, bool isEndpoint2Router);
+                long weight, bool isEndpoint1Router, bool isEndpoint2Router);
 
-    double getShortestDist(int endpoint_1, int endpoint_2);
+    long getShortestDist(int endpoint_1, int endpoint_2);
 
-    double getNearestHostDist(int node);
+    long getNearestHostDist(int node);
 
-    double getNearestTimelineDist(int node, int targetTimeline);
+    long getNearestTimelineDist(int node, int targetTimeline);
+
+    long getTimelineDist(int srcTimeline, int targetTimeline);
+    
     
     void populateAllShortestPaths();
  
@@ -96,12 +104,12 @@ public:
 	// Constructor
 	Graph(int numVertices, int numTimelines)
         : numVertices(numVertices), numTimelines(numTimelines) {
-        shortestDist = new double*[numVertices];
-        cost = new double*[numVertices];
+        shortestDist = new long*[numVertices];
+        cost = new long*[numVertices];
         
         for(int i = 0; i < numVertices; ++i) {
-            shortestDist[i] = new double[numVertices];
-            cost[i] = new double[numVertices];
+            shortestDist[i] = new long[numVertices];
+            cost[i] = new long[numVertices];
         }
 
         for (int i = 0; i < numVertices; i++) {

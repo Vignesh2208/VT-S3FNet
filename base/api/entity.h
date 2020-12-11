@@ -167,6 +167,10 @@ public:
 	 */
 	HandleCode		waitFor(ltime_t waitinterval, unsigned int);
 
+
+	HandleCode		waitForSchedEmu(Process* proc, Activation act, 
+						ltime_t waitinterval, unsigned int, unsigned int, ltime_t);
+
 	/** Unique identifier for Entity, index 0 to total number of Entities created. */
 	unsigned int 	s3fid()				{ return __s3fid; }
 

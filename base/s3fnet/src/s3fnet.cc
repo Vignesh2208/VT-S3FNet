@@ -270,7 +270,7 @@ int main(int argc, char** argv)
   }
 
   // create total timelines and timescale
-  sim_inf = new SimInterface( total_timeline, tick_per_second );
+  sim_inf = new SimInterface( total_timeline, tick_per_second , maxLookaheadUs);
   sim_inf->get_timeline_interface()->lm->init(outDirBuf, vtManagerType,
     isLookaheadEnabled);
   sim_inf->get_timeline_interface()->lm->maxLookaheadUs = maxLookaheadUs;
