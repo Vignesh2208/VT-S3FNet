@@ -116,6 +116,8 @@ class LxcManager
 
 		vector<ltime_t> syncWindowEAts;
 
+		vector<int> pendingRecvs;
+		
 		// Set to 1 if lookahead computation is enabled
 		int isLookaheadEnabled;
 

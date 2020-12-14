@@ -130,6 +130,7 @@ public:
 			if (relevant_netsim_event->get_evtype() == EVTYPE_WAIT_APPT) {
 				if (dependantTimelines.size() == 0) {
 					found = true;
+					break;
 				} else {
 					for (int i = 0; i < dependantTimelines.size(); i++) {
 						if (relevant_netsim_event->get_tl() == dependantTimelines[i]) {

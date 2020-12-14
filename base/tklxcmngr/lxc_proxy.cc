@@ -373,6 +373,10 @@ s64 LXC_Proxy::getNextEarliestArrivalTime(bool safe) {
 	 
 	s64 nearestDepTimelineDistNs = 
 		(this->lxcMan->dependantTlShortestDist[timelineLXCAlignedOn->s3fid()] * NS_IN_USEC);
+	
+	if (lxcMan->pendingRecvs[timelineLXCAlignedOn->s3fid()])
+		return currTimestamp;
+	
 	/*s64 nearestHostDistNs
 		= (s64)(lxcMan->timelineGraph->getNearestHostDist(
 			((s3f::s3fnet::Host *)ptrToHost)->getGraphNodeID()) * NS_IN_USEC); */
@@ -391,6 +395,7 @@ s64 LXC_Proxy::getNextEarliestArrivalTime(bool safe) {
 		} else if (eat < currTimestamp) {
 			eat = currTimestamp;
 		}
+
 	}
 	pktsInTransitQueueMutex.unlock();
 

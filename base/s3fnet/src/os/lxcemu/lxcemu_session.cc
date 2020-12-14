@@ -144,7 +144,8 @@ int LxcemuSession::pop(Activation msg, ProtocolSession* lo_sess, void* extinfo,
 	assert(pkt->outgoingFD == proxy->fd);
 
 	proxy->lxcMan->cwrite(proxy->fd, (char*) pkt->data, pkt->len );
-
+	proxy->lxcMan->pendingRecvs[proxy->timelineLXCAlignedOn->s3fid()] = 1;
+	
 	dmsg->erase_all();
 
 	// returning 0 indicates success

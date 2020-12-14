@@ -242,15 +242,15 @@ s64 LxcManager::getTimelineExclEat(int timelineID) {
 		return 0;
 	s64 minEATExclLookahead = 0;
 	s64 currProxyEATExclLookahead;
-	s64 currTime;
+	//s64 currTime;
 	
 	for (unsigned int j = 0; j < proxiesOnTimeline->size(); j++) {
 		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[j];
 		currProxyEATExclLookahead = 
 			this->vtManagerInterface->GetTracerLookaheadExclTimestamp(
 				proxyOnTimeline->eqTracerID);
-		currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
-			proxyOnTimeline->eqTracerID);
+		//currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
+		//	proxyOnTimeline->eqTracerID);
 
 		if (currProxyEATExclLookahead == 0)
 			continue;
@@ -259,15 +259,15 @@ s64 LxcManager::getTimelineExclEat(int timelineID) {
 			minEATExclLookahead = currProxyEATExclLookahead;
 	}
 
-	if (minEATExclLookahead != 0) {
+	/*if (minEATExclLookahead != 0) {
 		assert(minEATExclLookahead >= currTime);
-	}
+	}*/
 	return minEATExclLookahead;
 }
 
 void LxcManager::SetEatSyncWindow() {
-	//if (!IsVirtualTimeManagerTitan() || !isVtLookaheadEnabled())
-	//	return;
+	if (!IsVirtualTimeManagerTitan() || !isVtLookaheadEnabled())
+		return;
 
 	pthread_mutex_lock(&setEatMutex);
 	numWaitingTimelines ++;
@@ -283,6 +283,7 @@ void LxcManager::SetEatSyncWindow() {
 	vector<s64> timelineInTransitPktEATs;
 	vector<s64> timelineExclEATLookaheads;
 	vector<s64> timelineEATs;
+	s64 currTime = 0;
 
 	std::vector<int> transitStatus;
 	// Set EAT here. Every thing is frozen at this point.
@@ -296,8 +297,10 @@ void LxcManager::SetEatSyncWindow() {
 		}
 
 		LXC_Proxy* proxy = (*proxiesOnTimeline)[0];
-		s64 currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
-			proxy->eqTracerID);
+
+		if (!currTime)
+			currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
+				proxy->eqTracerID);
 		
 		
 		currTimelineInTransitEAT = 0;
@@ -342,9 +345,10 @@ void LxcManager::SetEatSyncWindow() {
 			continue;
 		}
 
+		
 		LXC_Proxy* proxy = (*proxiesOnTimeline)[0];
-		s64 currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
-			proxy->eqTracerID);
+		//currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
+		//		proxy->eqTracerID);
 		//std::cout << "tracer: " << proxy->eqTracerID << " curr-time: " << currTime << std::endl;
 		nearestDepTimelineDistUsecs = dependantTlShortestDist[i];
 		if (timelineInTransitPktEATs[i] > 0) {
@@ -371,6 +375,9 @@ void LxcManager::SetEatSyncWindow() {
 						currLA = 0;
 					}
 				}
+
+				//if (currLA > 0)
+				//currLA = currTime;
 
 				if (currLA)
 					currLA += (nearestDepTimelineDistUsecs * NS_IN_USEC);
@@ -495,6 +502,9 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 				proxy->eqTracerID);
 			arrivalTime = proxy->getElapsedTime();
 		} else {
+
+			//if (proxy->eqTracerID == 1)
+			//	std::cout << "Requested Payload hash = " << payload_hash << "\n";
 
 			incomingPacketTimeNS = this->vtManagerInterface->GetPktSendTime(
 				proxy->eqTracerID, payload_hash);
@@ -643,6 +653,7 @@ void LxcManager::syncUpLXCs() {
 		}
 		dependantTlShortestDist.push_back(0);
 		syncWindowEAts.push_back(0);
+		pendingRecvs.push_back(0);
 	}
 
 
@@ -854,11 +865,21 @@ ltime_t LxcManager::getProxiesLookahead(int srcTimelineID, int destTimelineID) {
 		simulationStartSec = proxyOnTimeline->simulationStartSec;
 		simulationStartMicroSec = proxyOnTimeline->simulationStartMicroSec;
 		timelineAlignedOn = proxyOnTimeline->timelineLXCAlignedOn;
-		curr_lookahead = 
+			
+		// set eat here. This could be used by emulated processes when they run
+		// this round.
+		this->vtManagerInterface->SetTracerEarliestArrivalTime(
+			proxyOnTimeline->eqTracerID,
+			proxyOnTimeline->getNextEarliestArrivalTime(true));
+
+		/*curr_lookahead = 
 			this->vtManagerInterface->GetTracerLookaheadTimestamp(
 				proxyOnTimeline->eqTracerID) + 
 			(timelineGraph->getNearestTimelineDist(proxyHost->getGraphNodeID(),
-				destTimelineID) * NS_IN_USEC);
+				destTimelineID) * NS_IN_USEC);*/
+		curr_lookahead = 
+			this->vtManagerInterface->GetTracerLookaheadTimestamp(
+				proxyOnTimeline->eqTracerID);
 		if (min_lookahead == -1 || min_lookahead > curr_lookahead) {
 			min_lookahead = curr_lookahead;
 			ns_2_timeval(min_lookahead, &tstamp);
@@ -882,6 +903,9 @@ ltime_t LxcManager::getProxiesLookahead(int srcTimelineID, int destTimelineID) {
 bool LxcManager::arePktsInTransit(int tl) {
 	vector<LXC_Proxy*>* proxiesOnTimeline = listOfProxiesByTimeline[tl];
 	if (proxiesOnTimeline->size() == 0) return false;
+
+	if (pendingRecvs[tl])
+		return true;
 
 	for (unsigned int i = 0; i < proxiesOnTimeline->size(); i++) {
 		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[i];
@@ -921,8 +945,11 @@ void LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	if (desired_vt <= lxc_actual_vt)
 		return;
 
+	pendingRecvs[timelineID] = 0;
+
 	vectorOfHowManyTimesTimelineCalledProgress[timelineID]++;
 	while (timeadvanced_so_far < time_needed_to_advance_us) {
+
 
 		diff = time_needed_to_advance_us - timeadvanced_so_far;
 		if (diff > DEFAULT_MAX_VT_CLOCK_RESOLUTION_US)
@@ -1295,6 +1322,7 @@ pair<int, unsigned int> LxcManager::packet_hash(char * pkt, int total_pkt_len) {
 		iphdrlen = ip_header->ihl*sizeof (uint32_t);
 		payload = (char *)(pkt + ether_offset + iphdrlen);
 		size = total_pkt_len - (ether_offset + iphdrlen);
+		
 	
     } else {
 		return pair<int, unsigned int>(0, total_pkt_len);
