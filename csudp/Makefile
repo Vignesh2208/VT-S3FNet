@@ -4,6 +4,12 @@ udp:
 	cp udp_client/client /usr/bin/s3fudpclient
 	cp udp_server/server /usr/bin/s3fudpserver
 
+mpi_test:
+	clang -O1 -g mpi_mm/mpi_mm.c -lvtllogic -o mpi_mm/mpi_test
+	cp mpi_mm/mpi_test /usr/bin/mpi_test
+	sudo setcap cap_net_admin,cap_net_raw=eip /usr/bin/mpi_test
+	sudo setcap cap_net_admin,cap_net_raw=eip mpi_mm/mpi_test
+
 udp_test:
 	#ttn add -p s3fudp -s /home/titan/VT-S3FNet/csudp/udp
 	clang -O1 -g udp/udp_test.c -lvtllogic -o udp/udp_test
@@ -31,6 +37,8 @@ tcp_test:
 	sudo setcap cap_net_admin,cap_net_raw=eip tcp/tcp_test
 
 clean:
+	rm -f mpi_mm/mpi_test > /dev/null
+	rm -f /usr/bin/mpi_test > /dev/null
 	rm -f udp/udp_test > /dev/null
 	rm -f udp_client/client > /dev/null
 	rm -f udp_server/server > /dev/null

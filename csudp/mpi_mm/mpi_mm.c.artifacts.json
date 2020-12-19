@@ -1,0 +1,546 @@
+{
+  "main": {
+    "bbls": {
+      "1": {
+        "called_fns": [
+          "MPI_Init",
+          "MPI_Comm_rank",
+          "MPI_Comm_size"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          33,
+          2
+        ],
+        "weight": 21
+      },
+      "10": {
+        "called_fns": [],
+        "in_edges": [
+          9,
+          12
+        ],
+        "out_edges": [
+          11
+        ],
+        "weight": 14
+      },
+      "11": {
+        "called_fns": [],
+        "in_edges": [
+          10,
+          11
+        ],
+        "out_edges": [
+          12,
+          11
+        ],
+        "weight": 7
+      },
+      "12": {
+        "called_fns": [],
+        "in_edges": [
+          11
+        ],
+        "out_edges": [
+          7,
+          10
+        ],
+        "weight": 6
+      },
+      "13": {
+        "called_fns": [],
+        "in_edges": [
+          2
+        ],
+        "out_edges": [
+          14
+        ],
+        "weight": 7
+      },
+      "14": {
+        "called_fns": [],
+        "in_edges": [
+          13,
+          16
+        ],
+        "out_edges": [
+          15
+        ],
+        "weight": 5
+      },
+      "15": {
+        "called_fns": [],
+        "in_edges": [
+          14,
+          15
+        ],
+        "out_edges": [
+          16,
+          15
+        ],
+        "weight": 7
+      },
+      "16": {
+        "called_fns": [],
+        "in_edges": [
+          15
+        ],
+        "out_edges": [
+          17,
+          14
+        ],
+        "weight": 4
+      },
+      "17": {
+        "called_fns": [],
+        "in_edges": [
+          16
+        ],
+        "out_edges": [
+          18,
+          20
+        ],
+        "weight": 6
+      },
+      "18": {
+        "called_fns": [],
+        "in_edges": [
+          17
+        ],
+        "out_edges": [
+          19
+        ],
+        "weight": 9
+      },
+      "19": {
+        "called_fns": [
+          "printf",
+          "printf",
+          "MPI_Send",
+          "printf",
+          "MPI_Send",
+          "printf",
+          "MPI_Send",
+          "printf",
+          "fflush"
+        ],
+        "in_edges": [
+          18,
+          19
+        ],
+        "out_edges": [
+          20,
+          19
+        ],
+        "weight": 59
+      },
+      "2": {
+        "called_fns": [],
+        "in_edges": [
+          1
+        ],
+        "out_edges": [
+          13,
+          3
+        ],
+        "weight": 2
+      },
+      "20": {
+        "called_fns": [],
+        "in_edges": [
+          17,
+          19
+        ],
+        "out_edges": [
+          22
+        ],
+        "weight": 4
+      },
+      "21": {
+        "called_fns": [
+          "printf",
+          "fflush"
+        ],
+        "in_edges": [
+          29,
+          31
+        ],
+        "out_edges": [
+          22
+        ],
+        "weight": 8
+      },
+      "22": {
+        "called_fns": [
+          "puts",
+          "printf",
+          "puts"
+        ],
+        "in_edges": [
+          20,
+          21
+        ],
+        "out_edges": [
+          23
+        ],
+        "weight": 16
+      },
+      "23": {
+        "called_fns": [],
+        "in_edges": [
+          22,
+          25
+        ],
+        "out_edges": [
+          24
+        ],
+        "weight": 6
+      },
+      "24": {
+        "called_fns": [],
+        "in_edges": [
+          23,
+          24
+        ],
+        "out_edges": [
+          25,
+          24
+        ],
+        "weight": 7
+      },
+      "25": {
+        "called_fns": [],
+        "in_edges": [
+          24
+        ],
+        "out_edges": [
+          26,
+          23
+        ],
+        "weight": 4
+      },
+      "26": {
+        "called_fns": [],
+        "in_edges": [
+          25
+        ],
+        "out_edges": [
+          27,
+          29
+        ],
+        "weight": 3
+      },
+      "27": {
+        "called_fns": [],
+        "in_edges": [
+          26
+        ],
+        "out_edges": [
+          28
+        ],
+        "weight": 5
+      },
+      "28": {
+        "called_fns": [
+          "printf",
+          "MPI_Send",
+          "printf",
+          "fflush"
+        ],
+        "in_edges": [
+          27,
+          28
+        ],
+        "out_edges": [
+          29,
+          28
+        ],
+        "weight": 20
+      },
+      "29": {
+        "called_fns": [],
+        "in_edges": [
+          26,
+          28
+        ],
+        "out_edges": [
+          30,
+          21
+        ],
+        "weight": 4
+      },
+      "3": {
+        "called_fns": [],
+        "in_edges": [
+          2
+        ],
+        "out_edges": [
+          4,
+          32
+        ],
+        "weight": 1
+      },
+      "30": {
+        "called_fns": [],
+        "in_edges": [
+          29
+        ],
+        "out_edges": [
+          31
+        ],
+        "weight": 5
+      },
+      "31": {
+        "called_fns": [
+          "MPI_Recv",
+          "printf",
+          "fflush",
+          "MPI_Recv",
+          "printf",
+          "fflush",
+          "MPI_Recv",
+          "printf",
+          "fflush"
+        ],
+        "in_edges": [
+          30,
+          31
+        ],
+        "out_edges": [
+          21,
+          31
+        ],
+        "weight": 54
+      },
+      "32": {
+        "called_fns": [
+          "MPI_Finalize"
+        ],
+        "in_edges": [
+          3
+        ],
+        "out_edges": [],
+        "weight": 11
+      },
+      "33": {
+        "called_fns": [
+          "puts",
+          "exit"
+        ],
+        "in_edges": [
+          1
+        ],
+        "out_edges": [],
+        "weight": 4
+      },
+      "4": {
+        "called_fns": [
+          "MPI_Recv",
+          "MPI_Recv",
+          "MPI_Recv",
+          "puts"
+        ],
+        "in_edges": [
+          3
+        ],
+        "out_edges": [
+          6
+        ],
+        "weight": 29
+      },
+      "5": {
+        "called_fns": [
+          "printf",
+          "fflush",
+          "MPI_Send",
+          "printf",
+          "fflush",
+          "MPI_Send",
+          "puts",
+          "fflush",
+          "MPI_Send",
+          "puts",
+          "fflush",
+          "printf",
+          "fflush"
+        ],
+        "in_edges": [
+          7
+        ],
+        "out_edges": [
+          6
+        ],
+        "weight": 51
+      },
+      "6": {
+        "called_fns": [
+          "puts",
+          "MPI_Recv",
+          "puts",
+          "fflush"
+        ],
+        "in_edges": [
+          4,
+          5
+        ],
+        "out_edges": [
+          9,
+          7
+        ],
+        "weight": 25
+      },
+      "7": {
+        "called_fns": [],
+        "in_edges": [
+          8,
+          12,
+          6
+        ],
+        "out_edges": [
+          5,
+          8
+        ],
+        "weight": 4
+      },
+      "8": {
+        "called_fns": [],
+        "in_edges": [
+          7
+        ],
+        "out_edges": [
+          9,
+          7
+        ],
+        "weight": 2
+      },
+      "9": {
+        "called_fns": [],
+        "in_edges": [
+          8,
+          6
+        ],
+        "out_edges": [
+          10
+        ],
+        "weight": 6
+      }
+    },
+    "entry_block": 1,
+    "loops": {
+      "1": {
+        "loop_called_fns": [
+          "MPI_Recv",
+          "MPI_Send",
+          "fflush",
+          "printf",
+          "puts"
+        ],
+        "loop_headers": [
+          7,
+          9
+        ],
+        "loop_latches": [
+          8,
+          12
+        ]
+      },
+      "10": {
+        "loop_called_fns": [
+          "MPI_Recv",
+          "fflush",
+          "printf"
+        ],
+        "loop_headers": [
+          31
+        ],
+        "loop_latches": [
+          31
+        ]
+      },
+      "2": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          10
+        ],
+        "loop_latches": [
+          12
+        ]
+      },
+      "3": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          11
+        ],
+        "loop_latches": [
+          11
+        ]
+      },
+      "4": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          14
+        ],
+        "loop_latches": [
+          16
+        ]
+      },
+      "5": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          15
+        ],
+        "loop_latches": [
+          15
+        ]
+      },
+      "6": {
+        "loop_called_fns": [
+          "MPI_Send",
+          "fflush",
+          "printf"
+        ],
+        "loop_headers": [
+          19
+        ],
+        "loop_latches": [
+          19
+        ]
+      },
+      "7": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          23
+        ],
+        "loop_latches": [
+          25
+        ]
+      },
+      "8": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          24
+        ],
+        "loop_latches": [
+          24
+        ]
+      },
+      "9": {
+        "loop_called_fns": [
+          "MPI_Send",
+          "fflush",
+          "printf"
+        ],
+        "loop_headers": [
+          28
+        ],
+        "loop_latches": [
+          28
+        ]
+      }
+    },
+    "returning_blocks": [
+      32
+    ]
+  }
+}

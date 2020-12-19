@@ -332,7 +332,10 @@ void LxcManager::SetEatSyncWindow() {
 		}
 
 		timelineExclEATLookaheads.push_back(getTimelineExclEat(i));
-		//std::cout << "TL : " << i << " ExclEAT = " << timelineExclEATLookaheads[i] << std::endl;
+
+		/*if (timelineExclEATLookaheads[i])
+			std::cout << "TL : " << i << " ExclEAT = " 
+				<< timelineExclEATLookaheads[i] - currTime << std::endl;*/
 		
 	}
 
@@ -372,6 +375,7 @@ void LxcManager::SetEatSyncWindow() {
 					if (timelineInTransitPktEATs[currTL] > 0) {
 						currLA =  timelineInTransitPktEATs[currTL];
 					} else {
+						//std::cout << "CurrLA is zero for tl: " << currTL << std::endl;
 						currLA = 0;
 					}
 				}
@@ -382,7 +386,7 @@ void LxcManager::SetEatSyncWindow() {
 				if (currLA)
 					currLA += (nearestDepTimelineDistUsecs * NS_IN_USEC);
 				
-				if (minEAT == 0 || minEAT > currLA)
+				if (currLA > 0 && (minEAT == 0 || minEAT > currLA))
 					minEAT = currLA;
 			}
 
