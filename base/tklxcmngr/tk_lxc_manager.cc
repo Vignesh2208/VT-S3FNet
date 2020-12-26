@@ -394,6 +394,12 @@ void LxcManager::SetEatSyncWindow() {
 							  // blocked waiting for packets
 				minEAT = std::max(currTime, timelineExclEATLookaheads[i]);
 				minEAT += (2*nearestDepTimelineDistUsecs*NS_IN_USEC);
+			} else {
+
+				if (timelineExclEATLookaheads[i]) {
+					s64 selfSendTime = std::max(currTime, timelineExclEATLookaheads[i]);
+					minEAT = std::min(minEAT, selfSendTime + 2*nearestDepTimelineDistUsecs*NS_IN_USEC);
+				}
 			}
 
 			if (minEAT < currTime) {

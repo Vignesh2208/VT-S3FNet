@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NRA 1000                 /* number of rows in matrix A */
-#define NCA 1000                 /* number of columns in matrix A */
+#define NRA 100                 /* number of rows in matrix A */
+#define NCA 100                 /* number of columns in matrix A */
 #define NCB 10                  /* number of columns in matrix B */
 #define MASTER 0               /* taskid of first task */
 #define FROM_MASTER 1          /* setting a message type */
@@ -144,7 +144,7 @@ int main (int argc, char *argv[]) {
          }
       }*/
 
-      //for (int p = 0; p < 1000; p++) {
+      for (int p = 0; p < 1000; p++) {
          for (k=0; k<NCB; k++) {
             for (i=0; i<rows; i++) {
                c[i][k] = 0.0;
@@ -152,7 +152,7 @@ int main (int argc, char *argv[]) {
                   c[i][k] = c[i][k] + a[i][j] * b[j][k];
             }
          }
-      //}
+      }
 
       mtype = FROM_WORKER;
       printf ("Sending offset = %d to master !\n", offset);

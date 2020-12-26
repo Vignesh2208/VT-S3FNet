@@ -25,7 +25,7 @@ lxcman:
 csudp:
 	cd ../csudp; make;
 
-mpi_test:
+mpi_run:
 	sudo rm -f /tmp/endpoints > /dev/null
 	cd s3fnet/test/lxc_tests/mpi_mm/; make clean; make; make test
 	chmod -R 777 ../experiment-data	
