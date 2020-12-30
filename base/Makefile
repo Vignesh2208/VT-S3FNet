@@ -28,8 +28,15 @@ csudp:
 mpi_run:
 	sudo rm -f /tmp/endpoints > /dev/null
 	cd s3fnet/test/lxc_tests/mpi_mm/; make clean; make; make test
-	chmod -R 777 ../experiment-data	
+	chmod -R 777 ../experiment-data
 
+fat_tree_run:
+	cd s3fnet/test/lxc_tests/fat_tree/; make clean; make; make test
+	chmod -R 777 ../experiment-data
+
+campus_run:
+	cd s3fnet/test/lxc_tests/campus_network/; make clean; make; make test
+	chmod -R 777 ../experiment-data
 
 small_2_tcp_large_pings:
 	cd s3fnet/test/lxc_tests/small_2_tcp_large_pings/; make clean; make; make test

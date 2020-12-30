@@ -1,0 +1,39 @@
+
+sim [
+    
+    basicSimNet [
+        
+        router
+        [
+            id 0
+            _find .dict.routerGraph.graph
+            
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+            interface [id 4 _extends .dict.100Gb]
+            interface [id 5 _extends .dict.100Gb]
+            interface [id 6 _extends .dict.100Gb]
+        ]
+    
+        host 																	# Host 1:0
+        [ 
+            idrange [from 1 to 4]
+            _extends .dict.TCPClient
+        ]
+        host 																	# Host 1:0
+        [ 
+            id 5
+            _extends .dict.TCPServer
+        ]
+        
+        link [ attach 1(0) attach 0(2) _extends .dict.link_delay_1us ]
+        link [ attach 2(0) attach 0(3) _extends .dict.link_delay_1us ]
+        link [ attach 3(0) attach 0(4) _extends .dict.link_delay_1us ]
+        link [ attach 4(0) attach 0(5) _extends .dict.link_delay_1us ]
+        link [ attach 5(0) attach 0(6) _extends .dict.link_delay_1us ]
+    ]
+        
+]
+    

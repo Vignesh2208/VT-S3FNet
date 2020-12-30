@@ -182,8 +182,8 @@ void Graph::computeShortestPathsFrom(int startnode) {
             shortestDist[i][startnode] = distance[i];
 
             //if (startnode == 0)
-            printf("Shortest distance between : (%d)-(%d) = %lu units\n",
-                    startnode, i, distance[i]);
+            //printf("Shortest distance between : (%d)-(%d) = %lu units\n",
+            //        startnode, i, distance[i]);
         } 
     }
 
@@ -206,7 +206,7 @@ void Graph::setNearestHostDistTo(int startnode) {
     }
 
     assert(minDist != INFINITY);
-    std::cout << "Nearest Host Dist for " << startnode << " = " << minDist << "\n";
+    std::cout << "Nearest Host Dist for " << startnode << " = " << minDist << " units\n";
     targetNode->second->setNearestHostDist(minDist);
 }
 
@@ -232,8 +232,8 @@ void Graph::setNearestTimelineDistTo(int startnode, int targetTimelineID) {
     if (minDist == INFINITY)
         minDist = 0;
     
-    std::cout << "Min Dist[" << startnode << "][" << targetTimelineID << "] = "
-              << minDist << std::endl;
+    //std::cout << "Min Dist[" << startnode << "][" << targetTimelineID << "] = "
+    //          << minDist << std::endl;
     targetNode->second->setNearestTimelineDist(targetTimelineID, minDist);
 
 }

@@ -545,27 +545,22 @@ ltime_t Timeline::pruneLookahead(int destTimelineID, ltime_t proxies_lookahead,
 		// Ptr to any events left by this timeline on the destTimeline
 
 		ltime_t smallestInTransitTime = 0;
-		smallestInTransitTime = simCtrl->syncWindowEAts[destTimelineID];	
+		smallestInTransitTime = simCtrl->syncWindowEAts[destTimelineID];
+		smallestInTransitTime = std::min(smallestInTransitTime, now() + simCtrl->maxLookaheadUs);	
 		simCtrl->syncWindowEAts[destTimelineID] = 0;
 
-		if (smallestInTransitTime)
+		if (smallestInTransitTime > 0)
 			return smallestInTransitTime;	
 
 		
 		return next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead;
 		
 	}
-
-	if (next_relevant_netsim_event->get_evtype() != EVTYPE_WAIT_APPT) {	
-		return std::min(proxies_lookahead, 
-			next_relevant_netsim_event->get_dest_emu_eat());
-	
-	}
 	
 	
 	return std::min(proxies_lookahead, 
 				next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
-
+	
 }
 
 
@@ -775,10 +770,10 @@ void Timeline::sync_window() {
 			pthread_mutex_lock( &in_appt->appt_mutex );
 
 			if (simCtrl->isVtLookaheadEnabled()) {
-				if (proxies_lookahead) {
+				if (proxies_lookahead > 0) {
 					assert (now() <= proxies_lookahead);
 					proxies_lookahead = this->pruneLookahead(tl, proxies_lookahead, false, false);
-				} else if (simCtrl->isVtLookaheadEnabled()) {
+				} else if (proxies_lookahead >= 0 && simCtrl->isVtLookaheadEnabled()) {
 					proxies_lookahead = this->pruneLookahead(tl, 0, true, in_appt->waiting);
 				} else {
 					proxies_lookahead = 0;
@@ -890,11 +885,6 @@ void Timeline::sync_window() {
 				pthread_mutex_lock( &out_appt->appt_mutex);
 				for(int i = out_appt->events.size()-1; i>= 0; i--) {
 					__events.push( out_appt->events[i] );
-
-					if (out_appt->events[i]->get_time() < __time) {
-						ltime_t err = __time - out_appt->events[i]->get_time();
-						//std::cout << "Appt source event in the past. Err = \n" << err << std::endl;
-					}
 				}
 				out_appt->events.clear();
 

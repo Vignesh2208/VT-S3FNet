@@ -173,12 +173,12 @@ void tcp_client_periodic(char * server_ip, int server_port,
 void tcp_client_rate_limited(char * server_ip, int server_port, int rateMbps) {
 
     int sockfd, n;
-	int serverlen;
-	struct sockaddr_in serveraddr;
-	struct hostent *server;
-	char buffer[1500];
-	struct timeval startTimeStamp;
-	long startTS = 0;
+    int serverlen;
+    struct sockaddr_in serveraddr;
+    struct hostent *server;
+    char buffer[1500];
+    struct timeval startTimeStamp;
+    long startTS = 0;
     long targetEndTS = 0;
     long targetBytesSent = 0;
     long sendTS = 0;
@@ -384,37 +384,40 @@ void tcp_server(char * server_ip, int server_port) {
 
 int main(int argc, char** argv) {
     
-    srand(1);
+    
 
-    if (argc < 4) {
-        printf ("Not enough args: ./tgen [client or server] server_ip server_port type [rate or periodic or poisson] params\n");
+    if (argc < 5) {
+        printf ("Not enough args: ./tgen [client or server] seed server_ip server_port type [rate or periodic or poisson] params\n");
         exit(0);
     }
 
-    char * server_ip = argv[2];
-    int server_port = atoi(argv[3]);
+    int seed = atoi(argv[2]);
+    char * server_ip = argv[3];
+    int server_port = atoi(argv[4]);
     char * cmd = argv[1];
 
     if (strcmp(cmd, "client") == 0) {
-        if (argc < 6) {
-            printf ("Not enough args for client: ./tgen [client or server] server_ip server_port type [rate or periodic or poisson] param1 param2 ...\n");
+        if (argc < 7) {
+            printf ("Not enough args for client: ./tgen [client or server] seed server_ip server_port type [rate or periodic or poisson] param1 param2 ...\n");
             exit(0);
         }
     }
 
+    srand(seed);
+
     if (strcmp(argv[1], "client") == 0) {
-        int param = atoi(argv[5]);
+        int param = atoi(argv[6]);
         int burst_size_kb = DEFAULT_BURST_SIZE_KB;
-        if (argc == 7)
-            burst_size_kb = atoi(argv[6]);
-        if (strcmp(argv[4], "rate") == 0) {
+        if (argc == 8)
+            burst_size_kb = atoi(argv[7]);
+        if (strcmp(argv[5], "rate") == 0) {
             tcp_client_rate_limited(server_ip, server_port, param);
-        } else if (strcmp(argv[4], "periodic") == 0) {
+        } else if (strcmp(argv[5], "periodic") == 0) {
             tcp_client_periodic(server_ip, server_port, param, burst_size_kb);
-        } else if (strcmp(argv[4], "poisson") == 0) {
+        } else if (strcmp(argv[5], "poisson") == 0) {
             tcp_client_poisson(server_ip, server_port, param, burst_size_kb);
         } else {
-            printf ("Unsupported tgen type: %s\n", argv[4]);
+            printf ("Unsupported tgen type: %s\n", argv[5]);
             exit(0);
         }
         

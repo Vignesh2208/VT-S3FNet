@@ -1,0 +1,986 @@
+
+total_timeline 21	
+tick_per_second 6	
+run_time 10
+seed 1	
+log_dir "TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000"		
+virtual_time_manager "TITAN"
+max_lookahead_us 1000
+enable_lookahead 1
+
+Net [
+
+    # LXC Config settings
+
+    lxcConfig
+	[
+        
+        settings [ lxcNHI 21:0 ttnProject "tcp_tgen" dependants "11" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 21 31:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client21.log" ]
+        settings [ lxcNHI 31:0 ttnProject "tcp_tgen" dependants "1" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 31 31:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server31.log" ]
+        settings [ lxcNHI 22:0 ttnProject "tcp_tgen" dependants "12" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 22 32:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client22.log" ]
+        settings [ lxcNHI 32:0 ttnProject "tcp_tgen" dependants "2" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 32 32:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server32.log" ]
+        settings [ lxcNHI 23:0 ttnProject "tcp_tgen" dependants "13" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 23 33:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client23.log" ]
+        settings [ lxcNHI 33:0 ttnProject "tcp_tgen" dependants "3" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 33 33:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server33.log" ]
+        settings [ lxcNHI 24:0 ttnProject "tcp_tgen" dependants "14" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 24 34:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client24.log" ]
+        settings [ lxcNHI 34:0 ttnProject "tcp_tgen" dependants "4" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 34 34:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server34.log" ]
+        settings [ lxcNHI 25:0 ttnProject "tcp_tgen" dependants "15" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 25 35:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client25.log" ]
+        settings [ lxcNHI 35:0 ttnProject "tcp_tgen" dependants "5" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 35 35:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server35.log" ]
+        settings [ lxcNHI 26:0 ttnProject "tcp_tgen" dependants "16" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 26 36:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client26.log" ]
+        settings [ lxcNHI 36:0 ttnProject "tcp_tgen" dependants "6" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 36 36:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server36.log" ]
+        settings [ lxcNHI 27:0 ttnProject "tcp_tgen" dependants "17" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 27 37:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client27.log" ]
+        settings [ lxcNHI 37:0 ttnProject "tcp_tgen" dependants "7" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 37 37:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server37.log" ]
+        settings [ lxcNHI 28:0 ttnProject "tcp_tgen" dependants "18" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 28 38:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client28.log" ]
+        settings [ lxcNHI 38:0 ttnProject "tcp_tgen" dependants "8" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 38 38:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server38.log" ]
+        settings [ lxcNHI 29:0 ttnProject "tcp_tgen" dependants "19" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 29 39:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client29.log" ]
+        settings [ lxcNHI 39:0 ttnProject "tcp_tgen" dependants "9" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 39 39:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server39.log" ]
+        settings [ lxcNHI 30:0 ttnProject "tcp_tgen" dependants "20" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen client 30 40:0 7891 periodic 100000 2000 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/client30.log" ]
+        settings [ lxcNHI 40:0 ttnProject "tcp_tgen" dependants "10" cmd "/home/titan/VT-S3FNet/csudp/tcp_tgen/tgen server 40 40:0 7891 > /home/titan/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_20_periodic_period_100000_txsize_2000/server40.log" ]
+    ]
+    
+
+    # Simulated TCP Traffic Pattern
+
+    traffic [
+        
+        pattern [
+            client 1:1
+            servers [ port 1024 nhi 11:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 1:2
+            servers [ port 1024 nhi 11:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 1:3
+            servers [ port 1024 nhi 11:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 1:4
+            servers [ port 1024 nhi 11:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 2:1
+            servers [ port 1024 nhi 12:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 2:2
+            servers [ port 1024 nhi 12:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 2:3
+            servers [ port 1024 nhi 12:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 2:4
+            servers [ port 1024 nhi 12:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 3:1
+            servers [ port 1024 nhi 13:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 3:2
+            servers [ port 1024 nhi 13:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 3:3
+            servers [ port 1024 nhi 13:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 3:4
+            servers [ port 1024 nhi 13:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 4:1
+            servers [ port 1024 nhi 14:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 4:2
+            servers [ port 1024 nhi 14:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 4:3
+            servers [ port 1024 nhi 14:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 4:4
+            servers [ port 1024 nhi 14:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 5:1
+            servers [ port 1024 nhi 15:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 5:2
+            servers [ port 1024 nhi 15:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 5:3
+            servers [ port 1024 nhi 15:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 5:4
+            servers [ port 1024 nhi 15:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 6:1
+            servers [ port 1024 nhi 16:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 6:2
+            servers [ port 1024 nhi 16:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 6:3
+            servers [ port 1024 nhi 16:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 6:4
+            servers [ port 1024 nhi 16:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 7:1
+            servers [ port 1024 nhi 17:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 7:2
+            servers [ port 1024 nhi 17:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 7:3
+            servers [ port 1024 nhi 17:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 7:4
+            servers [ port 1024 nhi 17:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 8:1
+            servers [ port 1024 nhi 18:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 8:2
+            servers [ port 1024 nhi 18:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 8:3
+            servers [ port 1024 nhi 18:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 8:4
+            servers [ port 1024 nhi 18:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 9:1
+            servers [ port 1024 nhi 19:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 9:2
+            servers [ port 1024 nhi 19:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 9:3
+            servers [ port 1024 nhi 19:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 9:4
+            servers [ port 1024 nhi 19:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 10:1
+            servers [ port 1024 nhi 20:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 10:2
+            servers [ port 1024 nhi 20:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 10:3
+            servers [ port 1024 nhi 20:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 10:4
+            servers [ port 1024 nhi 20:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 11:1
+            servers [ port 1024 nhi 1:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 11:2
+            servers [ port 1024 nhi 1:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 11:3
+            servers [ port 1024 nhi 1:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 11:4
+            servers [ port 1024 nhi 1:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 12:1
+            servers [ port 1024 nhi 2:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 12:2
+            servers [ port 1024 nhi 2:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 12:3
+            servers [ port 1024 nhi 2:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 12:4
+            servers [ port 1024 nhi 2:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 13:1
+            servers [ port 1024 nhi 3:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 13:2
+            servers [ port 1024 nhi 3:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 13:3
+            servers [ port 1024 nhi 3:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 13:4
+            servers [ port 1024 nhi 3:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 14:1
+            servers [ port 1024 nhi 4:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 14:2
+            servers [ port 1024 nhi 4:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 14:3
+            servers [ port 1024 nhi 4:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 14:4
+            servers [ port 1024 nhi 4:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 15:1
+            servers [ port 1024 nhi 5:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 15:2
+            servers [ port 1024 nhi 5:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 15:3
+            servers [ port 1024 nhi 5:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 15:4
+            servers [ port 1024 nhi 5:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 16:1
+            servers [ port 1024 nhi 6:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 16:2
+            servers [ port 1024 nhi 6:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 16:3
+            servers [ port 1024 nhi 6:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 16:4
+            servers [ port 1024 nhi 6:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 17:1
+            servers [ port 1024 nhi 7:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 17:2
+            servers [ port 1024 nhi 7:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 17:3
+            servers [ port 1024 nhi 7:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 17:4
+            servers [ port 1024 nhi 7:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 18:1
+            servers [ port 1024 nhi 8:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 18:2
+            servers [ port 1024 nhi 8:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 18:3
+            servers [ port 1024 nhi 8:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 18:4
+            servers [ port 1024 nhi 8:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 19:1
+            servers [ port 1024 nhi 9:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 19:2
+            servers [ port 1024 nhi 9:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 19:3
+            servers [ port 1024 nhi 9:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 19:4
+            servers [ port 1024 nhi 9:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 20:1
+            servers [ port 1024 nhi 10:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 20:2
+            servers [ port 1024 nhi 10:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 20:3
+            servers [ port 1024 nhi 10:5(0) list "forTCP" ]
+        ]
+        pattern [
+            client 20:4
+            servers [ port 1024 nhi 10:5(0) list "forTCP" ]
+        ]
+    ]
+    
+
+    # Backbone Network with links
+
+    # Reference. https://www.researchgate.net/figure/The-DARPA-NMS-campus-network-instrumented-with-CAPE_fig13_224710922
+    Net 
+    [ 
+        id 0    
+        alignment 0		
+        router																	# Router 0:0
+        [
+            id 0    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+        ]
+        router																	# Router 0:1
+        [
+            id 1    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+        ]
+        router																	# Router 0:2
+        [
+            id 2    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+        ]
+        router																	# Router 1:0
+        [
+            id 3    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 1:1
+        [
+            id 4   
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:0
+        [
+            id 5    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:1
+        [
+            id 6    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:2
+        [
+            id 7    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:3
+        [
+            id 8    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:4
+        [
+            id 9    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:5
+        [
+            id 10    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 2:6
+        [
+            id 11    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 3:0
+        [
+            id 12    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 3:1
+        [
+            id 13    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+            interface [id 4 _extends .dict.100Gb]
+        ]
+        router																	# Router 3:2
+        [
+            id 14    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 3:3
+        [
+            id 15    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 4
+        [
+            id 16    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+        router																	# Router 5
+        [
+            id 17    
+            _find .dict.routerGraph.graph
+            interface [id 0 _extends .dict.100Gb]
+            interface [id 1 _extends .dict.100Gb]
+            interface [id 2 _extends .dict.100Gb]
+            interface [id 3 _extends .dict.100Gb]
+        ]
+
+        # links. 
+
+        # 0:0 - 0:1
+        link [ attach 0(0) attach 1(0) _extends .dict.link_delay_1us ]
+        # 0:0 - 0:2
+        link [ attach 0(1) attach 2(0) _extends .dict.link_delay_1us ]
+        # 0:0 - 4
+        link [ attach 0(2) attach 16(0) _extends .dict.link_delay_1us ]
+        # 0:1 - 0:2
+        link [ attach 1(1) attach 2(1) _extends .dict.link_delay_1us ]
+        # 0:1 - 1:0
+        link [ attach 1(2) attach 3(2) _extends .dict.link_delay_1us ]
+        # 0:2 - 5
+        link [ attach 2(2) attach 17(0) _extends .dict.link_delay_1us ]
+        # 1:0 - 1:1
+        link [ attach 3(3) attach 4(2) _extends .dict.link_delay_1us ]
+
+
+        # 2:0 - 4
+        link [ attach 5(1) attach 16(1) _extends .dict.link_delay_1us ]
+        # 2:0 - 2:1
+        link [ attach 5(2) attach 6(1) _extends .dict.link_delay_1us ]
+        # 2:0 - 2:2
+        link [ attach 5(3) attach 7(1) _extends .dict.link_delay_1us ]
+        # 2:1 - 4
+        link [ attach 6(2) attach 16(2) _extends .dict.link_delay_1us ]
+        # 2:1 - 2:3
+        link [ attach 6(3) attach 8(1) _extends .dict.link_delay_1us ]
+
+        # 2:2 - 2:3
+        link [ attach 7(2) attach 8(2) _extends .dict.link_delay_1us ]
+        # 2:2 - 2:4
+        link [ attach 7(3) attach 9(1) _extends .dict.link_delay_1us ]
+        # 2:3 - 2:5
+        link [ attach 8(3) attach 10(1) _extends .dict.link_delay_1us ]
+        # 2:4 - 2:5
+        link [ attach 9(2) attach 10(2) _extends .dict.link_delay_1us ]
+        # 2:5 - 2:6
+        link [ attach 10(3) attach 11(3) _extends .dict.link_delay_1us ]
+
+        # 4 - 5
+        link [ attach 16(3) attach 17(1) _extends .dict.link_delay_1us ]
+
+        # 5 - 3:0
+        link [ attach 17(2) attach 12(2) _extends .dict.link_delay_1us ]
+        # 5 - 3:1
+        link [ attach 17(3) attach 13(1) _extends .dict.link_delay_1us ]
+        # 3:0 - 3:1
+        link [ attach 12(3) attach 13(2) _extends .dict.link_delay_1us ]
+        # 3:1 - 3:2
+        link [ attach 13(3) attach 14(2) _extends .dict.link_delay_1us ]
+        # 3:1 - 3:3
+        link [ attach 13(4) attach 15(2) _extends .dict.link_delay_1us ]
+        # 3:2 - 3:3
+        link [ attach 14(3) attach 15(3) _extends .dict.link_delay_1us ]
+    ]
+
+
+
+    # Composed Sim Nets
+
+    Net [
+        id 1
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 2
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 3
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 4
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 5
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 6
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 7
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 8
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 9
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 10
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 11
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 12
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 13
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 14
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 15
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 16
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 17
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 18
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 19
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+    Net [
+        id 20
+        alignment 0
+        _extends .sim.basicSimNet
+    ]
+        
+
+    # Composed Emulated Hosts
+
+    Net 
+    [ 
+        id 21
+        alignment 1
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 22
+        alignment 2
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 23
+        alignment 3
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 24
+        alignment 4
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 25
+        alignment 5
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 26
+        alignment 6
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 27
+        alignment 7
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 28
+        alignment 8
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 29
+        alignment 9
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 30
+        alignment 10
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 31
+        alignment 11
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 32
+        alignment 12
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 33
+        alignment 13
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 34
+        alignment 14
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 35
+        alignment 15
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 36
+        alignment 16
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 37
+        alignment 17
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 38
+        alignment 18
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 39
+        alignment 19
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 40
+        alignment 20
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+
+    # Links between sim lan router and backbone network
+
+    link  [ attach 1:0(0) attach 0:3(0) _extends .dict.link_delay_1us ]
+    link  [ attach 2:0(0) attach 0:3(1) _extends .dict.link_delay_1us ]
+    link  [ attach 3:0(0) attach 0:4(0) _extends .dict.link_delay_1us ]
+    link  [ attach 4:0(0) attach 0:4(1) _extends .dict.link_delay_1us ]
+    link  [ attach 5:0(0) attach 0:5(0) _extends .dict.link_delay_1us ]
+    link  [ attach 6:0(0) attach 0:6(0) _extends .dict.link_delay_1us ]
+    link  [ attach 7:0(0) attach 0:7(0) _extends .dict.link_delay_1us ]
+    link  [ attach 8:0(0) attach 0:8(0) _extends .dict.link_delay_1us ]
+    link  [ attach 9:0(0) attach 0:9(0) _extends .dict.link_delay_1us ]
+    link  [ attach 10:0(0) attach 0:10(0) _extends .dict.link_delay_1us ]
+    link  [ attach 11:0(0) attach 0:11(0) _extends .dict.link_delay_1us ]
+    link  [ attach 12:0(0) attach 0:11(1) _extends .dict.link_delay_1us ]
+    link  [ attach 13:0(0) attach 0:11(2) _extends .dict.link_delay_1us ]
+    link  [ attach 14:0(0) attach 0:12(0) _extends .dict.link_delay_1us ]
+    link  [ attach 15:0(0) attach 0:12(1) _extends .dict.link_delay_1us ]
+    link  [ attach 16:0(0) attach 0:13(0) _extends .dict.link_delay_1us ]
+    link  [ attach 17:0(0) attach 0:14(0) _extends .dict.link_delay_1us ]
+    link  [ attach 18:0(0) attach 0:14(1) _extends .dict.link_delay_1us ]
+    link  [ attach 19:0(0) attach 0:15(0) _extends .dict.link_delay_1us ]
+    link  [ attach 20:0(0) attach 0:15(1) _extends .dict.link_delay_1us ]
+
+    # Links between emu hosts and lan router
+
+    link [ attach 21:0(0) attach 1:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 22:0(0) attach 2:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 23:0(0) attach 3:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 24:0(0) attach 4:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 25:0(0) attach 5:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 26:0(0) attach 6:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 27:0(0) attach 7:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 28:0(0) attach 8:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 29:0(0) attach 9:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 30:0(0) attach 10:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 31:0(0) attach 11:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 32:0(0) attach 12:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 33:0(0) attach 13:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 34:0(0) attach 14:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 35:0(0) attach 15:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 36:0(0) attach 16:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 37:0(0) attach 17:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 38:0(0) attach 18:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 39:0(0) attach 19:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 40:0(0) attach 20:0(1) _extends .dict.link_delay_1us ]
+
+]
+    

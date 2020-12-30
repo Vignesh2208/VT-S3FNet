@@ -31,6 +31,9 @@
 
 #include "graph_utils.h"
 #include "virtual_time_manager.h"
+#include "cJSON.h"
+
+#include <math.h>
 
 #ifdef ENABLED_VT_MANAGER_TITAN
 extern "C" 
@@ -50,6 +53,9 @@ extern "C"
 #define ETHER_TYPE_8021Q (0x8100)
 #define ETHER_TYPE_IPV6  (0x86DD)
 #define PACKET_SIZE 1600
+
+#define MS_IN_US 1000
+
 
 extern "C" void ns_2_timeval(s64 currTstamp, struct timeval * tv);
 
@@ -115,9 +121,11 @@ void LxcManager::setHostGraphNodeIDs(void * net,
 		subnet->display();
 		cout << endl;
 
-		cout << "Host/Switch details: " << endl;
-		currHost->display();
-		cout << endl;
+		if (currHost->isEmulated || currHost->isRouter()) {
+			cout << "Emu-Host/Switch details: " << endl;
+			currHost->display();
+			cout << endl;
+		}
 
 		currHost->setGraphNodeID(*startIDNumber);
 
@@ -202,14 +210,13 @@ void LxcManager::composeTimelineGraph(void * net) {
 
 void LxcManager::init(char* outputDir,
 	VirtualTimeManagerType vtManagerType, int isLookaheadEnabled) {
-	struct timeval runTimestamp;
-	gettimeofday(&runTimestamp, NULL);
 	stringstream temp;
-	temp << outputDir << "/" << runTimestamp.tv_sec;
+	temp << outputDir;
 	logFolder = temp.str();
 	this->isLookaheadEnabled = isLookaheadEnabled;
 	setupLog();
-
+	
+	simTimeElapsedUs = 0;
 	numWaitingTimelines = 0;
 	pthread_mutex_init(&setEatMutex,NULL); 
 
@@ -242,16 +249,12 @@ s64 LxcManager::getTimelineExclEat(int timelineID) {
 		return 0;
 	s64 minEATExclLookahead = 0;
 	s64 currProxyEATExclLookahead;
-	//s64 currTime;
 	
 	for (unsigned int j = 0; j < proxiesOnTimeline->size(); j++) {
 		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[j];
 		currProxyEATExclLookahead = 
 			this->vtManagerInterface->GetTracerLookaheadExclTimestamp(
 				proxyOnTimeline->eqTracerID);
-		//currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
-		//	proxyOnTimeline->eqTracerID);
-
 		if (currProxyEATExclLookahead == 0)
 			continue;
 		else if (minEATExclLookahead == 0 ||
@@ -259,15 +262,10 @@ s64 LxcManager::getTimelineExclEat(int timelineID) {
 			minEATExclLookahead = currProxyEATExclLookahead;
 	}
 
-	/*if (minEATExclLookahead != 0) {
-		assert(minEATExclLookahead >= currTime);
-	}*/
 	return minEATExclLookahead;
 }
 
 void LxcManager::SetEatSyncWindow() {
-	if (!IsVirtualTimeManagerTitan() || !isVtLookaheadEnabled())
-		return;
 
 	pthread_mutex_lock(&setEatMutex);
 	numWaitingTimelines ++;
@@ -276,6 +274,35 @@ void LxcManager::SetEatSyncWindow() {
 		pthread_mutex_unlock(&setEatMutex);
 		return;
 	}
+
+	simTimeElapsedUs  += maxLookaheadUs;
+	float elapsedSecs = 0.0;
+	if ((simTimeElapsedUs % (100*MS_IN_US)) == 0) {
+		elapsedSecs = (float)simTimeElapsedUs / (float)(1000 * MS_IN_US);
+
+		struct timeval currTimestamp;
+		gettimeofday(&currTimestamp, NULL);
+	
+		s64 timeTakenNs = (currTimestamp.tv_sec * 1000000000) + (currTimestamp.tv_usec * 1000);
+		timeTakenNs -= lastChkptRealTimeNs;
+		float timeTakenSecs = (float)timeTakenNs / 1000000000.0;
+		std::cout << "<<>> Sim Time: " << elapsedSecs << " (secs) " 
+			<< " <<>> Real-Time taken: " << timeTakenSecs <<  " (secs)" << std::endl;
+
+		if ((simTimeElapsedUs % (1000*MS_IN_US)) == 0) {
+			overheads.push_back(timeTakenSecs);
+			lastChkptRealTimeNs = (currTimestamp.tv_sec * 1000000000) + (
+				currTimestamp.tv_usec * 1000);
+		}
+	}
+
+	if (!IsVirtualTimeManagerTitan() || !isVtLookaheadEnabled()) {
+		numWaitingTimelines = 0;
+		pthread_mutex_unlock(&setEatMutex);
+		return;
+	}
+
+	
 
 	s64 minEAT = 0;
 	s64 currTimelineInTransitEAT;
@@ -332,11 +359,6 @@ void LxcManager::SetEatSyncWindow() {
 		}
 
 		timelineExclEATLookaheads.push_back(getTimelineExclEat(i));
-
-		/*if (timelineExclEATLookaheads[i])
-			std::cout << "TL : " << i << " ExclEAT = " 
-				<< timelineExclEATLookaheads[i] - currTime << std::endl;*/
-		
 	}
 
 
@@ -350,9 +372,6 @@ void LxcManager::SetEatSyncWindow() {
 
 		
 		LXC_Proxy* proxy = (*proxiesOnTimeline)[0];
-		//currTime = this->vtManagerInterface->GetCurrentVirtualTimeTracer(
-		//		proxy->eqTracerID);
-		//std::cout << "tracer: " << proxy->eqTracerID << " curr-time: " << currTime << std::endl;
 		nearestDepTimelineDistUsecs = dependantTlShortestDist[i];
 		if (timelineInTransitPktEATs[i] > 0) {
 			assert(timelineInTransitPktEATs[i] >= currTime);
@@ -380,11 +399,9 @@ void LxcManager::SetEatSyncWindow() {
 					}
 				}
 
-				//if (currLA > 0)
-				//currLA = currTime;
 
 				if (currLA)
-					currLA += (nearestDepTimelineDistUsecs * NS_IN_USEC);
+					currLA += ((nearestDepTimelineDistUsecs) * NS_IN_USEC);
 				
 				if (currLA > 0 && (minEAT == 0 || minEAT > currLA))
 					minEAT = currLA;
@@ -393,12 +410,12 @@ void LxcManager::SetEatSyncWindow() {
 			if (minEAT == 0) {// none of dependent tls have any intransit packets and all are
 							  // blocked waiting for packets
 				minEAT = std::max(currTime, timelineExclEATLookaheads[i]);
-				minEAT += (2*nearestDepTimelineDistUsecs*NS_IN_USEC);
+				minEAT += ((nearestDepTimelineDistUsecs)*NS_IN_USEC);
 			} else {
 
 				if (timelineExclEATLookaheads[i]) {
 					s64 selfSendTime = std::max(currTime, timelineExclEATLookaheads[i]);
-					minEAT = std::min(minEAT, selfSendTime + 2*nearestDepTimelineDistUsecs*NS_IN_USEC);
+					minEAT = std::min(minEAT, selfSendTime + nearestDepTimelineDistUsecs*NS_IN_USEC);
 				}
 			}
 
@@ -539,9 +556,9 @@ int LxcManager::readAndProcessNxtPacket(LXC_Proxy * proxy, char * buffer) {
 	
 	LXC_Proxy* destinationProxy = findDestProxy(destIP);
 	if (destinationProxy == NULL) {
-		debugPrint("Dropping packet intended for destIP: %s: "
-			   "No one to give it to !\n", inet_ntoa(ip_addr));
-		cout << print_packet(buffer, nread);	
+		//debugPrint("Dropping packet intended for destIP: %s: "
+		//	   "No one to give it to !\n", inet_ntoa(ip_addr));
+		//cout << print_packet(buffer, nread);	
 	}
 	else {
 
@@ -645,10 +662,8 @@ void LxcManager::syncUpLXCs() {
 	long lxcTimestampMicroSec;
 	int numTimelines, numTracers;
 	struct timeval tv_lxcTimestamp;
-	/*char arp_file_path[1000];
-	memset(arp_file_path, 0, 1000);
-	sprintf(arp_file_path, " %s/lxc-scripts/lxc-config/arp_entries.txt",
-			PATH_TO_S3FNETLXC);*/
+	struct timeval startTimestamp;
+	
 	string arp_file_path = "/tmp/arp_entries.txt";
 
 	std::fstream output;
@@ -656,14 +671,18 @@ void LxcManager::syncUpLXCs() {
 	output.open(arp_file_path,  std::fstream::out );
 
 	for (unsigned int i = 0; i < siminf->get_numTimelines(); i++) {
-		for (int j = 0; j < timelineGraph->numVertices; j++) {
-			ltime_t dist = timelineGraph->getNearestTimelineDist(j, i);
 
-			std::cout << "Nearest tl dist: Host: " << j << " tl: " << i << " Dist: " << dist << std::endl; 
+		if (listOfProxies.size()) {
+			for (int j = 0; j < timelineGraph->numVertices; j++) {
+				ltime_t dist = timelineGraph->getNearestTimelineDist(j, i);
+				std::cout << "Nearest tl dist: Host: " << j << " tl: " << i << " Dist: " << dist << std::endl; 
+			}
 		}
 		dependantTlShortestDist.push_back(0);
 		syncWindowEAts.push_back(0);
 		pendingRecvs.push_back(0);
+		muProgressDurations.push_back(0);
+		varProgressDurations.push_back(0);
 	}
 
 
@@ -713,6 +732,12 @@ void LxcManager::syncUpLXCs() {
 
 	numTimelines = siminf->get_numTimelines();
 	numTracers = listOfProxies.size();
+
+	if (!numTracers) {
+		output.close();
+		return;
+	}
+
 	debugPrint("|==================================================\n");
 	debugPrint("| Initializing VT experiment                     \n");
 	debugPrint("|==================================================\n\n");
@@ -764,6 +789,9 @@ void LxcManager::syncUpLXCs() {
 	}
 	debugPrint("\n|==================================================\n");
 
+	gettimeofday(&startTimestamp, NULL);
+	lastChkptRealTimeNs = (startTimestamp.tv_sec * 1000000000) + (startTimestamp.tv_usec * 1000);
+
 }
 
 void LxcManager::insertProxy(LXC_Proxy* p) {
@@ -771,6 +799,92 @@ void LxcManager::insertProxy(LXC_Proxy* p) {
 	assert(timelineID >= 0 && timelineID < (int)siminf->get_numTimelines());
 	listOfProxiesByTimeline[timelineID]->push_back(p);
 	listOfProxies.push_back(p);
+}
+
+char * LxcManager::GetStatsJson(void) {
+
+    char * string = NULL;
+    cJSON * oheads = NULL;
+    cJSON * exec_burst_lengths = NULL;
+
+    cJSON *stats = cJSON_CreateObject();
+    if (stats == NULL) {
+        goto end;
+    }
+
+ 	oheads = cJSON_CreateArray();
+	if (oheads == NULL) {
+		goto end;
+	}
+
+    exec_burst_lengths = cJSON_CreateArray();
+    if (exec_burst_lengths == NULL) {
+        goto end;
+    }
+    cJSON_AddItemToObject(stats, "overheads", oheads);
+	cJSON_AddItemToObject(stats, "burst_lengths", exec_burst_lengths);
+
+	for (int i = 0; i < overheads.size(); i++) {
+		cJSON * new_overhead_obj;
+		new_overhead_obj = cJSON_CreateObject();
+        if (new_overhead_obj == NULL) {
+            goto end;
+        }
+		cJSON * idx = cJSON_CreateNumber(i);
+		cJSON * elapsedSec = cJSON_CreateNumber(overheads[i]);
+
+		if (!idx || !elapsedSec)
+			goto end;
+		
+		cJSON_AddItemToObject(new_overhead_obj, "idx", idx);
+		cJSON_AddItemToObject(new_overhead_obj, "elapsedSec", elapsedSec);
+
+		cJSON_AddItemToArray(oheads, new_overhead_obj);
+	}
+
+	for (unsigned int i = 0; i < siminf->get_numTimelines(); i++) {
+		cJSON * timeline_obj;
+		timeline_obj = cJSON_CreateObject();
+        if (timeline_obj == NULL) {
+            goto end;
+        }
+		cJSON * idx = cJSON_CreateNumber(i);
+
+		float mu_progress_duration = 0.0;
+		float variance_progress_duration = 0.0;
+		float num_progress_calls = vectorOfHowManyTimesTimelineCalledProgress[i];
+
+		if (num_progress_calls) {
+			mu_progress_duration = (float)muProgressDurations[i] / num_progress_calls;
+			variance_progress_duration = (float)varProgressDurations[i] / num_progress_calls;
+			variance_progress_duration -= (mu_progress_duration * mu_progress_duration);
+
+		}
+
+		cJSON * mu_progress = cJSON_CreateNumber(mu_progress_duration);
+		cJSON * var_progress = cJSON_CreateNumber(sqrt(variance_progress_duration));
+		cJSON * num_appts = cJSON_CreateNumber(timelineNumAppts[i]);
+
+		if (!idx || !mu_progress || !var_progress || !num_appts)
+			goto end;
+		
+		cJSON_AddItemToObject(timeline_obj, "idx", idx);
+		cJSON_AddItemToObject(timeline_obj, "mu_progress_duration", mu_progress);
+		cJSON_AddItemToObject(timeline_obj, "std_progress_duration", var_progress);
+		cJSON_AddItemToObject(timeline_obj, "num_appts", num_appts);
+
+		cJSON_AddItemToArray(exec_burst_lengths, timeline_obj);		
+	}
+
+
+    string = cJSON_Print(stats);
+    if (string == NULL) {
+        fprintf(stderr, "Failed to print monitor.\n");
+    }
+
+end:
+    cJSON_Delete(stats);
+    return string;
 }
 
 void LxcManager::printLXCstats() {
@@ -812,6 +926,19 @@ void LxcManager::printLXCstats() {
 				siminf->full_exc_time()/1e6);
 	debugPrint(
 		"|============================================================|\n");
+
+
+	
+
+	char * stats = GetStatsJson();
+	if (stats) {
+		string statsFile          = logFolder + "/stats.json";
+		FILE * fpStatsFile          = fopen(statsFile.c_str(), "w" );
+		fprintf(fpStatsFile, stats);
+		fclose(fpStatsFile);
+	}
+
+	
 }
 
 ltime_t LxcManager::getTimelineSmallestInTranstTime(int timelineID) {
@@ -881,12 +1008,6 @@ ltime_t LxcManager::getProxiesLookahead(int srcTimelineID, int destTimelineID) {
 		this->vtManagerInterface->SetTracerEarliestArrivalTime(
 			proxyOnTimeline->eqTracerID,
 			proxyOnTimeline->getNextEarliestArrivalTime(true));
-
-		/*curr_lookahead = 
-			this->vtManagerInterface->GetTracerLookaheadTimestamp(
-				proxyOnTimeline->eqTracerID) + 
-			(timelineGraph->getNearestTimelineDist(proxyHost->getGraphNodeID(),
-				destTimelineID) * NS_IN_USEC);*/
 		curr_lookahead = 
 			this->vtManagerInterface->GetTracerLookaheadTimestamp(
 				proxyOnTimeline->eqTracerID);
@@ -899,7 +1020,7 @@ ltime_t LxcManager::getProxiesLookahead(int srcTimelineID, int destTimelineID) {
 		}
 	}
 	min_lookahead = min_lookahead > 0 ? min_lookahead : 0;
-	if (!min_lookahead) return 0;
+	if (!min_lookahead) return -1;
 
 
 	assert(timelineAlignedOn != NULL);
@@ -924,6 +1045,8 @@ bool LxcManager::arePktsInTransit(int tl) {
 	}
 	return false;
 }
+
+
 ltime_t LxcManager::getHostLookahead(void * ptrToHost, int dst_tl) {
 	s3f::s3fnet::Host *h = ((s3f::s3fnet::Host *)ptrToHost);
 	if (!h  || !h->isHost)
@@ -951,13 +1074,18 @@ void LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	ltime_t time_needed_to_advance_us = desired_vt - lxc_actual_vt;
 	ltime_t timeadvanced_so_far = 0;
 	ltime_t diff;
+	ltime_t progressDuration;
 
 	if (desired_vt <= lxc_actual_vt)
 		return;
 
 	pendingRecvs[timelineID] = 0;
+	progressDuration = time_needed_to_advance_us - timeadvanced_so_far;
 
+	muProgressDurations[timelineID] += progressDuration;
+	varProgressDurations[timelineID] += (progressDuration * progressDuration);
 	vectorOfHowManyTimesTimelineCalledProgress[timelineID]++;
+	
 	while (timeadvanced_so_far < time_needed_to_advance_us) {
 
 
@@ -974,14 +1102,14 @@ void LxcManager::advanceLXCsOnTimeline(unsigned int timelineID,
 	handleIncomingPacket(proxiesOnTimeline);
 
 	//debugPrint("Running timeline : %d for %d times\n", timelineID, vectorOfHowManyTimesTimelineCalledProgress[timelineID]);
-	for (unsigned int i = 0; i < proxiesOnTimeline->size(); i++) {
+	/*for (unsigned int i = 0; i < proxiesOnTimeline->size(); i++) {
 		LXC_Proxy* proxyOnTimeline = (*proxiesOnTimeline)[i];
 		// set eat here. This could be used by emulated processes when they run
 		// this round.
 		this->vtManagerInterface->SetTracerEarliestArrivalTime(
 			proxyOnTimeline->eqTracerID,
 			proxyOnTimeline->getNextEarliestArrivalTime(true));
-	}
+	}*/
 	return;
 }
 
@@ -1003,8 +1131,7 @@ LXC_Proxy* LxcManager::getLXCProxyWithNHI(string nhi)
 
 void LxcManager::printInfoAboutHashTable() {
 	//debugPrint("|==================================================\n");
-	for (unsigned int i = 0; i < siminf->get_numTimelines(); i++)
-	{
+	for (unsigned int i = 0; i < siminf->get_numTimelines(); i++) {
 		vector<LXC_Proxy*>* proxies = listOfProxiesByTimeline[i];
 		debugPrint(" ____________________________________________\n");
 		debugPrint("|\n");
@@ -1182,7 +1309,7 @@ pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 
 	if(!is_tcp && !is_udp && !is_icmp){
 
-		debugPrint("######################################\n");
+		/*debugPrint("######################################\n");
 		if(parse_packet_type == PARSE_PACKET_SUCCESS_ARP)
 			debugPrint("~~~~~~~~~~~~~~~~ARP~~~~~~~~~~~~~~~~~~\n");
 		else {
@@ -1195,7 +1322,7 @@ pair<int, unsigned int> LxcManager::analyzePacket(char* pkt_ptr, int len,
 		}
 		debugPrint("Src IP string: %s\n",result_2);
 		debugPrint("Dest IP string: %s\n", result);
-		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");		
+		debugPrint("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");*/		
 
 	}
 
@@ -1253,10 +1380,12 @@ void LxcManager::stopExperiment() {
 
 	}
 
-	debugPrint("|==================================================\n");
-	debugPrint("| Calling STOP EXPERIMENT\n");
-	debugPrint("|==================================================\n");
-	this->vtManagerInterface->StopVirtualTimeExp();
+	if (listOfProxies.size()) {
+		debugPrint("|==================================================\n");
+		debugPrint("| Calling STOP EXPERIMENT\n");
+		debugPrint("|==================================================\n");
+		this->vtManagerInterface->StopVirtualTimeExp();
+	}
 }
 
 void LxcManager::setupLog() {

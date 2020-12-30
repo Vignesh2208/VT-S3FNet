@@ -1,0 +1,171 @@
+
+total_timeline 5	
+tick_per_second 6	
+run_time 10
+seed 1	
+log_dir "MPI_LA_Enabled_nemus_4_mpi_mm"		
+virtual_time_manager "TITAN"
+max_lookahead_us 1000
+enable_lookahead 1
+
+Net [
+
+    # LXC Config settings
+
+    lxcConfig
+	[
+        
+        settings [ lxcNHI 5:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 0 4 5:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/master.log" ]
+        settings [ lxcNHI 6:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 1 4 6:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/worker1.log" ]
+        settings [ lxcNHI 7:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 2 4 7:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/worker2.log" ]
+        settings [ lxcNHI 8:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 3 4 8:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/worker3.log" ]
+    ]
+    
+
+    # Simulated TCP Traffic Pattern
+
+    traffic [
+        
+        pattern [
+            client 1:4
+            servers [ port 1024 nhi 3:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 1:5
+            servers [ port 1024 nhi 3:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 2:4
+            servers [ port 1024 nhi 4:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 2:5
+            servers [ port 1024 nhi 4:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 3:4
+            servers [ port 1024 nhi 1:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 3:5
+            servers [ port 1024 nhi 1:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 4:4
+            servers [ port 1024 nhi 2:6(0) list "forTCP" ]
+        ]
+        pattern [
+            client 4:5
+            servers [ port 1024 nhi 2:6(0) list "forTCP" ]
+        ]
+    ]
+    
+
+    # Composed Sim Nets
+
+    Net [
+        id 0
+        alignment 0
+        _extends .sim.coreNetwork
+    ]
+        
+    Net [
+        id 1
+        alignment 0
+        _extends .sim.podNet0
+    ]
+        
+    Net [
+        id 2
+        alignment 0
+        _extends .sim.podNet1
+    ]
+        
+    Net [
+        id 3
+        alignment 0
+        _extends .sim.podNet2
+    ]
+        
+    Net [
+        id 4
+        alignment 0
+        _extends .sim.podNet3
+    ]
+        
+
+    # Composed Emulated Hosts
+
+    Net 
+    [ 
+        id 5
+        alignment 1
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 6
+        alignment 2
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 7
+        alignment 3
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 8
+        alignment 4
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+
+    # Links between agg switch and core network
+
+    link [ attach 1:2(2) attach 0:0(0) _extends .dict.link_delay_1us ]
+    link [ attach 1:2(3) attach 0:1(0) _extends .dict.link_delay_1us ]
+    link [ attach 1:3(2) attach 0:2(0) _extends .dict.link_delay_1us ]
+    link [ attach 1:3(3) attach 0:3(0) _extends .dict.link_delay_1us ]
+    link [ attach 2:2(2) attach 0:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 2:2(3) attach 0:1(1) _extends .dict.link_delay_1us ]
+    link [ attach 2:3(2) attach 0:2(1) _extends .dict.link_delay_1us ]
+    link [ attach 2:3(3) attach 0:3(1) _extends .dict.link_delay_1us ]
+    link [ attach 3:2(2) attach 0:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 3:2(3) attach 0:1(2) _extends .dict.link_delay_1us ]
+    link [ attach 3:3(2) attach 0:2(2) _extends .dict.link_delay_1us ]
+    link [ attach 3:3(3) attach 0:3(2) _extends .dict.link_delay_1us ]
+    link [ attach 4:2(2) attach 0:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 4:2(3) attach 0:1(3) _extends .dict.link_delay_1us ]
+    link [ attach 4:3(2) attach 0:2(3) _extends .dict.link_delay_1us ]
+    link [ attach 4:3(3) attach 0:3(3) _extends .dict.link_delay_1us ]
+
+    # Links between emu hosts and edge routers
+
+    link [ attach 5:0(0) attach 1:0(0) _extends .dict.link_delay_1us ]
+    link [ attach 6:0(0) attach 2:0(0) _extends .dict.link_delay_1us ]
+    link [ attach 7:0(0) attach 3:0(0) _extends .dict.link_delay_1us ]
+    link [ attach 8:0(0) attach 4:0(0) _extends .dict.link_delay_1us ]
+
+]
+    

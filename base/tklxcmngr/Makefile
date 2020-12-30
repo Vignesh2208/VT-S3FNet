@@ -1,4 +1,4 @@
-SRC    		:= tk_lxc_manager.cc lxc_proxy.cc graph_utils.cc virtual_time_manager.cc
+SRC    		:= tk_lxc_manager.cc cJSON.cc lxc_proxy.cc graph_utils.cc virtual_time_manager.cc
 CC	   		:= g++
 DEBUG  		:= -g -Wno-write-strings
 

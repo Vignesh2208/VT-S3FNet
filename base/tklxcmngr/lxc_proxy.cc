@@ -128,11 +128,14 @@ std::pair<string, string> LXC_Proxy::getIPAndMacAddr() {
 	std::string myIP = string(result);
 	std::stringstream stream;
 	stream << std::hex << eqTracerID;
-	std::string myMacHex( stream.str() );
+	std::string myMacHex = "";
 	std::string myMac = "";
 
-	while (myMacHex.length() != 12)
+	while (myMacHex.length() < (12 - stream.str().length()))
 		myMacHex += "0";
+	myMacHex += stream.str();
+	assert(myMacHex.length() == 12);
+
 
 	for (int i = 0; i < myMacHex.length(); i++) {
 		myMac += myMacHex[i];

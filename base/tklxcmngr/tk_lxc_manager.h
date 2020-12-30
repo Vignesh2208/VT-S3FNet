@@ -117,6 +117,7 @@ class LxcManager
 		vector<ltime_t> syncWindowEAts;
 
 		vector<int> pendingRecvs;
+
 		
 		// Set to 1 if lookahead computation is enabled
 		int isLookaheadEnabled;
@@ -126,6 +127,14 @@ class LxcManager
 
 		// Max lookkahead possible to be set by any emulated timeline
 		ltime_t maxLookaheadUs;
+
+
+		ltime_t simTimeElapsedUs;
+		long long lastChkptRealTimeNs;
+		vector<float> overheads;
+		vector<ltime_t> muProgressDurations;
+		vector<ltime_t> varProgressDurations;
+		char * GetStatsJson(void);
 
 		// A lock to control setting earliest arrival times at global sync window
 		pthread_mutex_t  setEatMutex;
