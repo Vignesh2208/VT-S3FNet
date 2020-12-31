@@ -62,6 +62,14 @@ sed "s|@BASE_DIR@|${BASE_DIR}|g" s3fnet-definitions.template > s3fnet-definition
 shift `expr $OPTIND - 1`
 
 echo "--------------------------------"
+echo "Buidling Lxc-Manager ... "
+echo "--------------------------------"
+cd tklxcmngr
+make clean
+make
+cd ..
+
+echo "--------------------------------"
 echo "Buidling s3f/api ... "
 echo "--------------------------------"
 cd api
@@ -100,6 +108,8 @@ cd ..
 #fi
 #make
 #cd ..
+
+
 
 echo "DML = ", $dml
 echo "INC = ", $inc

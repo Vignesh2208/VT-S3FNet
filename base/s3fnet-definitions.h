@@ -7,7 +7,7 @@
 #define DEFAULT_MAX_LOOKAHEAD_US 1000
 #define DEFAULT_MAX_VT_CLOCK_RESOLUTION_US 1000
 
-#define PATH_TO_S3FNETLXC   "/home/titan/VT-S3FNet"
+#define PATH_TO_S3FNETLXC   "/home/vignesh/VT-S3FNet"
 
 
 #endif /*__S3FNETDEFINITIONS_H__*/

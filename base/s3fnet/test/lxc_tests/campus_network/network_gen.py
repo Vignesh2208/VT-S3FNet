@@ -7,7 +7,7 @@ TOTAL_BACKBONE_ROUTERS = 18
 
 parser = argparse.ArgumentParser(description='Generates campus network topology')
 parser.add_argument('--num_sim_hosts_per_lan', type=int,
-                    help='Number of simulated hosts per lan', default=5)
+                    help='Number of simulated hosts per lan', default=50)
 parser.add_argument('--num_emu_hosts_per_lan', type=int,
                     help='Number of emulated hosts per lan', default=1)
 parser.add_argument('--fraction_servers', type=float, required=False,
@@ -543,6 +543,8 @@ def main():
     num_sim_hosts_per_lan = args.num_sim_hosts_per_lan
     num_emu_hosts_per_lan = args.num_emu_hosts_per_lan
 
+    print (f"Generating for LA-Enabled: {args.enable_lookahead}, Num Emu Hosts Per Lan: {args.num_emu_hosts_per_lan} ")
+    print (f"Flow Type: {args.emu_flow_type}, Flow-Period: {args.emu_flow_period_us}, Flow-Mu-Arrival: {args.emu_flow_mean_arrival_us}, Flow-TxSize: {args.transfer_size_kb}, Flow-Rate: {args.transfer_rate_mbps}")
 
     from os.path import expanduser
     home = expanduser("~")
@@ -598,7 +600,7 @@ sim [
         overall_cfg = f"""
 total_timeline {total_num_timelines}	
 tick_per_second 6	
-run_time {args.run_time}
+run_time {args.run_time + 0.1}
 seed 1	
 log_dir "{log_dir}"		
 virtual_time_manager "TITAN"
@@ -634,7 +636,7 @@ Net [
         overall_cfg = f"""
 total_timeline {total_num_timelines}	
 tick_per_second 6	
-run_time {args.run_time}
+run_time {args.run_time + 0.1}
 seed 1	
 log_dir "{log_dir}"		
 virtual_time_manager "TITAN"

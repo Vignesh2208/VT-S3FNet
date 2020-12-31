@@ -4,19 +4,19 @@ NUM_CORES := 4
 all: 
 	echo "inc | rebuild | debuginc | debug"
 
-inc: lxcman
+inc:
 	./build.sh -i -t -n $(NUM_CORES)
 
-rebuild: lxcman
+rebuild:
 	./build.sh -f -t -n  $(NUM_CORES)
 	
-fullbuild: lxcman
+fullbuild:
 	./build.sh -t -n $(NUM_CORES)
 
-debuginc: lxcman
+debuginc:
 	./build.sh -i -t -f -d -n $(NUM_CORES)
 
-debug: lxcman
+debug:
 	./build.sh -f -t -d -n $(NUM_CORES)
 
 lxcman:
@@ -30,7 +30,6 @@ clean:
 	cd dml; make clean;
 	cd metis; rm -f *.o *.a > /dev/null;
 	cd rng; make clean;
-	cd ../csudp; make clean;
 
 csudp:
 	cd ../csudp; make;
@@ -41,6 +40,7 @@ mpi_run:
 	chmod -R 777 ../experiment-data
 
 fat_tree_run:
+	sudo rm -f /tmp/endpoints > /dev/null
 	cd s3fnet/test/lxc_tests/fat_tree/; make clean; make; make test
 	chmod -R 777 ../experiment-data
 

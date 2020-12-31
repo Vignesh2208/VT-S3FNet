@@ -3,10 +3,10 @@ total_timeline 5
 tick_per_second 6	
 run_time 10
 seed 1	
-log_dir "MPI_LA_Enabled_nemus_4_mpi_mm"		
+log_dir "MPI_LA_Disabled_nemus_4_mpi_mm"		
 virtual_time_manager "TITAN"
 max_lookahead_us 1000
-enable_lookahead 1
+enable_lookahead 0
 
 Net [
 
@@ -15,10 +15,10 @@ Net [
     lxcConfig
 	[
         
-        settings [ lxcNHI 5:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 0 4 5:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/master.log" ]
-        settings [ lxcNHI 6:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 1 4 6:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/worker1.log" ]
-        settings [ lxcNHI 7:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 2 4 7:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/worker2.log" ]
-        settings [ lxcNHI 8:0 ttnProject "s3fmpi" cmd "/home/titan/VT-S3FNet/csudp/mpi_mm/mpi_test 3 4 8:0 > /home/titan/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_4_mpi_mm/worker3.log" ]
+        settings [ lxcNHI 5:0 ttnProject "s3fmpi" cmd "/home/vignesh/VT-S3FNet/csudp/mpi_mm/mpi_test 0 4 5:0 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Disabled_nemus_4_mpi_mm/master.log" ]
+        settings [ lxcNHI 6:0 ttnProject "s3fmpi" cmd "/home/vignesh/VT-S3FNet/csudp/mpi_mm/mpi_test 1 4 6:0 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Disabled_nemus_4_mpi_mm/worker1.log" ]
+        settings [ lxcNHI 7:0 ttnProject "s3fmpi" cmd "/home/vignesh/VT-S3FNet/csudp/mpi_mm/mpi_test 2 4 7:0 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Disabled_nemus_4_mpi_mm/worker2.log" ]
+        settings [ lxcNHI 8:0 ttnProject "s3fmpi" cmd "/home/vignesh/VT-S3FNet/csudp/mpi_mm/mpi_test 3 4 8:0 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Disabled_nemus_4_mpi_mm/worker3.log" ]
     ]
     
 
