@@ -22,4 +22,4 @@ s3f.a	: $(OBJ)
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm *.o *.a
+	rm -f *.o *.a > /dev/null

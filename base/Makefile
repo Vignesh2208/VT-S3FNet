@@ -22,6 +22,16 @@ debug: lxcman
 lxcman:
 	cd tklxcmngr; make clean; make;
 
+clean:
+	cd tklxcmngr; make clean;
+	cd s3fnet; make clean;
+	cd api; make clean;
+	cd aux; make clean;
+	cd dml; make clean;
+	cd metis; rm -f *.o *.a > /dev/null;
+	cd rng; make clean;
+	cd ../csudp; make clean;
+
 csudp:
 	cd ../csudp; make;
 
@@ -42,25 +52,6 @@ small_2_tcp_large_pings:
 	cd s3fnet/test/lxc_tests/small_2_tcp_large_pings/; make clean; make; make test
 	chmod -R 777 ../experiment-data	
 
-small_2_udp_large_pings:
-	cd s3fnet/test/lxc_tests/small_2_udp_large_pings/; make clean; make; make test
-	chmod -R 777 ../experiment-data	
 
-examplerun:
-	cd s3fnet/test/lxc_tests/large_emu_only_2/; make clean; make; make test
-	chmod -R 777 ../experiment-data
-
-run:	
-	# cd s3fnet/test/lxc_tests/small_2_udp_tiny_delay/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/small_2_udp_2_emu_1_router/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/sandbox/; make clean; make; make test
-	cd s3fnet/test/lxc_tests/small_2_udp/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/small_2_udp_large_pings/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/small_1_ping/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/large/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/large_emu_only_25/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/large_emu_only_2/; make clean; make; make test
-	# cd s3fnet/test/lxc_tests/huge_with_traffic/; make clean; make; make test
-	chmod -R 777 ../experiment-data
 	
 	

@@ -14,3 +14,5 @@ rng.a	: $(OBJ)
 %.o : %.cc $(HDR)
 	$(CC) $(CFLAGS) -c $<
 
+clean:
+	rm -f *.o *.a > /dev/null

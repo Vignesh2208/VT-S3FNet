@@ -91,15 +91,15 @@ fi
 make -j$nc
 cd ..
 
-echo "--------------------------------"
-echo "Buidling s3f/app ... "
-echo "--------------------------------"
-cd app
-if [ $inc -eq 0 ]; then
-rm *.o
-fi
-make
-cd ..
+#echo "--------------------------------"
+#echo "Buidling s3f/app ... "
+#echo "--------------------------------"
+#cd app
+#if [ $inc -eq 0 ]; then
+#rm *.o
+#fi
+#make
+#cd ..
 
 echo "DML = ", $dml
 echo "INC = ", $inc

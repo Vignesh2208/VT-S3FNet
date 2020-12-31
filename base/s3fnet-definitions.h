@@ -8,7 +8,6 @@
 #define DEFAULT_MAX_VT_CLOCK_RESOLUTION_US 1000
 
 #define PATH_TO_S3FNETLXC   "/home/titan/VT-S3FNet"
-#define PATH_TO_READER_DATA "/home/titan/VT-S3FNet/data"
 
 
 #endif /*__S3FNETDEFINITIONS_H__*/
