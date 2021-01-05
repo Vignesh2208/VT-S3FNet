@@ -1,0 +1,1082 @@
+Attempting to set static arp entries ...
+Tracer: 4 >> Using SRC IP: 10.1.38.62 for any spawned virtual tcp-stacks
+Tracer: 4 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 4 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/mpi_matrix/mpi_mm 3 61 10.1.38.62 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_61_mpi_mm/worker3.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/mpi_matrix/mpi_mm
+args[1] = 3
+args[2] = 61
+args[3] = 10.1.38.62
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_matrix/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_matrix/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/mpi_matrix/mpi_mm
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 4
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: 1042678026
+Starting VT-initialization !
+Tracer-ID: 4, Timeline-ID: 4
+Tracer registration for EXP_CS complete. TimelineID = 4, Return = 4
+Tracer Adding to SQ. Tracer ID = 4
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_matrix/.ttn/lookahead/bbl_lookahead.info
+File size: 344
+mapped memblock size: 344
+Finish offset: 39, Number of values: 39
+Returning success !
+Loaded BBL lookaheads for 39 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_matrix/.ttn/lookahead/loop_lookahead.info
+File size: 128
+mapped memblock size: 128
+Finish offset: 12, Number of values: 12
+Returning success !
+Loaded Loop lookaheads for 12 loops ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 46
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Rank = 3, Total = 61, IP = 10.1.38.62
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+bind through vt-tcp !
+Server socket bound to ip:port: 10.1.38.62:10000
+Waiting for OK message from other nodes !
+Waiting for OK message !
+listen through vt-tcp !
+Accept through vt-tcp !
+Successfully received OK message !
+
+---------------- Waiting for higher ranked nodes to connect --------------
+listen through vt-tcp !
+Accepting connection from higher ranked node: 60
+Accept through vt-tcp !
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
+Accepted connection from higher ranked node: 60
+Successfully connected with higher ranked node: 60
+Accepting connection from higher ranked node: 59
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 59
+Successfully connected with higher ranked node: 59
+Accepting connection from higher ranked node: 58
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 58
+Successfully connected with higher ranked node: 58
+Accepting connection from higher ranked node: 57
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 57
+Successfully connected with higher ranked node: 57
+Accepting connection from higher ranked node: 56
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 56
+Successfully connected with higher ranked node: 56
+Accepting connection from higher ranked node: 55
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 55
+Successfully connected with higher ranked node: 55
+Accepting connection from higher ranked node: 54
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 54
+Successfully connected with higher ranked node: 54
+Accepting connection from higher ranked node: 53
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 53
+Successfully connected with higher ranked node: 53
+Accepting connection from higher ranked node: 52
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 52
+Successfully connected with higher ranked node: 52
+Accepting connection from higher ranked node: 51
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 51
+Successfully connected with higher ranked node: 51
+Accepting connection from higher ranked node: 50
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 50
+Successfully connected with higher ranked node: 50
+Accepting connection from higher ranked node: 49
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 49
+Successfully connected with higher ranked node: 49
+Accepting connection from higher ranked node: 48
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 48
+Successfully connected with higher ranked node: 48
+Accepting connection from higher ranked node: 47
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 47
+Successfully connected with higher ranked node: 47
+Accepting connection from higher ranked node: 46
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 46
+Successfully connected with higher ranked node: 46
+Accepting connection from higher ranked node: 45
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 45
+Successfully connected with higher ranked node: 45
+Accepting connection from higher ranked node: 44
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 44
+Successfully connected with higher ranked node: 44
+Accepting connection from higher ranked node: 43
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 43
+Successfully connected with higher ranked node: 43
+Accepting connection from higher ranked node: 42
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 42
+Successfully connected with higher ranked node: 42
+Accepting connection from higher ranked node: 41
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 41
+Successfully connected with higher ranked node: 41
+Accepting connection from higher ranked node: 40
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 40
+Successfully connected with higher ranked node: 40
+Accepting connection from higher ranked node: 39
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 39
+Successfully connected with higher ranked node: 39
+Accepting connection from higher ranked node: 38
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 38
+Successfully connected with higher ranked node: 38
+Accepting connection from higher ranked node: 37
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 37
+Successfully connected with higher ranked node: 37
+Accepting connection from higher ranked node: 36
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 36
+Successfully connected with higher ranked node: 36
+Accepting connection from higher ranked node: 35
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 35
+Successfully connected with higher ranked node: 35
+Accepting connection from higher ranked node: 34
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 34
+Successfully connected with higher ranked node: 34
+Accepting connection from higher ranked node: 33
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 33
+Successfully connected with higher ranked node: 33
+Accepting connection from higher ranked node: 32
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 32
+Successfully connected with higher ranked node: 32
+Accepting connection from higher ranked node: 31
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 31
+Successfully connected with higher ranked node: 31
+Accepting connection from higher ranked node: 30
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 30
+Successfully connected with higher ranked node: 30
+Accepting connection from higher ranked node: 29
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 29
+Successfully connected with higher ranked node: 29
+Accepting connection from higher ranked node: 28
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 28
+Successfully connected with higher ranked node: 28
+Accepting connection from higher ranked node: 27
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 27
+Successfully connected with higher ranked node: 27
+Accepting connection from higher ranked node: 26
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 26
+Successfully connected with higher ranked node: 26
+Accepting connection from higher ranked node: 25
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 25
+Successfully connected with higher ranked node: 25
+Accepting connection from higher ranked node: 24
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 24
+Successfully connected with higher ranked node: 24
+Accepting connection from higher ranked node: 23
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 23
+Successfully connected with higher ranked node: 23
+Accepting connection from higher ranked node: 22
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 22
+Successfully connected with higher ranked node: 22
+Accepting connection from higher ranked node: 21
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 21
+Successfully connected with higher ranked node: 21
+Accepting connection from higher ranked node: 20
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 20
+Successfully connected with higher ranked node: 20
+Accepting connection from higher ranked node: 19
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 19
+Successfully connected with higher ranked node: 19
+Accepting connection from higher ranked node: 18
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 18
+Successfully connected with higher ranked node: 18
+Accepting connection from higher ranked node: 17
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 17
+Successfully connected with higher ranked node: 17
+Accepting connection from higher ranked node: 16
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 16
+Successfully connected with higher ranked node: 16
+Accepting connection from higher ranked node: 15
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 15
+Successfully connected with higher ranked node: 15
+Accepting connection from higher ranked node: 14
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 14
+Successfully connected with higher ranked node: 14
+Accepting connection from higher ranked node: 13
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 13
+Successfully connected with higher ranked node: 13
+Accepting connection from higher ranked node: 12
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 12
+Successfully connected with higher ranked node: 12
+Accepting connection from higher ranked node: 11
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 11
+Successfully connected with higher ranked node: 11
+Accepting connection from higher ranked node: 10
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 10
+Successfully connected with higher ranked node: 10
+Accepting connection from higher ranked node: 9
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 9
+Successfully connected with higher ranked node: 9
+Accepting connection from higher ranked node: 8
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 8
+Successfully connected with higher ranked node: 8
+Accepting connection from higher ranked node: 7
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 7
+Successfully connected with higher ranked node: 7
+Accepting connection from higher ranked node: 6
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 6
+Successfully connected with higher ranked node: 6
+Accepting connection from higher ranked node: 5
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 5
+Successfully connected with higher ranked node: 5
+Accepting connection from higher ranked node: 4
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 4
+Successfully connected with higher ranked node: 4
+Closing server socket: 4097
+Clearing all tcp timers !
+TCP-done for socket: 4097, err: -103
+
+---------------- Connecting to lowed ranked nodes ! --------------
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 2 at 10.1.38.66:10000
+Connecting .. Socket: 4156, src-port: 40001
+Socket: 4097 garbage collection
+Freeing socket: 4097
+Waking up connected socket !
+Socket connect success. socket = 4156
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 2 at 10.1.38.66:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 1 at 10.1.38.70:10000
+Connecting .. Socket: 4157, src-port: 40002
+Waking up connected socket !
+Socket connect success. socket = 4157
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 1 at 10.1.38.70:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 0 at 10.1.38.74:10000
+Connecting .. Socket: 4158, src-port: 40003
+Waking up connected socket !
+Socket connect success. socket = 4158
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 0 at 10.1.38.74:10000
+
+---------------- Creating listen Thread ! --------------
+
+---------------- MPI-Init success ! --------------
+Adding new Thread: 8
+Resuming new Thread with Burst of length: 5400
+Received matrix-A partition size: 34 from master !
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+tcp-linger 
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: -110
+Socket: 4098 garbage collection
+Freeing socket: 4098
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4156
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 0 Done.
+Avg-Compute-Communication-Ratio = 13.789844
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 1 Done.
+Avg-Compute-Communication-Ratio = 11.659392
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 2 Done.
+Avg-Compute-Communication-Ratio = 11.497804
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 3 Done.
+Avg-Compute-Communication-Ratio = 11.536263
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 4 Done.
+Avg-Compute-Communication-Ratio = 11.488780
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 5 Done.
+Avg-Compute-Communication-Ratio = 11.462887
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 6 Done.
+Avg-Compute-Communication-Ratio = 11.486782
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 7 Done.
+Avg-Compute-Communication-Ratio = 11.447536
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 8 Done.
+Avg-Compute-Communication-Ratio = 11.442967
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 9 Done.
+Avg-Compute-Communication-Ratio = 11.477711
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 10 Done.
+Avg-Compute-Communication-Ratio = 11.477353
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 11 Done.
+Avg-Compute-Communication-Ratio = 11.466665
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 12 Done.
+Avg-Compute-Communication-Ratio = 11.484741
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 13 Done.
+Avg-Compute-Communication-Ratio = 11.487497
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 14 Done.
+Avg-Compute-Communication-Ratio = 11.491355
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 15 Done.
+Avg-Compute-Communication-Ratio = 11.501551
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 16 Done.
+Avg-Compute-Communication-Ratio = 11.578743
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 17 Done.
+Avg-Compute-Communication-Ratio = 11.493009
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 18 Done.
+Avg-Compute-Communication-Ratio = 11.470299
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 19 Done.
+Avg-Compute-Communication-Ratio = 11.476367
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 20 Done.
+Avg-Compute-Communication-Ratio = 11.479848
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 21 Done.
+Avg-Compute-Communication-Ratio = 11.560362
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 22 Done.
+Avg-Compute-Communication-Ratio = 11.494159
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 23 Done.
+Avg-Compute-Communication-Ratio = 11.474995
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 24 Done.
+Avg-Compute-Communication-Ratio = 11.481170
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 25 Done.
+Avg-Compute-Communication-Ratio = 11.485166
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 26 Done.
+Avg-Compute-Communication-Ratio = 11.551276
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 27 Done.
+Avg-Compute-Communication-Ratio = 11.492218
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 28 Done.
+Avg-Compute-Communication-Ratio = 11.496422
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 29 Done.
+Avg-Compute-Communication-Ratio = 11.499740
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 30 Done.
+Avg-Compute-Communication-Ratio = 11.504684
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 31 Done.
+Avg-Compute-Communication-Ratio = 11.513335
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 32 Done.
+Avg-Compute-Communication-Ratio = 11.512092
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 33 Done.
+Avg-Compute-Communication-Ratio = 11.514928
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 34 Done.
+Avg-Compute-Communication-Ratio = 11.518880
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 35 Done.
+Avg-Compute-Communication-Ratio = 11.538444
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 36 Done.
+Avg-Compute-Communication-Ratio = 11.544925
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 37 Done.
+Avg-Compute-Communication-Ratio = 11.589537
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 38 Done.
+Avg-Compute-Communication-Ratio = 11.553888
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 39 Done.
+Avg-Compute-Communication-Ratio = 11.557529
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 40 Done.
+Avg-Compute-Communication-Ratio = 11.557709
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 41 Done.
+Avg-Compute-Communication-Ratio = 11.598282
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 42 Done.
+Avg-Compute-Communication-Ratio = 11.596058
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 43 Done.
+Avg-Compute-Communication-Ratio = 11.558570
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 44 Done.
+Avg-Compute-Communication-Ratio = 11.554786
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 45 Done.
+Avg-Compute-Communication-Ratio = 11.552798
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 46 Done.
+Avg-Compute-Communication-Ratio = 11.549656
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 47 Done.
+Avg-Compute-Communication-Ratio = 11.539491
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 48 Done.
+Avg-Compute-Communication-Ratio = 11.537096
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 49 Done.
+Avg-Compute-Communication-Ratio = 11.526184
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 50 Done.
+Avg-Compute-Communication-Ratio = 11.525143
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 51 Done.
+Avg-Compute-Communication-Ratio = 11.531593
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 52 Done.
+Avg-Compute-Communication-Ratio = 11.527494
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 53 Done.
+Avg-Compute-Communication-Ratio = 11.524124
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 54 Done.
+Avg-Compute-Communication-Ratio = 11.522452
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 55 Done.
+Avg-Compute-Communication-Ratio = 11.519647
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 56 Done.
+Avg-Compute-Communication-Ratio = 11.510736
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 57 Done.
+Avg-Compute-Communication-Ratio = 11.508125
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Sending offset = 68 to master !
+Sending rows = 34 to master !
+Sending result vector partition to master!
+Sent results to master 
+MSG: 58 Done.
+Avg-Compute-Communication-Ratio = 11.507900
+
+******************************************************
+Received vector X and V from master 
+Called SetLoopLookahead: init: 0, final: 16000, step: 8, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 125925
+Called SetLoopLookahead: init: 0, final: 34, step: 1, loopDepth: 1, cumulative-num-iterations: 68000, look-ahead-ns: 402962
+Called SetLoopLookahead: init: 0, final: 2000, step: 1, loopDepth: 2, cumulative-num-iterations: 136000000, look-ahead-ns: 302222208
+Exp finishing. Stopping stack thread with id: 6!
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6

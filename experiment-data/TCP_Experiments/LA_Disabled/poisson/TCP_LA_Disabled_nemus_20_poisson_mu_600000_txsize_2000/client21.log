@@ -1,0 +1,110 @@
+Attempting to set static arp entries ...
+Tracer: 1 >> Using SRC IP: 10.1.20.142 for any spawned virtual tcp-stacks
+Tracer: 1 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 1 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 21 10.1.20.214 7891 poisson 600000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_poisson_mu_600000_txsize_2000/client21.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+args[1] = client
+args[2] = 21
+args[3] = 10.1.20.214
+args[4] = 7891
+args[5] = poisson
+args[6] = 600000
+args[7] = 2000
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 1
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: -1911291638
+Starting VT-initialization !
+Tracer-ID: 1, Timeline-ID: 1
+Tracer registration for EXP_CS complete. TimelineID = 1, Return = 1
+Tracer Adding to SQ. Tracer ID = 1
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+File size: 592
+mapped memblock size: 592
+Finish offset: 70, Number of values: 70
+Returning success !
+Loaded BBL lookaheads for 70 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Failed to parse Loop Lookaheads. Ignoring ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 16
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Client: MyPid: 6
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Client socket fd = 4097
+setsockopt through vt-tcp !
+setsockopt through vt-tcp !
+Connecting to server ...
+Connecting .. Socket: 4097, src-port: 40001
+Waking up connected socket !
+Socket connect success. socket = 4097
+Connecting through vt-tcp success !
+Sending data ...
+Sending msgs of size: 1460 to server ...
+Sent: 2000 KB after: 0.145577 secs
+Sent: 2000 KB after: 0.056281 secs
+Sent: 2000 KB after: 0.232743 secs
+Sent: 2000 KB after: 0.549024 secs
+Sent: 2000 KB after: 1.522850 secs
+Sent: 2000 KB after: 0.005024 secs
+Sent: 2000 KB after: 0.172465 secs
+Sent: 2000 KB after: 0.707319 secs
+Sent: 2000 KB after: 0.266178 secs
+Sent: 2000 KB after: 1.039538 secs
+Sent: 2000 KB after: 0.075391 secs
+Sent: 2000 KB after: 0.486051 secs
+Sent: 2000 KB after: 0.290086 secs
+Sent: 2000 KB after: 0.204317 secs
+Sent: 2000 KB after: 1.041684 secs
+Sent: 2000 KB after: 0.222159 secs
+Sent: 2000 KB after: 1.173002 secs
+Sent: 2000 KB after: 0.680654 secs
+Sent: 2000 KB after: 0.023819 secs
+Sent: 2000 KB after: 0.020323 secs
+Sent: 2000 KB after: 0.062096 secs
+Sent: 2000 KB after: 0.218765 secs
+Sent: 2000 KB after: 0.117841 secs
+Sent: 2000 KB after: 0.274373 secs
+Sent: 2000 KB after: 0.063069 secs
+Exp finishing. Stopping stack thread with id: 6!
+VT-sleep-for exiting !
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6

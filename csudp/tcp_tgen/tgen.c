@@ -362,6 +362,7 @@ void tcp_server(char * server_ip, int server_port) {
       numMBs ++;
       numReceived = 0;
       printf("Server received: %d MBs of data\n", numMBs);
+      fflush(stdout);
     }
     
   }

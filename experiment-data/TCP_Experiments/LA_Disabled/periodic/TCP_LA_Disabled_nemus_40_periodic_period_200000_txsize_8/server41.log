@@ -1,0 +1,79 @@
+Attempting to set static arp entries ...
+Tracer: 21 >> Using SRC IP: 10.1.21.50 for any spawned virtual tcp-stacks
+Tracer: 21 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 21 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 41 10.1.21.50 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_40_periodic_period_200000_txsize_8/server41.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+args[1] = server
+args[2] = 41
+args[3] = 10.1.21.50
+args[4] = 7891
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 21
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: 840237322
+Starting VT-initialization !
+Tracer-ID: 21, Timeline-ID: 21
+Tracer registration for EXP_CS complete. TimelineID = 21, Return = 21
+Tracer Adding to SQ. Tracer ID = 21
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+File size: 592
+mapped memblock size: 592
+Finish offset: 70, Number of values: 70
+Returning success !
+Loaded BBL lookaheads for 70 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Failed to parse Loop Lookaheads. Ignoring ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 216
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Server: MyPid: 6
+Welcome socket fd = 4097
+setsockopt through vt-tcp !
+setsockopt through vt-tcp !
+Binding to server addr ...
+bind through vt-tcp !
+Listening for new connections ...
+listen through vt-tcp !
+Listening
+Accepting new connections ...
+Accept through vt-tcp !
+setsockopt through vt-tcp !
+New Socket fd = 4098
+Sending msgs of size: 1460 to client ...
+Exp finishing. Stopping stack thread with id: 6!

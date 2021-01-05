@@ -381,7 +381,7 @@ void LxcManager::SetEatSyncWindow() {
 			for (unsigned int j = 0; j < dependantTimelines[i].size(); j++) {
 				int currTL = dependantTimelines[i][j];
 				s64 currLA;
-				if (currTL == i)
+				if (currTL == i || timelineInTransitPktEATs[currTL] < 0)
 					continue;
 				if (timelineExclEATLookaheads[currTL] > 0) {
 					if (timelineInTransitPktEATs[currTL] > 0) {
@@ -692,6 +692,10 @@ void LxcManager::syncUpLXCs() {
 		if (p->dependantTimelines.size() == 0) {
 			for (int j = 0; j < siminf->get_numTimelines(); j++) {
 				if (timelineID != j) {
+					vector<LXC_Proxy*>* proxiesOnTimeline = listOfProxiesByTimeline[j];
+					if (proxiesOnTimeline->size() == 0) {// timeline is not emulated. skip
+						continue;
+					}
 					dependantTimelines[timelineID].push_back(j);
 				}
 			}

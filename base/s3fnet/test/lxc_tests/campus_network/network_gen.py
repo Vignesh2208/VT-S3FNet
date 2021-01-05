@@ -14,8 +14,8 @@ parser.add_argument('--fraction_servers', type=float, required=False,
                     help='Fraction of simulated hosts which are tcp servers',
                     default=0.1)
 parser.add_argument('--emu_flow_type', type=str, default='periodic')
-parser.add_argument('--emu_flow_period_us', type=int, default=100000)
-parser.add_argument('--emu_flow_mean_arrival_us', type=int, default=100000)
+parser.add_argument('--emu_flow_period_us', type=int, default=200000)
+parser.add_argument('--emu_flow_mean_arrival_us', type=int, default=200000)
 parser.add_argument('--transfer_size_kb', type=int, default=8)
 parser.add_argument('--transfer_rate_mbps', type=int, default=10)
 parser.add_argument('--run_time', type=int, default=10)
@@ -443,7 +443,9 @@ def get_lxc_cfg_string(params):
     logDir = params['logDir']
     settings_string = ""
 
-    cmd_count = 1
+    mixed_cfg = [('periodic', 8), ('poisson', 8), ('rate', 10), ('periodic', 256), ('poisson', 256), ('rate', 100), ('periodic', 2000),  ('poisson', 2000), ('rate', 1000), ('rate', 1)]
+
+    cmd_count = 0
     for lan_no in range(0, int(TOTAL_LANS/2)):
         dest_lan = (lan_no + int(TOTAL_LANS / 2))
 
@@ -458,14 +460,23 @@ def get_lxc_cfg_string(params):
                 cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 rate {txRateMbps} > {logDir}/client{cli_netid}.log"
             else:
                 # Mixed
-                if cmd_count % 3 == 1:
-                    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 periodic {periodUs} {txSizeKb} > {logDir}/client{cli_netid}.log"
-                elif cmd_count % 3 == 2:
-                    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 poisson {muArrivalUs} {txSizeKb} > {logDir}/client{cli_netid}.log"
+                cmd, param = mixed_cfg[cmd_count % len(mixed_cfg)]
+                if cmd == 'periodic':
+                    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 periodic {periodUs} {param} > {logDir}/client{cli_netid}.log"
+                elif cmd == 'poisson':
+                    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 poisson {muArrivalUs} {param} > {logDir}/client{cli_netid}.log"
                 else:
-                    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 rate {txRateMbps} > {logDir}/client{cli_netid}.log"
+                    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 rate {param} > {logDir}/client{cli_netid}.log"
 
-            cmd_count += 1
+
+                #if cmd_count % 3 == 1:
+                #    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 periodic {periodUs} {txSizeKb} > {logDir}/client{cli_netid}.log"
+                #elif cmd_count % 3 == 2:
+                #    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 poisson {muArrivalUs} {txSizeKb} > {logDir}/client{cli_netid}.log"
+                #else:
+                #    cliCmd = f"{tgenCmdPath} client {cli_netid} {server_netid}:0 7891 rate {txRateMbps} > {logDir}/client{cli_netid}.log"
+
+                cmd_count += 1
             cli_settings = f"""
         settings [ lxcNHI {cli_netid}:0 ttnProject "{ttnProject}" dependants "{dependantTl}" cmd "{cliCmd}" ]"""
             settings_string += cli_settings
@@ -564,7 +575,8 @@ def main():
         elif args.emu_flow_type == 'rate':
             log_dir = f"TCP_{lookahead_status}_nemus_{total_num_timelines - 1}_ratelim_rate_{args.transfer_rate_mbps}"
         else:
-            log_dir = f"TCP_{lookahead_status}_nemus_{total_num_timelines - 1}_mixed_period_{args.emu_flow_period_us}_mu_{args.emu_flow_mean_arrival_us}_txsize_{args.transfer_size_kb}_rate_{args.transfer_rate_mbps}"
+            #log_dir = f"TCP_{lookahead_status}_nemus_{total_num_timelines - 1}_mixed_period_{args.emu_flow_period_us}_mu_{args.emu_flow_mean_arrival_us}_txsize_{args.transfer_size_kb}_rate_{args.transfer_rate_mbps}"
+            log_dir = f"TCP_{lookahead_status}_nemus_{total_num_timelines - 1}_mixed"
     else:
         log_dir = "TCP_FullSim"
 

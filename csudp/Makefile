@@ -4,11 +4,22 @@ udp:
 	cp udp_client/client /usr/bin/s3fudpclient
 	cp udp_server/server /usr/bin/s3fudpserver
 
-mpi_test:
-	clang -O1 -g mpi_mm/mpi_mm.c -lvtllogic -o mpi_mm/mpi_test
-	cp mpi_mm/mpi_test /usr/bin/mpi_test
-	sudo setcap cap_net_admin,cap_net_raw=eip /usr/bin/mpi_test
-	sudo setcap cap_net_admin,cap_net_raw=eip mpi_mm/mpi_test
+
+mpi_mat:
+	clang -O1 -g mpi_matrix/mpi_mm.c -lvtllogic -o mpi_matrix/mpi_mm
+	sudo setcap cap_net_admin,cap_net_raw=eip mpi_matrix/mpi_mm
+
+mpi_int:
+	clang -O1 -g mpi_integral/mpi_int.c -lvtllogic -lm -o mpi_integral/mpi_int
+	sudo setcap cap_net_admin,cap_net_raw=eip mpi_integral/mpi_int
+
+mpi_csat:
+	clang -O1 -g mpi_sat/mpi_csat.c -lvtllogic -o mpi_sat/mpi_csat
+	sudo setcap cap_net_admin,cap_net_raw=eip mpi_sat/mpi_csat
+
+mpi_inf_norm:
+	clang -O1 -g mpi_norm/mpi_norm.c -lvtllogic -o mpi_norm/mpi_norm
+	sudo setcap cap_net_admin,cap_net_raw=eip mpi_norm/mpi_norm
 
 tgen:
 	clang -O1 -g tcp_tgen/tgen.c -lvtllogic -lm -o tcp_tgen/tgen
@@ -41,8 +52,6 @@ tcp_test:
 	sudo setcap cap_net_admin,cap_net_raw=eip tcp/tcp_test
 
 clean:
-	rm -f mpi_mm/mpi_test > /dev/null
-	rm -f /usr/bin/mpi_test > /dev/null
 	rm -f udp/udp_test > /dev/null
 	rm -f udp_client/client > /dev/null
 	rm -f udp_server/server > /dev/null
@@ -57,3 +66,7 @@ clean:
 	rm -f /usr/bin/udp_rate_test > /dev/null
 	rm -f tcp_tgen/tgen > /dev/null
 	rm -f /usr/bin/tgen > /dev/null
+	rm -f mpi_matrix/mpi_mat > /dev/null
+	rm -f mpi_integral/mpi_int > /dev/null
+	rm -f mpi_norm/mpi_norm > /dev/null
+	rm -f mpi_sat/mpi_csat > /dev/null

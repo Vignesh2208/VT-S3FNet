@@ -1,12 +1,12 @@
 
-total_timeline 21	
+total_timeline 101	
 tick_per_second 6	
 run_time 10.1
 seed 1	
-log_dir "TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8"		
+log_dir "TCP_LA_Enabled_nemus_100_mixed"		
 virtual_time_manager "TITAN"
 max_lookahead_us 1000
-enable_lookahead 0
+enable_lookahead 1
 
 Net [
 
@@ -15,26 +15,106 @@ Net [
     lxcConfig
 	[
         
-        settings [ lxcNHI 21:0 ttnProject "tcp_tgen" dependants "11" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 21 31:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client21.log" ]
-        settings [ lxcNHI 31:0 ttnProject "tcp_tgen" dependants "1" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 31 31:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server31.log" ]
-        settings [ lxcNHI 22:0 ttnProject "tcp_tgen" dependants "12" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 22 32:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client22.log" ]
-        settings [ lxcNHI 32:0 ttnProject "tcp_tgen" dependants "2" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 32 32:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server32.log" ]
-        settings [ lxcNHI 23:0 ttnProject "tcp_tgen" dependants "13" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 23 33:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client23.log" ]
-        settings [ lxcNHI 33:0 ttnProject "tcp_tgen" dependants "3" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 33 33:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server33.log" ]
-        settings [ lxcNHI 24:0 ttnProject "tcp_tgen" dependants "14" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 24 34:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client24.log" ]
-        settings [ lxcNHI 34:0 ttnProject "tcp_tgen" dependants "4" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 34 34:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server34.log" ]
-        settings [ lxcNHI 25:0 ttnProject "tcp_tgen" dependants "15" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 25 35:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client25.log" ]
-        settings [ lxcNHI 35:0 ttnProject "tcp_tgen" dependants "5" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 35 35:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server35.log" ]
-        settings [ lxcNHI 26:0 ttnProject "tcp_tgen" dependants "16" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 26 36:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client26.log" ]
-        settings [ lxcNHI 36:0 ttnProject "tcp_tgen" dependants "6" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 36 36:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server36.log" ]
-        settings [ lxcNHI 27:0 ttnProject "tcp_tgen" dependants "17" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 27 37:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client27.log" ]
-        settings [ lxcNHI 37:0 ttnProject "tcp_tgen" dependants "7" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 37 37:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server37.log" ]
-        settings [ lxcNHI 28:0 ttnProject "tcp_tgen" dependants "18" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 28 38:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client28.log" ]
-        settings [ lxcNHI 38:0 ttnProject "tcp_tgen" dependants "8" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 38 38:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server38.log" ]
-        settings [ lxcNHI 29:0 ttnProject "tcp_tgen" dependants "19" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 29 39:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client29.log" ]
-        settings [ lxcNHI 39:0 ttnProject "tcp_tgen" dependants "9" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 39 39:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server39.log" ]
-        settings [ lxcNHI 30:0 ttnProject "tcp_tgen" dependants "20" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 30 40:0 7891 periodic 1000000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/client30.log" ]
-        settings [ lxcNHI 40:0 ttnProject "tcp_tgen" dependants "10" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 40 40:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_20_periodic_period_1000000_txsize_8/server40.log" ]
+        settings [ lxcNHI 21:0 ttnProject "tcp_tgen" dependants "51" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 21 71:0 7891 periodic 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client21.log" ]
+        settings [ lxcNHI 22:0 ttnProject "tcp_tgen" dependants "52" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 22 72:0 7891 poisson 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client22.log" ]
+        settings [ lxcNHI 23:0 ttnProject "tcp_tgen" dependants "53" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 23 73:0 7891 rate 10 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client23.log" ]
+        settings [ lxcNHI 24:0 ttnProject "tcp_tgen" dependants "54" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 24 74:0 7891 periodic 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client24.log" ]
+        settings [ lxcNHI 25:0 ttnProject "tcp_tgen" dependants "55" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 25 75:0 7891 poisson 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client25.log" ]
+        settings [ lxcNHI 71:0 ttnProject "tcp_tgen" dependants "1" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 71 71:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server71.log" ]
+        settings [ lxcNHI 72:0 ttnProject "tcp_tgen" dependants "2" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 72 72:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server72.log" ]
+        settings [ lxcNHI 73:0 ttnProject "tcp_tgen" dependants "3" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 73 73:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server73.log" ]
+        settings [ lxcNHI 74:0 ttnProject "tcp_tgen" dependants "4" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 74 74:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server74.log" ]
+        settings [ lxcNHI 75:0 ttnProject "tcp_tgen" dependants "5" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 75 75:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server75.log" ]
+        settings [ lxcNHI 26:0 ttnProject "tcp_tgen" dependants "56" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 26 76:0 7891 rate 100 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client26.log" ]
+        settings [ lxcNHI 27:0 ttnProject "tcp_tgen" dependants "57" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 27 77:0 7891 periodic 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client27.log" ]
+        settings [ lxcNHI 28:0 ttnProject "tcp_tgen" dependants "58" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 28 78:0 7891 poisson 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client28.log" ]
+        settings [ lxcNHI 29:0 ttnProject "tcp_tgen" dependants "59" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 29 79:0 7891 rate 1000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client29.log" ]
+        settings [ lxcNHI 30:0 ttnProject "tcp_tgen" dependants "60" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 30 80:0 7891 rate 1 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client30.log" ]
+        settings [ lxcNHI 76:0 ttnProject "tcp_tgen" dependants "6" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 76 76:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server76.log" ]
+        settings [ lxcNHI 77:0 ttnProject "tcp_tgen" dependants "7" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 77 77:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server77.log" ]
+        settings [ lxcNHI 78:0 ttnProject "tcp_tgen" dependants "8" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 78 78:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server78.log" ]
+        settings [ lxcNHI 79:0 ttnProject "tcp_tgen" dependants "9" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 79 79:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server79.log" ]
+        settings [ lxcNHI 80:0 ttnProject "tcp_tgen" dependants "10" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 80 80:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server80.log" ]
+        settings [ lxcNHI 31:0 ttnProject "tcp_tgen" dependants "61" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 31 81:0 7891 periodic 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client31.log" ]
+        settings [ lxcNHI 32:0 ttnProject "tcp_tgen" dependants "62" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 32 82:0 7891 poisson 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client32.log" ]
+        settings [ lxcNHI 33:0 ttnProject "tcp_tgen" dependants "63" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 33 83:0 7891 rate 10 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client33.log" ]
+        settings [ lxcNHI 34:0 ttnProject "tcp_tgen" dependants "64" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 34 84:0 7891 periodic 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client34.log" ]
+        settings [ lxcNHI 35:0 ttnProject "tcp_tgen" dependants "65" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 35 85:0 7891 poisson 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client35.log" ]
+        settings [ lxcNHI 81:0 ttnProject "tcp_tgen" dependants "11" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 81 81:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server81.log" ]
+        settings [ lxcNHI 82:0 ttnProject "tcp_tgen" dependants "12" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 82 82:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server82.log" ]
+        settings [ lxcNHI 83:0 ttnProject "tcp_tgen" dependants "13" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 83 83:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server83.log" ]
+        settings [ lxcNHI 84:0 ttnProject "tcp_tgen" dependants "14" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 84 84:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server84.log" ]
+        settings [ lxcNHI 85:0 ttnProject "tcp_tgen" dependants "15" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 85 85:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server85.log" ]
+        settings [ lxcNHI 36:0 ttnProject "tcp_tgen" dependants "66" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 36 86:0 7891 rate 100 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client36.log" ]
+        settings [ lxcNHI 37:0 ttnProject "tcp_tgen" dependants "67" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 37 87:0 7891 periodic 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client37.log" ]
+        settings [ lxcNHI 38:0 ttnProject "tcp_tgen" dependants "68" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 38 88:0 7891 poisson 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client38.log" ]
+        settings [ lxcNHI 39:0 ttnProject "tcp_tgen" dependants "69" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 39 89:0 7891 rate 1000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client39.log" ]
+        settings [ lxcNHI 40:0 ttnProject "tcp_tgen" dependants "70" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 40 90:0 7891 rate 1 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client40.log" ]
+        settings [ lxcNHI 86:0 ttnProject "tcp_tgen" dependants "16" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 86 86:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server86.log" ]
+        settings [ lxcNHI 87:0 ttnProject "tcp_tgen" dependants "17" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 87 87:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server87.log" ]
+        settings [ lxcNHI 88:0 ttnProject "tcp_tgen" dependants "18" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 88 88:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server88.log" ]
+        settings [ lxcNHI 89:0 ttnProject "tcp_tgen" dependants "19" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 89 89:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server89.log" ]
+        settings [ lxcNHI 90:0 ttnProject "tcp_tgen" dependants "20" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 90 90:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server90.log" ]
+        settings [ lxcNHI 41:0 ttnProject "tcp_tgen" dependants "71" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 41 91:0 7891 periodic 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client41.log" ]
+        settings [ lxcNHI 42:0 ttnProject "tcp_tgen" dependants "72" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 42 92:0 7891 poisson 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client42.log" ]
+        settings [ lxcNHI 43:0 ttnProject "tcp_tgen" dependants "73" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 43 93:0 7891 rate 10 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client43.log" ]
+        settings [ lxcNHI 44:0 ttnProject "tcp_tgen" dependants "74" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 44 94:0 7891 periodic 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client44.log" ]
+        settings [ lxcNHI 45:0 ttnProject "tcp_tgen" dependants "75" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 45 95:0 7891 poisson 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client45.log" ]
+        settings [ lxcNHI 91:0 ttnProject "tcp_tgen" dependants "21" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 91 91:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server91.log" ]
+        settings [ lxcNHI 92:0 ttnProject "tcp_tgen" dependants "22" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 92 92:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server92.log" ]
+        settings [ lxcNHI 93:0 ttnProject "tcp_tgen" dependants "23" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 93 93:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server93.log" ]
+        settings [ lxcNHI 94:0 ttnProject "tcp_tgen" dependants "24" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 94 94:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server94.log" ]
+        settings [ lxcNHI 95:0 ttnProject "tcp_tgen" dependants "25" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 95 95:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server95.log" ]
+        settings [ lxcNHI 46:0 ttnProject "tcp_tgen" dependants "76" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 46 96:0 7891 rate 100 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client46.log" ]
+        settings [ lxcNHI 47:0 ttnProject "tcp_tgen" dependants "77" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 47 97:0 7891 periodic 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client47.log" ]
+        settings [ lxcNHI 48:0 ttnProject "tcp_tgen" dependants "78" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 48 98:0 7891 poisson 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client48.log" ]
+        settings [ lxcNHI 49:0 ttnProject "tcp_tgen" dependants "79" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 49 99:0 7891 rate 1000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client49.log" ]
+        settings [ lxcNHI 50:0 ttnProject "tcp_tgen" dependants "80" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 50 100:0 7891 rate 1 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client50.log" ]
+        settings [ lxcNHI 96:0 ttnProject "tcp_tgen" dependants "26" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 96 96:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server96.log" ]
+        settings [ lxcNHI 97:0 ttnProject "tcp_tgen" dependants "27" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 97 97:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server97.log" ]
+        settings [ lxcNHI 98:0 ttnProject "tcp_tgen" dependants "28" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 98 98:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server98.log" ]
+        settings [ lxcNHI 99:0 ttnProject "tcp_tgen" dependants "29" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 99 99:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server99.log" ]
+        settings [ lxcNHI 100:0 ttnProject "tcp_tgen" dependants "30" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 100 100:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server100.log" ]
+        settings [ lxcNHI 51:0 ttnProject "tcp_tgen" dependants "81" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 51 101:0 7891 periodic 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client51.log" ]
+        settings [ lxcNHI 52:0 ttnProject "tcp_tgen" dependants "82" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 52 102:0 7891 poisson 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client52.log" ]
+        settings [ lxcNHI 53:0 ttnProject "tcp_tgen" dependants "83" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 53 103:0 7891 rate 10 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client53.log" ]
+        settings [ lxcNHI 54:0 ttnProject "tcp_tgen" dependants "84" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 54 104:0 7891 periodic 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client54.log" ]
+        settings [ lxcNHI 55:0 ttnProject "tcp_tgen" dependants "85" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 55 105:0 7891 poisson 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client55.log" ]
+        settings [ lxcNHI 101:0 ttnProject "tcp_tgen" dependants "31" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 101 101:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server101.log" ]
+        settings [ lxcNHI 102:0 ttnProject "tcp_tgen" dependants "32" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 102 102:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server102.log" ]
+        settings [ lxcNHI 103:0 ttnProject "tcp_tgen" dependants "33" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 103 103:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server103.log" ]
+        settings [ lxcNHI 104:0 ttnProject "tcp_tgen" dependants "34" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 104 104:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server104.log" ]
+        settings [ lxcNHI 105:0 ttnProject "tcp_tgen" dependants "35" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 105 105:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server105.log" ]
+        settings [ lxcNHI 56:0 ttnProject "tcp_tgen" dependants "86" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 56 106:0 7891 rate 100 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client56.log" ]
+        settings [ lxcNHI 57:0 ttnProject "tcp_tgen" dependants "87" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 57 107:0 7891 periodic 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client57.log" ]
+        settings [ lxcNHI 58:0 ttnProject "tcp_tgen" dependants "88" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 58 108:0 7891 poisson 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client58.log" ]
+        settings [ lxcNHI 59:0 ttnProject "tcp_tgen" dependants "89" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 59 109:0 7891 rate 1000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client59.log" ]
+        settings [ lxcNHI 60:0 ttnProject "tcp_tgen" dependants "90" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 60 110:0 7891 rate 1 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client60.log" ]
+        settings [ lxcNHI 106:0 ttnProject "tcp_tgen" dependants "36" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 106 106:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server106.log" ]
+        settings [ lxcNHI 107:0 ttnProject "tcp_tgen" dependants "37" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 107 107:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server107.log" ]
+        settings [ lxcNHI 108:0 ttnProject "tcp_tgen" dependants "38" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 108 108:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server108.log" ]
+        settings [ lxcNHI 109:0 ttnProject "tcp_tgen" dependants "39" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 109 109:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server109.log" ]
+        settings [ lxcNHI 110:0 ttnProject "tcp_tgen" dependants "40" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 110 110:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server110.log" ]
+        settings [ lxcNHI 61:0 ttnProject "tcp_tgen" dependants "91" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 61 111:0 7891 periodic 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client61.log" ]
+        settings [ lxcNHI 62:0 ttnProject "tcp_tgen" dependants "92" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 62 112:0 7891 poisson 200000 8 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client62.log" ]
+        settings [ lxcNHI 63:0 ttnProject "tcp_tgen" dependants "93" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 63 113:0 7891 rate 10 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client63.log" ]
+        settings [ lxcNHI 64:0 ttnProject "tcp_tgen" dependants "94" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 64 114:0 7891 periodic 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client64.log" ]
+        settings [ lxcNHI 65:0 ttnProject "tcp_tgen" dependants "95" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 65 115:0 7891 poisson 200000 256 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client65.log" ]
+        settings [ lxcNHI 111:0 ttnProject "tcp_tgen" dependants "41" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 111 111:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server111.log" ]
+        settings [ lxcNHI 112:0 ttnProject "tcp_tgen" dependants "42" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 112 112:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server112.log" ]
+        settings [ lxcNHI 113:0 ttnProject "tcp_tgen" dependants "43" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 113 113:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server113.log" ]
+        settings [ lxcNHI 114:0 ttnProject "tcp_tgen" dependants "44" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 114 114:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server114.log" ]
+        settings [ lxcNHI 115:0 ttnProject "tcp_tgen" dependants "45" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 115 115:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server115.log" ]
+        settings [ lxcNHI 66:0 ttnProject "tcp_tgen" dependants "96" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 66 116:0 7891 rate 100 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client66.log" ]
+        settings [ lxcNHI 67:0 ttnProject "tcp_tgen" dependants "97" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 67 117:0 7891 periodic 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client67.log" ]
+        settings [ lxcNHI 68:0 ttnProject "tcp_tgen" dependants "98" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 68 118:0 7891 poisson 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client68.log" ]
+        settings [ lxcNHI 69:0 ttnProject "tcp_tgen" dependants "99" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 69 119:0 7891 rate 1000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client69.log" ]
+        settings [ lxcNHI 70:0 ttnProject "tcp_tgen" dependants "100" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 70 120:0 7891 rate 1 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/client70.log" ]
+        settings [ lxcNHI 116:0 ttnProject "tcp_tgen" dependants "46" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 116 116:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server116.log" ]
+        settings [ lxcNHI 117:0 ttnProject "tcp_tgen" dependants "47" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 117 117:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server117.log" ]
+        settings [ lxcNHI 118:0 ttnProject "tcp_tgen" dependants "48" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 118 118:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server118.log" ]
+        settings [ lxcNHI 119:0 ttnProject "tcp_tgen" dependants "49" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 119 119:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server119.log" ]
+        settings [ lxcNHI 120:0 ttnProject "tcp_tgen" dependants "50" cmd "/home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen server 120 120:0 7891 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Enabled_nemus_100_mixed/server120.log" ]
     ]
     
 
@@ -4215,6 +4295,886 @@ Net [
         ]
     ]
             
+    Net 
+    [ 
+        id 41
+        alignment 21
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 42
+        alignment 22
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 43
+        alignment 23
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 44
+        alignment 24
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 45
+        alignment 25
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 46
+        alignment 26
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 47
+        alignment 27
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 48
+        alignment 28
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 49
+        alignment 29
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 50
+        alignment 30
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 51
+        alignment 31
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 52
+        alignment 32
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 53
+        alignment 33
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 54
+        alignment 34
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 55
+        alignment 35
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 56
+        alignment 36
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 57
+        alignment 37
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 58
+        alignment 38
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 59
+        alignment 39
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 60
+        alignment 40
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 61
+        alignment 41
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 62
+        alignment 42
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 63
+        alignment 43
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 64
+        alignment 44
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 65
+        alignment 45
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 66
+        alignment 46
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 67
+        alignment 47
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 68
+        alignment 48
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 69
+        alignment 49
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 70
+        alignment 50
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 71
+        alignment 51
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 72
+        alignment 52
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 73
+        alignment 53
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 74
+        alignment 54
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 75
+        alignment 55
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 76
+        alignment 56
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 77
+        alignment 57
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 78
+        alignment 58
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 79
+        alignment 59
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 80
+        alignment 60
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 81
+        alignment 61
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 82
+        alignment 62
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 83
+        alignment 63
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 84
+        alignment 64
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 85
+        alignment 65
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 86
+        alignment 66
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 87
+        alignment 67
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 88
+        alignment 68
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 89
+        alignment 69
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 90
+        alignment 70
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 91
+        alignment 71
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 92
+        alignment 72
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 93
+        alignment 73
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 94
+        alignment 74
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 95
+        alignment 75
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 96
+        alignment 76
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 97
+        alignment 77
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 98
+        alignment 78
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 99
+        alignment 79
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 100
+        alignment 80
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 101
+        alignment 81
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 102
+        alignment 82
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 103
+        alignment 83
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 104
+        alignment 84
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 105
+        alignment 85
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 106
+        alignment 86
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 107
+        alignment 87
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 108
+        alignment 88
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 109
+        alignment 89
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 110
+        alignment 90
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 111
+        alignment 91
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 112
+        alignment 92
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 113
+        alignment 93
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 114
+        alignment 94
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 115
+        alignment 95
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 116
+        alignment 96
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 117
+        alignment 97
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 118
+        alignment 98
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 119
+        alignment 99
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
+    Net 
+    [ 
+        id 120
+        alignment 100
+        host 
+        [ 
+            id 0
+            _extends .dict.emuHost
+        ]
+    ]
+            
 
     # Links between sim lan router and backbone network
 
@@ -4242,25 +5202,105 @@ Net [
     # Links between emu hosts and lan router
 
     link [ attach 21:0(0) attach 1:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 22:0(0) attach 2:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 23:0(0) attach 3:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 24:0(0) attach 4:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 25:0(0) attach 5:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 26:0(0) attach 6:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 27:0(0) attach 7:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 28:0(0) attach 8:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 29:0(0) attach 9:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 30:0(0) attach 10:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 31:0(0) attach 11:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 32:0(0) attach 12:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 33:0(0) attach 13:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 34:0(0) attach 14:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 35:0(0) attach 15:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 36:0(0) attach 16:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 37:0(0) attach 17:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 38:0(0) attach 18:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 39:0(0) attach 19:0(1) _extends .dict.link_delay_1us ]
-    link [ attach 40:0(0) attach 20:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 22:0(0) attach 1:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 23:0(0) attach 1:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 24:0(0) attach 1:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 25:0(0) attach 1:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 26:0(0) attach 2:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 27:0(0) attach 2:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 28:0(0) attach 2:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 29:0(0) attach 2:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 30:0(0) attach 2:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 31:0(0) attach 3:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 32:0(0) attach 3:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 33:0(0) attach 3:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 34:0(0) attach 3:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 35:0(0) attach 3:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 36:0(0) attach 4:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 37:0(0) attach 4:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 38:0(0) attach 4:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 39:0(0) attach 4:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 40:0(0) attach 4:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 41:0(0) attach 5:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 42:0(0) attach 5:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 43:0(0) attach 5:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 44:0(0) attach 5:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 45:0(0) attach 5:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 46:0(0) attach 6:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 47:0(0) attach 6:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 48:0(0) attach 6:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 49:0(0) attach 6:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 50:0(0) attach 6:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 51:0(0) attach 7:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 52:0(0) attach 7:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 53:0(0) attach 7:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 54:0(0) attach 7:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 55:0(0) attach 7:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 56:0(0) attach 8:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 57:0(0) attach 8:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 58:0(0) attach 8:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 59:0(0) attach 8:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 60:0(0) attach 8:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 61:0(0) attach 9:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 62:0(0) attach 9:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 63:0(0) attach 9:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 64:0(0) attach 9:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 65:0(0) attach 9:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 66:0(0) attach 10:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 67:0(0) attach 10:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 68:0(0) attach 10:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 69:0(0) attach 10:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 70:0(0) attach 10:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 71:0(0) attach 11:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 72:0(0) attach 11:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 73:0(0) attach 11:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 74:0(0) attach 11:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 75:0(0) attach 11:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 76:0(0) attach 12:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 77:0(0) attach 12:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 78:0(0) attach 12:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 79:0(0) attach 12:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 80:0(0) attach 12:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 81:0(0) attach 13:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 82:0(0) attach 13:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 83:0(0) attach 13:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 84:0(0) attach 13:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 85:0(0) attach 13:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 86:0(0) attach 14:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 87:0(0) attach 14:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 88:0(0) attach 14:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 89:0(0) attach 14:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 90:0(0) attach 14:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 91:0(0) attach 15:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 92:0(0) attach 15:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 93:0(0) attach 15:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 94:0(0) attach 15:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 95:0(0) attach 15:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 96:0(0) attach 16:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 97:0(0) attach 16:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 98:0(0) attach 16:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 99:0(0) attach 16:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 100:0(0) attach 16:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 101:0(0) attach 17:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 102:0(0) attach 17:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 103:0(0) attach 17:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 104:0(0) attach 17:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 105:0(0) attach 17:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 106:0(0) attach 18:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 107:0(0) attach 18:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 108:0(0) attach 18:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 109:0(0) attach 18:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 110:0(0) attach 18:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 111:0(0) attach 19:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 112:0(0) attach 19:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 113:0(0) attach 19:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 114:0(0) attach 19:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 115:0(0) attach 19:0(5) _extends .dict.link_delay_1us ]
+    link [ attach 116:0(0) attach 20:0(1) _extends .dict.link_delay_1us ]
+    link [ attach 117:0(0) attach 20:0(2) _extends .dict.link_delay_1us ]
+    link [ attach 118:0(0) attach 20:0(3) _extends .dict.link_delay_1us ]
+    link [ attach 119:0(0) attach 20:0(4) _extends .dict.link_delay_1us ]
+    link [ attach 120:0(0) attach 20:0(5) _extends .dict.link_delay_1us ]
 
 ]
     
