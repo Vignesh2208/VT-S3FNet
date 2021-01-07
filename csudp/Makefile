@@ -6,16 +6,22 @@ udp:
 
 
 mpi_mat:
+	${HOME}/Titan/tools/ttn/ttn.sh activate -p mpi_mat
 	clang -O1 -g mpi_matrix/mpi_mm.c -lvtllogic -o mpi_matrix/mpi_mm
 	sudo setcap cap_net_admin,cap_net_raw=eip mpi_matrix/mpi_mm
+	${HOME}/Titan/tools/ttn/ttn.sh extract -p mpi_mat
 
 mpi_int:
+	${HOME}/Titan/tools/ttn/ttn.sh activate -p mpi_int
 	clang -O1 -g mpi_integral/mpi_int.c -lvtllogic -lm -o mpi_integral/mpi_int
 	sudo setcap cap_net_admin,cap_net_raw=eip mpi_integral/mpi_int
+	${HOME}/Titan/tools/ttn/ttn.sh extract -p mpi_int
 
 mpi_csat:
+	${HOME}/Titan/tools/ttn/ttn.sh activate -p mpi_sat
 	clang -O1 -g mpi_sat/mpi_csat.c -lvtllogic -o mpi_sat/mpi_csat
 	sudo setcap cap_net_admin,cap_net_raw=eip mpi_sat/mpi_csat
+	${HOME}/Titan/tools/ttn/ttn.sh extract -p mpi_sat
 
 mpi_inf_norm:
 	clang -O1 -g mpi_norm/mpi_norm.c -lvtllogic -o mpi_norm/mpi_norm

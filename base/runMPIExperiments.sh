@@ -6,8 +6,9 @@ TEST_DIR=$S3FNET_DIR/s3fnet/test/lxc_tests/fat_tree
 TITAN_DIR=$HOME/Titan
 
 
-declare -a mpiType=("sat")
-declare -a NumEmuHosts=(21 41 61 81 101)
+declare -a mpiType=("int")
+#declare -a NumEmuHosts=(21 41 61 81 101)
+declare -a NumEmuHosts=(21)
 
 cd $TITAN_DIR
 sudo make unload

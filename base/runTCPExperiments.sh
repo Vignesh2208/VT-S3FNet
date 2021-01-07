@@ -7,58 +7,58 @@ TITAN_DIR=$HOME/Titan
 
 #declare -a Periods=(200000 400000 600000 800000 1000000)
 #declare -a MuArrivals=(200000 400000 600000 800000 1000000)
+
 declare -a Periods=(200000)
 declare -a MuArrivals=(200000)
-#declare -a Rates=(10 100 1000)
-declare -a Rates=(1)
+declare -a Rates=(1 10 100 1000)
 declare -a TxSizes=(8 256 2000)
-declare -a NumEmuHostsPerLan=(1 2 3 4 5)
+declare -a NumEmuHostsPerLan=(4)
 
 
 cd $TITAN_DIR
 sudo make unload
 sudo make load
 
-#for numEmuPerLan in ${NumEmuHostsPerLan[@]}; do
-#   for period in ${Periods[@]}; do
-#      for txSize in ${TxSizes[@]}; do
-#         echo "Starting TCP Periodic experiment .... "
-#         echo "Num Emulated Hosts Per LAN = " $numEmuPerLan
-#         echo "Period (us) = " $period
-#         echo "TxSize (kb) = " $txSize
-#         cd $TEST_DIR
-#         python network_gen.py --num_emu_hosts_per_lan=$numEmuPerLan --emu_flow_type=periodic --emu_flow_period_us=$period --transfer_size_kb=$txSize --enable_lookahead=$ENABLE_LOOKAHEAD 
-#         cd $S3FNET_DIR
-#         sudo make campus_run
-#         cd $TITAN_DIR
-#         sudo make unload
-#         sudo make load
-#         echo 'Waiting 10 seconds ....'
-#         sleep 10
-#      done 
-#   done
-#done
+for numEmuPerLan in ${NumEmuHostsPerLan[@]}; do
+   for period in ${Periods[@]}; do
+      for txSize in ${TxSizes[@]}; do
+         echo "Starting TCP Periodic experiment .... "
+         echo "Num Emulated Hosts Per LAN = " $numEmuPerLan
+         echo "Period (us) = " $period
+         echo "TxSize (kb) = " $txSize
+         cd $TEST_DIR
+         python network_gen.py --num_emu_hosts_per_lan=$numEmuPerLan --emu_flow_type=periodic --emu_flow_period_us=$period --transfer_size_kb=$txSize --enable_lookahead=$ENABLE_LOOKAHEAD 
+         cd $S3FNET_DIR
+         sudo make campus_run
+         cd $TITAN_DIR
+         sudo make unload
+         sudo make load
+         echo 'Waiting 10 seconds ....'
+         sleep 10
+      done 
+   done
+done
 
 
-#for numEmuPerLan in ${NumEmuHostsPerLan[@]}; do
-#   for mu in ${MuArrivals[@]}; do
-#      for txSize in ${TxSizes[@]}; do
-#         echo "Starting TCP Poisson experiment .... "
-#         echo "Num Emulated Hosts Per LAN = " $numEmuPerLan
-#         echo "MuArrivals (us) = " $mu
-#         echo "TxSize (kb) = " $txSize
-#         cd $TEST_DIR
-#         python network_gen.py --num_emu_hosts_per_lan=$numEmuPerLan --emu_flow_type=poisson --emu_flow_mean_arrival_us=$mu --transfer_size_kb=$txSize --enable_lookahead=$ENABLE_LOOKAHEAD
-#         cd $S3FNET_DIR 
-#         sudo make campus_run
-#         cd $TITAN_DIR
-#         sudo make unload
-#         sudo make load
-#         echo 'Waiting 10 seconds ....'
-#         sleep 10
-#      done 
-#   done
-#done
+for numEmuPerLan in ${NumEmuHostsPerLan[@]}; do
+   for mu in ${MuArrivals[@]}; do
+      for txSize in ${TxSizes[@]}; do
+         echo "Starting TCP Poisson experiment .... "
+         echo "Num Emulated Hosts Per LAN = " $numEmuPerLan
+         echo "MuArrivals (us) = " $mu
+         echo "TxSize (kb) = " $txSize
+         cd $TEST_DIR
+         python network_gen.py --num_emu_hosts_per_lan=$numEmuPerLan --emu_flow_type=poisson --emu_flow_mean_arrival_us=$mu --transfer_size_kb=$txSize --enable_lookahead=$ENABLE_LOOKAHEAD
+         cd $S3FNET_DIR 
+         sudo make campus_run
+         cd $TITAN_DIR
+         sudo make unload
+         sudo make load
+         echo 'Waiting 10 seconds ....'
+         sleep 10
+      done 
+   done
+done
 
 
 for numEmuPerLan in ${NumEmuHostsPerLan[@]}; do
