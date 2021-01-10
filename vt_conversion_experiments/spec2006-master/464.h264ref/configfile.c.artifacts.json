@@ -1,0 +1,4427 @@
+{
+  "CeilLog2": {
+    "bbls": {
+      "322": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          324,
+          323
+        ],
+        "weight": 1
+      },
+      "323": {
+        "called_fns": [],
+        "in_edges": [
+          322
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "324": {
+        "called_fns": [],
+        "in_edges": [
+          322
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 322,
+    "loops": {},
+    "returning_blocks": [
+      323,
+      324
+    ]
+  },
+  "Configure": {
+    "bbls": {
+      "10": {
+        "called_fns": [],
+        "in_edges": [
+          2,
+          6
+        ],
+        "out_edges": [
+          11,
+          12
+        ],
+        "weight": 1
+      },
+      "100": {
+        "called_fns": [
+          "fopen",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          99
+        ],
+        "out_edges": [
+          101,
+          102
+        ],
+        "weight": 3
+      },
+      "101": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          100
+        ],
+        "out_edges": [
+          102
+        ],
+        "weight": 5
+      },
+      "102": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          99,
+          100,
+          101
+        ],
+        "out_edges": [
+          103,
+          104
+        ],
+        "weight": 9
+      },
+      "103": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          102
+        ],
+        "out_edges": [
+          135,
+          104
+        ],
+        "weight": 1
+      },
+      "104": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          102,
+          103
+        ],
+        "out_edges": [
+          106,
+          105
+        ],
+        "weight": 1
+      },
+      "105": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          104
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 3
+      },
+      "106": {
+        "called_fns": [],
+        "in_edges": [
+          104,
+          105
+        ],
+        "out_edges": [
+          109,
+          107
+        ],
+        "weight": 3
+      },
+      "107": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          106
+        ],
+        "out_edges": [
+          108
+        ],
+        "weight": 2
+      },
+      "108": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          107,
+          136
+        ],
+        "out_edges": [
+          111
+        ],
+        "weight": 2
+      },
+      "109": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          106
+        ],
+        "out_edges": [
+          110
+        ],
+        "weight": 1
+      },
+      "11": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strncmp"
+        ],
+        "in_edges": [
+          10
+        ],
+        "out_edges": [
+          262,
+          15
+        ],
+        "weight": 3
+      },
+      "110": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          109,
+          135
+        ],
+        "out_edges": [
+          112,
+          111
+        ],
+        "weight": 3
+      },
+      "111": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "printf",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          108,
+          110
+        ],
+        "out_edges": [
+          112
+        ],
+        "weight": 5
+      },
+      "112": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          110,
+          111
+        ],
+        "out_edges": [
+          147,
+          113
+        ],
+        "weight": 1
+      },
+      "113": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          112
+        ],
+        "out_edges": [
+          147,
+          114
+        ],
+        "weight": 1
+      },
+      "114": {
+        "called_fns": [],
+        "in_edges": [
+          113
+        ],
+        "out_edges": [
+          115,
+          147
+        ],
+        "weight": 1
+      },
+      "115": {
+        "called_fns": [
+          "strlen"
+        ],
+        "in_edges": [
+          114
+        ],
+        "out_edges": [
+          125,
+          116
+        ],
+        "weight": 1
+      },
+      "116": {
+        "called_fns": [
+          "fopen",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          115
+        ],
+        "out_edges": [
+          137,
+          117
+        ],
+        "weight": 3
+      },
+      "117": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          116
+        ],
+        "out_edges": [
+          126,
+          118
+        ],
+        "weight": 1
+      },
+      "118": {
+        "called_fns": [],
+        "in_edges": [
+          125,
+          117
+        ],
+        "out_edges": [
+          138,
+          119
+        ],
+        "weight": 1
+      },
+      "119": {
+        "called_fns": [],
+        "in_edges": [
+          118
+        ],
+        "out_edges": [
+          120,
+          146
+        ],
+        "weight": 1
+      },
+      "12": {
+        "called_fns": [],
+        "in_edges": [
+          10
+        ],
+        "out_edges": [
+          13,
+          15
+        ],
+        "weight": 1
+      },
+      "120": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "malloc",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          119
+        ],
+        "out_edges": [
+          121,
+          122
+        ],
+        "weight": 3
+      },
+      "121": {
+        "called_fns": [
+          "no_mem_exit",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          120
+        ],
+        "out_edges": [
+          122
+        ],
+        "weight": 2
+      },
+      "122": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          120,
+          121
+        ],
+        "out_edges": [
+          146,
+          123
+        ],
+        "weight": 1
+      },
+      "123": {
+        "called_fns": [],
+        "in_edges": [
+          122
+        ],
+        "out_edges": [
+          124
+        ],
+        "weight": 1
+      },
+      "124": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "__isoc99_fscanf",
+          "__isoc99_fscanf",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          123,
+          124
+        ],
+        "out_edges": [
+          124,
+          146
+        ],
+        "weight": 9
+      },
+      "125": {
+        "called_fns": [],
+        "in_edges": [
+          115
+        ],
+        "out_edges": [
+          126,
+          118
+        ],
+        "weight": 1
+      },
+      "126": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          125,
+          117
+        ],
+        "out_edges": [
+          127,
+          128
+        ],
+        "weight": 1
+      },
+      "127": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          126
+        ],
+        "out_edges": [
+          128
+        ],
+        "weight": 1
+      },
+      "128": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "malloc",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          126,
+          127
+        ],
+        "out_edges": [
+          129,
+          130
+        ],
+        "weight": 23
+      },
+      "129": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          128
+        ],
+        "out_edges": [
+          130
+        ],
+        "weight": 1
+      },
+      "13": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strncmp"
+        ],
+        "in_edges": [
+          12
+        ],
+        "out_edges": [
+          16,
+          14
+        ],
+        "weight": 3
+      },
+      "130": {
+        "called_fns": [],
+        "in_edges": [
+          128,
+          129
+        ],
+        "out_edges": [
+          131,
+          145
+        ],
+        "weight": 1
+      },
+      "131": {
+        "called_fns": [],
+        "in_edges": [
+          130
+        ],
+        "out_edges": [
+          133
+        ],
+        "weight": 4
+      },
+      "132": {
+        "called_fns": [
+          "__isoc99_fscanf"
+        ],
+        "in_edges": [
+          133,
+          134
+        ],
+        "out_edges": [
+          145,
+          133
+        ],
+        "weight": 3
+      },
+      "133": {
+        "called_fns": [
+          "__isoc99_fscanf",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          131,
+          132
+        ],
+        "out_edges": [
+          134,
+          132
+        ],
+        "weight": 11
+      },
+      "134": {
+        "called_fns": [
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          133
+        ],
+        "out_edges": [
+          132
+        ],
+        "weight": 4
+      },
+      "135": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          103
+        ],
+        "out_edges": [
+          110,
+          136
+        ],
+        "weight": 4
+      },
+      "136": {
+        "called_fns": [],
+        "in_edges": [
+          135
+        ],
+        "out_edges": [
+          108
+        ],
+        "weight": 1
+      },
+      "137": {
+        "called_fns": [
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          116
+        ],
+        "out_edges": [
+          147
+        ],
+        "weight": 4
+      },
+      "138": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "malloc",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "malloc",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          118
+        ],
+        "out_edges": [
+          139,
+          140
+        ],
+        "weight": 7
+      },
+      "139": {
+        "called_fns": [
+          "no_mem_exit",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          138
+        ],
+        "out_edges": [
+          140
+        ],
+        "weight": 2
+      },
+      "14": {
+        "called_fns": [],
+        "in_edges": [
+          13
+        ],
+        "out_edges": [
+          17
+        ],
+        "weight": 1
+      },
+      "140": {
+        "called_fns": [],
+        "in_edges": [
+          138,
+          139
+        ],
+        "out_edges": [
+          141,
+          142
+        ],
+        "weight": 1
+      },
+      "141": {
+        "called_fns": [
+          "no_mem_exit",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          140
+        ],
+        "out_edges": [
+          142
+        ],
+        "weight": 2
+      },
+      "142": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          140,
+          141
+        ],
+        "out_edges": [
+          143,
+          146
+        ],
+        "weight": 1
+      },
+      "143": {
+        "called_fns": [],
+        "in_edges": [
+          142
+        ],
+        "out_edges": [
+          144
+        ],
+        "weight": 1
+      },
+      "144": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "__isoc99_fscanf",
+          "__isoc99_fscanf",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "__isoc99_fscanf",
+          "__isoc99_fscanf",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          143,
+          144
+        ],
+        "out_edges": [
+          144,
+          146
+        ],
+        "weight": 16
+      },
+      "145": {
+        "called_fns": [],
+        "in_edges": [
+          130,
+          132
+        ],
+        "out_edges": [
+          146
+        ],
+        "weight": 1
+      },
+      "146": {
+        "called_fns": [
+          "fclose"
+        ],
+        "in_edges": [
+          119,
+          145,
+          142,
+          144,
+          122,
+          124
+        ],
+        "out_edges": [
+          147
+        ],
+        "weight": 1
+      },
+      "147": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          112,
+          113,
+          114,
+          137,
+          146
+        ],
+        "out_edges": [
+          152,
+          148
+        ],
+        "weight": 2
+      },
+      "148": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          147
+        ],
+        "out_edges": [
+          153,
+          149
+        ],
+        "weight": 1
+      },
+      "149": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          148
+        ],
+        "out_edges": [
+          150,
+          151
+        ],
+        "weight": 1
+      },
+      "15": {
+        "called_fns": [],
+        "in_edges": [
+          11,
+          12
+        ],
+        "out_edges": [
+          18
+        ],
+        "weight": 1
+      },
+      "150": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          149
+        ],
+        "out_edges": [
+          153,
+          151
+        ],
+        "weight": 1
+      },
+      "151": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          149,
+          150
+        ],
+        "out_edges": [
+          153
+        ],
+        "weight": 5
+      },
+      "152": {
+        "called_fns": [],
+        "in_edges": [
+          147
+        ],
+        "out_edges": [
+          153
+        ],
+        "weight": 1
+      },
+      "153": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          150,
+          151,
+          152,
+          148
+        ],
+        "out_edges": [
+          158,
+          154
+        ],
+        "weight": 1
+      },
+      "154": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          153
+        ],
+        "out_edges": [
+          158,
+          155
+        ],
+        "weight": 1
+      },
+      "155": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          154
+        ],
+        "out_edges": [
+          156,
+          157
+        ],
+        "weight": 1
+      },
+      "156": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          155
+        ],
+        "out_edges": [
+          158,
+          157
+        ],
+        "weight": 1
+      },
+      "157": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          155,
+          156
+        ],
+        "out_edges": [
+          158
+        ],
+        "weight": 5
+      },
+      "158": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          156,
+          157,
+          153,
+          154
+        ],
+        "out_edges": [
+          160,
+          159
+        ],
+        "weight": 1
+      },
+      "159": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          158
+        ],
+        "out_edges": [
+          160
+        ],
+        "weight": 4
+      },
+      "16": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          13
+        ],
+        "out_edges": [
+          17
+        ],
+        "weight": 1
+      },
+      "160": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          158,
+          159
+        ],
+        "out_edges": [
+          162,
+          161
+        ],
+        "weight": 1
+      },
+      "161": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          160
+        ],
+        "out_edges": [
+          162
+        ],
+        "weight": 4
+      },
+      "162": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          160,
+          161
+        ],
+        "out_edges": [
+          164,
+          163
+        ],
+        "weight": 1
+      },
+      "163": {
+        "called_fns": [],
+        "in_edges": [
+          162
+        ],
+        "out_edges": [
+          166,
+          167
+        ],
+        "weight": 1
+      },
+      "164": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          162
+        ],
+        "out_edges": [
+          167,
+          165
+        ],
+        "weight": 1
+      },
+      "165": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          164
+        ],
+        "out_edges": [
+          166,
+          167
+        ],
+        "weight": 6
+      },
+      "166": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          163,
+          165
+        ],
+        "out_edges": [
+          167
+        ],
+        "weight": 6
+      },
+      "167": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          164,
+          163,
+          166,
+          165
+        ],
+        "out_edges": [
+          169,
+          168
+        ],
+        "weight": 2
+      },
+      "168": {
+        "called_fns": [],
+        "in_edges": [
+          167
+        ],
+        "out_edges": [
+          169,
+          170
+        ],
+        "weight": 1
+      },
+      "169": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          167,
+          168
+        ],
+        "out_edges": [
+          170
+        ],
+        "weight": 5
+      },
+      "17": {
+        "called_fns": [
+          "strncmp"
+        ],
+        "in_edges": [
+          16,
+          14
+        ],
+        "out_edges": [
+          262,
+          18
+        ],
+        "weight": 2
+      },
+      "170": {
+        "called_fns": [],
+        "in_edges": [
+          169,
+          168
+        ],
+        "out_edges": [
+          171,
+          173
+        ],
+        "weight": 1
+      },
+      "171": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          170
+        ],
+        "out_edges": [
+          172,
+          173
+        ],
+        "weight": 1
+      },
+      "172": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          171
+        ],
+        "out_edges": [
+          173
+        ],
+        "weight": 5
+      },
+      "173": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          171,
+          172,
+          170
+        ],
+        "out_edges": [
+          174,
+          175
+        ],
+        "weight": 1
+      },
+      "174": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          173
+        ],
+        "out_edges": [
+          177,
+          175
+        ],
+        "weight": 1
+      },
+      "175": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          173,
+          174
+        ],
+        "out_edges": [
+          176,
+          177
+        ],
+        "weight": 1
+      },
+      "176": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          175
+        ],
+        "out_edges": [
+          177
+        ],
+        "weight": 4
+      },
+      "177": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          175,
+          176,
+          174
+        ],
+        "out_edges": [
+          180,
+          178
+        ],
+        "weight": 1
+      },
+      "178": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          177
+        ],
+        "out_edges": [
+          179,
+          180
+        ],
+        "weight": 1
+      },
+      "179": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          178
+        ],
+        "out_edges": [
+          180
+        ],
+        "weight": 5
+      },
+      "18": {
+        "called_fns": [
+          "printf",
+          "GetConfigFileContent"
+        ],
+        "in_edges": [
+          17,
+          15
+        ],
+        "out_edges": [
+          19,
+          20
+        ],
+        "weight": 3
+      },
+      "180": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          178,
+          179,
+          177
+        ],
+        "out_edges": [
+          182,
+          181
+        ],
+        "weight": 1
+      },
+      "181": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          180
+        ],
+        "out_edges": [
+          182,
+          184
+        ],
+        "weight": 1
+      },
+      "182": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          180,
+          181
+        ],
+        "out_edges": [
+          184,
+          183
+        ],
+        "weight": 1
+      },
+      "183": {
+        "called_fns": [
+          "printf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          182
+        ],
+        "out_edges": [
+          184
+        ],
+        "weight": 3
+      },
+      "184": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          182,
+          183,
+          181
+        ],
+        "out_edges": [
+          185,
+          187
+        ],
+        "weight": 1
+      },
+      "185": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          184
+        ],
+        "out_edges": [
+          186,
+          187
+        ],
+        "weight": 1
+      },
+      "186": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          185
+        ],
+        "out_edges": [
+          187
+        ],
+        "weight": 5
+      },
+      "187": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          185,
+          186,
+          184
+        ],
+        "out_edges": [
+          188,
+          190
+        ],
+        "weight": 1
+      },
+      "188": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          187
+        ],
+        "out_edges": [
+          189,
+          190
+        ],
+        "weight": 2
+      },
+      "189": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          188
+        ],
+        "out_edges": [
+          190
+        ],
+        "weight": 1
+      },
+      "19": {
+        "called_fns": [
+          "error"
+        ],
+        "in_edges": [
+          18
+        ],
+        "out_edges": [
+          20
+        ],
+        "weight": 1
+      },
+      "190": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          187,
+          188,
+          189
+        ],
+        "out_edges": [
+          193,
+          191
+        ],
+        "weight": 1
+      },
+      "191": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          190
+        ],
+        "out_edges": [
+          193,
+          192
+        ],
+        "weight": 18
+      },
+      "192": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          191
+        ],
+        "out_edges": [
+          193
+        ],
+        "weight": 4
+      },
+      "193": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          191,
+          192,
+          190
+        ],
+        "out_edges": [
+          199,
+          194
+        ],
+        "weight": 1
+      },
+      "194": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          193
+        ],
+        "out_edges": [
+          199,
+          195
+        ],
+        "weight": 1
+      },
+      "195": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          194
+        ],
+        "out_edges": [
+          199,
+          196
+        ],
+        "weight": 1
+      },
+      "196": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          195
+        ],
+        "out_edges": [
+          199,
+          197
+        ],
+        "weight": 1
+      },
+      "197": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          196
+        ],
+        "out_edges": [
+          199,
+          198
+        ],
+        "weight": 1
+      },
+      "198": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          197
+        ],
+        "out_edges": [
+          199
+        ],
+        "weight": 2
+      },
+      "199": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          197,
+          198,
+          193,
+          194,
+          195,
+          196
+        ],
+        "out_edges": [
+          200,
+          203
+        ],
+        "weight": 1
+      },
+      "2": {
+        "called_fns": [
+          "",
+          "puts",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          10,
+          3
+        ],
+        "weight": 7
+      },
+      "20": {
+        "called_fns": [
+          "strlen",
+          "ParseContent",
+          "putchar",
+          "free"
+        ],
+        "in_edges": [
+          18,
+          19
+        ],
+        "out_edges": [
+          21,
+          46
+        ],
+        "weight": 3
+      },
+      "200": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          199
+        ],
+        "out_edges": [
+          201,
+          203
+        ],
+        "weight": 1
+      },
+      "201": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          200
+        ],
+        "out_edges": [
+          202,
+          203
+        ],
+        "weight": 1
+      },
+      "202": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          201
+        ],
+        "out_edges": [
+          203
+        ],
+        "weight": 2
+      },
+      "203": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          201,
+          202,
+          199,
+          200
+        ],
+        "out_edges": [
+          208,
+          204
+        ],
+        "weight": 1
+      },
+      "204": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          203
+        ],
+        "out_edges": [
+          206,
+          205
+        ],
+        "weight": 1
+      },
+      "205": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          204
+        ],
+        "out_edges": [
+          208,
+          206
+        ],
+        "weight": 5
+      },
+      "206": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          204,
+          205
+        ],
+        "out_edges": [
+          207,
+          208
+        ],
+        "weight": 2
+      },
+      "207": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          206
+        ],
+        "out_edges": [
+          208
+        ],
+        "weight": 4
+      },
+      "208": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          205,
+          206,
+          207,
+          203
+        ],
+        "out_edges": [
+          211,
+          209
+        ],
+        "weight": 1
+      },
+      "209": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          208
+        ],
+        "out_edges": [
+          210,
+          211
+        ],
+        "weight": 2
+      },
+      "21": {
+        "called_fns": [],
+        "in_edges": [
+          20
+        ],
+        "out_edges": [
+          25
+        ],
+        "weight": 1
+      },
+      "210": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          209
+        ],
+        "out_edges": [
+          211
+        ],
+        "weight": 4
+      },
+      "211": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          209,
+          210,
+          208
+        ],
+        "out_edges": [
+          212,
+          214
+        ],
+        "weight": 1
+      },
+      "212": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          211
+        ],
+        "out_edges": [
+          213,
+          217
+        ],
+        "weight": 1
+      },
+      "213": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          212
+        ],
+        "out_edges": [
+          214
+        ],
+        "weight": 5
+      },
+      "214": {
+        "called_fns": [],
+        "in_edges": [
+          213,
+          211
+        ],
+        "out_edges": [
+          215,
+          217
+        ],
+        "weight": 1
+      },
+      "215": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          214
+        ],
+        "out_edges": [
+          216,
+          219
+        ],
+        "weight": 1
+      },
+      "216": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          215
+        ],
+        "out_edges": [
+          219,
+          217
+        ],
+        "weight": 5
+      },
+      "217": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          212,
+          216,
+          214
+        ],
+        "out_edges": [
+          219,
+          218
+        ],
+        "weight": 1
+      },
+      "218": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          217
+        ],
+        "out_edges": [
+          219
+        ],
+        "weight": 4
+      },
+      "219": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          215,
+          216,
+          217,
+          218
+        ],
+        "out_edges": [
+          234,
+          220
+        ],
+        "weight": 2
+      },
+      "22": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "GetConfigFileContent"
+        ],
+        "in_edges": [
+          26
+        ],
+        "out_edges": [
+          24,
+          23
+        ],
+        "weight": 3
+      },
+      "220": {
+        "called_fns": [],
+        "in_edges": [
+          219
+        ],
+        "out_edges": [
+          221,
+          234
+        ],
+        "weight": 1
+      },
+      "221": {
+        "called_fns": [],
+        "in_edges": [
+          234,
+          220
+        ],
+        "out_edges": [
+          222,
+          236
+        ],
+        "weight": 1
+      },
+      "222": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          221,
+          235
+        ],
+        "out_edges": [
+          224,
+          223
+        ],
+        "weight": 1
+      },
+      "223": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          222
+        ],
+        "out_edges": [
+          224
+        ],
+        "weight": 4
+      },
+      "224": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          222,
+          223
+        ],
+        "out_edges": [
+          226,
+          225
+        ],
+        "weight": 1
+      },
+      "225": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          224
+        ],
+        "out_edges": [
+          226
+        ],
+        "weight": 4
+      },
+      "226": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          224,
+          225
+        ],
+        "out_edges": [
+          228,
+          227
+        ],
+        "weight": 1
+      },
+      "227": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          226
+        ],
+        "out_edges": [
+          228
+        ],
+        "weight": 4
+      },
+      "228": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          226,
+          227
+        ],
+        "out_edges": [
+          230,
+          229
+        ],
+        "weight": 1
+      },
+      "229": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          228
+        ],
+        "out_edges": [
+          230
+        ],
+        "weight": 4
+      },
+      "23": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "printf",
+          "strlen",
+          "ParseContent",
+          "putchar",
+          "free"
+        ],
+        "in_edges": [
+          22,
+          24
+        ],
+        "out_edges": [
+          25,
+          46
+        ],
+        "weight": 6
+      },
+      "230": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          228,
+          229
+        ],
+        "out_edges": [
+          232,
+          231
+        ],
+        "weight": 1
+      },
+      "231": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          230
+        ],
+        "out_edges": [
+          232
+        ],
+        "weight": 4
+      },
+      "232": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          230,
+          231
+        ],
+        "out_edges": [
+          233,
+          236
+        ],
+        "weight": 1
+      },
+      "233": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          232
+        ],
+        "out_edges": [
+          236
+        ],
+        "weight": 4
+      },
+      "234": {
+        "called_fns": [],
+        "in_edges": [
+          219,
+          220
+        ],
+        "out_edges": [
+          221,
+          235
+        ],
+        "weight": 1
+      },
+      "235": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          234
+        ],
+        "out_edges": [
+          222,
+          236
+        ],
+        "weight": 6
+      },
+      "236": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          232,
+          233,
+          221,
+          235
+        ],
+        "out_edges": [
+          237,
+          245
+        ],
+        "weight": 1
+      },
+      "237": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          236
+        ],
+        "out_edges": [
+          239,
+          238
+        ],
+        "weight": 1
+      },
+      "238": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          237
+        ],
+        "out_edges": [
+          239
+        ],
+        "weight": 3
+      },
+      "239": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          237,
+          238
+        ],
+        "out_edges": [
+          241,
+          240
+        ],
+        "weight": 1
+      },
+      "24": {
+        "called_fns": [
+          "error"
+        ],
+        "in_edges": [
+          22
+        ],
+        "out_edges": [
+          23
+        ],
+        "weight": 1
+      },
+      "240": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          239
+        ],
+        "out_edges": [
+          241
+        ],
+        "weight": 4
+      },
+      "241": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          239,
+          240
+        ],
+        "out_edges": [
+          243,
+          242
+        ],
+        "weight": 1
+      },
+      "242": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          241
+        ],
+        "out_edges": [
+          243
+        ],
+        "weight": 4
+      },
+      "243": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          241,
+          242
+        ],
+        "out_edges": [
+          245,
+          244
+        ],
+        "weight": 1
+      },
+      "244": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          243
+        ],
+        "out_edges": [
+          245
+        ],
+        "weight": 4
+      },
+      "245": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          243,
+          244,
+          236
+        ],
+        "out_edges": [
+          246,
+          250
+        ],
+        "weight": 1
+      },
+      "246": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          245
+        ],
+        "out_edges": [
+          247,
+          248
+        ],
+        "weight": 1
+      },
+      "247": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          246
+        ],
+        "out_edges": [
+          248
+        ],
+        "weight": 5
+      },
+      "248": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          246,
+          247
+        ],
+        "out_edges": [
+          249,
+          250
+        ],
+        "weight": 1
+      },
+      "249": {
+        "called_fns": [
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          248
+        ],
+        "out_edges": [
+          250
+        ],
+        "weight": 3
+      },
+      "25": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strncmp"
+        ],
+        "in_edges": [
+          21,
+          28,
+          45,
+          23
+        ],
+        "out_edges": [
+          262,
+          26
+        ],
+        "weight": 3
+      },
+      "250": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          248,
+          249,
+          245
+        ],
+        "out_edges": [
+          261,
+          251
+        ],
+        "weight": 1
+      },
+      "251": {
+        "called_fns": [
+          "puts",
+          "puts",
+          "puts",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          250
+        ],
+        "out_edges": [
+          260,
+          252
+        ],
+        "weight": 3
+      },
+      "252": {
+        "called_fns": [],
+        "in_edges": [
+          251
+        ],
+        "out_edges": [
+          255
+        ],
+        "weight": 2
+      },
+      "253": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "printf"
+        ],
+        "in_edges": [
+          256
+        ],
+        "out_edges": [
+          254
+        ],
+        "weight": 2
+      },
+      "254": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          257,
+          259,
+          253,
+          258
+        ],
+        "out_edges": [
+          260,
+          255
+        ],
+        "weight": 2
+      },
+      "255": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          252,
+          254
+        ],
+        "out_edges": [
+          259,
+          256
+        ],
+        "weight": 1
+      },
+      "256": {
+        "called_fns": [],
+        "in_edges": [
+          255
+        ],
+        "out_edges": [
+          253,
+          257
+        ],
+        "weight": 1
+      },
+      "257": {
+        "called_fns": [],
+        "in_edges": [
+          256
+        ],
+        "out_edges": [
+          258,
+          254
+        ],
+        "weight": 1
+      },
+      "258": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "printf"
+        ],
+        "in_edges": [
+          257
+        ],
+        "out_edges": [
+          254
+        ],
+        "weight": 3
+      },
+      "259": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "printf"
+        ],
+        "in_edges": [
+          255
+        ],
+        "out_edges": [
+          254
+        ],
+        "weight": 3
+      },
+      "26": {
+        "called_fns": [
+          "strncmp"
+        ],
+        "in_edges": [
+          25
+        ],
+        "out_edges": [
+          22,
+          27
+        ],
+        "weight": 2
+      },
+      "260": {
+        "called_fns": [
+          "puts"
+        ],
+        "in_edges": [
+          251,
+          254
+        ],
+        "out_edges": [
+          261
+        ],
+        "weight": 1
+      },
+      "261": {
+        "called_fns": [],
+        "in_edges": [
+          250,
+          260
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "262": {
+        "called_fns": [
+          "JMHelpExit"
+        ],
+        "in_edges": [
+          11,
+          17,
+          25
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "27": {
+        "called_fns": [
+          "strncmp"
+        ],
+        "in_edges": [
+          26
+        ],
+        "out_edges": [
+          29,
+          28
+        ],
+        "weight": 2
+      },
+      "28": {
+        "called_fns": [
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          27
+        ],
+        "out_edges": [
+          25,
+          46
+        ],
+        "weight": 4
+      },
+      "29": {
+        "called_fns": [],
+        "in_edges": [
+          27
+        ],
+        "out_edges": [
+          30,
+          34
+        ],
+        "weight": 2
+      },
+      "3": {
+        "called_fns": [],
+        "in_edges": [
+          2
+        ],
+        "out_edges": [
+          7
+        ],
+        "weight": 1
+      },
+      "30": {
+        "called_fns": [],
+        "in_edges": [
+          29
+        ],
+        "out_edges": [
+          31
+        ],
+        "weight": 1
+      },
+      "31": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          30,
+          32
+        ],
+        "out_edges": [
+          33,
+          32
+        ],
+        "weight": 2
+      },
+      "32": {
+        "called_fns": [
+          "strlen"
+        ],
+        "in_edges": [
+          31
+        ],
+        "out_edges": [
+          34,
+          31
+        ],
+        "weight": 3
+      },
+      "33": {
+        "called_fns": [],
+        "in_edges": [
+          31
+        ],
+        "out_edges": [
+          34
+        ],
+        "weight": 1
+      },
+      "34": {
+        "called_fns": [
+          "malloc"
+        ],
+        "in_edges": [
+          29,
+          33,
+          32
+        ],
+        "out_edges": [
+          35,
+          36
+        ],
+        "weight": 2
+      },
+      "35": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          34
+        ],
+        "out_edges": [
+          36
+        ],
+        "weight": 1
+      },
+      "36": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          34,
+          35
+        ],
+        "out_edges": [
+          37,
+          45
+        ],
+        "weight": 2
+      },
+      "37": {
+        "called_fns": [],
+        "in_edges": [
+          36
+        ],
+        "out_edges": [
+          39
+        ],
+        "weight": 3
+      },
+      "38": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          42
+        ],
+        "out_edges": [
+          44,
+          39
+        ],
+        "weight": 3
+      },
+      "39": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strlen"
+        ],
+        "in_edges": [
+          37,
+          38
+        ],
+        "out_edges": [
+          41
+        ],
+        "weight": 3
+      },
+      "4": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          7
+        ],
+        "out_edges": [
+          5
+        ],
+        "weight": 3
+      },
+      "40": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          41
+        ],
+        "out_edges": [
+          41
+        ],
+        "weight": 5
+      },
+      "41": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          39,
+          40,
+          43
+        ],
+        "out_edges": [
+          40,
+          42
+        ],
+        "weight": 1
+      },
+      "42": {
+        "called_fns": [],
+        "in_edges": [
+          41
+        ],
+        "out_edges": [
+          38,
+          43
+        ],
+        "weight": 1
+      },
+      "43": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          42
+        ],
+        "out_edges": [
+          41
+        ],
+        "weight": 2
+      },
+      "44": {
+        "called_fns": [],
+        "in_edges": [
+          38
+        ],
+        "out_edges": [
+          45
+        ],
+        "weight": 1
+      },
+      "45": {
+        "called_fns": [
+          "printf",
+          "strlen",
+          "ParseContent",
+          "free",
+          "putchar"
+        ],
+        "in_edges": [
+          44,
+          36
+        ],
+        "out_edges": [
+          25,
+          46
+        ],
+        "weight": 5
+      },
+      "46": {
+        "called_fns": [
+          "putchar",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          20,
+          28,
+          45,
+          23
+        ],
+        "out_edges": [
+          71,
+          47
+        ],
+        "weight": 5
+      },
+      "47": {
+        "called_fns": [],
+        "in_edges": [
+          46
+        ],
+        "out_edges": [
+          51
+        ],
+        "weight": 5
+      },
+      "48": {
+        "called_fns": [
+          "snprintf"
+        ],
+        "in_edges": [
+          64,
+          63
+        ],
+        "out_edges": [
+          49
+        ],
+        "weight": 2
+      },
+      "49": {
+        "called_fns": [
+          "error"
+        ],
+        "in_edges": [
+          48,
+          66,
+          60,
+          69
+        ],
+        "out_edges": [
+          50
+        ],
+        "weight": 1
+      },
+      "5": {
+        "called_fns": [],
+        "in_edges": [
+          4,
+          9
+        ],
+        "out_edges": [
+          6
+        ],
+        "weight": 1
+      },
+      "50": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          53,
+          61,
+          64,
+          58,
+          65,
+          59,
+          55,
+          68,
+          49
+        ],
+        "out_edges": [
+          70,
+          51
+        ],
+        "weight": 2
+      },
+      "51": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          47,
+          50
+        ],
+        "out_edges": [
+          61,
+          52
+        ],
+        "weight": 1
+      },
+      "52": {
+        "called_fns": [],
+        "in_edges": [
+          51
+        ],
+        "out_edges": [
+          57,
+          53
+        ],
+        "weight": 1
+      },
+      "53": {
+        "called_fns": [],
+        "in_edges": [
+          52
+        ],
+        "out_edges": [
+          54,
+          50
+        ],
+        "weight": 1
+      },
+      "54": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          53
+        ],
+        "out_edges": [
+          67,
+          55
+        ],
+        "weight": 1
+      },
+      "55": {
+        "called_fns": [],
+        "in_edges": [
+          54
+        ],
+        "out_edges": [
+          56,
+          50
+        ],
+        "weight": 1
+      },
+      "56": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          55
+        ],
+        "out_edges": [
+          63
+        ],
+        "weight": 4
+      },
+      "57": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          52
+        ],
+        "out_edges": [
+          65,
+          58
+        ],
+        "weight": 1
+      },
+      "58": {
+        "called_fns": [],
+        "in_edges": [
+          57
+        ],
+        "out_edges": [
+          59,
+          50
+        ],
+        "weight": 1
+      },
+      "59": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          58
+        ],
+        "out_edges": [
+          60,
+          50
+        ],
+        "weight": 4
+      },
+      "6": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          8,
+          5
+        ],
+        "out_edges": [
+          10,
+          7
+        ],
+        "weight": 2
+      },
+      "60": {
+        "called_fns": [
+          "snprintf"
+        ],
+        "in_edges": [
+          59
+        ],
+        "out_edges": [
+          49
+        ],
+        "weight": 2
+      },
+      "61": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          51
+        ],
+        "out_edges": [
+          62,
+          50
+        ],
+        "weight": 1
+      },
+      "62": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          61
+        ],
+        "out_edges": [
+          63
+        ],
+        "weight": 5
+      },
+      "63": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          62,
+          56
+        ],
+        "out_edges": [
+          48,
+          64
+        ],
+        "weight": 3
+      },
+      "64": {
+        "called_fns": [],
+        "in_edges": [
+          63
+        ],
+        "out_edges": [
+          48,
+          50
+        ],
+        "weight": 1
+      },
+      "65": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          57
+        ],
+        "out_edges": [
+          66,
+          50
+        ],
+        "weight": 3
+      },
+      "66": {
+        "called_fns": [
+          "snprintf"
+        ],
+        "in_edges": [
+          65
+        ],
+        "out_edges": [
+          49
+        ],
+        "weight": 2
+      },
+      "67": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          54
+        ],
+        "out_edges": [
+          69,
+          68
+        ],
+        "weight": 5
+      },
+      "68": {
+        "called_fns": [],
+        "in_edges": [
+          67
+        ],
+        "out_edges": [
+          69,
+          50
+        ],
+        "weight": 1
+      },
+      "69": {
+        "called_fns": [
+          "snprintf"
+        ],
+        "in_edges": [
+          67,
+          68
+        ],
+        "out_edges": [
+          49
+        ],
+        "weight": 2
+      },
+      "7": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          3,
+          6
+        ],
+        "out_edges": [
+          4,
+          8
+        ],
+        "weight": 1
+      },
+      "70": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          50
+        ],
+        "out_edges": [
+          71
+        ],
+        "weight": 1
+      },
+      "71": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          46,
+          70
+        ],
+        "out_edges": [
+          72,
+          73
+        ],
+        "weight": 2
+      },
+      "72": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          71
+        ],
+        "out_edges": [
+          73
+        ],
+        "weight": 1
+      },
+      "73": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          71,
+          72
+        ],
+        "out_edges": [
+          75,
+          74
+        ],
+        "weight": 13
+      },
+      "74": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          73
+        ],
+        "out_edges": [
+          76
+        ],
+        "weight": 2
+      },
+      "75": {
+        "called_fns": [],
+        "in_edges": [
+          73
+        ],
+        "out_edges": [
+          76
+        ],
+        "weight": 1
+      },
+      "76": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          74,
+          75
+        ],
+        "out_edges": [
+          77,
+          79
+        ],
+        "weight": 1
+      },
+      "77": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          76
+        ],
+        "out_edges": [
+          78,
+          80
+        ],
+        "weight": 3
+      },
+      "78": {
+        "called_fns": [],
+        "in_edges": [
+          77
+        ],
+        "out_edges": [
+          80
+        ],
+        "weight": 2
+      },
+      "79": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          76
+        ],
+        "out_edges": [
+          80
+        ],
+        "weight": 2
+      },
+      "8": {
+        "called_fns": [],
+        "in_edges": [
+          7
+        ],
+        "out_edges": [
+          9,
+          6
+        ],
+        "weight": 1
+      },
+      "80": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          79,
+          78,
+          77
+        ],
+        "out_edges": [
+          81,
+          82
+        ],
+        "weight": 10
+      },
+      "81": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          80
+        ],
+        "out_edges": [
+          82
+        ],
+        "weight": 5
+      },
+      "82": {
+        "called_fns": [],
+        "in_edges": [
+          81,
+          80
+        ],
+        "out_edges": [
+          85,
+          83
+        ],
+        "weight": 1
+      },
+      "83": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          82
+        ],
+        "out_edges": [
+          85,
+          84
+        ],
+        "weight": 1
+      },
+      "84": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          83
+        ],
+        "out_edges": [
+          85
+        ],
+        "weight": 4
+      },
+      "85": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          83,
+          84,
+          82
+        ],
+        "out_edges": [
+          87,
+          86
+        ],
+        "weight": 1
+      },
+      "86": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          85
+        ],
+        "out_edges": [
+          87,
+          92
+        ],
+        "weight": 1
+      },
+      "87": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          85,
+          86
+        ],
+        "out_edges": [
+          88,
+          89
+        ],
+        "weight": 1
+      },
+      "88": {
+        "called_fns": [
+          "printf",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          87
+        ],
+        "out_edges": [
+          89
+        ],
+        "weight": 3
+      },
+      "89": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          87,
+          88
+        ],
+        "out_edges": [
+          90,
+          92
+        ],
+        "weight": 1
+      },
+      "9": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          8
+        ],
+        "out_edges": [
+          5
+        ],
+        "weight": 4
+      },
+      "90": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          89
+        ],
+        "out_edges": [
+          92,
+          91
+        ],
+        "weight": 1
+      },
+      "91": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          90
+        ],
+        "out_edges": [
+          92
+        ],
+        "weight": 4
+      },
+      "92": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          90,
+          91,
+          86,
+          89
+        ],
+        "out_edges": [
+          94,
+          93
+        ],
+        "weight": 1
+      },
+      "93": {
+        "called_fns": [
+          "snprintf",
+          "error",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          92
+        ],
+        "out_edges": [
+          94
+        ],
+        "weight": 4
+      },
+      "94": {
+        "called_fns": [
+          "open",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          92,
+          93
+        ],
+        "out_edges": [
+          95,
+          96
+        ],
+        "weight": 5
+      },
+      "95": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          94
+        ],
+        "out_edges": [
+          96
+        ],
+        "weight": 5
+      },
+      "96": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strlen"
+        ],
+        "in_edges": [
+          94,
+          95
+        ],
+        "out_edges": [
+          99,
+          97
+        ],
+        "weight": 3
+      },
+      "97": {
+        "called_fns": [
+          "open",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          96
+        ],
+        "out_edges": [
+          98,
+          99
+        ],
+        "weight": 4
+      },
+      "98": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          97
+        ],
+        "out_edges": [
+          99
+        ],
+        "weight": 5
+      },
+      "99": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strlen"
+        ],
+        "in_edges": [
+          96,
+          97,
+          98
+        ],
+        "out_edges": [
+          102,
+          100
+        ],
+        "weight": 3
+      }
+    },
+    "entry_block": 2,
+    "loops": {
+      "1": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "strlen"
+        ],
+        "loop_headers": [
+          39
+        ],
+        "loop_latches": [
+          38
+        ]
+      },
+      "2": {
+        "loop_called_fns": [
+          "__isoc99_fscanf",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "error",
+          "snprintf"
+        ],
+        "loop_headers": [
+          133
+        ],
+        "loop_latches": [
+          132
+        ]
+      }
+    },
+    "returning_blocks": [
+      261
+    ]
+  },
+  "GetConfigFileContent": {
+    "bbls": {
+      "263": {
+        "called_fns": [
+          "fopen"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          266,
+          264
+        ],
+        "weight": 3
+      },
+      "264": {
+        "called_fns": [
+          "fseek"
+        ],
+        "in_edges": [
+          263
+        ],
+        "out_edges": [
+          269,
+          265
+        ],
+        "weight": 2
+      },
+      "265": {
+        "called_fns": [],
+        "in_edges": [
+          264,
+          271
+        ],
+        "out_edges": [
+          267
+        ],
+        "weight": 1
+      },
+      "266": {
+        "called_fns": [],
+        "in_edges": [
+          263
+        ],
+        "out_edges": [
+          267
+        ],
+        "weight": 1
+      },
+      "267": {
+        "called_fns": [
+          "snprintf"
+        ],
+        "in_edges": [
+          266,
+          265
+        ],
+        "out_edges": [
+          268
+        ],
+        "weight": 2
+      },
+      "268": {
+        "called_fns": [],
+        "in_edges": [
+          274,
+          270,
+          267
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "269": {
+        "called_fns": [
+          "ftell"
+        ],
+        "in_edges": [
+          264
+        ],
+        "out_edges": [
+          270,
+          271
+        ],
+        "weight": 1
+      },
+      "270": {
+        "called_fns": [
+          "snprintf"
+        ],
+        "in_edges": [
+          269
+        ],
+        "out_edges": [
+          268
+        ],
+        "weight": 3
+      },
+      "271": {
+        "called_fns": [
+          "fseek"
+        ],
+        "in_edges": [
+          269
+        ],
+        "out_edges": [
+          272,
+          265
+        ],
+        "weight": 2
+      },
+      "272": {
+        "called_fns": [
+          "malloc"
+        ],
+        "in_edges": [
+          271
+        ],
+        "out_edges": [
+          273,
+          274
+        ],
+        "weight": 2
+      },
+      "273": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          272
+        ],
+        "out_edges": [
+          274
+        ],
+        "weight": 1
+      },
+      "274": {
+        "called_fns": [
+          "fread_unlocked",
+          "dataWriteCacheCallback",
+          "fclose"
+        ],
+        "in_edges": [
+          272,
+          273
+        ],
+        "out_edges": [
+          268
+        ],
+        "weight": 4
+      }
+    },
+    "entry_block": 263,
+    "loops": {},
+    "returning_blocks": [
+      268
+    ]
+  },
+  "JMHelpExit": {
+    "bbls": {
+      "1": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fwrite",
+          "exit"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 1,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "ParseContent": {
+    "bbls": {
+      "275": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          276,
+          321
+        ],
+        "weight": 3
+      },
+      "276": {
+        "called_fns": [],
+        "in_edges": [
+          275
+        ],
+        "out_edges": [
+          281
+        ],
+        "weight": 4
+      },
+      "277": {
+        "called_fns": [],
+        "in_edges": [
+          282
+        ],
+        "out_edges": [
+          278
+        ],
+        "weight": 1
+      },
+      "278": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          283,
+          277
+        ],
+        "out_edges": [
+          279
+        ],
+        "weight": 2
+      },
+      "279": {
+        "called_fns": [],
+        "in_edges": [
+          278,
+          293
+        ],
+        "out_edges": [
+          280
+        ],
+        "weight": 1
+      },
+      "280": {
+        "called_fns": [],
+        "in_edges": [
+          283,
+          295,
+          288,
+          296,
+          279
+        ],
+        "out_edges": [
+          281,
+          297
+        ],
+        "weight": 1
+      },
+      "281": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          276,
+          280
+        ],
+        "out_edges": [
+          284,
+          282
+        ],
+        "weight": 2
+      },
+      "282": {
+        "called_fns": [],
+        "in_edges": [
+          281
+        ],
+        "out_edges": [
+          283,
+          277,
+          284,
+          286,
+          287,
+          289
+        ],
+        "weight": 1
+      },
+      "283": {
+        "called_fns": [],
+        "in_edges": [
+          282
+        ],
+        "out_edges": [
+          278,
+          280
+        ],
+        "weight": 1
+      },
+      "284": {
+        "called_fns": [],
+        "in_edges": [
+          282,
+          281
+        ],
+        "out_edges": [
+          285,
+          286
+        ],
+        "weight": 1
+      },
+      "285": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          284
+        ],
+        "out_edges": [
+          286
+        ],
+        "weight": 3
+      },
+      "286": {
+        "called_fns": [],
+        "in_edges": [
+          282,
+          284,
+          285
+        ],
+        "out_edges": [
+          295
+        ],
+        "weight": 1
+      },
+      "287": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          282
+        ],
+        "out_edges": [
+          296,
+          288
+        ],
+        "weight": 2
+      },
+      "288": {
+        "called_fns": [],
+        "in_edges": [
+          287
+        ],
+        "out_edges": [
+          280
+        ],
+        "weight": 1
+      },
+      "289": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          282
+        ],
+        "out_edges": [
+          290,
+          294
+        ],
+        "weight": 2
+      },
+      "290": {
+        "called_fns": [],
+        "in_edges": [
+          289
+        ],
+        "out_edges": [
+          291
+        ],
+        "weight": 1
+      },
+      "291": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          290,
+          292
+        ],
+        "out_edges": [
+          292,
+          293
+        ],
+        "weight": 1
+      },
+      "292": {
+        "called_fns": [],
+        "in_edges": [
+          291
+        ],
+        "out_edges": [
+          291,
+          293
+        ],
+        "weight": 1
+      },
+      "293": {
+        "called_fns": [],
+        "in_edges": [
+          291,
+          292
+        ],
+        "out_edges": [
+          279
+        ],
+        "weight": 1
+      },
+      "294": {
+        "called_fns": [],
+        "in_edges": [
+          289
+        ],
+        "out_edges": [
+          295
+        ],
+        "weight": 1
+      },
+      "295": {
+        "called_fns": [],
+        "in_edges": [
+          286,
+          294
+        ],
+        "out_edges": [
+          280
+        ],
+        "weight": 1
+      },
+      "296": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          287
+        ],
+        "out_edges": [
+          280
+        ],
+        "weight": 5
+      },
+      "297": {
+        "called_fns": [],
+        "in_edges": [
+          280
+        ],
+        "out_edges": [
+          298,
+          321
+        ],
+        "weight": 1
+      },
+      "298": {
+        "called_fns": [],
+        "in_edges": [
+          297
+        ],
+        "out_edges": [
+          302
+        ],
+        "weight": 2
+      },
+      "299": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "strncpy"
+        ],
+        "in_edges": [
+          313
+        ],
+        "out_edges": [
+          300
+        ],
+        "weight": 4
+      },
+      "300": {
+        "called_fns": [
+          "putchar"
+        ],
+        "in_edges": [
+          320,
+          299,
+          317
+        ],
+        "out_edges": [
+          301
+        ],
+        "weight": 1
+      },
+      "301": {
+        "called_fns": [],
+        "in_edges": [
+          314,
+          300
+        ],
+        "out_edges": [
+          302,
+          321
+        ],
+        "weight": 1
+      },
+      "302": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          298,
+          301
+        ],
+        "out_edges": [
+          307,
+          303
+        ],
+        "weight": 3
+      },
+      "303": {
+        "called_fns": [],
+        "in_edges": [
+          302
+        ],
+        "out_edges": [
+          304
+        ],
+        "weight": 1
+      },
+      "304": {
+        "called_fns": [
+          "strcmp"
+        ],
+        "in_edges": [
+          303,
+          305
+        ],
+        "out_edges": [
+          308,
+          305
+        ],
+        "weight": 1
+      },
+      "305": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          304
+        ],
+        "out_edges": [
+          306,
+          304
+        ],
+        "weight": 3
+      },
+      "306": {
+        "called_fns": [],
+        "in_edges": [
+          305
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 1
+      },
+      "307": {
+        "called_fns": [],
+        "in_edges": [
+          302
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 1
+      },
+      "308": {
+        "called_fns": [],
+        "in_edges": [
+          304
+        ],
+        "out_edges": [
+          309,
+          310
+        ],
+        "weight": 1
+      },
+      "309": {
+        "called_fns": [
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          308,
+          307,
+          306
+        ],
+        "out_edges": [
+          310
+        ],
+        "weight": 3
+      },
+      "310": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "strcmp"
+        ],
+        "in_edges": [
+          308,
+          309
+        ],
+        "out_edges": [
+          312,
+          311
+        ],
+        "weight": 3
+      },
+      "311": {
+        "called_fns": [
+          "error"
+        ],
+        "in_edges": [
+          310
+        ],
+        "out_edges": [
+          312
+        ],
+        "weight": 5
+      },
+      "312": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          310,
+          311
+        ],
+        "out_edges": [
+          318,
+          313
+        ],
+        "weight": 3
+      },
+      "313": {
+        "called_fns": [],
+        "in_edges": [
+          312
+        ],
+        "out_edges": [
+          299,
+          314
+        ],
+        "weight": 1
+      },
+      "314": {
+        "called_fns": [],
+        "in_edges": [
+          313
+        ],
+        "out_edges": [
+          315,
+          301
+        ],
+        "weight": 1
+      },
+      "315": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "__isoc99_sscanf"
+        ],
+        "in_edges": [
+          314
+        ],
+        "out_edges": [
+          317,
+          316
+        ],
+        "weight": 5
+      },
+      "316": {
+        "called_fns": [
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          315
+        ],
+        "out_edges": [
+          317
+        ],
+        "weight": 4
+      },
+      "317": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          315,
+          316
+        ],
+        "out_edges": [
+          300
+        ],
+        "weight": 4
+      },
+      "318": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "__isoc99_sscanf"
+        ],
+        "in_edges": [
+          312
+        ],
+        "out_edges": [
+          320,
+          319
+        ],
+        "weight": 4
+      },
+      "319": {
+        "called_fns": [
+          "snprintf",
+          "error"
+        ],
+        "in_edges": [
+          318
+        ],
+        "out_edges": [
+          320
+        ],
+        "weight": 4
+      },
+      "320": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          318,
+          319
+        ],
+        "out_edges": [
+          300
+        ],
+        "weight": 4
+      },
+      "321": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          ""
+        ],
+        "in_edges": [
+          275,
+          297,
+          301
+        ],
+        "out_edges": [],
+        "weight": 4
+      }
+    },
+    "entry_block": 275,
+    "loops": {},
+    "returning_blocks": [
+      321
+    ]
+  },
+  "PatchInputNoFrames": {
+    "bbls": {
+      "325": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          327,
+          326
+        ],
+        "weight": 10
+      },
+      "326": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          325
+        ],
+        "out_edges": [
+          327
+        ],
+        "weight": 3
+      },
+      "327": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          325,
+          326
+        ],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 325,
+    "loops": {},
+    "returning_blocks": [
+      327
+    ]
+  }
+}

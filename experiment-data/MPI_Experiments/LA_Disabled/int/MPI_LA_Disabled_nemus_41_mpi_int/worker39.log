@@ -1,0 +1,583 @@
+Attempting to set static arp entries ...
+Tracer: 40 >> Using SRC IP: 10.1.37.190 for any spawned virtual tcp-stacks
+Tracer: 40 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 40 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/mpi_integral/mpi_int 39 41 10.1.37.190 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Disabled_nemus_41_mpi_int/worker39.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/mpi_integral/mpi_int
+args[1] = 39
+args[2] = 41
+args[3] = 10.1.37.190
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/mpi_integral/mpi_int
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 40
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: -1104871158
+Starting VT-initialization !
+Tracer-ID: 40, Timeline-ID: 40
+Tracer registration for EXP_CS complete. TimelineID = 40, Return = 40
+Tracer Adding to SQ. Tracer ID = 40
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
+File size: 176
+mapped memblock size: 176
+Finish offset: 18, Number of values: 18
+Returning success !
+Loaded BBL lookaheads for 18 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
+File size: 40
+mapped memblock size: 40
+Finish offset: 1, Number of values: 1
+Returning success !
+Loaded Loop lookaheads for 1 loops ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 406
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Rank = 39, Total = 41, IP = 10.1.37.190
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+bind through vt-tcp !
+Server socket bound to ip:port: 10.1.37.190:10000
+Waiting for OK message from other nodes !
+Waiting for OK message !
+listen through vt-tcp !
+Accept through vt-tcp !
+Successfully received OK message !
+
+---------------- Waiting for higher ranked nodes to connect --------------
+listen through vt-tcp !
+Accepting connection from higher ranked node: 40
+Accept through vt-tcp !
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
+Received ack in time_wait !
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: 0
+Socket: 4098 garbage collection
+Freeing socket: 4098
+Accepted connection from higher ranked node: 40
+Successfully connected with higher ranked node: 40
+Closing server socket: 4097
+Clearing all tcp timers !
+TCP-done for socket: 4097, err: -103
+
+---------------- Connecting to lowed ranked nodes ! --------------
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 38 at 10.1.37.194:10000
+Connecting .. Socket: 4100, src-port: 40001
+Socket: 4097 garbage collection
+Freeing socket: 4097
+Waking up connected socket !
+Socket connect success. socket = 4100
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 38 at 10.1.37.194:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 37 at 10.1.37.198:10000
+Connecting .. Socket: 4101, src-port: 40002
+Waking up connected socket !
+Socket connect success. socket = 4101
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 37 at 10.1.37.198:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 36 at 10.1.37.202:10000
+Connecting .. Socket: 4102, src-port: 40003
+Waking up connected socket !
+Socket connect success. socket = 4102
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 36 at 10.1.37.202:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 35 at 10.1.37.206:10000
+Connecting .. Socket: 4103, src-port: 40004
+Waking up connected socket !
+Socket connect success. socket = 4103
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 35 at 10.1.37.206:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 34 at 10.1.37.210:10000
+Connecting .. Socket: 4104, src-port: 40005
+Waking up connected socket !
+Socket connect success. socket = 4104
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 34 at 10.1.37.210:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 33 at 10.1.37.214:10000
+Connecting .. Socket: 4105, src-port: 40006
+Waking up connected socket !
+Socket connect success. socket = 4105
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 33 at 10.1.37.214:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 32 at 10.1.37.182:10000
+Connecting .. Socket: 4106, src-port: 40007
+Waking up connected socket !
+Socket connect success. socket = 4106
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 32 at 10.1.37.182:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 31 at 10.1.37.222:10000
+Connecting .. Socket: 4107, src-port: 40008
+Waking up connected socket !
+Socket connect success. socket = 4107
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 31 at 10.1.37.222:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 30 at 10.1.37.226:10000
+Connecting .. Socket: 4108, src-port: 40009
+Waking up connected socket !
+Socket connect success. socket = 4108
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 30 at 10.1.37.226:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 29 at 10.1.37.230:10000
+Connecting .. Socket: 4109, src-port: 40010
+Waking up connected socket !
+Socket connect success. socket = 4109
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 29 at 10.1.37.230:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 28 at 10.1.37.234:10000
+Connecting .. Socket: 4110, src-port: 40011
+Waking up connected socket !
+Socket connect success. socket = 4110
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 28 at 10.1.37.234:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 27 at 10.1.37.238:10000
+Connecting .. Socket: 4111, src-port: 40012
+Waking up connected socket !
+Socket connect success. socket = 4111
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 27 at 10.1.37.238:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 26 at 10.1.37.242:10000
+Connecting .. Socket: 4112, src-port: 40013
+Waking up connected socket !
+Socket connect success. socket = 4112
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 26 at 10.1.37.242:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 25 at 10.1.37.246:10000
+Connecting .. Socket: 4113, src-port: 40014
+Waking up connected socket !
+Socket connect success. socket = 4113
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 25 at 10.1.37.246:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 24 at 10.1.37.146:10000
+Connecting .. Socket: 4114, src-port: 40015
+Waking up connected socket !
+Socket connect success. socket = 4114
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 24 at 10.1.37.146:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 23 at 10.1.37.114:10000
+Connecting .. Socket: 4115, src-port: 40016
+Waking up connected socket !
+Socket connect success. socket = 4115
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 23 at 10.1.37.114:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 22 at 10.1.37.118:10000
+Connecting .. Socket: 4116, src-port: 40017
+Waking up connected socket !
+Socket connect success. socket = 4116
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 22 at 10.1.37.118:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 21 at 10.1.37.122:10000
+Connecting .. Socket: 4117, src-port: 40018
+Waking up connected socket !
+Socket connect success. socket = 4117
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 21 at 10.1.37.122:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 20 at 10.1.37.126:10000
+Connecting .. Socket: 4118, src-port: 40019
+Waking up connected socket !
+Socket connect success. socket = 4118
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 20 at 10.1.37.126:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 19 at 10.1.37.130:10000
+Connecting .. Socket: 4119, src-port: 40020
+Waking up connected socket !
+Socket connect success. socket = 4119
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 19 at 10.1.37.130:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 18 at 10.1.37.134:10000
+Connecting .. Socket: 4120, src-port: 40021
+Waking up connected socket !
+Socket connect success. socket = 4120
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 18 at 10.1.37.134:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 17 at 10.1.37.138:10000
+Connecting .. Socket: 4121, src-port: 40022
+Waking up connected socket !
+Socket connect success. socket = 4121
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 17 at 10.1.37.138:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 16 at 10.1.37.142:10000
+Connecting .. Socket: 4122, src-port: 40023
+Waking up connected socket !
+Socket connect success. socket = 4122
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 16 at 10.1.37.142:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 15 at 10.1.37.110:10000
+Connecting .. Socket: 4123, src-port: 40024
+Waking up connected socket !
+Socket connect success. socket = 4123
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 15 at 10.1.37.110:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 14 at 10.1.37.150:10000
+Connecting .. Socket: 4124, src-port: 40025
+Waking up connected socket !
+Socket connect success. socket = 4124
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 14 at 10.1.37.150:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 13 at 10.1.37.154:10000
+Connecting .. Socket: 4125, src-port: 40026
+Waking up connected socket !
+Socket connect success. socket = 4125
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 13 at 10.1.37.154:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 12 at 10.1.37.158:10000
+Connecting .. Socket: 4126, src-port: 40027
+Waking up connected socket !
+Socket connect success. socket = 4126
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 12 at 10.1.37.158:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 11 at 10.1.37.162:10000
+Connecting .. Socket: 4127, src-port: 40028
+Waking up connected socket !
+Socket connect success. socket = 4127
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 11 at 10.1.37.162:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 10 at 10.1.37.166:10000
+Connecting .. Socket: 4128, src-port: 40029
+Waking up connected socket !
+Socket connect success. socket = 4128
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 10 at 10.1.37.166:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 9 at 10.1.37.170:10000
+Connecting .. Socket: 4129, src-port: 40030
+Waking up connected socket !
+Socket connect success. socket = 4129
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 9 at 10.1.37.170:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 8 at 10.1.37.174:10000
+Connecting .. Socket: 4130, src-port: 40031
+Waking up connected socket !
+Socket connect success. socket = 4130
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 8 at 10.1.37.174:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 7 at 10.1.37.178:10000
+Connecting .. Socket: 4131, src-port: 40032
+Waking up connected socket !
+Socket connect success. socket = 4131
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 7 at 10.1.37.178:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 6 at 10.1.37.218:10000
+Connecting .. Socket: 4132, src-port: 40033
+Waking up connected socket !
+Socket connect success. socket = 4132
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 6 at 10.1.37.218:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 5 at 10.1.38.66:10000
+Connecting .. Socket: 4133, src-port: 40034
+Waking up connected socket !
+Socket connect success. socket = 4133
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 5 at 10.1.38.66:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 4 at 10.1.38.70:10000
+Connecting .. Socket: 4134, src-port: 40035
+Waking up connected socket !
+Socket connect success. socket = 4134
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 4 at 10.1.38.70:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 3 at 10.1.38.74:10000
+Connecting .. Socket: 4135, src-port: 40036
+Waking up connected socket !
+Socket connect success. socket = 4135
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 3 at 10.1.38.74:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 2 at 10.1.38.78:10000
+Connecting .. Socket: 4136, src-port: 40037
+Waking up connected socket !
+Socket connect success. socket = 4136
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 2 at 10.1.38.78:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 1 at 10.1.38.82:10000
+Connecting .. Socket: 4137, src-port: 40038
+Waking up connected socket !
+Socket connect success. socket = 4137
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 1 at 10.1.38.82:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 0 at 10.1.38.86:10000
+Connecting .. Socket: 4138, src-port: 40039
+Waking up connected socket !
+Socket connect success. socket = 4138
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 0 at 10.1.38.86:10000
+
+---------------- Creating listen Thread ! --------------
+
+---------------- MPI-Init success ! --------------
+Waiting to receive partition information from master !
+Adding new Thread: 8
+Signal Burst Completion: Flushing Data Cache !
+Resuming new Thread with Burst of length: 5400
+Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
+Process 39 computing itegral over my_a = 19.500000, my_b= 19.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4108
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4116
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4122
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4129
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4133
+Avg-Compute-Communication-Ratio = 314.783718
+Process 39 contributed MY_TOTAL = 1.064583, my_a = 19.500000, my_b= 19.750000
+Integral: 0 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 29.500000, my_b= 29.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 546.554852
+Process 39 contributed MY_TOTAL = 2.415566, my_a = 29.500000, my_b= 29.750000
+Integral: 1 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 39.500000, my_b= 39.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 731.139229
+Process 39 contributed MY_TOTAL = 4.312400, my_a = 39.500000, my_b= 39.750000
+Integral: 2 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 49.500000, my_b= 49.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 873.750422
+Process 39 contributed MY_TOTAL = 6.755087, my_a = 49.500000, my_b= 49.750000
+Integral: 3 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 59.500000, my_b= 59.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 991.074981
+Process 39 contributed MY_TOTAL = 9.743625, my_a = 59.500000, my_b= 59.750000
+Integral: 4 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 69.500000, my_b= 69.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1085.476257
+Process 39 contributed MY_TOTAL = 13.278015, my_a = 69.500000, my_b= 69.750000
+Integral: 5 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 79.500000, my_b= 79.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1166.968468
+Process 39 contributed MY_TOTAL = 17.358256, my_a = 79.500000, my_b= 79.750000
+Integral: 6 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 89.500000, my_b= 89.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1238.814106
+Process 39 contributed MY_TOTAL = 21.984350, my_a = 89.500000, my_b= 89.750000
+Integral: 7 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 99.500000, my_b= 99.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1296.055031
+Process 39 contributed MY_TOTAL = 27.156295, my_a = 99.500000, my_b= 99.750000
+Integral: 8 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 109.500000, my_b= 109.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1352.124217
+Process 39 contributed MY_TOTAL = 32.874092, my_a = 109.500000, my_b= 109.750000
+Integral: 9 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 119.500000, my_b= 119.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1396.929902
+Process 39 contributed MY_TOTAL = 39.137740, my_a = 119.500000, my_b= 119.750000
+Integral: 10 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 129.500000, my_b= 129.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1435.937182
+Process 39 contributed MY_TOTAL = 45.947240, my_a = 129.500000, my_b= 129.750000
+Integral: 11 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 139.500000, my_b= 139.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1473.904158
+Process 39 contributed MY_TOTAL = 53.302592, my_a = 139.500000, my_b= 139.750000
+Integral: 12 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 149.500000, my_b= 149.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1509.965862
+Process 39 contributed MY_TOTAL = 61.203796, my_a = 149.500000, my_b= 149.750000
+Integral: 13 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 159.500000, my_b= 159.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1542.065476
+Process 39 contributed MY_TOTAL = 69.650851, my_a = 159.500000, my_b= 159.750000
+Integral: 14 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 169.500000, my_b= 169.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1567.134972
+Process 39 contributed MY_TOTAL = 78.643759, my_a = 169.500000, my_b= 169.750000
+Integral: 15 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 179.500000, my_b= 179.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1591.090679
+Process 39 contributed MY_TOTAL = 88.182517, my_a = 179.500000, my_b= 179.750000
+Integral: 16 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 189.500000, my_b= 189.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1615.242813
+Process 39 contributed MY_TOTAL = 98.267128, my_a = 189.500000, my_b= 189.750000
+Integral: 17 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 199.500000, my_b= 199.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Avg-Compute-Communication-Ratio = 1636.393949
+Process 39 contributed MY_TOTAL = 108.897590, my_a = 199.500000, my_b= 199.750000
+Integral: 18 computed
+
+------------------------------------------------------------------------------
+Waiting to receive partition information from master !
+Process 39 computing itegral over my_a = 209.500000, my_b= 209.750000
+Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Exp finishing. Stopping stack thread with id: 6!
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6

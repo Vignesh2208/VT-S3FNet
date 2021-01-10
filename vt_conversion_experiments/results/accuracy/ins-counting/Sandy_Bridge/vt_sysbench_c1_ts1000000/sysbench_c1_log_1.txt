@@ -1,0 +1,79 @@
+arp: cannot open etherfile /tmp/arp_entries.txt !
+Tracer: 1 >> CMD TO RUN: /usr/local/bin/sysbench --max-requests=1 --test=cpu --cpu-max-prime=1000000 run
+Tracer: 1 >> Started Command: /usr/local/bin/sysbench --max-requests=1 --test=cpu --cpu-max-prime=1000000 run, PID: 21836. Timeline-id: 0
+Tracer: 1 >> Waiting for virtual time experiment to finish ...
+Tracer: 1 >> CMD TO RUN: /usr/local/bin/sysbench --max-requests=1 --test=cpu --cpu-max-prime=1000000 run
+args[0] = /usr/local/bin/sysbench
+args[1] = --max-requests=1
+args[2] = --test=cpu
+args[3] = --cpu-max-prime=1000000
+args[4] = run
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_INS_CACHE_LINES to: 32
+Setting VT_INS_CACHE_SIZE_KB to: 32
+Setting VT_INS_CACHE_TYPE to: DMA
+Setting VT_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_DATA_CACHE_LINES to: 32
+Setting VT_DATA_CACHE_SIZE_KB to: 32
+Setting VT_DATA_CACHE_TYPE to: DMA
+Setting VT_CPU_CYLES_NS to: 1.200000
+Setting VT_BBL_LOOKAHEAD_FILE to: /tmp/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /tmp/.ttn/lookahead/loop_lookahead.info
+Starting command: /usr/local/bin/sysbench
+Loading orig functions !
+Starting executable with Pid = 21836
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Starting VT-initialization !
+Tracer-ID: 1
+Tracer registration for EXP_CBE complete. Return = 0
+Tracer Adding to SQ. Tracer ID = 1
+VT initialization successfull !
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+sysbench 0.4.12.10:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 1
+Random number generator seed is 0 and will be ignored
+
+
+Doing CPU performance benchmark
+
+Primer numbers limit: 1000000
+
+Threads started!
+Adding new Thread: 21837
+Resuming new Thread with Burst of length: 1200000
+Time taken: 0.686523 (secs)
+Finishing Thread: 21837
+Finished Thread: 21837
+Resuming from force-complete burst with: 1200000 cycles
+Done.
+
+
+General statistics:
+    total time:                          0.6875s
+    total number of events:              1
+    total time taken by event execution: 0.6865
+    response time:
+         min:                                686.52ms
+         avg:                                686.52ms
+         max:                                686.52ms
+         approx.  95 percentile:             686.61ms
+
+Threads fairness:
+    events (avg/stddev):           1.0000/0.00
+    execution time (avg/stddev):   0.6865/0.00
+
+Main thread exiting. PID = 21836
+Finishing Process: 21836
+Tracer: 1 >> Resumed. Waiting for processes to finish ...
+Tracer: 1 >> Waiting to read child status ...
+Tracer: 1 >> Exiting ...

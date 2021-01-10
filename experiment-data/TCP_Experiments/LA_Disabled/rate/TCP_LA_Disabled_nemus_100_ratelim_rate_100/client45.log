@@ -1,0 +1,1220 @@
+Attempting to set static arp entries ...
+Tracer: 25 >> Using SRC IP: 10.1.20.150 for any spawned virtual tcp-stacks
+Tracer: 25 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 25 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 45 10.1.21.106 7891 rate 100 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_100_ratelim_rate_100/client45.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+args[1] = client
+args[2] = 45
+args[3] = 10.1.21.106
+args[4] = 7891
+args[5] = rate
+args[6] = 100
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 25
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: -1777073910
+Starting VT-initialization !
+Tracer-ID: 25, Timeline-ID: 25
+Tracer registration for EXP_CS complete. TimelineID = 25, Return = 25
+Tracer Adding to SQ. Tracer ID = 25
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+File size: 592
+mapped memblock size: 592
+Finish offset: 70, Number of values: 70
+Returning success !
+Loaded BBL lookaheads for 70 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Failed to parse Loop Lookaheads. Ignoring ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 256
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Client: MyPid: 6
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Client socket fd = 4097
+setsockopt through vt-tcp !
+setsockopt through vt-tcp !
+Connecting to server ...
+Connecting .. Socket: 4097, src-port: 40001
+Waking up connected socket !
+Socket connect success. socket = 4097
+Connecting through vt-tcp success !
+Sending data ...
+Sending msgs of size: 1460 to server at rate 100 (Mbps)...
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6866
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6822
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6852
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6814
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6846
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6870
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6856
+Client sent: 1 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6870
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6870
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6844
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6806
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6844
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6840
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6810
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6852
+Client sent: 2 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6856
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6810
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6818
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6804
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6820
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6784
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6806
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6806
+Client sent: 3 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6794
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6762
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6768
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6662
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6714
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6712
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6704
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6660
+Client sent: 4 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6646
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6686
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6676
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6714
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6750
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6760
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6706
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6754
+Client sent: 5 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6704
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6746
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6722
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6760
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6748
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6724
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6658
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6704
+Client sent: 6 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6646
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6546
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6632
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6672
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6650
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6636
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6632
+Client sent: 7 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6604
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6654
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6644
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6686
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6662
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6682
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6686
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6628
+Client sent: 8 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6678
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6632
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6690
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6654
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6660
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6674
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6686
+Client sent: 9 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6714
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6652
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6640
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6656
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6690
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6712
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6654
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6692
+Client sent: 10 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6678
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6622
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6686
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6702
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6716
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6674
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6690
+Client sent: 11 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6684
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6658
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6658
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6728
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6740
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6750
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6670
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6744
+Client sent: 12 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6794
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6730
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6778
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6796
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6718
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6738
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6730
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6704
+Client sent: 13 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6802
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6816
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6784
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6716
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6712
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6748
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6698
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6636
+Client sent: 14 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6680
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6686
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6648
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6678
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6660
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6714
+Client sent: 15 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6646
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6672
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6618
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6652
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6674
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6696
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6714
+Client sent: 16 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6804
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6732
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6716
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6704
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6758
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6746
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6688
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6736
+Client sent: 17 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6712
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6718
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6728
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6752
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6768
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6700
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6746
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6620
+Client sent: 18 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6640
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6636
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6740
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6686
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6708
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6764
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6710
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6600
+Client sent: 19 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6692
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6628
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6664
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6668
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6676
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6622
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6662
+Client sent: 20 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6710
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6670
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6706
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6700
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6718
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6668
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6752
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6786
+Client sent: 21 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6778
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6834
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6792
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6752
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6728
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6798
+Client sent: 22 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6836
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6862
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6838
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6844
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6884
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6854
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6842
+Client sent: 23 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6838
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6846
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6836
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6874
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6814
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6824
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6812
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6838
+Client sent: 24 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6798
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6838
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6778
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6840
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6764
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6830
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6856
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6852
+Client sent: 25 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6834
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6770
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6816
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6676
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6734
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6660
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6636
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6618
+Client sent: 26 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6542
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6554
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6492
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6530
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6528
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6548
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6590
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6550
+Client sent: 27 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6570
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6618
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6588
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6626
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6574
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6618
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6596
+Client sent: 28 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6572
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6536
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6568
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6548
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6556
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6588
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6596
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6606
+Client sent: 29 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6610
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6624
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6658
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6718
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6732
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6764
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6788
+Client sent: 30 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6770
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6734
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6768
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6766
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6704
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6686
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6660
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6658
+Client sent: 31 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6730
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6640
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6698
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6696
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6694
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6678
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6704
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6660
+Client sent: 32 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6650
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6664
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6740
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6652
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6704
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6764
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6702
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6752
+Client sent: 33 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6718
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6774
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6780
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6710
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6748
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6816
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6822
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6796
+Client sent: 34 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6768
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6766
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6746
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6768
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6796
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6764
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6756
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6744
+Client sent: 35 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6772
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6802
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6792
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6808
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6810
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6790
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6758
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6766
+Client sent: 36 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6826
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6770
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6764
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6704
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6630
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6592
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6654
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6622
+Client sent: 37 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6680
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6676
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6640
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6652
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6622
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6670
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6670
+Client sent: 38 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6694
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6780
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6708
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6660
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6592
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6614
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6558
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6614
+Client sent: 39 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6684
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6670
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6616
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6636
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6664
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6642
+Client sent: 40 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6634
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6608
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6688
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6642
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6670
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6648
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6634
+Client sent: 41 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6556
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6536
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6522
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6518
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6564
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6598
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6594
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6574
+Client sent: 42 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6578
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6572
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6574
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6520
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6542
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6506
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6616
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6550
+Client sent: 43 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6632
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6556
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6566
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6552
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6556
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6544
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6600
+Client sent: 44 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6652
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6762
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6776
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6718
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6734
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6738
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6792
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6848
+Client sent: 45 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6862
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6876
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6864
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6870
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6854
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6858
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6840
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6836
+Client sent: 46 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6834
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6848
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6862
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6804
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6826
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6782
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6858
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6708
+Client sent: 47 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6814
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6726
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6690
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6672
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6648
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6598
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6584
+Client sent: 48 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6566
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6512
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6596
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6624
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6516
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6532
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6566
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6538
+Client sent: 49 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6614
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6572
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6588
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6602
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6594
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6598
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6638
+Client sent: 50 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6634
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6598
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6610
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6664
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6676
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6662
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6606
+Client sent: 51 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6630
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6602
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6608
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6670
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6626
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6596
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6628
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6626
+Client sent: 52 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6694
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6566
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6558
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6642
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6636
+Client sent: 53 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6564
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6596
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6584
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6624
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6618
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6574
+Client sent: 54 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6626
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6658
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6738
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6666
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6690
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6666
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6648
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6580
+Client sent: 55 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6610
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6556
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6654
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6566
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6568
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6614
+Client sent: 56 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6582
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6634
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6530
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6482
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6500
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6524
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6512
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6490
+Client sent: 57 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6526
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6500
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6526
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6518
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6526
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6502
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6510
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6542
+Client sent: 58 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6530
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6568
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6538
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6556
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6576
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6548
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6580
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6574
+Client sent: 59 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6602
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6600
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6610
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6586
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6592
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6646
+Client sent: 60 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6600
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6648
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6664
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6656
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6724
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6752
+Client sent: 61 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6760
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6702
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6738
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6782
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6752
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6804
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6708
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6694
+Client sent: 62 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6592
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6618
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6594
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6600
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6602
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6644
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6620
+Client sent: 63 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6660
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6662
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6652
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6604
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6688
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6670
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6656
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6580
+Client sent: 64 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6636
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6590
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6626
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6602
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6566
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6566
+Client sent: 65 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6602
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6560
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6588
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6628
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6614
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6642
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6616
+Client sent: 66 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6570
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6572
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6556
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6578
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6574
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6546
+Client sent: 67 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6606
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6614
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6638
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6658
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6600
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6606
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6590
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6582
+Client sent: 68 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6596
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6606
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6578
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6574
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6534
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6570
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6474
+Client sent: 69 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6510
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6528
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6610
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6592
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6608
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6614
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6592
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6602
+Client sent: 70 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6616
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6582
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6630
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6608
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6584
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6684
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6626
+Client sent: 71 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6716
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6704
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6712
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6750
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6772
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6758
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6714
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6704
+Client sent: 72 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6762
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6776
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6776
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6782
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6700
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6674
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6688
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6674
+Client sent: 73 MBs of data
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6640
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6670
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6716
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6684
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6662
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6710
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6658
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6612
+Client sent: 74 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6734
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6708
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6730
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6672
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6694
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6692
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6698
+Client sent: 75 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6610
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6622
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6674
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6694
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6722
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6734
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6748
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6716
+Client sent: 76 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6724
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6708
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6690
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6680
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6694
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6746
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6642
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6664
+Client sent: 77 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6722
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6668
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6742
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6748
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6722
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6660
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6758
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6692
+Client sent: 78 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6710
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6760
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6726
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6718
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6738
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6738
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6726
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6750
+Client sent: 79 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6776
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6750
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6794
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6790
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6750
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6754
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6776
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6764
+Client sent: 80 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6760
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6780
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6740
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6738
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6744
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6646
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6682
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6694
+Client sent: 81 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6748
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6688
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6644
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6674
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6718
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6714
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6774
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6758
+Client sent: 82 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6740
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6682
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6684
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6744
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6700
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6686
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6656
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6600
+Client sent: 83 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6678
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6578
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6580
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6626
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6576
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6712
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6630
+Client sent: 84 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6688
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6682
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6674
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6648
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6656
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6606
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6558
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6618
+Client sent: 85 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6598
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6672
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6698
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6626
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6710
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6692
+Client sent: 86 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6718
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6778
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6832
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6768
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6810
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6762
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6758
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6702
+Client sent: 87 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6692
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6712
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6704
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6694
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6670
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6652
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6648
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6662
+Client sent: 88 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6668
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6666
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6648
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6640
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6574
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6670
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6590
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6626
+Client sent: 89 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6544
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6572
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6518
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6618
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6628
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6592
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6606
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6594
+Client sent: 90 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6548
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6580
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6588
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6574
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6532
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6586
+Client sent: 91 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6582
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6534
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6556
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6570
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6568
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6542
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6564
+Client sent: 92 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6538
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6588
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6630
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6608
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6606
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6582
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6596
+Client sent: 93 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6582
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6668
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6768
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6798
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6728
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6706
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6710
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6732
+Client sent: 94 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6738
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6738
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6760
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6738
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6758
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6770
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6800
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6842
+Client sent: 95 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6844
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6836
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6816
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6866
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6816
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6814
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6822
+Client sent: 96 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6826
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6798
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6778
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6782
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6802
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6778
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6830
+Client sent: 97 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6780
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6794
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6794
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6796
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6812
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6740
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6740
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6718
+Client sent: 98 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6708
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6630
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6602
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6572
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6540
+Client sent: 99 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6582
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6586
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6590
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6614
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6616
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6564
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6522
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6592
+Client sent: 100 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6576
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6570
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6558
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6576
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6564
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6526
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6572
+Client sent: 101 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6516
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6526
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6594
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6560
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6600
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6592
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6592
+Client sent: 102 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6578
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6604
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6610
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6642
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6610
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6572
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6568
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6624
+Client sent: 103 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6614
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6724
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6702
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6714
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6590
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6566
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6582
+Client sent: 104 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6614
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6640
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6604
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6660
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6666
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6732
+Client sent: 105 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6710
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6732
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6734
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6694
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6682
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6706
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6624
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6674
+Client sent: 106 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6700
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6622
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6566
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6624
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6604
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6606
+Client sent: 107 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6634
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6564
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6570
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6580
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6568
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6566
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6580
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6596
+Client sent: 108 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6612
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6590
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6660
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6612
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6656
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6620
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6680
+Client sent: 109 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6640
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6648
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6690
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6646
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6672
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6606
+Client sent: 110 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6598
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6606
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6632
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6614
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6654
+Client sent: 111 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6636
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6624
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6624
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6706
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6650
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6664
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6700
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6708
+Client sent: 112 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6820
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6782
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6782
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6778
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6748
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6812
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6758
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6746
+Client sent: 113 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6824
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6774
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6796
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6794
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6702
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6754
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6754
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6728
+Client sent: 114 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6700
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6618
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6688
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6656
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6644
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6664
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6668
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6618
+Client sent: 115 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6592
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6594
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6610
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6606
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6604
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6636
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6610
+Client sent: 116 MBs of data
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6656
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6640
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6628
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6638
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6628
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6654
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6648
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6674
+Client sent: 117 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6678
+Bytes Sent = 125560, targetBytesSent = 124420, timeLeft (us) = 6648
+Bytes Sent = 124100, targetBytesSent = 123860, timeLeft (us) = 6718
+Bytes Sent = 125560, targetBytesSent = 124760, timeLeft (us) = 6676
+Bytes Sent = 125560, targetBytesSent = 124200, timeLeft (us) = 6702
+Bytes Sent = 124100, targetBytesSent = 123640, timeLeft (us) = 6632
+Bytes Sent = 125560, targetBytesSent = 124540, timeLeft (us) = 6702
+Bytes Sent = 124100, targetBytesSent = 123980, timeLeft (us) = 6702
+Client sent: 118 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124880, timeLeft (us) = 6726
+Bytes Sent = 125560, targetBytesSent = 124320, timeLeft (us) = 6808
+Bytes Sent = 124100, targetBytesSent = 123760, timeLeft (us) = 6658
+Bytes Sent = 125560, targetBytesSent = 124660, timeLeft (us) = 6638
+Bytes Sent = 124100, targetBytesSent = 124100, timeLeft (us) = 6614
+Bytes Sent = 125560, targetBytesSent = 125000, timeLeft (us) = 6624
+Bytes Sent = 125560, targetBytesSent = 124440, timeLeft (us) = 6560
+Bytes Sent = 124100, targetBytesSent = 123880, timeLeft (us) = 6538
+Client sent: 119 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124780, timeLeft (us) = 6512
+Bytes Sent = 125560, targetBytesSent = 124220, timeLeft (us) = 6550
+Bytes Sent = 124100, targetBytesSent = 123660, timeLeft (us) = 6504
+Bytes Sent = 125560, targetBytesSent = 124560, timeLeft (us) = 6542
+Bytes Sent = 124100, targetBytesSent = 124000, timeLeft (us) = 6530
+Bytes Sent = 125560, targetBytesSent = 124900, timeLeft (us) = 6538
+Bytes Sent = 125560, targetBytesSent = 124340, timeLeft (us) = 6490
+Bytes Sent = 124100, targetBytesSent = 123780, timeLeft (us) = 6490
+Client sent: 120 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124680, timeLeft (us) = 6476
+Bytes Sent = 125560, targetBytesSent = 124120, timeLeft (us) = 6480
+Bytes Sent = 124100, targetBytesSent = 123560, timeLeft (us) = 6574
+Bytes Sent = 125560, targetBytesSent = 124460, timeLeft (us) = 6520
+Bytes Sent = 124100, targetBytesSent = 123900, timeLeft (us) = 6560
+Bytes Sent = 125560, targetBytesSent = 124800, timeLeft (us) = 6520
+Bytes Sent = 125560, targetBytesSent = 124240, timeLeft (us) = 6534
+Bytes Sent = 124100, targetBytesSent = 123680, timeLeft (us) = 6546
+Client sent: 121 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124580, timeLeft (us) = 6550
+Bytes Sent = 124100, targetBytesSent = 124020, timeLeft (us) = 6562
+Bytes Sent = 125560, targetBytesSent = 124920, timeLeft (us) = 6504
+Bytes Sent = 125560, targetBytesSent = 124360, timeLeft (us) = 6604
+Bytes Sent = 124100, targetBytesSent = 123800, timeLeft (us) = 6666
+Bytes Sent = 125560, targetBytesSent = 124700, timeLeft (us) = 6644
+Bytes Sent = 125560, targetBytesSent = 124140, timeLeft (us) = 6656
+Bytes Sent = 124100, targetBytesSent = 123580, timeLeft (us) = 6630
+Client sent: 122 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124480, timeLeft (us) = 6660
+Bytes Sent = 124100, targetBytesSent = 123920, timeLeft (us) = 6648
+Bytes Sent = 125560, targetBytesSent = 124820, timeLeft (us) = 6616
+Bytes Sent = 125560, targetBytesSent = 124260, timeLeft (us) = 6652
+Bytes Sent = 124100, targetBytesSent = 123700, timeLeft (us) = 6602
+Bytes Sent = 125560, targetBytesSent = 124600, timeLeft (us) = 6632
+Bytes Sent = 124100, targetBytesSent = 124040, timeLeft (us) = 6524
+Bytes Sent = 125560, targetBytesSent = 124940, timeLeft (us) = 6654
+Client sent: 123 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124380, timeLeft (us) = 6582
+Bytes Sent = 124100, targetBytesSent = 123820, timeLeft (us) = 6688
+Bytes Sent = 125560, targetBytesSent = 124720, timeLeft (us) = 6646
+Bytes Sent = 125560, targetBytesSent = 124160, timeLeft (us) = 6646
+Bytes Sent = 124100, targetBytesSent = 123600, timeLeft (us) = 6588
+Bytes Sent = 125560, targetBytesSent = 124500, timeLeft (us) = 6622
+Bytes Sent = 124100, targetBytesSent = 123940, timeLeft (us) = 6626
+Bytes Sent = 125560, targetBytesSent = 124840, timeLeft (us) = 6620
+Client sent: 124 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124280, timeLeft (us) = 6570
+Bytes Sent = 124100, targetBytesSent = 123720, timeLeft (us) = 6572
+Bytes Sent = 125560, targetBytesSent = 124620, timeLeft (us) = 6540
+Bytes Sent = 124100, targetBytesSent = 124060, timeLeft (us) = 6602
+Bytes Sent = 125560, targetBytesSent = 124960, timeLeft (us) = 6554
+Bytes Sent = 125560, targetBytesSent = 124400, timeLeft (us) = 6598
+Bytes Sent = 124100, targetBytesSent = 123840, timeLeft (us) = 6618
+Bytes Sent = 125560, targetBytesSent = 124740, timeLeft (us) = 6556
+Client sent: 125 MBs of data
+Bytes Sent = 125560, targetBytesSent = 124180, timeLeft (us) = 6390
+Bytes Sent = 124100, targetBytesSent = 123620, timeLeft (us) = 6380
+Bytes Sent = 125560, targetBytesSent = 124520, timeLeft (us) = 6380
+Bytes Sent = 124100, targetBytesSent = 123960, timeLeft (us) = 6420
+Bytes Sent = 125560, targetBytesSent = 124860, timeLeft (us) = 6408
+Bytes Sent = 125560, targetBytesSent = 124300, timeLeft (us) = 6438
+Bytes Sent = 124100, targetBytesSent = 123740, timeLeft (us) = 6394
+Bytes Sent = 125560, targetBytesSent = 124640, timeLeft (us) = 6440
+Client sent: 126 MBs of data
+Bytes Sent = 124100, targetBytesSent = 124080, timeLeft (us) = 6474
+Bytes Sent = 125560, targetBytesSent = 124980, timeLeft (us) = 6498
+Exp finishing. Stopping stack thread with id: 6!
+VT-sleep-for exiting !
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6

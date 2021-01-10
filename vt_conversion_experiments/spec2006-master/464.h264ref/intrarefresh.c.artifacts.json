@@ -1,0 +1,373 @@
+{
+  "RandomIntra": {
+    "bbls": {
+      "11": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          12,
+          15
+        ],
+        "weight": 4
+      },
+      "12": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          11
+        ],
+        "out_edges": [
+          13
+        ],
+        "weight": 2
+      },
+      "13": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          12,
+          14
+        ],
+        "out_edges": [
+          16,
+          14
+        ],
+        "weight": 1
+      },
+      "14": {
+        "called_fns": [],
+        "in_edges": [
+          13
+        ],
+        "out_edges": [
+          13,
+          15
+        ],
+        "weight": 1
+      },
+      "15": {
+        "called_fns": [],
+        "in_edges": [
+          11,
+          14
+        ],
+        "out_edges": [
+          17
+        ],
+        "weight": 1
+      },
+      "16": {
+        "called_fns": [],
+        "in_edges": [
+          13
+        ],
+        "out_edges": [
+          17
+        ],
+        "weight": 1
+      },
+      "17": {
+        "called_fns": [],
+        "in_edges": [
+          15,
+          16
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 11,
+    "loops": {},
+    "returning_blocks": [
+      17
+    ]
+  },
+  "RandomIntraInit": {
+    "bbls": {
+      "1": {
+        "called_fns": [
+          "spec_srand",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "malloc",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          2,
+          3
+        ],
+        "weight": 9
+      },
+      "10": {
+        "called_fns": [],
+        "in_edges": [
+          5,
+          9
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "2": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          1
+        ],
+        "out_edges": [
+          3
+        ],
+        "weight": 1
+      },
+      "3": {
+        "called_fns": [
+          "malloc",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          1,
+          2
+        ],
+        "out_edges": [
+          4,
+          5
+        ],
+        "weight": 3
+      },
+      "4": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          3
+        ],
+        "out_edges": [
+          5
+        ],
+        "weight": 1
+      },
+      "5": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          3,
+          4
+        ],
+        "out_edges": [
+          6,
+          10
+        ],
+        "weight": 1
+      },
+      "6": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          ""
+        ],
+        "in_edges": [
+          5
+        ],
+        "out_edges": [
+          7
+        ],
+        "weight": 3
+      },
+      "7": {
+        "called_fns": [],
+        "in_edges": [
+          6,
+          9
+        ],
+        "out_edges": [
+          8
+        ],
+        "weight": 1
+      },
+      "8": {
+        "called_fns": [
+          "spec_rand",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          7,
+          8
+        ],
+        "out_edges": [
+          9,
+          8
+        ],
+        "weight": 17
+      },
+      "9": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          8
+        ],
+        "out_edges": [
+          7,
+          10
+        ],
+        "weight": 2
+      }
+    },
+    "entry_block": 1,
+    "loops": {},
+    "returning_blocks": [
+      10
+    ]
+  },
+  "RandomIntraNewPicture": {
+    "bbls": {
+      "18": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          19,
+          25
+        ],
+        "weight": 7
+      },
+      "19": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          18
+        ],
+        "out_edges": [
+          20,
+          21
+        ],
+        "weight": 5
+      },
+      "20": {
+        "called_fns": [],
+        "in_edges": [
+          19
+        ],
+        "out_edges": [
+          25,
+          24
+        ],
+        "weight": 1
+      },
+      "21": {
+        "called_fns": [],
+        "in_edges": [
+          19
+        ],
+        "out_edges": [
+          22
+        ],
+        "weight": 8
+      },
+      "22": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          21,
+          22
+        ],
+        "out_edges": [
+          23,
+          22
+        ],
+        "weight": 28
+      },
+      "23": {
+        "called_fns": [],
+        "in_edges": [
+          22
+        ],
+        "out_edges": [
+          25,
+          24
+        ],
+        "weight": 3
+      },
+      "24": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          23,
+          20
+        ],
+        "out_edges": [
+          25
+        ],
+        "weight": 13
+      },
+      "25": {
+        "called_fns": [],
+        "in_edges": [
+          18,
+          24,
+          23,
+          20
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 18,
+    "loops": {
+      "1": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "loop_headers": [
+          22
+        ],
+        "loop_latches": [
+          22
+        ]
+      }
+    },
+    "returning_blocks": [
+      25
+    ]
+  },
+  "RandomIntraUninit": {
+    "bbls": {
+      "26": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "free",
+          "dataReadCacheCallback",
+          "free"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 26,
+    "loops": {},
+    "returning_blocks": [
+      26
+    ]
+  }
+}

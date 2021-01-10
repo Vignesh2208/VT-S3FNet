@@ -1,0 +1,61 @@
+sh: 1: /usr/sbin/arp: not found
+Tracer: 1 >> CMD TO RUN: /usr/local/bin/sysbench --test=cpu --cpu-max-prime=10000 run
+Tracer: 1 >> Started Command: /usr/local/bin/sysbench --test=cpu --cpu-max-prime=10000 run, PID: 4499. Timeline-id: 0
+Tracer: 1 >> Waiting for virtual time experiment to finish ...
+Tracer: 1 >> CMD TO RUN: /usr/local/bin/sysbench --test=cpu --cpu-max-prime=10000 run
+args[0] = /usr/local/bin/sysbench
+args[1] = --test=cpu
+args[2] = --cpu-max-prime=10000
+args[3] = run
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/titan
+Parsing TTN config file: /home/titan/.ttn/projects.db
+Setting VT_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_INS_CACHE_LINES to: 32
+Setting VT_INS_CACHE_SIZE_KB to: 32
+Setting VT_INS_CACHE_TYPE to: DMA
+Setting VT_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_DATA_CACHE_LINES to: 32
+Setting VT_DATA_CACHE_SIZE_KB to: 32
+Setting VT_DATA_CACHE_TYPE to: DMA
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_BBL_LOOKAHEAD_FILE to: /tmp/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /tmp/.ttn/lookahead/loop_lookahead.info
+Starting command: /usr/local/bin/sysbench
+Loading orig functions !
+Starting executable with Pid = 4499
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Starting VT-initialization !
+Tracer-ID: 1
+Tracer registration for EXP_CBE complete. Return = 0
+Tracer Adding to SQ. Tracer ID = 1
+VT initialization successfull !
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+sysbench 0.4.12.10:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 1
+Random number generator seed is 0 and will be ignored
+
+
+Doing CPU performance benchmark
+
+Primer numbers limit: 10000
+
+Threads started!
+Adding new Thread: 4500
+Resuming new Thread with Burst of length: 270000
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 4500 exiting VT experiment !
+Main thread exiting. PID = 4500
+Tracer: 1 >> Resumed. Waiting for processes to finish ...
+Tracer: 1 >> Waiting for 5 seconds ...
+Tracer: 1 >> Waiting to read child status ...
+Tracer: 1 >> Exiting ...

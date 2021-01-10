@@ -12,7 +12,7 @@ parser.add_argument('--num_emu_hosts', type=int,
 parser.add_argument('--k', type=int, required=False, help='k-ary fat-tree topology',
                     default=16)
 parser.add_argument('--mpi_type', type=str, default='mm')         
-parser.add_argument('--run_time', type=float, default=20)
+parser.add_argument('--run_time', type=float, default=5)
 parser.add_argument('--enable_lookahead', type=int, default=1)
 parser.add_argument('--fraction_servers', type=float, required=False,
                     help='Fraction of simulated hosts which are tcp servers',

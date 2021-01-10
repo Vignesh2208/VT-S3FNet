@@ -1,0 +1,1533 @@
+{
+  "cadvise": {
+    "bbls": {
+      "107": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          109,
+          108
+        ],
+        "weight": 2
+      },
+      "108": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fwrite"
+        ],
+        "in_edges": [
+          107
+        ],
+        "out_edges": [],
+        "weight": 3
+      },
+      "109": {
+        "called_fns": [],
+        "in_edges": [
+          107
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 107,
+    "loops": {},
+    "returning_blocks": [
+      108,
+      109
+    ]
+  },
+  "cleanUpAndFail": {
+    "bbls": {
+      "106": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "exit"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 106,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "compressStream": {
+    "bbls": {
+      "1": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "BZ2_bzWriteOpen",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          2,
+          17
+        ],
+        "weight": 10
+      },
+      "10": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          9
+        ],
+        "out_edges": [
+          11
+        ],
+        "weight": 1
+      },
+      "11": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          9,
+          10
+        ],
+        "out_edges": [
+          14,
+          12
+        ],
+        "weight": 2
+      },
+      "12": {
+        "called_fns": [],
+        "in_edges": [
+          11,
+          16,
+          15
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "13": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fputc"
+        ],
+        "in_edges": [
+          2
+        ],
+        "out_edges": [
+          3
+        ],
+        "weight": 2
+      },
+      "14": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          11
+        ],
+        "out_edges": [
+          15,
+          16
+        ],
+        "weight": 3
+      },
+      "15": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fwrite"
+        ],
+        "in_edges": [
+          14
+        ],
+        "out_edges": [
+          12
+        ],
+        "weight": 3
+      },
+      "16": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "uInt64_toAscii",
+          "uInt64_toAscii",
+          "dataReadCacheCallback",
+          "fprintf"
+        ],
+        "in_edges": [
+          14
+        ],
+        "out_edges": [
+          12
+        ],
+        "weight": 105
+      },
+      "17": {
+        "called_fns": [
+          "BZ2_bzWriteClose64",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          1,
+          4,
+          8
+        ],
+        "out_edges": [
+          21,
+          18
+        ],
+        "weight": 5
+      },
+      "18": {
+        "called_fns": [],
+        "in_edges": [
+          17
+        ],
+        "out_edges": [
+          22,
+          19
+        ],
+        "weight": 1
+      },
+      "19": {
+        "called_fns": [],
+        "in_edges": [
+          18
+        ],
+        "out_edges": [
+          20,
+          23
+        ],
+        "weight": 1
+      },
+      "2": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          1
+        ],
+        "out_edges": [
+          13,
+          3
+        ],
+        "weight": 1
+      },
+      "20": {
+        "called_fns": [
+          "configError"
+        ],
+        "in_edges": [
+          19
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "21": {
+        "called_fns": [
+          "outOfMemory"
+        ],
+        "in_edges": [
+          17
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "22": {
+        "called_fns": [
+          "ioError"
+        ],
+        "in_edges": [
+          18
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "23": {
+        "called_fns": [
+          "panic"
+        ],
+        "in_edges": [
+          19
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "3": {
+        "called_fns": [],
+        "in_edges": [
+          2,
+          13
+        ],
+        "out_edges": [
+          5
+        ],
+        "weight": 1
+      },
+      "4": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          6,
+          7
+        ],
+        "out_edges": [
+          5,
+          17
+        ],
+        "weight": 1
+      },
+      "5": {
+        "called_fns": [
+          "spec_getc"
+        ],
+        "in_edges": [
+          3,
+          4
+        ],
+        "out_edges": [
+          8,
+          6
+        ],
+        "weight": 1
+      },
+      "6": {
+        "called_fns": [
+          "spec_ungetc",
+          "spec_fread"
+        ],
+        "in_edges": [
+          5
+        ],
+        "out_edges": [
+          7,
+          4
+        ],
+        "weight": 3
+      },
+      "7": {
+        "called_fns": [
+          "BZ2_bzWrite"
+        ],
+        "in_edges": [
+          6
+        ],
+        "out_edges": [
+          4
+        ],
+        "weight": 2
+      },
+      "8": {
+        "called_fns": [
+          "BZ2_bzWriteClose64",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          5
+        ],
+        "out_edges": [
+          9,
+          17
+        ],
+        "weight": 5
+      },
+      "9": {
+        "called_fns": [],
+        "in_edges": [
+          8
+        ],
+        "out_edges": [
+          11,
+          10
+        ],
+        "weight": 1
+      }
+    },
+    "entry_block": 1,
+    "loops": {},
+    "returning_blocks": [
+      12
+    ]
+  },
+  "compressedStreamEOF": {
+    "bbls": {
+      "100": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fprintf",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          99
+        ],
+        "out_edges": [
+          102,
+          101
+        ],
+        "weight": 4
+      },
+      "101": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fwrite"
+        ],
+        "in_edges": [
+          100
+        ],
+        "out_edges": [
+          102
+        ],
+        "weight": 2
+      },
+      "102": {
+        "called_fns": [
+          "cleanUpAndFail"
+        ],
+        "in_edges": [
+          98,
+          99,
+          100,
+          101
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "98": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          102,
+          99
+        ],
+        "weight": 3
+      },
+      "99": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "fprintf",
+          "dataReadCacheCallback",
+          "perror",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          98
+        ],
+        "out_edges": [
+          102,
+          100
+        ],
+        "weight": 6
+      }
+    },
+    "entry_block": 98,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "configError": {
+    "bbls": {
+      "35": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fwrite",
+          "dataWriteCacheCallback",
+          "exit"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 5
+      }
+    },
+    "entry_block": 35,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "crcError": {
+    "bbls": {
+      "97": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "fprintf",
+          "showFileNames",
+          "cadvise",
+          "cleanUpAndFail"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 6
+      }
+    },
+    "entry_block": 97,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "ioError": {
+    "bbls": {
+      "37": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "fprintf",
+          "dataReadCacheCallback",
+          "perror",
+          "showFileNames",
+          "cleanUpAndFail"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 7
+      }
+    },
+    "entry_block": 37,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "outOfMemory": {
+    "bbls": {
+      "36": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "fprintf",
+          "showFileNames",
+          "cleanUpAndFail"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 6
+      }
+    },
+    "entry_block": 36,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "panic": {
+    "bbls": {
+      "38": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "fprintf",
+          "showFileNames",
+          "cleanUpAndFail"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 6
+      }
+    },
+    "entry_block": 38,
+    "loops": {},
+    "returning_blocks": []
+  },
+  "showFileNames": {
+    "bbls": {
+      "103": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          105,
+          104
+        ],
+        "weight": 2
+      },
+      "104": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fprintf"
+        ],
+        "in_edges": [
+          103
+        ],
+        "out_edges": [],
+        "weight": 3
+      },
+      "105": {
+        "called_fns": [],
+        "in_edges": [
+          103
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 103,
+    "loops": {},
+    "returning_blocks": [
+      104,
+      105
+    ]
+  },
+  "uInt64_toAscii": {
+    "bbls": {
+      "24": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          25
+        ],
+        "weight": 9
+      },
+      "25": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          24,
+          25,
+          26
+        ],
+        "out_edges": [
+          25,
+          26
+        ],
+        "weight": 41
+      },
+      "26": {
+        "called_fns": [],
+        "in_edges": [
+          25
+        ],
+        "out_edges": [
+          25,
+          27
+        ],
+        "weight": 1
+      },
+      "27": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          26
+        ],
+        "out_edges": [
+          28,
+          29
+        ],
+        "weight": 2
+      },
+      "28": {
+        "called_fns": [],
+        "in_edges": [
+          27
+        ],
+        "out_edges": [
+          32
+        ],
+        "weight": 1
+      },
+      "29": {
+        "called_fns": [],
+        "in_edges": [
+          27
+        ],
+        "out_edges": [
+          30
+        ],
+        "weight": 7
+      },
+      "30": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          29,
+          30
+        ],
+        "out_edges": [
+          31,
+          30
+        ],
+        "weight": 14
+      },
+      "31": {
+        "called_fns": [],
+        "in_edges": [
+          30
+        ],
+        "out_edges": [
+          34,
+          32
+        ],
+        "weight": 1
+      },
+      "32": {
+        "called_fns": [],
+        "in_edges": [
+          31,
+          28
+        ],
+        "out_edges": [
+          33
+        ],
+        "weight": 4
+      },
+      "33": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          32,
+          33
+        ],
+        "out_edges": [
+          34,
+          33
+        ],
+        "weight": 4
+      },
+      "34": {
+        "called_fns": [],
+        "in_edges": [
+          31,
+          33
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 24,
+    "loops": {
+      "1": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "loop_headers": [
+          30
+        ],
+        "loop_latches": [
+          30
+        ]
+      },
+      "2": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "loop_headers": [
+          33
+        ],
+        "loop_latches": [
+          33
+        ]
+      }
+    },
+    "returning_blocks": [
+      34
+    ]
+  },
+  "uncompressStream": {
+    "bbls": {
+      "39": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "BZ2_bzReadOpen",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          71,
+          40
+        ],
+        "weight": 11
+      },
+      "40": {
+        "called_fns": [],
+        "in_edges": [
+          39
+        ],
+        "out_edges": [
+          71,
+          41
+        ],
+        "weight": 1
+      },
+      "41": {
+        "called_fns": [],
+        "in_edges": [
+          40
+        ],
+        "out_edges": [
+          42
+        ],
+        "weight": 1
+      },
+      "42": {
+        "called_fns": [],
+        "in_edges": [
+          41,
+          62
+        ],
+        "out_edges": [
+          43
+        ],
+        "weight": 1
+      },
+      "43": {
+        "called_fns": [],
+        "in_edges": [
+          42,
+          45,
+          46
+        ],
+        "out_edges": [
+          44,
+          48
+        ],
+        "weight": 1
+      },
+      "44": {
+        "called_fns": [
+          "BZ2_bzRead",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          43,
+          47
+        ],
+        "out_edges": [
+          77,
+          45
+        ],
+        "weight": 4
+      },
+      "45": {
+        "called_fns": [],
+        "in_edges": [
+          44
+        ],
+        "out_edges": [
+          46,
+          43
+        ],
+        "weight": 1
+      },
+      "46": {
+        "called_fns": [],
+        "in_edges": [
+          45
+        ],
+        "out_edges": [
+          47,
+          43
+        ],
+        "weight": 1
+      },
+      "47": {
+        "called_fns": [
+          "spec_fwrite",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          46
+        ],
+        "out_edges": [
+          44,
+          48
+        ],
+        "weight": 3
+      },
+      "48": {
+        "called_fns": [],
+        "in_edges": [
+          43,
+          47
+        ],
+        "out_edges": [
+          49,
+          72
+        ],
+        "weight": 1
+      },
+      "49": {
+        "called_fns": [
+          "BZ2_bzReadGetUnused",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          48
+        ],
+        "out_edges": [
+          50,
+          96
+        ],
+        "weight": 4
+      },
+      "50": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          49
+        ],
+        "out_edges": [
+          51,
+          57
+        ],
+        "weight": 2
+      },
+      "51": {
+        "called_fns": [],
+        "in_edges": [
+          50
+        ],
+        "out_edges": [
+          54,
+          52
+        ],
+        "weight": 1
+      },
+      "52": {
+        "called_fns": [],
+        "in_edges": [
+          51
+        ],
+        "out_edges": [
+          53,
+          63
+        ],
+        "weight": 1
+      },
+      "53": {
+        "called_fns": [],
+        "in_edges": [
+          52
+        ],
+        "out_edges": [
+          54,
+          63
+        ],
+        "weight": 2
+      },
+      "54": {
+        "called_fns": [],
+        "in_edges": [
+          51,
+          53
+        ],
+        "out_edges": [
+          55
+        ],
+        "weight": 1
+      },
+      "55": {
+        "called_fns": [],
+        "in_edges": [
+          70,
+          54
+        ],
+        "out_edges": [
+          56
+        ],
+        "weight": 2
+      },
+      "56": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          55,
+          56
+        ],
+        "out_edges": [
+          56,
+          57
+        ],
+        "weight": 4
+      },
+      "57": {
+        "called_fns": [
+          "BZ2_bzReadClose",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          50,
+          70,
+          56
+        ],
+        "out_edges": [
+          58,
+          96
+        ],
+        "weight": 2
+      },
+      "58": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          57
+        ],
+        "out_edges": [
+          59,
+          61
+        ],
+        "weight": 2
+      },
+      "59": {
+        "called_fns": [
+          "spec_getc"
+        ],
+        "in_edges": [
+          58
+        ],
+        "out_edges": [
+          83,
+          60
+        ],
+        "weight": 1
+      },
+      "60": {
+        "called_fns": [
+          "spec_ungetc",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          59
+        ],
+        "out_edges": [
+          61
+        ],
+        "weight": 2
+      },
+      "61": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "BZ2_bzReadOpen",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          58,
+          60
+        ],
+        "out_edges": [
+          72,
+          62
+        ],
+        "weight": 6
+      },
+      "62": {
+        "called_fns": [],
+        "in_edges": [
+          61
+        ],
+        "out_edges": [
+          72,
+          42
+        ],
+        "weight": 1
+      },
+      "63": {
+        "called_fns": [],
+        "in_edges": [
+          52,
+          53
+        ],
+        "out_edges": [
+          64,
+          65
+        ],
+        "weight": 5
+      },
+      "64": {
+        "called_fns": [],
+        "in_edges": [
+          63
+        ],
+        "out_edges": [
+          67
+        ],
+        "weight": 1
+      },
+      "65": {
+        "called_fns": [],
+        "in_edges": [
+          63
+        ],
+        "out_edges": [
+          66
+        ],
+        "weight": 4
+      },
+      "66": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          65,
+          66
+        ],
+        "out_edges": [
+          67,
+          66
+        ],
+        "weight": 35
+      },
+      "67": {
+        "called_fns": [],
+        "in_edges": [
+          66,
+          64
+        ],
+        "out_edges": [
+          70,
+          68
+        ],
+        "weight": 1
+      },
+      "68": {
+        "called_fns": [],
+        "in_edges": [
+          67
+        ],
+        "out_edges": [
+          69
+        ],
+        "weight": 6
+      },
+      "69": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          68,
+          69
+        ],
+        "out_edges": [
+          70,
+          69
+        ],
+        "weight": 10
+      },
+      "70": {
+        "called_fns": [],
+        "in_edges": [
+          67,
+          69
+        ],
+        "out_edges": [
+          57,
+          55
+        ],
+        "weight": 2
+      },
+      "71": {
+        "called_fns": [],
+        "in_edges": [
+          39,
+          40
+        ],
+        "out_edges": [
+          72
+        ],
+        "weight": 1
+      },
+      "72": {
+        "called_fns": [
+          "BZ2_bzReadClose",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          62,
+          77,
+          71,
+          61,
+          48
+        ],
+        "out_edges": [
+          73,
+          88
+        ],
+        "weight": 2
+      },
+      "73": {
+        "called_fns": [],
+        "in_edges": [
+          72
+        ],
+        "out_edges": [
+          74,
+          75
+        ],
+        "weight": 1
+      },
+      "74": {
+        "called_fns": [],
+        "in_edges": [
+          73
+        ],
+        "out_edges": [
+          86
+        ],
+        "weight": 1
+      },
+      "75": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          73
+        ],
+        "out_edges": [
+          86,
+          76
+        ],
+        "weight": 2
+      },
+      "76": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "fprintf"
+        ],
+        "in_edges": [
+          75
+        ],
+        "out_edges": [
+          86
+        ],
+        "weight": 4
+      },
+      "77": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          44
+        ],
+        "out_edges": [
+          72,
+          78
+        ],
+        "weight": 1
+      },
+      "78": {
+        "called_fns": [
+          "spec_rewind",
+          "spec_getc"
+        ],
+        "in_edges": [
+          77
+        ],
+        "out_edges": [
+          83,
+          79
+        ],
+        "weight": 2
+      },
+      "79": {
+        "called_fns": [],
+        "in_edges": [
+          78
+        ],
+        "out_edges": [
+          81
+        ],
+        "weight": 1
+      },
+      "80": {
+        "called_fns": [
+          "spec_getc"
+        ],
+        "in_edges": [
+          81,
+          82
+        ],
+        "out_edges": [
+          83,
+          81
+        ],
+        "weight": 1
+      },
+      "81": {
+        "called_fns": [
+          "spec_ungetc",
+          "spec_fread"
+        ],
+        "in_edges": [
+          79,
+          80
+        ],
+        "out_edges": [
+          82,
+          80
+        ],
+        "weight": 3
+      },
+      "82": {
+        "called_fns": [
+          "spec_fwrite"
+        ],
+        "in_edges": [
+          81
+        ],
+        "out_edges": [
+          80
+        ],
+        "weight": 2
+      },
+      "83": {
+        "called_fns": [],
+        "in_edges": [
+          59,
+          78,
+          80
+        ],
+        "out_edges": [
+          85,
+          84
+        ],
+        "weight": 1
+      },
+      "84": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          83
+        ],
+        "out_edges": [
+          85
+        ],
+        "weight": 1
+      },
+      "85": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          83,
+          84
+        ],
+        "out_edges": [
+          87,
+          86
+        ],
+        "weight": 3
+      },
+      "86": {
+        "called_fns": [],
+        "in_edges": [
+          87,
+          76,
+          74,
+          85,
+          75
+        ],
+        "out_edges": [],
+        "weight": 3
+      },
+      "87": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "fwrite"
+        ],
+        "in_edges": [
+          85
+        ],
+        "out_edges": [
+          86
+        ],
+        "weight": 3
+      },
+      "88": {
+        "called_fns": [],
+        "in_edges": [
+          72
+        ],
+        "out_edges": [
+          95,
+          89
+        ],
+        "weight": 1
+      },
+      "89": {
+        "called_fns": [],
+        "in_edges": [
+          88
+        ],
+        "out_edges": [
+          90,
+          95,
+          91,
+          92,
+          93,
+          94
+        ],
+        "weight": 2
+      },
+      "90": {
+        "called_fns": [
+          "configError"
+        ],
+        "in_edges": [
+          89
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "91": {
+        "called_fns": [
+          "compressedStreamEOF"
+        ],
+        "in_edges": [
+          89
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "92": {
+        "called_fns": [
+          "ioError"
+        ],
+        "in_edges": [
+          89
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "93": {
+        "called_fns": [
+          "crcError"
+        ],
+        "in_edges": [
+          89
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "94": {
+        "called_fns": [
+          "outOfMemory"
+        ],
+        "in_edges": [
+          89
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "95": {
+        "called_fns": [
+          "panic"
+        ],
+        "in_edges": [
+          89,
+          88
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "96": {
+        "called_fns": [
+          "panic"
+        ],
+        "in_edges": [
+          49,
+          57
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 39,
+    "loops": {
+      "3": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "loop_headers": [
+          56
+        ],
+        "loop_latches": [
+          56
+        ]
+      },
+      "4": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "loop_headers": [
+          66
+        ],
+        "loop_latches": [
+          66
+        ]
+      },
+      "5": {
+        "loop_called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "loop_headers": [
+          69
+        ],
+        "loop_latches": [
+          69
+        ]
+      }
+    },
+    "returning_blocks": [
+      86
+    ]
+  }
+}

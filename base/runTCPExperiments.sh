@@ -12,7 +12,7 @@ declare -a Periods=(200000)
 declare -a MuArrivals=(200000)
 declare -a Rates=(1 10 100 1000)
 declare -a TxSizes=(8 256 2000)
-declare -a NumEmuHostsPerLan=(4)
+declare -a NumEmuHostsPerLan=(5)
 
 
 cd $TITAN_DIR

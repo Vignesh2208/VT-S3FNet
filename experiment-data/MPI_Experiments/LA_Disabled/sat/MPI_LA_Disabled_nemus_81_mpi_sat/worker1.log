@@ -1,0 +1,489 @@
+Attempting to set static arp entries ...
+Tracer: 2 >> Using SRC IP: 10.1.37.10 for any spawned virtual tcp-stacks
+Tracer: 2 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 2 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/mpi_sat/mpi_csat 1 81 10.1.37.10 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Disabled_nemus_81_mpi_sat/worker1.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/mpi_sat/mpi_csat
+args[1] = 1
+args[2] = 81
+args[3] = 10.1.37.10
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/mpi_sat/mpi_csat
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 2
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: 170197258
+Starting VT-initialization !
+Tracer-ID: 2, Timeline-ID: 2
+Tracer registration for EXP_CS complete. TimelineID = 2, Return = 2
+Tracer Adding to SQ. Tracer ID = 2
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/bbl_lookahead.info
+File size: 808
+mapped memblock size: 808
+Finish offset: 97, Number of values: 97
+Returning success !
+Loaded BBL lookaheads for 97 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/loop_lookahead.info
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
+Returning success !
+Loaded Loop lookaheads for 3 loops ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 26
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Rank = 1, Total = 81, IP = 10.1.37.10
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+bind through vt-tcp !
+Server socket bound to ip:port: 10.1.37.10:10000
+Waiting for OK message from other nodes !
+Waiting for OK message !
+listen through vt-tcp !
+Accept through vt-tcp !
+Successfully received OK message !
+
+---------------- Waiting for higher ranked nodes to connect --------------
+listen through vt-tcp !
+Accepting connection from higher ranked node: 80
+Accept through vt-tcp !
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
+Accepted connection from higher ranked node: 80
+Successfully connected with higher ranked node: 80
+Accepting connection from higher ranked node: 79
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 79
+Successfully connected with higher ranked node: 79
+Accepting connection from higher ranked node: 78
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 78
+Successfully connected with higher ranked node: 78
+Accepting connection from higher ranked node: 77
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 77
+Successfully connected with higher ranked node: 77
+Accepting connection from higher ranked node: 76
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 76
+Successfully connected with higher ranked node: 76
+Accepting connection from higher ranked node: 75
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 75
+Successfully connected with higher ranked node: 75
+Accepting connection from higher ranked node: 74
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 74
+Successfully connected with higher ranked node: 74
+Accepting connection from higher ranked node: 73
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 73
+Successfully connected with higher ranked node: 73
+Accepting connection from higher ranked node: 72
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 72
+Successfully connected with higher ranked node: 72
+Accepting connection from higher ranked node: 71
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 71
+Successfully connected with higher ranked node: 71
+Accepting connection from higher ranked node: 70
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 70
+Successfully connected with higher ranked node: 70
+Accepting connection from higher ranked node: 69
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 69
+Successfully connected with higher ranked node: 69
+Accepting connection from higher ranked node: 68
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 68
+Successfully connected with higher ranked node: 68
+Accepting connection from higher ranked node: 67
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 67
+Successfully connected with higher ranked node: 67
+Accepting connection from higher ranked node: 66
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 66
+Successfully connected with higher ranked node: 66
+Accepting connection from higher ranked node: 65
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 65
+Successfully connected with higher ranked node: 65
+Accepting connection from higher ranked node: 64
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 64
+Successfully connected with higher ranked node: 64
+Accepting connection from higher ranked node: 63
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 63
+Successfully connected with higher ranked node: 63
+Accepting connection from higher ranked node: 62
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 62
+Successfully connected with higher ranked node: 62
+Accepting connection from higher ranked node: 61
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 61
+Successfully connected with higher ranked node: 61
+Accepting connection from higher ranked node: 60
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 60
+Successfully connected with higher ranked node: 60
+Accepting connection from higher ranked node: 59
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 59
+Successfully connected with higher ranked node: 59
+Accepting connection from higher ranked node: 58
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 58
+Successfully connected with higher ranked node: 58
+Accepting connection from higher ranked node: 57
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 57
+Successfully connected with higher ranked node: 57
+Accepting connection from higher ranked node: 56
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 56
+Successfully connected with higher ranked node: 56
+Accepting connection from higher ranked node: 55
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 55
+Successfully connected with higher ranked node: 55
+Accepting connection from higher ranked node: 54
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 54
+Successfully connected with higher ranked node: 54
+Accepting connection from higher ranked node: 53
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 53
+Successfully connected with higher ranked node: 53
+Accepting connection from higher ranked node: 52
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 52
+Successfully connected with higher ranked node: 52
+Accepting connection from higher ranked node: 51
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 51
+Successfully connected with higher ranked node: 51
+Accepting connection from higher ranked node: 50
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 50
+Successfully connected with higher ranked node: 50
+Accepting connection from higher ranked node: 49
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 49
+Successfully connected with higher ranked node: 49
+Accepting connection from higher ranked node: 48
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 48
+Successfully connected with higher ranked node: 48
+Accepting connection from higher ranked node: 47
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 47
+Successfully connected with higher ranked node: 47
+Accepting connection from higher ranked node: 46
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 46
+Successfully connected with higher ranked node: 46
+Accepting connection from higher ranked node: 45
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 45
+Successfully connected with higher ranked node: 45
+Accepting connection from higher ranked node: 44
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 44
+Successfully connected with higher ranked node: 44
+Accepting connection from higher ranked node: 43
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 43
+Successfully connected with higher ranked node: 43
+Accepting connection from higher ranked node: 42
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 42
+Successfully connected with higher ranked node: 42
+Accepting connection from higher ranked node: 41
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 41
+Successfully connected with higher ranked node: 41
+Accepting connection from higher ranked node: 40
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 40
+Successfully connected with higher ranked node: 40
+Accepting connection from higher ranked node: 39
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 39
+Successfully connected with higher ranked node: 39
+Accepting connection from higher ranked node: 38
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 38
+Successfully connected with higher ranked node: 38
+Accepting connection from higher ranked node: 37
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 37
+Successfully connected with higher ranked node: 37
+Accepting connection from higher ranked node: 36
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 36
+Successfully connected with higher ranked node: 36
+Accepting connection from higher ranked node: 35
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 35
+Successfully connected with higher ranked node: 35
+Accepting connection from higher ranked node: 34
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 34
+Successfully connected with higher ranked node: 34
+Accepting connection from higher ranked node: 33
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 33
+Successfully connected with higher ranked node: 33
+Accepting connection from higher ranked node: 32
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 32
+Successfully connected with higher ranked node: 32
+Accepting connection from higher ranked node: 31
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 31
+Successfully connected with higher ranked node: 31
+Accepting connection from higher ranked node: 30
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 30
+Successfully connected with higher ranked node: 30
+Accepting connection from higher ranked node: 29
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 29
+Successfully connected with higher ranked node: 29
+Accepting connection from higher ranked node: 28
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 28
+Successfully connected with higher ranked node: 28
+Accepting connection from higher ranked node: 27
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 27
+Successfully connected with higher ranked node: 27
+Accepting connection from higher ranked node: 26
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 26
+Successfully connected with higher ranked node: 26
+Accepting connection from higher ranked node: 25
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 25
+Successfully connected with higher ranked node: 25
+Accepting connection from higher ranked node: 24
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 24
+Successfully connected with higher ranked node: 24
+Accepting connection from higher ranked node: 23
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 23
+Successfully connected with higher ranked node: 23
+Accepting connection from higher ranked node: 22
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 22
+Successfully connected with higher ranked node: 22
+Accepting connection from higher ranked node: 21
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 21
+Successfully connected with higher ranked node: 21
+Accepting connection from higher ranked node: 20
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 20
+Successfully connected with higher ranked node: 20
+Accepting connection from higher ranked node: 19
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 19
+Successfully connected with higher ranked node: 19
+Accepting connection from higher ranked node: 18
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 18
+Successfully connected with higher ranked node: 18
+Accepting connection from higher ranked node: 17
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 17
+Successfully connected with higher ranked node: 17
+Accepting connection from higher ranked node: 16
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 16
+Successfully connected with higher ranked node: 16
+Accepting connection from higher ranked node: 15
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 15
+Successfully connected with higher ranked node: 15
+Accepting connection from higher ranked node: 14
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 14
+Successfully connected with higher ranked node: 14
+Accepting connection from higher ranked node: 13
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 13
+Successfully connected with higher ranked node: 13
+Accepting connection from higher ranked node: 12
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 12
+Successfully connected with higher ranked node: 12
+Accepting connection from higher ranked node: 11
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 11
+Successfully connected with higher ranked node: 11
+Accepting connection from higher ranked node: 10
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 10
+Successfully connected with higher ranked node: 10
+Accepting connection from higher ranked node: 9
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 9
+Successfully connected with higher ranked node: 9
+Accepting connection from higher ranked node: 8
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 8
+Successfully connected with higher ranked node: 8
+Accepting connection from higher ranked node: 7
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 7
+Successfully connected with higher ranked node: 7
+Accepting connection from higher ranked node: 6
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 6
+Successfully connected with higher ranked node: 6
+Accepting connection from higher ranked node: 5
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 5
+Successfully connected with higher ranked node: 5
+Accepting connection from higher ranked node: 4
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 4
+Successfully connected with higher ranked node: 4
+Accepting connection from higher ranked node: 3
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 3
+Successfully connected with higher ranked node: 3
+Accepting connection from higher ranked node: 2
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 2
+Successfully connected with higher ranked node: 2
+Closing server socket: 4097
+Clearing all tcp timers !
+TCP-done for socket: 4097, err: -103
+
+---------------- Connecting to lowed ranked nodes ! --------------
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 0 at 10.1.37.14:10000
+Connecting .. Socket: 4178, src-port: 40001
+Socket: 4097 garbage collection
+Freeing socket: 4097
+Waking up connected socket !
+Socket connect success. socket = 4178
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 0 at 10.1.37.14:10000
+
+---------------- Creating listen Thread ! --------------
+
+---------------- MPI-Init success ! --------------
+
+-------------------------------------------------------------
+  Task no: 1
+Waiting for trigger !
+Adding new Thread: 8
+Signal Burst Completion: Flushing Data Cache !
+Resuming new Thread with Burst of length: 5400
+Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
+  Worker 1 iterates from 13256071 <= I < 26512141
+
+Called SetLoopLookahead: init: 13256071, final: 26512141, step: 1, loopDepth: 0, cumulative-num-iterations: 13256070, look-ahead-ns: 78554488
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 397682100, look-ahead-ns: 736448320
+tcp-linger 
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: -110
+Socket: 4098 garbage collection
+Freeing socket: 4098
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 4937.081250
+
+-------------------------------------------------------------
+  Task no: 2
+Waiting for trigger !
+  Worker 1 iterates from 13256071 <= I < 26512141
+
+Called SetLoopLookahead: init: 13256071, final: 26512141, step: 1, loopDepth: 0, cumulative-num-iterations: 13256070, look-ahead-ns: 78554488
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 397682100, look-ahead-ns: 736448320
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 20.050333
+
+-------------------------------------------------------------
+  Task no: 3
+Waiting for trigger !
+  Worker 1 iterates from 13256071 <= I < 26512141
+
+Called SetLoopLookahead: init: 13256071, final: 26512141, step: 1, loopDepth: 0, cumulative-num-iterations: 13256070, look-ahead-ns: 78554488
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 397682100, look-ahead-ns: 736448320
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 15.052651
+
+-------------------------------------------------------------
+  Task no: 4
+Waiting for trigger !
+  Worker 1 iterates from 13256071 <= I < 26512141
+
+Called SetLoopLookahead: init: 13256071, final: 26512141, step: 1, loopDepth: 0, cumulative-num-iterations: 13256070, look-ahead-ns: 78554488
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 397682100, look-ahead-ns: 736448320
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 13.384441
+
+-------------------------------------------------------------
+  Task no: 5
+Waiting for trigger !
+  Worker 1 iterates from 13256071 <= I < 26512141
+
+Called SetLoopLookahead: init: 13256071, final: 26512141, step: 1, loopDepth: 0, cumulative-num-iterations: 13256070, look-ahead-ns: 78554488
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 397682100, look-ahead-ns: 736448320
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 12.550093
+
+-------------------------------------------------------------
+  Task no: 6
+Waiting for trigger !
+  Worker 1 iterates from 13256071 <= I < 26512141
+
+Called SetLoopLookahead: init: 13256071, final: 26512141, step: 1, loopDepth: 0, cumulative-num-iterations: 13256070, look-ahead-ns: 78554488
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 397682100, look-ahead-ns: 736448320
+Exp finishing. Stopping stack thread with id: 6!
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6

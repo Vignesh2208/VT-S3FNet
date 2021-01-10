@@ -1,0 +1,55 @@
+SHELL=/bin/sh
+
+# To assist in cross-compiling
+ACC=opencc
+CC=gcc
+AR=ar
+SED=sed
+RANLIB=ranlib
+LDFLAGS=-lm 
+
+COMMON_FLAGS= -g -DSPEC_CPU -DSPEC_CPU_LP64 -DSPEC_CPU_LINUX_X64
+
+CFLAGS=$(COMMON_FLAGS) -fopenmp -Wall -Winline -O2 -std=gnu99 -fgnu89-inline -I/home/test/open64/include/4.2.3/
+ACFLAGS=$(COMMON_FLAGS) -O2 -apo -m64 -PHASE:clist=true:c=off -Wb,-LNO:processors=4:minvar=off:ff=0:fusion=0:parallel_overhead=30000 -S
+
+# Where you want it installed when you do 'make install'
+PREFIX=/usr/local
+
+OBJS= annexb.w2c.o biariencode.o block.o cabac.o configfile.o context_ini.o \
+		 decoder.o explicit_gop.w2c.o fast_me.o filehandle.w2c.o fmo.w2c.o header.w2c.o image.o \
+		 intrarefresh.w2c.o leaky_bucket.w2c.o lencod.o loopFilter.o macroblock.o \
+		 mb_access.w2c.o mbuffer.o memalloc.w2c.o mv-search.o nal.o nalu.w2c.o nalucommon.w2c.o \
+		 output.o parset.o parsetcommon.w2c.o q_matrix.o q_offsets.o ratectl.w2c.o \
+		 rdopt.o rdopt_coding_state.w2c.o rdpicdecision.w2c.o refbuf.o rtp.w2c.o sei.w2c.o \
+		 slice.o transform8x8.o vlc.o weighted_prediction.o specrand.w2c.o
+
+W2C=  annexb.w2c.c explicit_gop.w2c.c filehandle.w2c.c fmo.w2c.c header.w2c.c \
+	  intrarefresh.w2c.c leaky_bucket.w2c.c mb_access.w2c.c memalloc.w2c.c nalu.w2c.c nalucommon.w2c.c \
+	  parsetcommon.w2c.c ratectl.w2c.c rdopt_coding_state.w2c.c rdpicdecision.w2c.c rtp.w2c.c sei.w2c.c \
+	  specrand.w2c.c
+
+all: apo h264ref
+
+h264ref: $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS)
+
+apo: $(W2C)
+
+%.w2c.o: %.w2c.c
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+%.w2c.c: %.w2c.h
+	$(SED) -i s/_INT32\ inf\;// $<
+
+%.w2c.h: %.c
+	$(ACC) $(ACFLAGS) $<
+
+%.O: %.c
+	$(ACC) $(ACFLAGS) $<
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+clean: 
+	rm -f *.o *.B *.i *.I *.O *.spin *.w2c.c *.w2c.h h264ref

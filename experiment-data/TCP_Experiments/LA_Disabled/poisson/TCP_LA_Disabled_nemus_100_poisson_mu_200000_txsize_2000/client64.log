@@ -1,0 +1,132 @@
+Attempting to set static arp entries ...
+Tracer: 44 >> Using SRC IP: 10.1.20.178 for any spawned virtual tcp-stacks
+Tracer: 44 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 44 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen client 64 10.1.21.182 7891 poisson 200000 2000 > /home/vignesh/VT-S3FNet/experiment-data/TCP_LA_Disabled_nemus_100_poisson_mu_200000_txsize_2000/client64.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+args[1] = client
+args[2] = 64
+args[3] = 10.1.21.182
+args[4] = 7891
+args[5] = poisson
+args[6] = 200000
+args[7] = 2000
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/tgen
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 44
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: -1307311862
+Starting VT-initialization !
+Tracer-ID: 44, Timeline-ID: 44
+Tracer registration for EXP_CS complete. TimelineID = 44, Return = 44
+Tracer Adding to SQ. Tracer ID = 44
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/bbl_lookahead.info
+File size: 592
+mapped memblock size: 592
+Finish offset: 70, Number of values: 70
+Returning success !
+Loaded BBL lookaheads for 70 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/tcp_tgen/.ttn/lookahead/loop_lookahead.info
+Failed to parse Loop Lookaheads. Ignoring ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 446
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Client: MyPid: 6
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Client socket fd = 4097
+setsockopt through vt-tcp !
+setsockopt through vt-tcp !
+Connecting to server ...
+Connecting .. Socket: 4097, src-port: 40001
+Waking up connected socket !
+Socket connect success. socket = 4097
+Connecting through vt-tcp success !
+Sending data ...
+Sending msgs of size: 1460 to server ...
+Sent: 2000 KB after: 0.075247 secs
+Sent: 2000 KB after: 0.046542 secs
+Sent: 2000 KB after: 0.121080 secs
+Sent: 2000 KB after: 0.269227 secs
+Sent: 2000 KB after: 0.158826 secs
+Sent: 2000 KB after: 0.624335 secs
+Sent: 2000 KB after: 0.131269 secs
+Sent: 2000 KB after: 0.009513 secs
+Sent: 2000 KB after: 0.048029 secs
+Sent: 2000 KB after: 0.050733 secs
+Sent: 2000 KB after: 0.229318 secs
+Sent: 2000 KB after: 0.036342 secs
+Sent: 2000 KB after: 0.558433 secs
+Sent: 2000 KB after: 0.157647 secs
+Sent: 2000 KB after: 0.047265 secs
+Sent: 2000 KB after: 0.118174 secs
+Sent: 2000 KB after: 0.588269 secs
+Sent: 2000 KB after: 0.074596 secs
+Sent: 2000 KB after: 0.029013 secs
+Sent: 2000 KB after: 0.027646 secs
+Sent: 2000 KB after: 0.249457 secs
+Sent: 2000 KB after: 0.033305 secs
+Sent: 2000 KB after: 0.462576 secs
+Sent: 2000 KB after: 0.118952 secs
+Sent: 2000 KB after: 0.092351 secs
+Sent: 2000 KB after: 0.047625 secs
+Sent: 2000 KB after: 0.126984 secs
+Sent: 2000 KB after: 0.216189 secs
+Sent: 2000 KB after: 0.044678 secs
+Sent: 2000 KB after: 0.405658 secs
+Sent: 2000 KB after: 0.045683 secs
+Sent: 2000 KB after: 0.144209 secs
+Sent: 2000 KB after: 0.015821 secs
+Sent: 2000 KB after: 0.214794 secs
+Sent: 2000 KB after: 0.058475 secs
+Sent: 2000 KB after: 0.195676 secs
+Sent: 2000 KB after: 0.190522 secs
+Sent: 2000 KB after: 0.265431 secs
+Sent: 2000 KB after: 0.222056 secs
+Sent: 2000 KB after: 0.351767 secs
+Sent: 2000 KB after: 0.637941 secs
+Sent: 2000 KB after: 0.087025 secs
+Sent: 2000 KB after: 1.020254 secs
+Sent: 2000 KB after: 0.455632 secs
+Sent: 2000 KB after: 0.456886 secs
+Sent: 2000 KB after: 0.045728 secs
+Sent: 2000 KB after: 0.084222 secs
+Exp finishing. Stopping stack thread with id: 6!
+VT-sleep-for exiting !
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6

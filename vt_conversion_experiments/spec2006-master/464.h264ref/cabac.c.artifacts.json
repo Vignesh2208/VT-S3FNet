@@ -1,0 +1,5242 @@
+{
+  "CheckAvailabilityOfNeighborsCABAC": {
+    "bbls": {
+      "2": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getNeighbour",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getNeighbour",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          4,
+          3
+        ],
+        "weight": 14
+      },
+      "3": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          2
+        ],
+        "out_edges": [
+          4
+        ],
+        "weight": 4
+      },
+      "4": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          3,
+          2
+        ],
+        "out_edges": [
+          6,
+          5
+        ],
+        "weight": 3
+      },
+      "5": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          4
+        ],
+        "out_edges": [
+          7
+        ],
+        "weight": 4
+      },
+      "6": {
+        "called_fns": [],
+        "in_edges": [
+          4
+        ],
+        "out_edges": [
+          7
+        ],
+        "weight": 1
+      },
+      "7": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          5,
+          6
+        ],
+        "out_edges": [],
+        "weight": 4
+      }
+    },
+    "entry_block": 2,
+    "loops": {},
+    "returning_blocks": [
+      7
+    ]
+  },
+  "cabac_new_slice": {
+    "bbls": {
+      "1": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 1,
+    "loops": {},
+    "returning_blocks": [
+      1
+    ]
+  },
+  "create_contexts_MotionInfo": {
+    "bbls": {
+      "10": {
+        "called_fns": [],
+        "in_edges": [
+          8,
+          9
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "8": {
+        "called_fns": [
+          "calloc"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          9,
+          10
+        ],
+        "weight": 2
+      },
+      "9": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          8
+        ],
+        "out_edges": [
+          10
+        ],
+        "weight": 1
+      }
+    },
+    "entry_block": 8,
+    "loops": {},
+    "returning_blocks": [
+      10
+    ]
+  },
+  "create_contexts_TextureInfo": {
+    "bbls": {
+      "11": {
+        "called_fns": [
+          "calloc"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          12,
+          13
+        ],
+        "weight": 2
+      },
+      "12": {
+        "called_fns": [
+          "no_mem_exit"
+        ],
+        "in_edges": [
+          11
+        ],
+        "out_edges": [
+          13
+        ],
+        "weight": 1
+      },
+      "13": {
+        "called_fns": [],
+        "in_edges": [
+          11,
+          12
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 11,
+    "loops": {},
+    "returning_blocks": [
+      13
+    ]
+  },
+  "delete_contexts_MotionInfo": {
+    "bbls": {
+      "14": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          16,
+          15
+        ],
+        "weight": 1
+      },
+      "15": {
+        "called_fns": [
+          "free"
+        ],
+        "in_edges": [
+          14
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "16": {
+        "called_fns": [],
+        "in_edges": [
+          14
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 14,
+    "loops": {},
+    "returning_blocks": [
+      15,
+      16
+    ]
+  },
+  "delete_contexts_TextureInfo": {
+    "bbls": {
+      "17": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          19,
+          18
+        ],
+        "weight": 1
+      },
+      "18": {
+        "called_fns": [
+          "free"
+        ],
+        "in_edges": [
+          17
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "19": {
+        "called_fns": [],
+        "in_edges": [
+          17
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 17,
+    "loops": {},
+    "returning_blocks": [
+      18,
+      19
+    ]
+  },
+  "exp_golomb_encode_eq_prob": {
+    "bbls": {
+      "385": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          387,
+          386
+        ],
+        "weight": 3
+      },
+      "386": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          386,
+          385
+        ],
+        "out_edges": [
+          387,
+          386
+        ],
+        "weight": 4
+      },
+      "387": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          386,
+          385
+        ],
+        "out_edges": [
+          390,
+          388
+        ],
+        "weight": 2
+      },
+      "388": {
+        "called_fns": [],
+        "in_edges": [
+          387
+        ],
+        "out_edges": [
+          389
+        ],
+        "weight": 2
+      },
+      "389": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          388,
+          389
+        ],
+        "out_edges": [
+          390,
+          389
+        ],
+        "weight": 3
+      },
+      "390": {
+        "called_fns": [],
+        "in_edges": [
+          387,
+          389
+        ],
+        "out_edges": [],
+        "weight": 1
+      }
+    },
+    "entry_block": 385,
+    "loops": {
+      "11": {
+        "loop_called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "loop_headers": [
+          389
+        ],
+        "loop_latches": [
+          389
+        ]
+      }
+    },
+    "returning_blocks": [
+      390
+    ]
+  },
+  "unary_bin_encode": {
+    "bbls": {
+      "167": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          171,
+          168
+        ],
+        "weight": 3
+      },
+      "168": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          167
+        ],
+        "out_edges": [
+          171,
+          169
+        ],
+        "weight": 4
+      },
+      "169": {
+        "called_fns": [],
+        "in_edges": [
+          168
+        ],
+        "out_edges": [
+          170
+        ],
+        "weight": 2
+      },
+      "170": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          169,
+          170
+        ],
+        "out_edges": [
+          171,
+          170
+        ],
+        "weight": 2
+      },
+      "171": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          167,
+          168,
+          170
+        ],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 167,
+    "loops": {
+      "2": {
+        "loop_called_fns": [
+          "biari_encode_symbol"
+        ],
+        "loop_headers": [
+          170
+        ],
+        "loop_latches": [
+          170
+        ]
+      }
+    },
+    "returning_blocks": [
+      171
+    ]
+  },
+  "unary_bin_max_encode": {
+    "bbls": {
+      "232": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          238,
+          233
+        ],
+        "weight": 3
+      },
+      "233": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          232
+        ],
+        "out_edges": [
+          236,
+          234
+        ],
+        "weight": 4
+      },
+      "234": {
+        "called_fns": [],
+        "in_edges": [
+          233
+        ],
+        "out_edges": [
+          235
+        ],
+        "weight": 2
+      },
+      "235": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          234,
+          235
+        ],
+        "out_edges": [
+          236,
+          235
+        ],
+        "weight": 2
+      },
+      "236": {
+        "called_fns": [],
+        "in_edges": [
+          233,
+          235
+        ],
+        "out_edges": [
+          239,
+          237
+        ],
+        "weight": 1
+      },
+      "237": {
+        "called_fns": [],
+        "in_edges": [
+          236
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "238": {
+        "called_fns": [],
+        "in_edges": [
+          232
+        ],
+        "out_edges": [
+          239
+        ],
+        "weight": 1
+      },
+      "239": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          236,
+          238
+        ],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 232,
+    "loops": {
+      "6": {
+        "loop_called_fns": [
+          "biari_encode_symbol"
+        ],
+        "loop_headers": [
+          235
+        ],
+        "loop_latches": [
+          235
+        ]
+      }
+    },
+    "returning_blocks": [
+      237,
+      239
+    ]
+  },
+  "unary_exp_golomb_level_encode": {
+    "bbls": {
+      "351": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          356,
+          352
+        ],
+        "weight": 3
+      },
+      "352": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          351
+        ],
+        "out_edges": [
+          356,
+          353
+        ],
+        "weight": 2
+      },
+      "353": {
+        "called_fns": [],
+        "in_edges": [
+          354,
+          352
+        ],
+        "out_edges": [
+          355,
+          354
+        ],
+        "weight": 1
+      },
+      "354": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          353
+        ],
+        "out_edges": [
+          355,
+          353
+        ],
+        "weight": 2
+      },
+      "355": {
+        "called_fns": [],
+        "in_edges": [
+          353,
+          354
+        ],
+        "out_edges": [
+          356,
+          357
+        ],
+        "weight": 1
+      },
+      "356": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          351,
+          352,
+          355
+        ],
+        "out_edges": [],
+        "weight": 3
+      },
+      "357": {
+        "called_fns": [],
+        "in_edges": [
+          355
+        ],
+        "out_edges": [
+          363,
+          358
+        ],
+        "weight": 1
+      },
+      "358": {
+        "called_fns": [],
+        "in_edges": [
+          357
+        ],
+        "out_edges": [
+          359
+        ],
+        "weight": 1
+      },
+      "359": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          358,
+          359
+        ],
+        "out_edges": [
+          360,
+          359
+        ],
+        "weight": 4
+      },
+      "360": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          359
+        ],
+        "out_edges": [
+          361
+        ],
+        "weight": 3
+      },
+      "361": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          360,
+          361
+        ],
+        "out_edges": [
+          362,
+          361
+        ],
+        "weight": 3
+      },
+      "362": {
+        "called_fns": [],
+        "in_edges": [
+          361
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "363": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          357
+        ],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 351,
+    "loops": {
+      "8": {
+        "loop_called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "loop_headers": [
+          361
+        ],
+        "loop_latches": [
+          361
+        ]
+      }
+    },
+    "returning_blocks": [
+      356,
+      362,
+      363
+    ]
+  },
+  "unary_exp_golomb_mv_encode": {
+    "bbls": {
+      "204": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          210,
+          205
+        ],
+        "weight": 4
+      },
+      "205": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          204
+        ],
+        "out_edges": [
+          210,
+          206
+        ],
+        "weight": 3
+      },
+      "206": {
+        "called_fns": [],
+        "in_edges": [
+          205
+        ],
+        "out_edges": [
+          207
+        ],
+        "weight": 2
+      },
+      "207": {
+        "called_fns": [],
+        "in_edges": [
+          206,
+          208
+        ],
+        "out_edges": [
+          209,
+          208
+        ],
+        "weight": 1
+      },
+      "208": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          207
+        ],
+        "out_edges": [
+          209,
+          207
+        ],
+        "weight": 4
+      },
+      "209": {
+        "called_fns": [],
+        "in_edges": [
+          208,
+          207
+        ],
+        "out_edges": [
+          210,
+          211
+        ],
+        "weight": 1
+      },
+      "210": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          209,
+          204,
+          205
+        ],
+        "out_edges": [],
+        "weight": 4
+      },
+      "211": {
+        "called_fns": [],
+        "in_edges": [
+          209
+        ],
+        "out_edges": [
+          214,
+          212
+        ],
+        "weight": 1
+      },
+      "212": {
+        "called_fns": [],
+        "in_edges": [
+          211
+        ],
+        "out_edges": [
+          213
+        ],
+        "weight": 1
+      },
+      "213": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          212,
+          213
+        ],
+        "out_edges": [
+          214,
+          213
+        ],
+        "weight": 4
+      },
+      "214": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          213,
+          211
+        ],
+        "out_edges": [
+          215
+        ],
+        "weight": 3
+      },
+      "215": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          214,
+          215
+        ],
+        "out_edges": [
+          216,
+          215
+        ],
+        "weight": 3
+      },
+      "216": {
+        "called_fns": [],
+        "in_edges": [
+          215
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 204,
+    "loops": {
+      "4": {
+        "loop_called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "loop_headers": [
+          215
+        ],
+        "loop_latches": [
+          215
+        ]
+      }
+    },
+    "returning_blocks": [
+      210,
+      216
+    ]
+  },
+  "writeB8_typeInfo_CABAC": {
+    "bbls": {
+      "109": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          110,
+          113
+        ],
+        "weight": 8
+      },
+      "110": {
+        "called_fns": [],
+        "in_edges": [
+          109
+        ],
+        "out_edges": [
+          116,
+          111
+        ],
+        "weight": 1
+      },
+      "111": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          110
+        ],
+        "out_edges": [
+          112,
+          117
+        ],
+        "weight": 2
+      },
+      "112": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          111
+        ],
+        "out_edges": [
+          128,
+          129
+        ],
+        "weight": 2
+      },
+      "113": {
+        "called_fns": [],
+        "in_edges": [
+          109
+        ],
+        "out_edges": [
+          119,
+          114
+        ],
+        "weight": 1
+      },
+      "114": {
+        "called_fns": [],
+        "in_edges": [
+          113
+        ],
+        "out_edges": [
+          115,
+          120,
+          121,
+          122
+        ],
+        "weight": 2
+      },
+      "115": {
+        "called_fns": [],
+        "in_edges": [
+          114
+        ],
+        "out_edges": [
+          129
+        ],
+        "weight": 1
+      },
+      "116": {
+        "called_fns": [],
+        "in_edges": [
+          110
+        ],
+        "out_edges": [
+          131
+        ],
+        "weight": 1
+      },
+      "117": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          111
+        ],
+        "out_edges": [
+          118,
+          123
+        ],
+        "weight": 2
+      },
+      "118": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          117
+        ],
+        "out_edges": [
+          125
+        ],
+        "weight": 3
+      },
+      "119": {
+        "called_fns": [],
+        "in_edges": [
+          113
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "120": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          114
+        ],
+        "out_edges": [
+          128
+        ],
+        "weight": 3
+      },
+      "121": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          114
+        ],
+        "out_edges": [
+          129
+        ],
+        "weight": 4
+      },
+      "122": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          114
+        ],
+        "out_edges": [
+          128
+        ],
+        "weight": 4
+      },
+      "123": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          117
+        ],
+        "out_edges": [
+          124,
+          126
+        ],
+        "weight": 3
+      },
+      "124": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          123
+        ],
+        "out_edges": [
+          125
+        ],
+        "weight": 1
+      },
+      "125": {
+        "called_fns": [],
+        "in_edges": [
+          124,
+          118
+        ],
+        "out_edges": [
+          127
+        ],
+        "weight": 2
+      },
+      "126": {
+        "called_fns": [],
+        "in_edges": [
+          123
+        ],
+        "out_edges": [
+          127
+        ],
+        "weight": 1
+      },
+      "127": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          126,
+          125
+        ],
+        "out_edges": [
+          128,
+          129
+        ],
+        "weight": 1
+      },
+      "128": {
+        "called_fns": [],
+        "in_edges": [
+          112,
+          122,
+          120,
+          127
+        ],
+        "out_edges": [
+          130
+        ],
+        "weight": 1
+      },
+      "129": {
+        "called_fns": [],
+        "in_edges": [
+          112,
+          121,
+          115,
+          127
+        ],
+        "out_edges": [
+          130
+        ],
+        "weight": 1
+      },
+      "130": {
+        "called_fns": [],
+        "in_edges": [
+          128,
+          129
+        ],
+        "out_edges": [
+          131
+        ],
+        "weight": 1
+      },
+      "131": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          130,
+          116
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 109,
+    "loops": {},
+    "returning_blocks": [
+      119,
+      131
+    ]
+  },
+  "writeCBP_BIT_CABAC": {
+    "bbls": {
+      "240": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          241,
+          244
+        ],
+        "weight": 8
+      },
+      "241": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          240
+        ],
+        "out_edges": [
+          243,
+          242
+        ],
+        "weight": 2
+      },
+      "242": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          241
+        ],
+        "out_edges": [
+          243,
+          245
+        ],
+        "weight": 1
+      },
+      "243": {
+        "called_fns": [],
+        "in_edges": [
+          241,
+          242
+        ],
+        "out_edges": [
+          247
+        ],
+        "weight": 1
+      },
+      "244": {
+        "called_fns": [],
+        "in_edges": [
+          240
+        ],
+        "out_edges": [
+          246
+        ],
+        "weight": 1
+      },
+      "245": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          242
+        ],
+        "out_edges": [
+          246
+        ],
+        "weight": 2
+      },
+      "246": {
+        "called_fns": [],
+        "in_edges": [
+          244,
+          245
+        ],
+        "out_edges": [
+          247
+        ],
+        "weight": 1
+      },
+      "247": {
+        "called_fns": [],
+        "in_edges": [
+          243,
+          246
+        ],
+        "out_edges": [
+          251,
+          248
+        ],
+        "weight": 1
+      },
+      "248": {
+        "called_fns": [],
+        "in_edges": [
+          247
+        ],
+        "out_edges": [
+          249
+        ],
+        "weight": 1
+      },
+      "249": {
+        "called_fns": [],
+        "in_edges": [
+          248,
+          251
+        ],
+        "out_edges": [
+          250
+        ],
+        "weight": 1
+      },
+      "250": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          254,
+          253,
+          249
+        ],
+        "out_edges": [],
+        "weight": 9
+      },
+      "251": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getLuma4x4Neighbour",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          247
+        ],
+        "out_edges": [
+          249,
+          252
+        ],
+        "weight": 7
+      },
+      "252": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          251
+        ],
+        "out_edges": [
+          253,
+          254
+        ],
+        "weight": 5
+      },
+      "253": {
+        "called_fns": [],
+        "in_edges": [
+          252
+        ],
+        "out_edges": [
+          250
+        ],
+        "weight": 1
+      },
+      "254": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          252
+        ],
+        "out_edges": [
+          250
+        ],
+        "weight": 6
+      }
+    },
+    "entry_block": 240,
+    "loops": {},
+    "returning_blocks": [
+      250
+    ]
+  },
+  "writeCBP_CABAC": {
+    "bbls": {
+      "255": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "writeCBP_BIT_CABAC",
+          "writeCBP_BIT_CABAC",
+          "writeCBP_BIT_CABAC",
+          "writeCBP_BIT_CABAC",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          269,
+          256
+        ],
+        "weight": 22
+      },
+      "256": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          255
+        ],
+        "out_edges": [
+          259,
+          257
+        ],
+        "weight": 2
+      },
+      "257": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          256
+        ],
+        "out_edges": [
+          260,
+          258
+        ],
+        "weight": 1
+      },
+      "258": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          257
+        ],
+        "out_edges": [
+          260
+        ],
+        "weight": 3
+      },
+      "259": {
+        "called_fns": [],
+        "in_edges": [
+          256
+        ],
+        "out_edges": [
+          260
+        ],
+        "weight": 1
+      },
+      "260": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          257,
+          258,
+          259
+        ],
+        "out_edges": [
+          263,
+          261
+        ],
+        "weight": 2
+      },
+      "261": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          260
+        ],
+        "out_edges": [
+          264,
+          262
+        ],
+        "weight": 1
+      },
+      "262": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          261
+        ],
+        "out_edges": [
+          264
+        ],
+        "weight": 2
+      },
+      "263": {
+        "called_fns": [],
+        "in_edges": [
+          260
+        ],
+        "out_edges": [
+          264
+        ],
+        "weight": 1
+      },
+      "264": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          261,
+          262,
+          263
+        ],
+        "out_edges": [
+          265,
+          269
+        ],
+        "weight": 5
+      },
+      "265": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          264
+        ],
+        "out_edges": [
+          270,
+          266
+        ],
+        "weight": 2
+      },
+      "266": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          265
+        ],
+        "out_edges": [
+          271,
+          267
+        ],
+        "weight": 1
+      },
+      "267": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          266
+        ],
+        "out_edges": [
+          268,
+          270
+        ],
+        "weight": 1
+      },
+      "268": {
+        "called_fns": [],
+        "in_edges": [
+          267
+        ],
+        "out_edges": [
+          271
+        ],
+        "weight": 3
+      },
+      "269": {
+        "called_fns": [],
+        "in_edges": [
+          255,
+          264
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "270": {
+        "called_fns": [],
+        "in_edges": [
+          267,
+          265
+        ],
+        "out_edges": [
+          271
+        ],
+        "weight": 1
+      },
+      "271": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          266,
+          268,
+          270
+        ],
+        "out_edges": [
+          275,
+          272
+        ],
+        "weight": 2
+      },
+      "272": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          271
+        ],
+        "out_edges": [
+          276,
+          273
+        ],
+        "weight": 1
+      },
+      "273": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          272
+        ],
+        "out_edges": [
+          274,
+          275
+        ],
+        "weight": 1
+      },
+      "274": {
+        "called_fns": [],
+        "in_edges": [
+          273
+        ],
+        "out_edges": [
+          276
+        ],
+        "weight": 2
+      },
+      "275": {
+        "called_fns": [],
+        "in_edges": [
+          273,
+          271
+        ],
+        "out_edges": [
+          276
+        ],
+        "weight": 1
+      },
+      "276": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          272,
+          274,
+          275
+        ],
+        "out_edges": [],
+        "weight": 7
+      }
+    },
+    "entry_block": 255,
+    "loops": {},
+    "returning_blocks": [
+      269,
+      276
+    ]
+  },
+  "writeCIPredMode_CABAC": {
+    "bbls": {
+      "217": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          219,
+          218
+        ],
+        "weight": 12
+      },
+      "218": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          217
+        ],
+        "out_edges": [
+          220
+        ],
+        "weight": 2
+      },
+      "219": {
+        "called_fns": [],
+        "in_edges": [
+          217
+        ],
+        "out_edges": [
+          220
+        ],
+        "weight": 1
+      },
+      "220": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          218,
+          219
+        ],
+        "out_edges": [
+          222,
+          221
+        ],
+        "weight": 2
+      },
+      "221": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          220
+        ],
+        "out_edges": [
+          223
+        ],
+        "weight": 2
+      },
+      "222": {
+        "called_fns": [],
+        "in_edges": [
+          220
+        ],
+        "out_edges": [
+          223
+        ],
+        "weight": 1
+      },
+      "223": {
+        "called_fns": [],
+        "in_edges": [
+          221,
+          222
+        ],
+        "out_edges": [
+          230,
+          224
+        ],
+        "weight": 3
+      },
+      "224": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          223
+        ],
+        "out_edges": [
+          231,
+          225
+        ],
+        "weight": 3
+      },
+      "225": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          224
+        ],
+        "out_edges": [
+          231,
+          226
+        ],
+        "weight": 2
+      },
+      "226": {
+        "called_fns": [],
+        "in_edges": [
+          225
+        ],
+        "out_edges": [
+          227
+        ],
+        "weight": 2
+      },
+      "227": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          226,
+          227
+        ],
+        "out_edges": [
+          228,
+          227
+        ],
+        "weight": 2
+      },
+      "228": {
+        "called_fns": [],
+        "in_edges": [
+          227
+        ],
+        "out_edges": [
+          231,
+          229
+        ],
+        "weight": 1
+      },
+      "229": {
+        "called_fns": [],
+        "in_edges": [
+          228
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "230": {
+        "called_fns": [],
+        "in_edges": [
+          223
+        ],
+        "out_edges": [
+          231
+        ],
+        "weight": 1
+      },
+      "231": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          228,
+          230,
+          224,
+          225
+        ],
+        "out_edges": [],
+        "weight": 4
+      }
+    },
+    "entry_block": 217,
+    "loops": {
+      "5": {
+        "loop_called_fns": [
+          "biari_encode_symbol"
+        ],
+        "loop_headers": [
+          227
+        ],
+        "loop_latches": [
+          227
+        ]
+      }
+    },
+    "returning_blocks": [
+      229,
+      231
+    ]
+  },
+  "writeDquant_CABAC": {
+    "bbls": {
+      "172": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          178,
+          173
+        ],
+        "weight": 18
+      },
+      "173": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          172
+        ],
+        "out_edges": [
+          178,
+          174
+        ],
+        "weight": 2
+      },
+      "174": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          173
+        ],
+        "out_edges": [
+          177,
+          175
+        ],
+        "weight": 2
+      },
+      "175": {
+        "called_fns": [],
+        "in_edges": [
+          174
+        ],
+        "out_edges": [
+          176
+        ],
+        "weight": 2
+      },
+      "176": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          175,
+          176
+        ],
+        "out_edges": [
+          177,
+          176
+        ],
+        "weight": 2
+      },
+      "177": {
+        "called_fns": [],
+        "in_edges": [
+          176,
+          174
+        ],
+        "out_edges": [
+          178
+        ],
+        "weight": 1
+      },
+      "178": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          177,
+          172,
+          173
+        ],
+        "out_edges": [],
+        "weight": 3
+      }
+    },
+    "entry_block": 172,
+    "loops": {
+      "3": {
+        "loop_called_fns": [
+          "biari_encode_symbol"
+        ],
+        "loop_headers": [
+          176
+        ],
+        "loop_latches": [
+          176
+        ]
+      }
+    },
+    "returning_blocks": [
+      178
+    ]
+  },
+  "writeFieldModeInfo_CABAC": {
+    "bbls": {
+      "23": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          25,
+          24
+        ],
+        "weight": 13
+      },
+      "24": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          23
+        ],
+        "out_edges": [
+          25
+        ],
+        "weight": 4
+      },
+      "25": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          23,
+          24
+        ],
+        "out_edges": [
+          27,
+          26
+        ],
+        "weight": 2
+      },
+      "26": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          25
+        ],
+        "out_edges": [
+          27
+        ],
+        "weight": 4
+      },
+      "27": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          25,
+          26
+        ],
+        "out_edges": [],
+        "weight": 8
+      }
+    },
+    "entry_block": 23,
+    "loops": {},
+    "returning_blocks": [
+      27
+    ]
+  },
+  "writeIntraPredMode_CABAC": {
+    "bbls": {
+      "132": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          134,
+          133
+        ],
+        "weight": 7
+      },
+      "133": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "dataReadCacheCallback",
+          "biari_encode_symbol",
+          "dataReadCacheCallback",
+          "biari_encode_symbol",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          132
+        ],
+        "out_edges": [
+          135
+        ],
+        "weight": 9
+      },
+      "134": {
+        "called_fns": [],
+        "in_edges": [
+          132
+        ],
+        "out_edges": [
+          135
+        ],
+        "weight": 1
+      },
+      "135": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          134,
+          133
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 132,
+    "loops": {},
+    "returning_blocks": [
+      135
+    ]
+  },
+  "writeMB_skip_flagInfo_CABAC": {
+    "bbls": {
+      "28": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          29,
+          31
+        ],
+        "weight": 15
+      },
+      "29": {
+        "called_fns": [],
+        "in_edges": [
+          28
+        ],
+        "out_edges": [
+          36,
+          30
+        ],
+        "weight": 1
+      },
+      "30": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          29
+        ],
+        "out_edges": [
+          37
+        ],
+        "weight": 2
+      },
+      "31": {
+        "called_fns": [],
+        "in_edges": [
+          28
+        ],
+        "out_edges": [
+          33,
+          32
+        ],
+        "weight": 1
+      },
+      "32": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          31
+        ],
+        "out_edges": [
+          33
+        ],
+        "weight": 2
+      },
+      "33": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          31,
+          32
+        ],
+        "out_edges": [
+          35,
+          34
+        ],
+        "weight": 2
+      },
+      "34": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          33
+        ],
+        "out_edges": [
+          35
+        ],
+        "weight": 2
+      },
+      "35": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          33,
+          34
+        ],
+        "out_edges": [
+          45
+        ],
+        "weight": 5
+      },
+      "36": {
+        "called_fns": [],
+        "in_edges": [
+          29
+        ],
+        "out_edges": [
+          37
+        ],
+        "weight": 1
+      },
+      "37": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          30,
+          36
+        ],
+        "out_edges": [
+          39,
+          38
+        ],
+        "weight": 3
+      },
+      "38": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          37
+        ],
+        "out_edges": [
+          40
+        ],
+        "weight": 2
+      },
+      "39": {
+        "called_fns": [],
+        "in_edges": [
+          37
+        ],
+        "out_edges": [
+          40
+        ],
+        "weight": 1
+      },
+      "40": {
+        "called_fns": [],
+        "in_edges": [
+          38,
+          39
+        ],
+        "out_edges": [
+          41,
+          42
+        ],
+        "weight": 1
+      },
+      "41": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          40
+        ],
+        "out_edges": [
+          46,
+          42
+        ],
+        "weight": 1
+      },
+      "42": {
+        "called_fns": [],
+        "in_edges": [
+          40,
+          41
+        ],
+        "out_edges": [
+          43
+        ],
+        "weight": 1
+      },
+      "43": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          42,
+          46
+        ],
+        "out_edges": [
+          44,
+          45
+        ],
+        "weight": 5
+      },
+      "44": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          43
+        ],
+        "out_edges": [
+          45
+        ],
+        "weight": 1
+      },
+      "45": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          35,
+          44,
+          43
+        ],
+        "out_edges": [],
+        "weight": 5
+      },
+      "46": {
+        "called_fns": [],
+        "in_edges": [
+          41
+        ],
+        "out_edges": [
+          43
+        ],
+        "weight": 1
+      }
+    },
+    "entry_block": 28,
+    "loops": {},
+    "returning_blocks": [
+      45
+    ]
+  },
+  "writeMB_transform_size_CABAC": {
+    "bbls": {
+      "47": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          49,
+          48
+        ],
+        "weight": 12
+      },
+      "48": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          47
+        ],
+        "out_edges": [
+          49
+        ],
+        "weight": 1
+      },
+      "49": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          47,
+          48
+        ],
+        "out_edges": [
+          51,
+          50
+        ],
+        "weight": 2
+      },
+      "50": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          49
+        ],
+        "out_edges": [
+          51
+        ],
+        "weight": 1
+      },
+      "51": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          49,
+          50
+        ],
+        "out_edges": [],
+        "weight": 9
+      }
+    },
+    "entry_block": 47,
+    "loops": {},
+    "returning_blocks": [
+      51
+    ]
+  },
+  "writeMB_typeInfo_CABAC": {
+    "bbls": {
+      "100": {
+        "called_fns": [],
+        "in_edges": [
+          70
+        ],
+        "out_edges": [
+          101
+        ],
+        "weight": 1
+      },
+      "101": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          100,
+          92
+        ],
+        "out_edges": [
+          102
+        ],
+        "weight": 2
+      },
+      "102": {
+        "called_fns": [],
+        "in_edges": [
+          101,
+          91
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 2
+      },
+      "103": {
+        "called_fns": [],
+        "in_edges": [
+          75
+        ],
+        "out_edges": [
+          104
+        ],
+        "weight": 1
+      },
+      "104": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          103,
+          76
+        ],
+        "out_edges": [
+          105
+        ],
+        "weight": 8
+      },
+      "105": {
+        "called_fns": [],
+        "in_edges": [
+          72,
+          104
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 1
+      },
+      "106": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          105,
+          84,
+          99,
+          102,
+          90,
+          73,
+          68
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "107": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          82
+        ],
+        "out_edges": [
+          94,
+          88
+        ],
+        "weight": 20
+      },
+      "108": {
+        "called_fns": [
+          "puts",
+          "exit"
+        ],
+        "in_edges": [
+          69
+        ],
+        "out_edges": [],
+        "weight": 1
+      },
+      "52": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          61,
+          53
+        ],
+        "weight": 11
+      },
+      "53": {
+        "called_fns": [],
+        "in_edges": [
+          52
+        ],
+        "out_edges": [
+          54,
+          69
+        ],
+        "weight": 1
+      },
+      "54": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          53
+        ],
+        "out_edges": [
+          56,
+          55
+        ],
+        "weight": 4
+      },
+      "55": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          54
+        ],
+        "out_edges": [
+          56
+        ],
+        "weight": 3
+      },
+      "56": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          54,
+          55
+        ],
+        "out_edges": [
+          58,
+          57
+        ],
+        "weight": 2
+      },
+      "57": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          56
+        ],
+        "out_edges": [
+          58
+        ],
+        "weight": 3
+      },
+      "58": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          56,
+          57
+        ],
+        "out_edges": [
+          72,
+          59
+        ],
+        "weight": 3
+      },
+      "59": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          58
+        ],
+        "out_edges": [
+          60,
+          74
+        ],
+        "weight": 3
+      },
+      "60": {
+        "called_fns": [],
+        "in_edges": [
+          59
+        ],
+        "out_edges": [
+          96
+        ],
+        "weight": 1
+      },
+      "61": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          52
+        ],
+        "out_edges": [
+          63,
+          62
+        ],
+        "weight": 4
+      },
+      "62": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          61
+        ],
+        "out_edges": [
+          63
+        ],
+        "weight": 2
+      },
+      "63": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          61,
+          62
+        ],
+        "out_edges": [
+          65,
+          64
+        ],
+        "weight": 2
+      },
+      "64": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          63
+        ],
+        "out_edges": [
+          65
+        ],
+        "weight": 2
+      },
+      "65": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          63,
+          64
+        ],
+        "out_edges": [
+          73,
+          66
+        ],
+        "weight": 5
+      },
+      "66": {
+        "called_fns": [],
+        "in_edges": [
+          65
+        ],
+        "out_edges": [
+          67,
+          77
+        ],
+        "weight": 1
+      },
+      "67": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          66
+        ],
+        "out_edges": [
+          68,
+          80
+        ],
+        "weight": 5
+      },
+      "68": {
+        "called_fns": [],
+        "in_edges": [
+          67
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 1
+      },
+      "69": {
+        "called_fns": [],
+        "in_edges": [
+          53
+        ],
+        "out_edges": [
+          108,
+          70
+        ],
+        "weight": 1
+      },
+      "70": {
+        "called_fns": [],
+        "in_edges": [
+          69
+        ],
+        "out_edges": [
+          88,
+          91,
+          89,
+          92,
+          71,
+          100,
+          93
+        ],
+        "weight": 2
+      },
+      "71": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          70
+        ],
+        "out_edges": [
+          90
+        ],
+        "weight": 4
+      },
+      "72": {
+        "called_fns": [],
+        "in_edges": [
+          58
+        ],
+        "out_edges": [
+          105
+        ],
+        "weight": 2
+      },
+      "73": {
+        "called_fns": [],
+        "in_edges": [
+          65
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 3
+      },
+      "74": {
+        "called_fns": [
+          "biari_encode_symbol_final",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          59
+        ],
+        "out_edges": [
+          76,
+          75
+        ],
+        "weight": 8
+      },
+      "75": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          74
+        ],
+        "out_edges": [
+          76,
+          103
+        ],
+        "weight": 3
+      },
+      "76": {
+        "called_fns": [],
+        "in_edges": [
+          74,
+          75
+        ],
+        "out_edges": [
+          104
+        ],
+        "weight": 1
+      },
+      "77": {
+        "called_fns": [],
+        "in_edges": [
+          66
+        ],
+        "out_edges": [
+          78,
+          81
+        ],
+        "weight": 1
+      },
+      "78": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          77
+        ],
+        "out_edges": [
+          79,
+          85
+        ],
+        "weight": 11
+      },
+      "79": {
+        "called_fns": [],
+        "in_edges": [
+          78
+        ],
+        "out_edges": [
+          86
+        ],
+        "weight": 1
+      },
+      "80": {
+        "called_fns": [],
+        "in_edges": [
+          67
+        ],
+        "out_edges": [
+          87
+        ],
+        "weight": 1
+      },
+      "81": {
+        "called_fns": [],
+        "in_edges": [
+          77
+        ],
+        "out_edges": [
+          83,
+          82
+        ],
+        "weight": 1
+      },
+      "82": {
+        "called_fns": [],
+        "in_edges": [
+          81
+        ],
+        "out_edges": [
+          83,
+          107
+        ],
+        "weight": 1
+      },
+      "83": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          81,
+          82
+        ],
+        "out_edges": [
+          84,
+          85
+        ],
+        "weight": 8
+      },
+      "84": {
+        "called_fns": [],
+        "in_edges": [
+          83
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 2
+      },
+      "85": {
+        "called_fns": [],
+        "in_edges": [
+          78,
+          83
+        ],
+        "out_edges": [
+          86
+        ],
+        "weight": 1
+      },
+      "86": {
+        "called_fns": [],
+        "in_edges": [
+          85,
+          79
+        ],
+        "out_edges": [
+          87
+        ],
+        "weight": 1
+      },
+      "87": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          86,
+          80
+        ],
+        "out_edges": [
+          94,
+          88
+        ],
+        "weight": 1
+      },
+      "88": {
+        "called_fns": [],
+        "in_edges": [
+          70,
+          107,
+          87
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "89": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          70
+        ],
+        "out_edges": [
+          90
+        ],
+        "weight": 4
+      },
+      "90": {
+        "called_fns": [],
+        "in_edges": [
+          89,
+          71
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 1
+      },
+      "91": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          70
+        ],
+        "out_edges": [
+          102
+        ],
+        "weight": 4
+      },
+      "92": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          70
+        ],
+        "out_edges": [
+          101
+        ],
+        "weight": 2
+      },
+      "93": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          70
+        ],
+        "out_edges": [
+          94
+        ],
+        "weight": 4
+      },
+      "94": {
+        "called_fns": [],
+        "in_edges": [
+          93,
+          107,
+          87
+        ],
+        "out_edges": [
+          95,
+          97
+        ],
+        "weight": 1
+      },
+      "95": {
+        "called_fns": [],
+        "in_edges": [
+          94
+        ],
+        "out_edges": [
+          96
+        ],
+        "weight": 1
+      },
+      "96": {
+        "called_fns": [
+          "biari_encode_symbol_final"
+        ],
+        "in_edges": [
+          60,
+          95
+        ],
+        "out_edges": [],
+        "weight": 3
+      },
+      "97": {
+        "called_fns": [
+          "biari_encode_symbol_final",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          94
+        ],
+        "out_edges": [
+          99,
+          98
+        ],
+        "weight": 7
+      },
+      "98": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          97
+        ],
+        "out_edges": [
+          99
+        ],
+        "weight": 3
+      },
+      "99": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          97,
+          98
+        ],
+        "out_edges": [
+          106
+        ],
+        "weight": 5
+      }
+    },
+    "entry_block": 52,
+    "loops": {},
+    "returning_blocks": [
+      88,
+      96,
+      106
+    ]
+  },
+  "writeMVD_CABAC": {
+    "bbls": {
+      "179": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getLuma4x4Neighbour",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getLuma4x4Neighbour",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          187,
+          180
+        ],
+        "weight": 23
+      },
+      "180": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          179
+        ],
+        "out_edges": [
+          181,
+          186
+        ],
+        "weight": 13
+      },
+      "181": {
+        "called_fns": [],
+        "in_edges": [
+          180
+        ],
+        "out_edges": [
+          182,
+          186
+        ],
+        "weight": 1
+      },
+      "182": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          181
+        ],
+        "out_edges": [
+          185,
+          183
+        ],
+        "weight": 3
+      },
+      "183": {
+        "called_fns": [],
+        "in_edges": [
+          182
+        ],
+        "out_edges": [
+          184,
+          187
+        ],
+        "weight": 1
+      },
+      "184": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          183
+        ],
+        "out_edges": [
+          187
+        ],
+        "weight": 2
+      },
+      "185": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          182
+        ],
+        "out_edges": [
+          186
+        ],
+        "weight": 2
+      },
+      "186": {
+        "called_fns": [],
+        "in_edges": [
+          185,
+          180,
+          181
+        ],
+        "out_edges": [
+          187
+        ],
+        "weight": 1
+      },
+      "187": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          179,
+          184,
+          186,
+          183
+        ],
+        "out_edges": [
+          195,
+          188
+        ],
+        "weight": 1
+      },
+      "188": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          187
+        ],
+        "out_edges": [
+          189,
+          193
+        ],
+        "weight": 14
+      },
+      "189": {
+        "called_fns": [],
+        "in_edges": [
+          188
+        ],
+        "out_edges": [
+          190,
+          193
+        ],
+        "weight": 1
+      },
+      "190": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          189
+        ],
+        "out_edges": [
+          194,
+          191
+        ],
+        "weight": 3
+      },
+      "191": {
+        "called_fns": [],
+        "in_edges": [
+          190
+        ],
+        "out_edges": [
+          192,
+          195
+        ],
+        "weight": 1
+      },
+      "192": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          191
+        ],
+        "out_edges": [
+          195
+        ],
+        "weight": 3
+      },
+      "193": {
+        "called_fns": [],
+        "in_edges": [
+          188,
+          189
+        ],
+        "out_edges": [
+          195
+        ],
+        "weight": 1
+      },
+      "194": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          190
+        ],
+        "out_edges": [
+          195
+        ],
+        "weight": 3
+      },
+      "195": {
+        "called_fns": [],
+        "in_edges": [
+          187,
+          194,
+          192,
+          193,
+          191
+        ],
+        "out_edges": [
+          196,
+          197
+        ],
+        "weight": 1
+      },
+      "196": {
+        "called_fns": [],
+        "in_edges": [
+          195
+        ],
+        "out_edges": [
+          200
+        ],
+        "weight": 1
+      },
+      "197": {
+        "called_fns": [],
+        "in_edges": [
+          195
+        ],
+        "out_edges": [
+          198,
+          199
+        ],
+        "weight": 1
+      },
+      "198": {
+        "called_fns": [],
+        "in_edges": [
+          197
+        ],
+        "out_edges": [
+          200
+        ],
+        "weight": 1
+      },
+      "199": {
+        "called_fns": [],
+        "in_edges": [
+          197
+        ],
+        "out_edges": [
+          200
+        ],
+        "weight": 1
+      },
+      "200": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          199,
+          198,
+          196
+        ],
+        "out_edges": [
+          202,
+          201
+        ],
+        "weight": 6
+      },
+      "201": {
+        "called_fns": [
+          "biari_encode_symbol",
+          "unary_exp_golomb_mv_encode",
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          200
+        ],
+        "out_edges": [
+          203
+        ],
+        "weight": 6
+      },
+      "202": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          200
+        ],
+        "out_edges": [
+          203
+        ],
+        "weight": 1
+      },
+      "203": {
+        "called_fns": [],
+        "in_edges": [
+          201,
+          202
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 179,
+    "loops": {},
+    "returning_blocks": [
+      203
+    ]
+  },
+  "writeRefFrame_CABAC": {
+    "bbls": {
+      "136": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getLuma4x4Neighbour",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getLuma4x4Neighbour",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          139,
+          137
+        ],
+        "weight": 32
+      },
+      "137": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          136
+        ],
+        "out_edges": [
+          138,
+          140
+        ],
+        "weight": 5
+      },
+      "138": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          137
+        ],
+        "out_edges": [
+          139,
+          140
+        ],
+        "weight": 1
+      },
+      "139": {
+        "called_fns": [],
+        "in_edges": [
+          136,
+          138
+        ],
+        "out_edges": [
+          148
+        ],
+        "weight": 1
+      },
+      "140": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          137,
+          138
+        ],
+        "out_edges": [
+          141,
+          142
+        ],
+        "weight": 11
+      },
+      "141": {
+        "called_fns": [],
+        "in_edges": [
+          140
+        ],
+        "out_edges": [
+          148,
+          142
+        ],
+        "weight": 1
+      },
+      "142": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          140,
+          141
+        ],
+        "out_edges": [
+          146,
+          143
+        ],
+        "weight": 1
+      },
+      "143": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          142
+        ],
+        "out_edges": [
+          144,
+          146
+        ],
+        "weight": 3
+      },
+      "144": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          143
+        ],
+        "out_edges": [
+          145,
+          146
+        ],
+        "weight": 2
+      },
+      "145": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          144
+        ],
+        "out_edges": [
+          147
+        ],
+        "weight": 6
+      },
+      "146": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          142,
+          143,
+          144
+        ],
+        "out_edges": [
+          147
+        ],
+        "weight": 5
+      },
+      "147": {
+        "called_fns": [],
+        "in_edges": [
+          146,
+          145
+        ],
+        "out_edges": [
+          148
+        ],
+        "weight": 1
+      },
+      "148": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          141,
+          139,
+          147
+        ],
+        "out_edges": [
+          153,
+          149
+        ],
+        "weight": 1
+      },
+      "149": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          148
+        ],
+        "out_edges": [
+          150,
+          151
+        ],
+        "weight": 5
+      },
+      "150": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          149
+        ],
+        "out_edges": [
+          153,
+          151
+        ],
+        "weight": 1
+      },
+      "151": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          149,
+          150
+        ],
+        "out_edges": [
+          152,
+          154
+        ],
+        "weight": 11
+      },
+      "152": {
+        "called_fns": [],
+        "in_edges": [
+          151
+        ],
+        "out_edges": [
+          153,
+          154
+        ],
+        "weight": 1
+      },
+      "153": {
+        "called_fns": [],
+        "in_edges": [
+          148,
+          150,
+          152
+        ],
+        "out_edges": [
+          160
+        ],
+        "weight": 1
+      },
+      "154": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          151,
+          152
+        ],
+        "out_edges": [
+          158,
+          155
+        ],
+        "weight": 1
+      },
+      "155": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          154
+        ],
+        "out_edges": [
+          156,
+          158
+        ],
+        "weight": 3
+      },
+      "156": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          155
+        ],
+        "out_edges": [
+          157,
+          158
+        ],
+        "weight": 2
+      },
+      "157": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          156
+        ],
+        "out_edges": [
+          159
+        ],
+        "weight": 5
+      },
+      "158": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          154,
+          155,
+          156
+        ],
+        "out_edges": [
+          159
+        ],
+        "weight": 5
+      },
+      "159": {
+        "called_fns": [],
+        "in_edges": [
+          158,
+          157
+        ],
+        "out_edges": [
+          160
+        ],
+        "weight": 1
+      },
+      "160": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          159,
+          153
+        ],
+        "out_edges": [
+          166,
+          161
+        ],
+        "weight": 6
+      },
+      "161": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          160
+        ],
+        "out_edges": [
+          166,
+          162
+        ],
+        "weight": 2
+      },
+      "162": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          161
+        ],
+        "out_edges": [
+          165,
+          163
+        ],
+        "weight": 2
+      },
+      "163": {
+        "called_fns": [],
+        "in_edges": [
+          162
+        ],
+        "out_edges": [
+          164
+        ],
+        "weight": 2
+      },
+      "164": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          163,
+          164
+        ],
+        "out_edges": [
+          165,
+          164
+        ],
+        "weight": 2
+      },
+      "165": {
+        "called_fns": [],
+        "in_edges": [
+          164,
+          162
+        ],
+        "out_edges": [
+          166
+        ],
+        "weight": 1
+      },
+      "166": {
+        "called_fns": [
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          165,
+          160,
+          161
+        ],
+        "out_edges": [],
+        "weight": 4
+      }
+    },
+    "entry_block": 136,
+    "loops": {
+      "1": {
+        "loop_called_fns": [
+          "biari_encode_symbol"
+        ],
+        "loop_headers": [
+          164
+        ],
+        "loop_latches": [
+          164
+        ]
+      }
+    },
+    "returning_blocks": [
+      166
+    ]
+  },
+  "writeRunLevel_CABAC": {
+    "bbls": {
+      "364": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          370,
+          365
+        ],
+        "weight": 8
+      },
+      "365": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          364
+        ],
+        "out_edges": [
+          366,
+          369
+        ],
+        "weight": 3
+      },
+      "366": {
+        "called_fns": [],
+        "in_edges": [
+          365
+        ],
+        "out_edges": [
+          367
+        ],
+        "weight": 2
+      },
+      "367": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          366,
+          367
+        ],
+        "out_edges": [
+          367,
+          368
+        ],
+        "weight": 3
+      },
+      "368": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          367
+        ],
+        "out_edges": [
+          369
+        ],
+        "weight": 3
+      },
+      "369": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          368,
+          365
+        ],
+        "out_edges": [
+          383
+        ],
+        "weight": 7
+      },
+      "370": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          364
+        ],
+        "out_edges": [
+          371,
+          379
+        ],
+        "weight": 1
+      },
+      "371": {
+        "called_fns": [
+          ""
+        ],
+        "in_edges": [
+          370
+        ],
+        "out_edges": [
+          375,
+          372
+        ],
+        "weight": 6
+      },
+      "372": {
+        "called_fns": [],
+        "in_edges": [
+          371
+        ],
+        "out_edges": [
+          373
+        ],
+        "weight": 4
+      },
+      "373": {
+        "called_fns": [],
+        "in_edges": [
+          372,
+          373
+        ],
+        "out_edges": [
+          374,
+          373
+        ],
+        "weight": 1
+      },
+      "374": {
+        "called_fns": [],
+        "in_edges": [
+          373
+        ],
+        "out_edges": [
+          375
+        ],
+        "weight": 1
+      },
+      "375": {
+        "called_fns": [],
+        "in_edges": [
+          374,
+          371
+        ],
+        "out_edges": [
+          378,
+          376
+        ],
+        "weight": 1
+      },
+      "376": {
+        "called_fns": [],
+        "in_edges": [
+          375
+        ],
+        "out_edges": [
+          377
+        ],
+        "weight": 3
+      },
+      "377": {
+        "called_fns": [],
+        "in_edges": [
+          376,
+          377
+        ],
+        "out_edges": [
+          378,
+          377
+        ],
+        "weight": 1
+      },
+      "378": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          375,
+          377
+        ],
+        "out_edges": [
+          380
+        ],
+        "weight": 1
+      },
+      "379": {
+        "called_fns": [],
+        "in_edges": [
+          370
+        ],
+        "out_edges": [
+          380,
+          384
+        ],
+        "weight": 1
+      },
+      "380": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "write_and_store_CBP_block_bit",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          379,
+          378
+        ],
+        "out_edges": [
+          381,
+          382
+        ],
+        "weight": 7
+      },
+      "381": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "write_significance_map",
+          "dataReadCacheCallback",
+          "write_significant_coefficients"
+        ],
+        "in_edges": [
+          380
+        ],
+        "out_edges": [
+          382
+        ],
+        "weight": 4
+      },
+      "382": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          380,
+          381
+        ],
+        "out_edges": [
+          383
+        ],
+        "weight": 2
+      },
+      "383": {
+        "called_fns": [],
+        "in_edges": [
+          369,
+          382
+        ],
+        "out_edges": [],
+        "weight": 2
+      },
+      "384": {
+        "called_fns": [
+          "__assert_fail"
+        ],
+        "in_edges": [
+          379
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 364,
+    "loops": {
+      "10": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          377
+        ],
+        "loop_latches": [
+          377
+        ]
+      },
+      "9": {
+        "loop_called_fns": [],
+        "loop_headers": [
+          373
+        ],
+        "loop_latches": [
+          373
+        ]
+      }
+    },
+    "returning_blocks": [
+      383
+    ]
+  },
+  "writeSyntaxElement_CABAC": {
+    "bbls": {
+      "20": {
+        "called_fns": [
+          "arienco_bits_written",
+          "dataReadCacheCallback",
+          "",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          22,
+          21
+        ],
+        "weight": 6
+      },
+      "21": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          20
+        ],
+        "out_edges": [
+          22
+        ],
+        "weight": 2
+      },
+      "22": {
+        "called_fns": [
+          "arienco_bits_written",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          20,
+          21
+        ],
+        "out_edges": [],
+        "weight": 5
+      }
+    },
+    "entry_block": 20,
+    "loops": {},
+    "returning_blocks": [
+      22
+    ]
+  },
+  "write_and_store_CBP_block_bit": {
+    "bbls": {
+      "277": {
+        "called_fns": [],
+        "in_edges": [],
+        "out_edges": [
+          281,
+          278
+        ],
+        "weight": 5
+      },
+      "278": {
+        "called_fns": [],
+        "in_edges": [
+          277
+        ],
+        "out_edges": [
+          281,
+          279
+        ],
+        "weight": 1
+      },
+      "279": {
+        "called_fns": [],
+        "in_edges": [
+          278
+        ],
+        "out_edges": [
+          280,
+          282
+        ],
+        "weight": 1
+      },
+      "280": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          279
+        ],
+        "out_edges": [
+          283
+        ],
+        "weight": 3
+      },
+      "281": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          277,
+          278
+        ],
+        "out_edges": [
+          284
+        ],
+        "weight": 4
+      },
+      "282": {
+        "called_fns": [],
+        "in_edges": [
+          279
+        ],
+        "out_edges": [
+          283
+        ],
+        "weight": 1
+      },
+      "283": {
+        "called_fns": [],
+        "in_edges": [
+          282,
+          280
+        ],
+        "out_edges": [
+          284
+        ],
+        "weight": 1
+      },
+      "284": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          281,
+          283
+        ],
+        "out_edges": [
+          287,
+          285
+        ],
+        "weight": 2
+      },
+      "285": {
+        "called_fns": [],
+        "in_edges": [
+          284
+        ],
+        "out_edges": [
+          287,
+          286
+        ],
+        "weight": 1
+      },
+      "286": {
+        "called_fns": [],
+        "in_edges": [
+          285
+        ],
+        "out_edges": [
+          287,
+          288
+        ],
+        "weight": 2
+      },
+      "287": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          284,
+          285,
+          286
+        ],
+        "out_edges": [
+          288
+        ],
+        "weight": 3
+      },
+      "288": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          286,
+          287
+        ],
+        "out_edges": [
+          289,
+          294
+        ],
+        "weight": 4
+      },
+      "289": {
+        "called_fns": [
+          "getLuma4x4Neighbour",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getLuma4x4Neighbour"
+        ],
+        "in_edges": [
+          288
+        ],
+        "out_edges": [
+          290,
+          300
+        ],
+        "weight": 8
+      },
+      "290": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          289
+        ],
+        "out_edges": [
+          292,
+          291
+        ],
+        "weight": 2
+      },
+      "291": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          290
+        ],
+        "out_edges": [
+          292
+        ],
+        "weight": 3
+      },
+      "292": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          290,
+          291
+        ],
+        "out_edges": [
+          300,
+          293
+        ],
+        "weight": 1
+      },
+      "293": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          292
+        ],
+        "out_edges": [
+          299
+        ],
+        "weight": 1
+      },
+      "294": {
+        "called_fns": [
+          "getChroma4x4Neighbour",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "getChroma4x4Neighbour"
+        ],
+        "in_edges": [
+          288
+        ],
+        "out_edges": [
+          295,
+          300
+        ],
+        "weight": 9
+      },
+      "295": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          294
+        ],
+        "out_edges": [
+          297,
+          296
+        ],
+        "weight": 2
+      },
+      "296": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          295
+        ],
+        "out_edges": [
+          297
+        ],
+        "weight": 3
+      },
+      "297": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          295,
+          296
+        ],
+        "out_edges": [
+          300,
+          298
+        ],
+        "weight": 1
+      },
+      "298": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          297
+        ],
+        "out_edges": [
+          299
+        ],
+        "weight": 2
+      },
+      "299": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          298,
+          293
+        ],
+        "out_edges": [
+          300
+        ],
+        "weight": 1
+      },
+      "300": {
+        "called_fns": [],
+        "in_edges": [
+          294,
+          289,
+          299,
+          292,
+          297
+        ],
+        "out_edges": [
+          303,
+          301
+        ],
+        "weight": 1
+      },
+      "301": {
+        "called_fns": [],
+        "in_edges": [
+          300
+        ],
+        "out_edges": [
+          302,
+          304
+        ],
+        "weight": 1
+      },
+      "302": {
+        "called_fns": [],
+        "in_edges": [
+          301
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 2
+      },
+      "303": {
+        "called_fns": [],
+        "in_edges": [
+          300
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 1
+      },
+      "304": {
+        "called_fns": [],
+        "in_edges": [
+          301
+        ],
+        "out_edges": [
+          305,
+          306
+        ],
+        "weight": 1
+      },
+      "305": {
+        "called_fns": [],
+        "in_edges": [
+          304
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 1
+      },
+      "306": {
+        "called_fns": [],
+        "in_edges": [
+          304
+        ],
+        "out_edges": [
+          307,
+          308
+        ],
+        "weight": 1
+      },
+      "307": {
+        "called_fns": [],
+        "in_edges": [
+          306
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 1
+      },
+      "308": {
+        "called_fns": [],
+        "in_edges": [
+          306
+        ],
+        "out_edges": [
+          309
+        ],
+        "weight": 1
+      },
+      "309": {
+        "called_fns": [],
+        "in_edges": [
+          308,
+          307,
+          302,
+          303,
+          305
+        ],
+        "out_edges": [
+          313,
+          310
+        ],
+        "weight": 1
+      },
+      "310": {
+        "called_fns": [],
+        "in_edges": [
+          309
+        ],
+        "out_edges": [
+          314,
+          311
+        ],
+        "weight": 1
+      },
+      "311": {
+        "called_fns": [],
+        "in_edges": [
+          310
+        ],
+        "out_edges": [
+          312,
+          315
+        ],
+        "weight": 1
+      },
+      "312": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          311
+        ],
+        "out_edges": [
+          326
+        ],
+        "weight": 6
+      },
+      "313": {
+        "called_fns": [],
+        "in_edges": [
+          309
+        ],
+        "out_edges": [
+          326,
+          319
+        ],
+        "weight": 6
+      },
+      "314": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          310
+        ],
+        "out_edges": [
+          317
+        ],
+        "weight": 4
+      },
+      "315": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          311
+        ],
+        "out_edges": [
+          316,
+          318
+        ],
+        "weight": 5
+      },
+      "316": {
+        "called_fns": [],
+        "in_edges": [
+          315
+        ],
+        "out_edges": [
+          317
+        ],
+        "weight": 1
+      },
+      "317": {
+        "called_fns": [
+          "dataWriteCacheCallback"
+        ],
+        "in_edges": [
+          314,
+          316
+        ],
+        "out_edges": [
+          318
+        ],
+        "weight": 2
+      },
+      "318": {
+        "called_fns": [],
+        "in_edges": [
+          315,
+          317
+        ],
+        "out_edges": [
+          319
+        ],
+        "weight": 5
+      },
+      "319": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          318,
+          313
+        ],
+        "out_edges": [
+          322,
+          320
+        ],
+        "weight": 3
+      },
+      "320": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          319
+        ],
+        "out_edges": [
+          322,
+          321
+        ],
+        "weight": 6
+      },
+      "321": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          320
+        ],
+        "out_edges": [
+          322
+        ],
+        "weight": 4
+      },
+      "322": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          319,
+          320,
+          321
+        ],
+        "out_edges": [
+          325,
+          323
+        ],
+        "weight": 3
+      },
+      "323": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          322
+        ],
+        "out_edges": [
+          325,
+          324
+        ],
+        "weight": 5
+      },
+      "324": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          323
+        ],
+        "out_edges": [
+          325
+        ],
+        "weight": 4
+      },
+      "325": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          322,
+          323,
+          324
+        ],
+        "out_edges": [
+          326
+        ],
+        "weight": 7
+      },
+      "326": {
+        "called_fns": [],
+        "in_edges": [
+          312,
+          313,
+          325
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 277,
+    "loops": {},
+    "returning_blocks": [
+      326
+    ]
+  },
+  "write_significance_map": {
+    "bbls": {
+      "327": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          328,
+          329
+        ],
+        "weight": 9
+      },
+      "328": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          327
+        ],
+        "out_edges": [
+          329
+        ],
+        "weight": 1
+      },
+      "329": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          327,
+          328
+        ],
+        "out_edges": [
+          331,
+          330
+        ],
+        "weight": 13
+      },
+      "330": {
+        "called_fns": [],
+        "in_edges": [
+          329
+        ],
+        "out_edges": [
+          331,
+          332
+        ],
+        "weight": 1
+      },
+      "331": {
+        "called_fns": [],
+        "in_edges": [
+          329,
+          330
+        ],
+        "out_edges": [
+          333
+        ],
+        "weight": 1
+      },
+      "332": {
+        "called_fns": [],
+        "in_edges": [
+          330
+        ],
+        "out_edges": [
+          333
+        ],
+        "weight": 1
+      },
+      "333": {
+        "called_fns": [],
+        "in_edges": [
+          331,
+          332
+        ],
+        "out_edges": [
+          334,
+          342
+        ],
+        "weight": 1
+      },
+      "334": {
+        "called_fns": [],
+        "in_edges": [
+          333
+        ],
+        "out_edges": [
+          335
+        ],
+        "weight": 4
+      },
+      "335": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          334,
+          341
+        ],
+        "out_edges": [
+          336,
+          338
+        ],
+        "weight": 4
+      },
+      "336": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          335
+        ],
+        "out_edges": [
+          337,
+          338
+        ],
+        "weight": 2
+      },
+      "337": {
+        "called_fns": [],
+        "in_edges": [
+          336
+        ],
+        "out_edges": [
+          338
+        ],
+        "weight": 1
+      },
+      "338": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          335,
+          337,
+          336
+        ],
+        "out_edges": [
+          339,
+          340
+        ],
+        "weight": 4
+      },
+      "339": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          338
+        ],
+        "out_edges": [
+          342,
+          340
+        ],
+        "weight": 7
+      },
+      "340": {
+        "called_fns": [],
+        "in_edges": [
+          339,
+          338
+        ],
+        "out_edges": [
+          341,
+          342
+        ],
+        "weight": 1
+      },
+      "341": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          340
+        ],
+        "out_edges": [
+          335
+        ],
+        "weight": 2
+      },
+      "342": {
+        "called_fns": [],
+        "in_edges": [
+          333,
+          339,
+          340
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 327,
+    "loops": {},
+    "returning_blocks": [
+      342
+    ]
+  },
+  "write_significant_coefficients": {
+    "bbls": {
+      "343": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [],
+        "out_edges": [
+          347
+        ],
+        "weight": 12
+      },
+      "344": {
+        "called_fns": [],
+        "in_edges": [
+          348
+        ],
+        "out_edges": [
+          345
+        ],
+        "weight": 2
+      },
+      "345": {
+        "called_fns": [
+          "biari_encode_symbol_eq_prob"
+        ],
+        "in_edges": [
+          344,
+          349
+        ],
+        "out_edges": [
+          346
+        ],
+        "weight": 1
+      },
+      "346": {
+        "called_fns": [],
+        "in_edges": [
+          347,
+          345
+        ],
+        "out_edges": [
+          347,
+          350
+        ],
+        "weight": 1
+      },
+      "347": {
+        "called_fns": [
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          343,
+          346
+        ],
+        "out_edges": [
+          346,
+          348
+        ],
+        "weight": 2
+      },
+      "348": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "biari_encode_symbol"
+        ],
+        "in_edges": [
+          347
+        ],
+        "out_edges": [
+          349,
+          344
+        ],
+        "weight": 13
+      },
+      "349": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "unary_exp_golomb_level_encode"
+        ],
+        "in_edges": [
+          348
+        ],
+        "out_edges": [
+          345
+        ],
+        "weight": 12
+      },
+      "350": {
+        "called_fns": [],
+        "in_edges": [
+          346
+        ],
+        "out_edges": [],
+        "weight": 2
+      }
+    },
+    "entry_block": 343,
+    "loops": {
+      "7": {
+        "loop_called_fns": [
+          "biari_encode_symbol",
+          "biari_encode_symbol_eq_prob",
+          "dataReadCacheCallback",
+          "unary_exp_golomb_level_encode"
+        ],
+        "loop_headers": [
+          347
+        ],
+        "loop_latches": [
+          346
+        ]
+      }
+    },
+    "returning_blocks": [
+      350
+    ]
+  }
+}
