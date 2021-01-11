@@ -184,6 +184,7 @@ for nemu in nemus:
         periodic_nemus_speedup[tx_size]['mu_blen_dis'].append(mu_blen)
         periodic_nemus_speedup[tx_size]['std_blen_dis'].append(std_blen)
 
+        print ("Tx-size: ", tx_size, " ovrs_en = ", ovrs_en, " ovrs_dis = ", ovrs_dis)
         mu_ovrs_dis = np.mean(ovrs_dis)
         rel_ovrs = []
         for x in ovrs_en:

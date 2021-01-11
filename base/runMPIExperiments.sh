@@ -7,8 +7,8 @@ TITAN_DIR=$HOME/Titan
 
 
 declare -a mpiType=("int" "sat" "mm")
-declare -a NumEmuHosts=(21 41 61 81 101)
-#declare -a NumEmuHosts=(21)
+#declare -a NumEmuHosts=(21 41 61 81 101)
+declare -a NumEmuHosts=(21)
 
 cd $TITAN_DIR
 sudo make unload

@@ -1,0 +1,298 @@
+Attempting to set static arp entries ...
+Tracer: 1 >> Using SRC IP: 10.1.0.146 for any spawned virtual tcp-stacks
+Tracer: 1 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 1 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/mpi_integral/mpi_int 0 16 10.1.0.146 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_16_mpi_int/master.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/mpi_integral/mpi_int
+args[1] = 0
+args[2] = 16
+args[3] = 10.1.0.146
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/mpi_integral/mpi_int
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 1
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: -1845493494
+Starting VT-initialization !
+Tracer-ID: 1, Timeline-ID: 1
+Tracer registration for EXP_CS complete. TimelineID = 1, Return = 1
+Tracer Adding to SQ. Tracer ID = 1
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
+File size: 176
+mapped memblock size: 176
+Finish offset: 18, Number of values: 18
+Returning success !
+Loaded BBL lookaheads for 18 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
+File size: 40
+mapped memblock size: 40
+Finish offset: 1, Number of values: 1
+Returning success !
+Loaded Loop lookaheads for 1 loops ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 16
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Rank = 0, Total = 16, IP = 10.1.0.146
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+bind through vt-tcp !
+Server socket bound to ip:port: 10.1.0.146:10000
+Waiting for OK message from other nodes !
+Waiting for OK message !
+listen through vt-tcp !
+Accept through vt-tcp !
+Successfully received OK message !
+
+---------------- Waiting for higher ranked nodes to connect --------------
+listen through vt-tcp !
+Accepting connection from higher ranked node: 15
+Accept through vt-tcp !
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
+Accepted connection from higher ranked node: 15
+Successfully connected with higher ranked node: 15
+Accepting connection from higher ranked node: 14
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 14
+Successfully connected with higher ranked node: 14
+Accepting connection from higher ranked node: 13
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 13
+Successfully connected with higher ranked node: 13
+Accepting connection from higher ranked node: 12
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 12
+Successfully connected with higher ranked node: 12
+Accepting connection from higher ranked node: 11
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 11
+Successfully connected with higher ranked node: 11
+Accepting connection from higher ranked node: 10
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 10
+Successfully connected with higher ranked node: 10
+Accepting connection from higher ranked node: 9
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 9
+Successfully connected with higher ranked node: 9
+Accepting connection from higher ranked node: 8
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 8
+Successfully connected with higher ranked node: 8
+Accepting connection from higher ranked node: 7
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 7
+Successfully connected with higher ranked node: 7
+Accepting connection from higher ranked node: 6
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 6
+Successfully connected with higher ranked node: 6
+Accepting connection from higher ranked node: 5
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 5
+Successfully connected with higher ranked node: 5
+Accepting connection from higher ranked node: 4
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 4
+Successfully connected with higher ranked node: 4
+Accepting connection from higher ranked node: 3
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 3
+Successfully connected with higher ranked node: 3
+Accepting connection from higher ranked node: 2
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 2
+Successfully connected with higher ranked node: 2
+Accepting connection from higher ranked node: 1
+Accept through vt-tcp !
+Accepted connection from higher ranked node: 1
+Successfully connected with higher ranked node: 1
+Closing server socket: 4097
+Clearing all tcp timers !
+TCP-done for socket: 4097, err: -103
+
+---------------- Connecting to lowed ranked nodes ! --------------
+
+---------------- Creating listen Thread ! --------------
+
+---------------- MPI-Init success ! --------------
+Adding new Thread: 8
+Socket: 4097 garbage collection
+Freeing socket: 4097
+10 January 2021 03:07:31 PM
+
+QUAD_MPI
+  C/MPI version
+  Estimate an integral of f(x) from A to B.
+  f(x) = 50 / (pi * ( 2500 * x * x + 1 ) )
+
+  A = 0.000000
+  B = 10.000000
+  N = 99999990
+  EXACT =       0.4993633810764567
+
+  Use MPI to divide the computation among
+  multiple processes.
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Signal Burst Completion: Flushing Data Cache !
+Resuming new Thread with Burst of length: 2700
+tcp-linger 
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: -110
+Socket: 4098 garbage collection
+Freeing socket: 4098
+Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
+Computed integral: 0 over interval [10.000000, 20.000000] = 2448.286095
+Avg-Job-Completion-Time = 0.481601 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 1 over interval [20.000000, 30.000000] = 2505.661880
+Avg-Job-Completion-Time = 0.481602 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 2 over interval [30.000000, 40.000000] = 1205.348891
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 3 over interval [40.000000, 50.000000] = 13460.538354
+Avg-Job-Completion-Time = 0.481603 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 4 over interval [50.000000, 60.000000] = 9285.228108
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 5 over interval [60.000000, 70.000000] = 38340.279357
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 6 over interval [70.000000, 80.000000] = 29825.101998
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 7 over interval [80.000000, 90.000000] = 9490.931106
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 8 over interval [90.000000, 100.000000] = 67918.344440
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 9 over interval [100.000000, 110.000000] = 38160.752570
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 10 over interval [110.000000, 120.000000] = 129222.505625
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 11 over interval [120.000000, 130.000000] = 89391.920868
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 12 over interval [130.000000, 140.000000] = 27936.734568
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 13 over interval [140.000000, 150.000000] = 166823.367389
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 14 over interval [150.000000, 160.000000] = 89700.140517
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 15 over interval [160.000000, 170.000000] = 277341.792964
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 16 over interval [170.000000, 180.000000] = 183240.467796
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 17 over interval [180.000000, 190.000000] = 58475.303520
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 18 over interval [190.000000, 200.000000] = 312808.368654
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Computed integral: 19 over interval [200.000000, 210.000000] = 166244.118131
+Avg-Job-Completion-Time = 0.481604 (sec)
+
+------------------------------------------------------------------------------
+Sending partitions over to workers !
+Waiting to receive integral partitions from workers !
+Exp finishing. Stopping stack thread with id: 6!

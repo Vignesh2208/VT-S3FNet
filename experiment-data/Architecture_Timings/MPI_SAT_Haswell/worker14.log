@@ -1,0 +1,763 @@
+Attempting to set static arp entries ...
+Tracer: 15 >> Using SRC IP: 10.1.0.222 for any spawned virtual tcp-stacks
+Tracer: 15 >> Updating firewall rules to drop outgoing TCP-RST packets
+Attempting to set firewall rules ...
+Tracer: 15 >> CMD TO RUN: /home/vignesh/VT-S3FNet/csudp/mpi_sat/mpi_csat 14 16 10.1.0.222 > /home/vignesh/VT-S3FNet/experiment-data/MPI_LA_Enabled_nemus_16_mpi_sat/worker14.log
+args[0] = /home/vignesh/VT-S3FNet/csudp/mpi_sat/mpi_csat
+args[1] = 14
+args[2] = 16
+args[3] = 10.1.0.222
+Setting appropriate environment variables ...
+HOME DIRECTORY : /home/vignesh
+Parsing TTN config file: /home/vignesh/.ttn/projects.db
+Setting VT_L1_INS_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_INS_CACHE_LINES to: 64
+Setting VT_L1_INS_CACHE_SIZE_KB to: 32
+Setting VT_L1_INS_CACHE_ASSOC to: 8
+Setting VT_L1_INS_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_L1_DATA_CACHE_MISS_CYCLES to: 100
+Setting VT_L1_DATA_CACHE_LINES to: 64
+Setting VT_L1_DATA_CACHE_SIZE_KB to: 32
+Setting VT_L1_DATA_CACHE_ASSOC to: 8
+Setting VT_L1_DATA_CACHE_REPLACEMENT_POLICY to: LRU
+Setting VT_CPU_CYLES_NS to: 2.700000
+Setting VT_NIC_SPEED_MBPS to: 1000.000000
+Setting VT_TIMING_MODEL to: EMPIRICAL
+Setting VT_BBL_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/bbl_lookahead.info
+Setting VT_LOOP_LOOKAHEAD_FILE to: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/loop_lookahead.info
+Starting command: /home/vignesh/VT-S3FNet/csudp/mpi_sat/mpi_csat
+Loading orig functions !
+Starting executable with Pid = 6
+Loading pointers to VTL Logic functions
+Loaded pointers to all VTL Logic functions
+Now Initializing VT-Management 
+Extracting env variables !
+Extracted tracer-id: 15
+Extracted exp-type: 2
+Extracted cpu-cycles-ns: 2.700000
+Extracted socket-layer-ip: -570425078
+Starting VT-initialization !
+Tracer-ID: 15, Timeline-ID: 15
+Tracer registration for EXP_CS complete. TimelineID = 15, Return = 15
+Tracer Adding to SQ. Tracer ID = 15
+Parsing any provided lookahead information ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/bbl_lookahead.info
+File size: 808
+mapped memblock size: 808
+Finish offset: 97, Number of values: 97
+Returning success !
+Loaded BBL lookaheads for 97 basic blocks ...
+Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_sat/.ttn/lookahead/loop_lookahead.info
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
+Returning success !
+Loaded Loop lookaheads for 3 loops ...
+VT initialization successfull !
+Finished Initializing VT-Management 
+Initializing TCP-stack ...
+TCP stack unique-id: 156
+Starting virtual socket layer stack-thread !
+Pthread_create: vtStackThread special case
+Successfully initialized VTL-Logic embedded into the executable
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE STARTS -----------------------------
+
+Rank = 14, Total = 16, IP = 10.1.0.222
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+bind through vt-tcp !
+Server socket bound to ip:port: 10.1.0.222:10000
+Waiting for OK message from other nodes !
+Waiting for OK message !
+listen through vt-tcp !
+Accept through vt-tcp !
+Successfully received OK message !
+
+---------------- Waiting for higher ranked nodes to connect --------------
+listen through vt-tcp !
+Accepting connection from higher ranked node: 15
+Accept through vt-tcp !
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
+Received ack in time_wait !
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: 0
+Socket: 4098 garbage collection
+Freeing socket: 4098
+Accepted connection from higher ranked node: 15
+Successfully connected with higher ranked node: 15
+Closing server socket: 4097
+Clearing all tcp timers !
+TCP-done for socket: 4097, err: -103
+
+---------------- Connecting to lowed ranked nodes ! --------------
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 13 at 10.1.0.218:10000
+Connecting .. Socket: 4100, src-port: 40001
+Socket: 4097 garbage collection
+Freeing socket: 4097
+Waking up connected socket !
+Socket connect success. socket = 4100
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 13 at 10.1.0.218:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 12 at 10.1.0.214:10000
+Connecting .. Socket: 4101, src-port: 40002
+Waking up connected socket !
+Socket connect success. socket = 4101
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 12 at 10.1.0.214:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 11 at 10.1.0.210:10000
+Connecting .. Socket: 4102, src-port: 40003
+Waking up connected socket !
+Socket connect success. socket = 4102
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 11 at 10.1.0.210:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 10 at 10.1.0.206:10000
+Connecting .. Socket: 4103, src-port: 40004
+Waking up connected socket !
+Socket connect success. socket = 4103
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 10 at 10.1.0.206:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 9 at 10.1.0.202:10000
+Connecting .. Socket: 4104, src-port: 40005
+Waking up connected socket !
+Socket connect success. socket = 4104
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 9 at 10.1.0.202:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 8 at 10.1.0.198:10000
+Connecting .. Socket: 4105, src-port: 40006
+Waking up connected socket !
+Socket connect success. socket = 4105
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 8 at 10.1.0.198:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 7 at 10.1.0.194:10000
+Connecting .. Socket: 4106, src-port: 40007
+Waking up connected socket !
+Socket connect success. socket = 4106
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 7 at 10.1.0.194:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 6 at 10.1.0.190:10000
+Connecting .. Socket: 4107, src-port: 40008
+Waking up connected socket !
+Socket connect success. socket = 4107
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 6 at 10.1.0.190:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 5 at 10.1.0.186:10000
+Connecting .. Socket: 4108, src-port: 40009
+Waking up connected socket !
+Socket connect success. socket = 4108
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 5 at 10.1.0.186:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 4 at 10.1.0.182:10000
+Connecting .. Socket: 4109, src-port: 40010
+Waking up connected socket !
+Socket connect success. socket = 4109
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 4 at 10.1.0.182:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 3 at 10.1.0.130:10000
+Connecting .. Socket: 4110, src-port: 40011
+Waking up connected socket !
+Socket connect success. socket = 4110
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 3 at 10.1.0.130:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 2 at 10.1.0.138:10000
+Connecting .. Socket: 4111, src-port: 40012
+Waking up connected socket !
+Socket connect success. socket = 4111
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 2 at 10.1.0.138:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 1 at 10.1.0.142:10000
+Connecting .. Socket: 4112, src-port: 40013
+Waking up connected socket !
+Socket connect success. socket = 4112
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 1 at 10.1.0.142:10000
+Adding new vt-tcp-socket !
+Creating vt-tcp socket !
+Connecting to lower ranked node: 0 at 10.1.0.146:10000
+Connecting .. Socket: 4113, src-port: 40014
+Waking up connected socket !
+Socket connect success. socket = 4113
+Connecting through vt-tcp success !
+Successfully connected to lower ranked node: 0 at 10.1.0.146:10000
+
+---------------- Creating listen Thread ! --------------
+
+---------------- MPI-Init success ! --------------
+
+-------------------------------------------------------------
+  Task no: 1
+Waiting for trigger !
+Adding new Thread: 8
+Signal Burst Completion: Flushing Data Cache !
+Resuming new Thread with Burst of length: 5400
+Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
+  Worker 14 iterates from 939524096 <= I < 1006632959
+
+Called SetLoopLookahead: init: 939524096, final: 1006632959, step: 1, loopDepth: 0, cumulative-num-iterations: 67108863, look-ahead-ns: 347971872
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 2013265890, look-ahead-ns: 2982616064
+   1        14  1004957360:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   2        14  1004957361:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   3        14  1004957362:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   4        14  1004957363:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   5        14  1004957364:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   6        14  1004957365:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   7        14  1004957366:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   8        14  1004957367:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   9        14  1004957384:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  10        14  1004957385:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  11        14  1004957386:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  12        14  1004957387:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  13        14  1004957392:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  14        14  1004957393:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  15        14  1004957394:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  16        14  1004957395:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  17        14  1004957396:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  18        14  1004957397:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  19        14  1004957398:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  20        14  1004957399:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  21        14  1004957400:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  22        14  1004957401:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  23        14  1004957402:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  24        14  1004957403:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  25        14  1004957424:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  26        14  1004957425:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  27        14  1004957426:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  28        14  1004957427:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  29        14  1004957428:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  30        14  1004957429:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  31        14  1004957430:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  32        14  1004957431:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  33        14  1004961456:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  34        14  1004961457:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  35        14  1004961458:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  36        14  1004961459:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  37        14  1004961460:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  38        14  1004961461:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  39        14  1004961462:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  40        14  1004961463:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  41        14  1004961480:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  42        14  1004961481:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  43        14  1004961482:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  44        14  1004961483:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  45        14  1004961488:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  46        14  1004961489:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  47        14  1004961490:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  48        14  1004961491:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  49        14  1004961492:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  50        14  1004961493:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  51        14  1004961494:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  52        14  1004961495:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  53        14  1004961496:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  54        14  1004961497:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  55        14  1004961498:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  56        14  1004961499:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  57        14  1004961520:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  58        14  1004961521:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  59        14  1004961522:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  60        14  1004961523:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  61        14  1004961524:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  62        14  1004961525:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  63        14  1004961526:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  64        14  1004961527:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  65        14  1005481648:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  66        14  1005481649:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  67        14  1005481650:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  68        14  1005481651:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  69        14  1005481652:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  70        14  1005481653:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  71        14  1005481654:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  72        14  1005481655:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  73        14  1005481672:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  74        14  1005481673:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  75        14  1005481674:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  76        14  1005481675:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  77        14  1005481680:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  78        14  1005481681:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  79        14  1005481682:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  80        14  1005481683:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  81        14  1005481684:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  82        14  1005481685:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  83        14  1005481686:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  84        14  1005481687:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  85        14  1005481688:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  86        14  1005481689:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  87        14  1005481690:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  88        14  1005481691:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  89        14  1005481712:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  90        14  1005481713:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  91        14  1005481714:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  92        14  1005481715:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  93        14  1005481716:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  94        14  1005481717:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  95        14  1005481718:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  96        14  1005481719:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  97        14  1005485744:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  98        14  1005485745:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  99        14  1005485746:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  100        14  1005485747:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  101        14  1005485748:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  102        14  1005485749:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  103        14  1005485750:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  104        14  1005485751:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  105        14  1005485768:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  106        14  1005485769:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  107        14  1005485770:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  108        14  1005485771:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  109        14  1005485776:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  110        14  1005485777:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  111        14  1005485778:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  112        14  1005485779:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  113        14  1005485780:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  114        14  1005485781:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  115        14  1005485782:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  116        14  1005485783:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  117        14  1005485784:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  118        14  1005485785:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  119        14  1005485786:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  120        14  1005485787:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  121        14  1005485808:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  122        14  1005485809:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  123        14  1005485810:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  124        14  1005485811:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  125        14  1005485812:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  126        14  1005485813:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  127        14  1005485814:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  128        14  1005485815:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 30686.850878
+
+-------------------------------------------------------------
+  Task no: 2
+Waiting for trigger !
+  Worker 14 iterates from 939524096 <= I < 1006632959
+
+Called SetLoopLookahead: init: 939524096, final: 1006632959, step: 1, loopDepth: 0, cumulative-num-iterations: 67108863, look-ahead-ns: 347971872
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 2013265890, look-ahead-ns: 2982616064
+   1        14  1004957360:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   2        14  1004957361:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   3        14  1004957362:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   4        14  1004957363:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   5        14  1004957364:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   6        14  1004957365:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   7        14  1004957366:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   8        14  1004957367:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+   9        14  1004957384:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  10        14  1004957385:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  11        14  1004957386:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  12        14  1004957387:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  13        14  1004957392:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  14        14  1004957393:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  15        14  1004957394:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  16        14  1004957395:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  17        14  1004957396:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  18        14  1004957397:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  19        14  1004957398:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  20        14  1004957399:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  21        14  1004957400:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  22        14  1004957401:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  23        14  1004957402:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  24        14  1004957403:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  25        14  1004957424:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  26        14  1004957425:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  27        14  1004957426:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  28        14  1004957427:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  29        14  1004957428:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  30        14  1004957429:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  31        14  1004957430:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  32        14  1004957431:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  33        14  1004961456:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  34        14  1004961457:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  35        14  1004961458:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  36        14  1004961459:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  37        14  1004961460:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  38        14  1004961461:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  39        14  1004961462:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  40        14  1004961463:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  41        14  1004961480:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  42        14  1004961481:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  43        14  1004961482:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  44        14  1004961483:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  45        14  1004961488:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  46        14  1004961489:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  47        14  1004961490:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  48        14  1004961491:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  49        14  1004961492:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  50        14  1004961493:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  51        14  1004961494:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  52        14  1004961495:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  53        14  1004961496:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  54        14  1004961497:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  55        14  1004961498:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  56        14  1004961499:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  57        14  1004961520:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  58        14  1004961521:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  59        14  1004961522:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  60        14  1004961523:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  61        14  1004961524:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  62        14  1004961525:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  63        14  1004961526:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  64        14  1004961527:   1 1 1 0 1 1 1 1 1 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  65        14  1005481648:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  66        14  1005481649:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  67        14  1005481650:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  68        14  1005481651:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  69        14  1005481652:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  70        14  1005481653:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  71        14  1005481654:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  72        14  1005481655:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  73        14  1005481672:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  74        14  1005481673:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  75        14  1005481674:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  76        14  1005481675:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  77        14  1005481680:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  78        14  1005481681:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  79        14  1005481682:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  80        14  1005481683:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  81        14  1005481684:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  82        14  1005481685:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  83        14  1005481686:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  84        14  1005481687:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  85        14  1005481688:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  86        14  1005481689:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  87        14  1005481690:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  88        14  1005481691:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  89        14  1005481712:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  90        14  1005481713:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  91        14  1005481714:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  92        14  1005481715:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  93        14  1005481716:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  94        14  1005481717:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  95        14  1005481718:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  96        14  1005481719:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  97        14  1005485744:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  98        14  1005485745:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  99        14  1005485746:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  100        14  1005485747:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  101        14  1005485748:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  102        14  1005485749:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  103        14  1005485750:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  104        14  1005485751:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  105        14  1005485768:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  106        14  1005485769:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  107        14  1005485770:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  108        14  1005485771:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 0 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  109        14  1005485776:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  110        14  1005485777:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  111        14  1005485778:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  112        14  1005485779:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  113        14  1005485780:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  114        14  1005485781:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  115        14  1005485782:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  116        14  1005485783:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  117        14  1005485784:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  118        14  1005485785:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  119        14  1005485786:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  120        14  1005485787:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  121        14  1005485808:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  122        14  1005485809:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  123        14  1005485810:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  124        14  1005485811:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 0 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  125        14  1005485812:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  126        14  1005485813:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 0 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  127        14  1005485814:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+  128        14  1005485815:   1 1 1 0 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 900, look-ahead-ns: 1333
+Sending results to master node !
+Avg-Compute-Communication-Ratio = 279.294360
+
+-------------------------------------------------------------
+  Task no: 3
+Waiting for trigger !
+  Worker 14 iterates from 939524096 <= I < 1006632959
+
+Called SetLoopLookahead: init: 939524096, final: 1006632959, step: 1, loopDepth: 0, cumulative-num-iterations: 67108863, look-ahead-ns: 347971872
+Called SetLoopLookahead: init: 29, final: -1, step: -1, loopDepth: 1, cumulative-num-iterations: 2013265890, look-ahead-ns: 2982616064
+Exp finishing. Stopping stack thread with id: 6!
+
+------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
+
+Process: 6 exiting VT experiment !
+Main thread exiting. PID = 6
