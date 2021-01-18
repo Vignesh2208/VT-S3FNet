@@ -42,17 +42,17 @@ Tracer registration for EXP_CS complete. TimelineID = 5, Return = 5
 Tracer Adding to SQ. Tracer ID = 5
 Parsing any provided lookahead information ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
-File size: 176
-mapped memblock size: 176
-Finish offset: 18, Number of values: 18
+File size: 208
+mapped memblock size: 208
+Finish offset: 22, Number of values: 22
 Returning success !
-Loaded BBL lookaheads for 18 basic blocks ...
+Loaded BBL lookaheads for 22 basic blocks ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
-File size: 40
-mapped memblock size: 40
-Finish offset: 1, Number of values: 1
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
 Returning success !
-Loaded Loop lookaheads for 1 loops ...
+Loaded Loop lookaheads for 3 loops ...
 VT initialization successfull !
 Finished Initializing VT-Management 
 Initializing TCP-stack ...
@@ -508,336 +508,72 @@ Successfully connected to lower ranked node: 0 at 10.1.36.226:10000
 ---------------- MPI-Init success ! --------------
 Waiting to receive partition information from master !
 Adding new Thread: 8
+Signal Burst Completion: Flushing Data Cache !
 Resuming new Thread with Burst of length: 5400
-Process 4 computing itegral over my_a = 10.300000, my_b= 10.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
+Process 4 computing itegral over z = [10.300000, 10.400000], y = [10.000000, 20.000000], x = [10.000000, 20.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 tcp-linger 
 Clearing all tcp timers !
 TCP-done for socket: 4098, err: -110
 Socket: 4098 garbage collection
 Freeing socket: 4098
-Avg-Compute-Communication-Ratio = 2566.905941
-Process 4 contributed MY_TOTAL = -nan, my_a = 10.300000, my_b= 10.400000
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4195
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4196
+Avg-Compute-Communication-Ratio = 22317.902778
+Process 4 contributed MY_TOTAL = 8.142877, my_a = 10.300000, my_b= 10.400000
 Integral: 0 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 20.300000, my_b= 20.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-Before rcv-wnd: seq: 1, rcv_nxt: 5
-tcp-rto: snd_una: 1, rto: 2000, backoff: 1
-Avg-Compute-Communication-Ratio = 1527.272460
-Process 4 contributed MY_TOTAL = -nan, my_a = 20.300000, my_b= 20.400000
+Process 4 computing itegral over z = [20.300000, 20.400000], y = [20.000000, 30.000000], x = [20.000000, 30.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
+Avg-Compute-Communication-Ratio = 8918.930620
+Process 4 contributed MY_TOTAL = 25.451744, my_a = 20.300000, my_b= 20.400000
 Integral: 1 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 30.300000, my_b= 30.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1343.292746
-Process 4 contributed MY_TOTAL = -nan, my_a = 30.300000, my_b= 30.400000
+Process 4 computing itegral over z = [30.300000, 30.400000], y = [30.000000, 40.000000], x = [30.000000, 40.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
+Avg-Compute-Communication-Ratio = 7386.139428
+Process 4 contributed MY_TOTAL = 88.942432, my_a = 30.300000, my_b= 30.400000
 Integral: 2 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 40.300000, my_b= 40.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1263.892748
-Process 4 contributed MY_TOTAL = -nan, my_a = 40.300000, my_b= 40.400000
+Process 4 computing itegral over z = [40.300000, 40.400000], y = [40.000000, 50.000000], x = [40.000000, 50.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
+Avg-Compute-Communication-Ratio = 6763.506489
+Process 4 contributed MY_TOTAL = 73.093064, my_a = 40.300000, my_b= 40.400000
 Integral: 3 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 50.300000, my_b= 50.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1225.218809
-Process 4 contributed MY_TOTAL = -nan, my_a = 50.300000, my_b= 50.400000
-Integral: 4 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 60.300000, my_b= 60.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1196.108420
-Process 4 contributed MY_TOTAL = -nan, my_a = 60.300000, my_b= 60.400000
-Integral: 5 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 70.300000, my_b= 70.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1176.148088
-Process 4 contributed MY_TOTAL = -nan, my_a = 70.300000, my_b= 70.400000
-Integral: 6 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 80.300000, my_b= 80.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1164.217794
-Process 4 contributed MY_TOTAL = -nan, my_a = 80.300000, my_b= 80.400000
-Integral: 7 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 90.300000, my_b= 90.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1149.981025
-Process 4 contributed MY_TOTAL = -nan, my_a = 90.300000, my_b= 90.400000
-Integral: 8 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 100.300000, my_b= 100.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1143.360088
-Process 4 contributed MY_TOTAL = -nan, my_a = 100.300000, my_b= 100.400000
-Integral: 9 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 110.300000, my_b= 110.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1137.545473
-Process 4 contributed MY_TOTAL = -nan, my_a = 110.300000, my_b= 110.400000
-Integral: 10 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 120.300000, my_b= 120.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1129.455074
-Process 4 contributed MY_TOTAL = -nan, my_a = 120.300000, my_b= 120.400000
-Integral: 11 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 130.300000, my_b= 130.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1126.451036
-Process 4 contributed MY_TOTAL = -nan, my_a = 130.300000, my_b= 130.400000
-Integral: 12 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 140.300000, my_b= 140.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1122.151492
-Process 4 contributed MY_TOTAL = -nan, my_a = 140.300000, my_b= 140.400000
-Integral: 13 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 150.300000, my_b= 150.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1119.739850
-Process 4 contributed MY_TOTAL = -nan, my_a = 150.300000, my_b= 150.400000
-Integral: 14 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 160.300000, my_b= 160.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1117.036219
-Process 4 contributed MY_TOTAL = -nan, my_a = 160.300000, my_b= 160.400000
-Integral: 15 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 170.300000, my_b= 170.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1113.816401
-Process 4 contributed MY_TOTAL = -nan, my_a = 170.300000, my_b= 170.400000
-Integral: 16 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 180.300000, my_b= 180.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1110.969885
-Process 4 contributed MY_TOTAL = -nan, my_a = 180.300000, my_b= 180.400000
-Integral: 17 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 190.300000, my_b= 190.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1109.683825
-Process 4 contributed MY_TOTAL = -nan, my_a = 190.300000, my_b= 190.400000
-Integral: 18 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 200.300000, my_b= 200.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1109.240347
-Process 4 contributed MY_TOTAL = -nan, my_a = 200.300000, my_b= 200.400000
-Integral: 19 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 210.300000, my_b= 210.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1108.387928
-Process 4 contributed MY_TOTAL = -nan, my_a = 210.300000, my_b= 210.400000
-Integral: 20 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 220.300000, my_b= 220.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1107.184121
-Process 4 contributed MY_TOTAL = -nan, my_a = 220.300000, my_b= 220.400000
-Integral: 21 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 230.300000, my_b= 230.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1106.703137
-Process 4 contributed MY_TOTAL = -nan, my_a = 230.300000, my_b= 230.400000
-Integral: 22 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 240.300000, my_b= 240.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1104.691345
-Process 4 contributed MY_TOTAL = -nan, my_a = 240.300000, my_b= 240.400000
-Integral: 23 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 250.300000, my_b= 250.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1104.162095
-Process 4 contributed MY_TOTAL = -nan, my_a = 250.300000, my_b= 250.400000
-Integral: 24 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 260.300000, my_b= 260.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1103.312710
-Process 4 contributed MY_TOTAL = -nan, my_a = 260.300000, my_b= 260.400000
-Integral: 25 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 270.300000, my_b= 270.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1102.874823
-Process 4 contributed MY_TOTAL = -nan, my_a = 270.300000, my_b= 270.400000
-Integral: 26 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 280.300000, my_b= 280.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1101.966452
-Process 4 contributed MY_TOTAL = -nan, my_a = 280.300000, my_b= 280.400000
-Integral: 27 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 290.300000, my_b= 290.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1101.606081
-Process 4 contributed MY_TOTAL = -nan, my_a = 290.300000, my_b= 290.400000
-Integral: 28 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 300.300000, my_b= 300.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1100.335149
-Process 4 contributed MY_TOTAL = -nan, my_a = 300.300000, my_b= 300.400000
-Integral: 29 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 310.300000, my_b= 310.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.299207
-Process 4 contributed MY_TOTAL = -nan, my_a = 310.300000, my_b= 310.400000
-Integral: 30 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 320.300000, my_b= 320.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.348572
-Process 4 contributed MY_TOTAL = -nan, my_a = 320.300000, my_b= 320.400000
-Integral: 31 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 330.300000, my_b= 330.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.960337
-Process 4 contributed MY_TOTAL = -nan, my_a = 330.300000, my_b= 330.400000
-Integral: 32 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 340.300000, my_b= 340.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.164412
-Process 4 contributed MY_TOTAL = -nan, my_a = 340.300000, my_b= 340.400000
-Integral: 33 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 350.300000, my_b= 350.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.213386
-Process 4 contributed MY_TOTAL = -nan, my_a = 350.300000, my_b= 350.400000
-Integral: 34 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 360.300000, my_b= 360.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.130189
-Process 4 contributed MY_TOTAL = -nan, my_a = 360.300000, my_b= 360.400000
-Integral: 35 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 370.300000, my_b= 370.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1099.303404
-Process 4 contributed MY_TOTAL = -nan, my_a = 370.300000, my_b= 370.400000
-Integral: 36 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 380.300000, my_b= 380.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1098.976965
-Process 4 contributed MY_TOTAL = -nan, my_a = 380.300000, my_b= 380.400000
-Integral: 37 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 4 computing itegral over my_a = 390.300000, my_b= 390.400000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Process 4 computing itegral over z = [50.300000, 50.400000], y = [50.000000, 60.000000], x = [50.000000, 60.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 Exp finishing. Stopping stack thread with id: 6!
 
 ------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------

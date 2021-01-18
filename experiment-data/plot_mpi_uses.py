@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 
 home = os.path.expanduser('~')
 EXP_TYPES = ['MM', 'SAT', 'INT']
-ARCHS = ['Skylake', 'Sandy_Bridge', 'Ivy_Bridge', 'Haswell']
+ARCHS = ['Skylake', 'Sandy_Bridge', 'Ivy_Bridge', 'Broadwell']
 CACHE_SIZES = ['128kb', '256kb']
 CACHE_ASSOCS = [4, 8]
 

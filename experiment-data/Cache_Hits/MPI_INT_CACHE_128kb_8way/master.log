@@ -42,17 +42,17 @@ Tracer registration for EXP_CS complete. TimelineID = 1, Return = 1
 Tracer Adding to SQ. Tracer ID = 1
 Parsing any provided lookahead information ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
-File size: 176
-mapped memblock size: 176
-Finish offset: 18, Number of values: 18
+File size: 208
+mapped memblock size: 208
+Finish offset: 22, Number of values: 22
 Returning success !
-Loaded BBL lookaheads for 18 basic blocks ...
+Loaded BBL lookaheads for 22 basic blocks ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
-File size: 40
-mapped memblock size: 40
-Finish offset: 1, Number of values: 1
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
 Returning success !
-Loaded Loop lookaheads for 1 loops ...
+Loaded Loop lookaheads for 3 loops ...
 Parsing any data cache params ...
 Flushed Data Cache !
 
@@ -112,6 +112,9 @@ Successfully received OK message !
 listen through vt-tcp !
 Accepting connection from higher ranked node: 15
 Accept through vt-tcp !
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
 Accepted connection from higher ranked node: 15
 Successfully connected with higher ranked node: 15
 Accepting connection from higher ranked node: 14
@@ -182,7 +185,7 @@ TCP-done for socket: 4097, err: -103
 Adding new Thread: 8
 Socket: 4097 garbage collection
 Freeing socket: 4097
-06 January 2021 10:53:08 PM
+16 January 2021 06:04:51 PM
 
 QUAD_MPI
   C/MPI version
@@ -201,118 +204,21 @@ Waiting to receive integral partitions from workers !
 Signal Burst Completion: Flushing Data Cache !
 Flushed Data Cache !
 Resuming new Thread with Burst of length: 2700
+tcp-linger 
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: -110
+Socket: 4098 garbage collection
+Freeing socket: 4098
 Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
 Flushed Data Cache !
-Computed integral: 0 over interval [10.000000, 20.000000] = 18325988.561925
-Avg-Job-Completion-Time = 0.518640 (sec)
+Computed integral: 0 over interval [10.000000, 20.000000] = 80.442108
+Avg-Job-Completion-Time = 4.820880 (sec)
 
 ------------------------------------------------------------------------------
 Sending partitions over to workers !
 Waiting to receive integral partitions from workers !
-Computed integral: 1 over interval [20.000000, 30.000000] = 49741915.097822
-Avg-Job-Completion-Time = 0.518641 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 2 over interval [30.000000, 40.000000] = 96865804.901669
-Avg-Job-Completion-Time = 0.518642 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 3 over interval [40.000000, 50.000000] = 159697657.973469
-Avg-Job-Completion-Time = 0.518642 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 4 over interval [50.000000, 60.000000] = 238237474.313213
-Avg-Job-Completion-Time = 0.518642 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 5 over interval [60.000000, 70.000000] = 332485253.920909
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 6 over interval [70.000000, 80.000000] = 442440996.796544
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 7 over interval [80.000000, 90.000000] = 568104702.940137
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 8 over interval [90.000000, 100.000000] = 709476372.351678
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 9 over interval [100.000000, 110.000000] = 866556005.031168
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 10 over interval [110.000000, 120.000000] = 1039343600.978602
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 11 over interval [120.000000, 130.000000] = 1227839160.194010
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 12 over interval [130.000000, 140.000000] = 1432042682.677329
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 13 over interval [140.000000, 150.000000] = 1651954168.428602
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 14 over interval [150.000000, 160.000000] = 1887573617.447853
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 15 over interval [160.000000, 170.000000] = 2138901029.735039
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 16 over interval [170.000000, 180.000000] = 2405936405.290165
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 17 over interval [180.000000, 190.000000] = 2688679744.113257
-Avg-Job-Completion-Time = 0.518643 (sec)
-
-------------------------------------------------------------------------------
-Sending partitions over to workers !
-Waiting to receive integral partitions from workers !
-Computed integral: 18 over interval [190.000000, 200.000000] = 2987131046.204291
-Avg-Job-Completion-Time = 0.518643 (sec)
+Computed integral: 1 over interval [20.000000, 30.000000] = 57.360802
+Avg-Job-Completion-Time = 4.820881 (sec)
 
 ------------------------------------------------------------------------------
 Sending partitions over to workers !

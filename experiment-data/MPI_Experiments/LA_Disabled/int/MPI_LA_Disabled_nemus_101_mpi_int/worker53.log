@@ -42,17 +42,17 @@ Tracer registration for EXP_CS complete. TimelineID = 54, Return = 54
 Tracer Adding to SQ. Tracer ID = 54
 Parsing any provided lookahead information ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
-File size: 176
-mapped memblock size: 176
-Finish offset: 18, Number of values: 18
+File size: 208
+mapped memblock size: 208
+Finish offset: 22, Number of values: 22
 Returning success !
-Loaded BBL lookaheads for 18 basic blocks ...
+Loaded BBL lookaheads for 22 basic blocks ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
-File size: 40
-mapped memblock size: 40
-Finish offset: 1, Number of values: 1
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
 Returning success !
-Loaded Loop lookaheads for 1 loops ...
+Loaded Loop lookaheads for 3 loops ...
 VT initialization successfull !
 Finished Initializing VT-Management 
 Initializing TCP-stack ...
@@ -81,6 +81,11 @@ Accept through vt-tcp !
 Entering time-wait from FIN_WAIT_2
 Clearing all tcp timers !
 Adding TcpLinger !
+Received ack in time_wait !
+Clearing all tcp timers !
+TCP-done for socket: 4098, err: 0
+Socket: 4098 garbage collection
+Freeing socket: 4098
 Accepted connection from higher ranked node: 100
 Successfully connected with higher ranked node: 100
 Accepting connection from higher ranked node: 99
@@ -707,13 +712,9 @@ Adding new Thread: 8
 Signal Burst Completion: Flushing Data Cache !
 Resuming new Thread with Burst of length: 5400
 Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
-Process 53 computing itegral over my_a = 15.200000, my_b= 15.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-tcp-linger 
-Clearing all tcp timers !
-TCP-done for socket: 4098, err: -110
-Socket: 4098 garbage collection
-Freeing socket: 4098
+Process 53 computing itegral over z = [15.200000, 15.300000], y = [10.000000, 20.000000], x = [10.000000, 20.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 Before rcv-wnd: seq: 1, rcv_nxt: 5
 Before rcv-wnd: seq: 1, rcv_nxt: 5
 Before rcv-wnd: seq: 1, rcv_nxt: 5
@@ -725,85 +726,22 @@ Before rcv-wnd: seq: 1, rcv_nxt: 5
 Before rcv-wnd: seq: 1, rcv_nxt: 5
 Before rcv-wnd: seq: 1, rcv_nxt: 5
 Before rcv-wnd: seq: 1, rcv_nxt: 5
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4146
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4148
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4159
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4166
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4177
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4178
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4191
-Avg-Compute-Communication-Ratio = 1239.555024
-Process 53 contributed MY_TOTAL = 0.255557, my_a = 15.200000, my_b= 15.300000
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+Before rcv-wnd: seq: 1, rcv_nxt: 5
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4156
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4172
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4173
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4193
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4196
+Avg-Compute-Communication-Ratio = 7724.725522
+Process 53 contributed MY_TOTAL = 16.688413, my_a = 15.200000, my_b= 15.300000
 Integral: 0 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 25.200000, my_b= 25.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1159.136465
-Process 53 contributed MY_TOTAL = 0.698789, my_a = 25.200000, my_b= 25.300000
-Integral: 1 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 35.200000, my_b= 35.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1124.748191
-Process 53 contributed MY_TOTAL = 1.360361, my_a = 35.200000, my_b= 35.300000
-Integral: 2 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 45.200000, my_b= 45.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1111.875536
-Process 53 contributed MY_TOTAL = 2.240274, my_a = 45.200000, my_b= 45.300000
-Integral: 3 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 55.200000, my_b= 55.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1103.351789
-Process 53 contributed MY_TOTAL = 3.338528, my_a = 55.200000, my_b= 55.300000
-Integral: 4 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 65.200000, my_b= 65.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1096.966831
-Process 53 contributed MY_TOTAL = 4.655122, my_a = 65.200000, my_b= 65.300000
-Integral: 5 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 75.200000, my_b= 75.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1093.768999
-Process 53 contributed MY_TOTAL = 6.190057, my_a = 75.200000, my_b= 75.300000
-Integral: 6 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 85.200000, my_b= 85.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1090.234613
-Process 53 contributed MY_TOTAL = 7.943333, my_a = 85.200000, my_b= 85.300000
-Integral: 7 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 95.200000, my_b= 95.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 1087.501399
-Process 53 contributed MY_TOTAL = 9.914949, my_a = 95.200000, my_b= 95.300000
-Integral: 8 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 53 computing itegral over my_a = 105.200000, my_b= 105.300000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Process 53 computing itegral over z = [25.200000, 25.300000], y = [20.000000, 30.000000], x = [20.000000, 30.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 Exp finishing. Stopping stack thread with id: 6!
 
 ------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------

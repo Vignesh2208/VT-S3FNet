@@ -42,17 +42,17 @@ Tracer registration for EXP_CS complete. TimelineID = 16, Return = 16
 Tracer Adding to SQ. Tracer ID = 16
 Parsing any provided lookahead information ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
-File size: 176
-mapped memblock size: 176
-Finish offset: 18, Number of values: 18
+File size: 208
+mapped memblock size: 208
+Finish offset: 22, Number of values: 22
 Returning success !
-Loaded BBL lookaheads for 18 basic blocks ...
+Loaded BBL lookaheads for 22 basic blocks ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
-File size: 40
-mapped memblock size: 40
-Finish offset: 1, Number of values: 1
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
 Returning success !
-Loaded Loop lookaheads for 1 loops ...
+Loaded Loop lookaheads for 3 loops ...
 Parsing any data cache params ...
 Flushed Data Cache !
 
@@ -123,10 +123,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.0.138:10000 to send OK message
 Connecting .. Socket: 4100, src-port: 40003
-Transmitting fin packet 
-Entering time-wait from FIN_WAIT_2
-Clearing all tcp timers !
-Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4100
 Connecting through vt-tcp success !
@@ -135,11 +131,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.0.130:10000 to send OK message
 Connecting .. Socket: 4101, src-port: 40004
-Received ack in time_wait !
-Clearing all tcp timers !
-TCP-done for socket: 4099, err: 0
-Socket: 4099 garbage collection
-Freeing socket: 4099
 Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4101
@@ -149,6 +140,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.0.182:10000 to send OK message
 Connecting .. Socket: 4102, src-port: 40005
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4102
 Connecting through vt-tcp success !
@@ -175,6 +167,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.0.194:10000 to send OK message
 Connecting .. Socket: 4105, src-port: 40008
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4105
 Connecting through vt-tcp success !
@@ -401,89 +394,35 @@ Flushed Data Cache !
 Resuming new Thread with Burst of length: 5400
 Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
 Flushed Data Cache !
-Process 15 computing itegral over my_a = 19.333333, my_b= 20.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Process 15 computing itegral over z = [19.333333, 20.000000], y = [10.000000, 20.000000], x = [10.000000, 20.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 tcp-linger 
 Clearing all tcp timers !
 TCP-done for socket: 4109, err: -110
 Socket: 4109 garbage collection
 Freeing socket: 4109
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4114
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4118
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4116
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4120
 tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4123
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4124
-Avg-Compute-Communication-Ratio = 3323.814102
-Process 15 contributed MY_TOTAL = 2025359.728602, my_a = 19.333333, my_b= 20.000000
+Avg-Compute-Communication-Ratio = 23864.831683
+Process 15 contributed MY_TOTAL = 7.669166, my_a = 19.333333, my_b= 20.000000
 Integral: 0 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 29.333333, my_b= 30.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3638.701754
-Process 15 contributed MY_TOTAL = 4608447.021553, my_a = 29.333333, my_b= 30.000000
+Process 15 computing itegral over z = [29.333333, 30.000000], y = [20.000000, 30.000000], x = [20.000000, 30.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
+Avg-Compute-Communication-Ratio = 25506.333333
+Process 15 contributed MY_TOTAL = 4.648920, my_a = 29.333333, my_b= 30.000000
 Integral: 1 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 39.333333, my_b= 40.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3775.597087
-Process 15 contributed MY_TOTAL = 8238731.865701, my_a = 39.333333, my_b= 40.000000
-Integral: 2 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 49.333333, my_b= 50.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3826.680812
-Process 15 contributed MY_TOTAL = 12916214.261048, my_a = 49.333333, my_b= 50.000000
-Integral: 3 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 59.333333, my_b= 60.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3863.749628
-Process 15 contributed MY_TOTAL = 18640894.207587, my_a = 59.333333, my_b= 60.000000
-Integral: 4 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 69.333333, my_b= 70.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3908.405779
-Process 15 contributed MY_TOTAL = 25412771.705325, my_a = 69.333333, my_b= 70.000000
-Integral: 5 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 79.333333, my_b= 80.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3932.400867
-Process 15 contributed MY_TOTAL = 33231846.754261, my_a = 79.333333, my_b= 80.000000
-Integral: 6 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 89.333333, my_b= 90.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3950.592381
-Process 15 contributed MY_TOTAL = 42098119.354392, my_a = 89.333333, my_b= 90.000000
-Integral: 7 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 99.333333, my_b= 100.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 3948.085449
-Process 15 contributed MY_TOTAL = 52011589.505720, my_a = 99.333333, my_b= 100.000000
-Integral: 8 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 15 computing itegral over my_a = 109.333333, my_b= 110.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Process 15 computing itegral over z = [39.333333, 40.000000], y = [30.000000, 40.000000], x = [30.000000, 40.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 Exp finishing. Stopping stack thread with id: 6!
 
 ------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------
@@ -499,11 +438,11 @@ Num sets                    :       512
 Offset start                :       0
 Set start                   :       6
 Tag start                   :       15
-Num hits                    :       158
-Num misses                  :       6
-Num accesses                :       164
-Miss rate                   :       0.036585
-Hit rate                    :       0.963415
+Num hits                    :       48
+Num misses                  :       7
+Num accesses                :       55
+Miss rate                   :       0.127273
+Hit rate                    :       0.872727
 Timing Model                :       EMPIRICAL
 Process: 6 exiting VT experiment !
 Main thread exiting. PID = 6

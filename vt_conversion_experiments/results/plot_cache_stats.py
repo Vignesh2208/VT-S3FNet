@@ -69,7 +69,7 @@ data.append(
 
 
 data.append(
-    go.Bar(name=f"Titan: 32KB-2way", x=x, y=[
+    go.Bar(name=f"Compiler-Assisted: 32KB-2way", x=x, y=[
         titan_cache_stats['sysbench'][0],
         titan_cache_stats['matrix_multiply'][0],
         titan_cache_stats['bzip2'][0],
@@ -90,7 +90,7 @@ data.append(
 
 
 data.append(
-    go.Bar(name=f"Titan: 32KB-8way", x=x, y=[
+    go.Bar(name=f"Compiler-Assisted: 32KB-8way", x=x, y=[
         titan_cache_stats['sysbench'][1],
         titan_cache_stats['matrix_multiply'][1],
         titan_cache_stats['bzip2'][1],
@@ -105,7 +105,7 @@ fig = go.Figure(data=data)
 fig.update_layout(barmode='group')
 fig.update_layout(
     title=go.layout.Title(
-        text="Cache hit rate comparison (Gem5 vs Titan)",
+        text="Cache hit rate prediction accuracy",
         font=dict(
                     family="Courier",
                     size=30

@@ -42,17 +42,17 @@ Tracer registration for EXP_CS complete. TimelineID = 81, Return = 81
 Tracer Adding to SQ. Tracer ID = 81
 Parsing any provided lookahead information ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/bbl_lookahead.info
-File size: 176
-mapped memblock size: 176
-Finish offset: 18, Number of values: 18
+File size: 208
+mapped memblock size: 208
+Finish offset: 22, Number of values: 22
 Returning success !
-Loaded BBL lookaheads for 18 basic blocks ...
+Loaded BBL lookaheads for 22 basic blocks ...
 Opening file: /home/vignesh/VT-S3FNet/csudp/mpi_integral/.ttn/lookahead/loop_lookahead.info
-File size: 40
-mapped memblock size: 40
-Finish offset: 1, Number of values: 1
+File size: 56
+mapped memblock size: 56
+Finish offset: 3, Number of values: 3
 Returning success !
-Loaded Loop lookaheads for 1 loops ...
+Loaded Loop lookaheads for 3 loops ...
 VT initialization successfull !
 Finished Initializing VT-Management 
 Initializing TCP-stack ...
@@ -81,7 +81,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.10:10000 to send OK message
 Connecting .. Socket: 4099, src-port: 40002
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4099
 Connecting through vt-tcp success !
@@ -90,7 +89,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.6:10000 to send OK message
 Connecting .. Socket: 4100, src-port: 40003
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4100
 Connecting through vt-tcp success !
@@ -135,7 +133,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.174:10000 to send OK message
 Connecting .. Socket: 4105, src-port: 40008
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4105
 Connecting through vt-tcp success !
@@ -144,6 +141,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.174:10000 to send OK message
 Connecting .. Socket: 4106, src-port: 40009
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4106
 Connecting through vt-tcp success !
@@ -160,7 +158,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.166:10000 to send OK message
 Connecting .. Socket: 4108, src-port: 40011
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4108
 Connecting through vt-tcp success !
@@ -231,6 +228,9 @@ Creating vt-tcp socket !
 Connecting to : 10.1.38.134:10000 to send OK message
 Connecting .. Socket: 4116, src-port: 40019
 Transmitting fin packet 
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4116
 Connecting through vt-tcp success !
@@ -239,7 +239,11 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.130:10000 to send OK message
 Connecting .. Socket: 4117, src-port: 40020
-Transmitting fin packet 
+Received ack in time_wait !
+Clearing all tcp timers !
+TCP-done for socket: 4115, err: 0
+Socket: 4115 garbage collection
+Freeing socket: 4115
 Waking up connected socket !
 Socket connect success. socket = 4117
 Connecting through vt-tcp success !
@@ -274,7 +278,6 @@ Clearing all tcp timers !
 TCP-done for socket: 4118, err: 0
 Socket: 4118 garbage collection
 Freeing socket: 4118
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4120
 Connecting through vt-tcp success !
@@ -283,6 +286,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.114:10000 to send OK message
 Connecting .. Socket: 4121, src-port: 40024
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4121
 Connecting through vt-tcp success !
@@ -291,6 +295,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.110:10000 to send OK message
 Connecting .. Socket: 4122, src-port: 40025
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4122
 Connecting through vt-tcp success !
@@ -299,10 +304,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.106:10000 to send OK message
 Connecting .. Socket: 4123, src-port: 40026
-Transmitting fin packet 
-Entering time-wait from FIN_WAIT_2
-Clearing all tcp timers !
-Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4123
 Connecting through vt-tcp success !
@@ -311,12 +312,10 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.142:10000 to send OK message
 Connecting .. Socket: 4124, src-port: 40027
-Received ack in time_wait !
-Clearing all tcp timers !
-TCP-done for socket: 4122, err: 0
-Socket: 4122 garbage collection
-Freeing socket: 4122
 Transmitting fin packet 
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4124
 Connecting through vt-tcp success !
@@ -325,7 +324,11 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.246:10000 to send OK message
 Connecting .. Socket: 4125, src-port: 40028
-Transmitting fin packet 
+Received ack in time_wait !
+Clearing all tcp timers !
+TCP-done for socket: 4123, err: 0
+Socket: 4123 garbage collection
+Freeing socket: 4123
 Waking up connected socket !
 Socket connect success. socket = 4125
 Connecting through vt-tcp success !
@@ -334,7 +337,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.242:10000 to send OK message
 Connecting .. Socket: 4126, src-port: 40029
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4126
 Connecting through vt-tcp success !
@@ -351,7 +353,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.234:10000 to send OK message
 Connecting .. Socket: 4128, src-port: 40031
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4128
 Connecting through vt-tcp success !
@@ -377,7 +378,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.222:10000 to send OK message
 Connecting .. Socket: 4131, src-port: 40034
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4131
 Connecting through vt-tcp success !
@@ -386,7 +386,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.218:10000 to send OK message
 Connecting .. Socket: 4132, src-port: 40035
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4132
 Connecting through vt-tcp success !
@@ -421,15 +420,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.202:10000 to send OK message
 Connecting .. Socket: 4136, src-port: 40039
-Entering time-wait from FIN_WAIT_2
-Clearing all tcp timers !
-Adding TcpLinger !
-Received ack in time_wait !
-Clearing all tcp timers !
-TCP-done for socket: 4134, err: 0
-Socket: 4134 garbage collection
-Freeing socket: 4134
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4136
 Connecting through vt-tcp success !
@@ -446,7 +436,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.194:10000 to send OK message
 Connecting .. Socket: 4138, src-port: 40041
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4138
 Connecting through vt-tcp success !
@@ -456,9 +445,6 @@ Creating vt-tcp socket !
 Connecting to : 10.1.38.190:10000 to send OK message
 Connecting .. Socket: 4139, src-port: 40042
 Transmitting fin packet 
-Entering time-wait from FIN_WAIT_2
-Clearing all tcp timers !
-Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4139
 Connecting through vt-tcp success !
@@ -467,11 +453,15 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.186:10000 to send OK message
 Connecting .. Socket: 4140, src-port: 40043
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
 Received ack in time_wait !
 Clearing all tcp timers !
 TCP-done for socket: 4138, err: 0
 Socket: 4138 garbage collection
 Freeing socket: 4138
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4140
 Connecting through vt-tcp success !
@@ -480,6 +470,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.182:10000 to send OK message
 Connecting .. Socket: 4141, src-port: 40044
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4141
 Connecting through vt-tcp success !
@@ -497,6 +488,9 @@ Creating vt-tcp socket !
 Connecting to : 10.1.38.26:10000 to send OK message
 Connecting .. Socket: 4143, src-port: 40046
 Transmitting fin packet 
+Entering time-wait from FIN_WAIT_2
+Clearing all tcp timers !
+Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4143
 Connecting through vt-tcp success !
@@ -505,6 +499,11 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.22:10000 to send OK message
 Connecting .. Socket: 4144, src-port: 40047
+Received ack in time_wait !
+Clearing all tcp timers !
+TCP-done for socket: 4142, err: 0
+Socket: 4142 garbage collection
+Freeing socket: 4142
 Waking up connected socket !
 Socket connect success. socket = 4144
 Connecting through vt-tcp success !
@@ -513,7 +512,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.18:10000 to send OK message
 Connecting .. Socket: 4145, src-port: 40048
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4145
 Connecting through vt-tcp success !
@@ -539,6 +537,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.6:10000 to send OK message
 Connecting .. Socket: 4148, src-port: 40051
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4148
 Connecting through vt-tcp success !
@@ -555,7 +554,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.254:10000 to send OK message
 Connecting .. Socket: 4150, src-port: 40053
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4150
 Connecting through vt-tcp success !
@@ -564,6 +562,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.210:10000 to send OK message
 Connecting .. Socket: 4151, src-port: 40054
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4151
 Connecting through vt-tcp success !
@@ -572,6 +571,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.246:10000 to send OK message
 Connecting .. Socket: 4152, src-port: 40055
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4152
 Connecting through vt-tcp success !
@@ -589,7 +589,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.238:10000 to send OK message
 Connecting .. Socket: 4154, src-port: 40057
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4154
 Connecting through vt-tcp success !
@@ -598,6 +597,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.234:10000 to send OK message
 Connecting .. Socket: 4155, src-port: 40058
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4155
 Connecting through vt-tcp success !
@@ -623,7 +623,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.222:10000 to send OK message
 Connecting .. Socket: 4158, src-port: 40061
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4158
 Connecting through vt-tcp success !
@@ -640,7 +639,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.214:10000 to send OK message
 Connecting .. Socket: 4160, src-port: 40063
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4160
 Connecting through vt-tcp success !
@@ -649,7 +647,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.37.250:10000 to send OK message
 Connecting .. Socket: 4161, src-port: 40064
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4161
 Connecting through vt-tcp success !
@@ -658,7 +655,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.98:10000 to send OK message
 Connecting .. Socket: 4162, src-port: 40065
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4162
 Connecting through vt-tcp success !
@@ -668,9 +664,6 @@ Creating vt-tcp socket !
 Connecting to : 10.1.38.94:10000 to send OK message
 Connecting .. Socket: 4163, src-port: 40066
 Transmitting fin packet 
-Entering time-wait from FIN_WAIT_2
-Clearing all tcp timers !
-Adding TcpLinger !
 Waking up connected socket !
 Socket connect success. socket = 4163
 Connecting through vt-tcp success !
@@ -679,11 +672,6 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.90:10000 to send OK message
 Connecting .. Socket: 4164, src-port: 40067
-Received ack in time_wait !
-Clearing all tcp timers !
-TCP-done for socket: 4162, err: 0
-Socket: 4162 garbage collection
-Freeing socket: 4162
 Waking up connected socket !
 Socket connect success. socket = 4164
 Connecting through vt-tcp success !
@@ -701,6 +689,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.82:10000 to send OK message
 Connecting .. Socket: 4166, src-port: 40069
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4166
 Connecting through vt-tcp success !
@@ -738,7 +727,6 @@ Transmitting fin packet
 Entering time-wait from FIN_WAIT_2
 Clearing all tcp timers !
 Adding TcpLinger !
-Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4170
 Connecting through vt-tcp success !
@@ -812,6 +800,7 @@ Adding new vt-tcp-socket !
 Creating vt-tcp socket !
 Connecting to : 10.1.38.38:10000 to send OK message
 Connecting .. Socket: 4177, src-port: 40080
+Transmitting fin packet 
 Waking up connected socket !
 Socket connect success. socket = 4177
 Connecting through vt-tcp success !
@@ -1484,101 +1473,31 @@ Adding new Thread: 8
 Signal Burst Completion: Flushing Data Cache !
 Resuming new Thread with Burst of length: 5400
 Trigger syscall finish: 6, currActiveThreadID = 8, myThreadID = 6. Flushing Data Cache !
-Process 80 computing itegral over my_a = 19.875000, my_b= 20.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4179
+Process 80 computing itegral over z = [19.875000, 20.000000], y = [10.000000, 20.000000], x = [10.000000, 20.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4180
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4192
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4194
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4185
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4197
 tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4200
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4205
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4214
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4222
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4201
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4202
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4206
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4216
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4220
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4224
 tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4226
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4234
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4235
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4238
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4239
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4240
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4241
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4243
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4244
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4250
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4253
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4254
-tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4255
-Avg-Compute-Communication-Ratio = 71.006441
-Process 80 contributed MY_TOTAL = 0.545852, my_a = 19.875000, my_b= 20.000000
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4232
+tcp-rto: snd_una: 1, rto: 400, backoff: 1, sock-fd = 4248
+Avg-Compute-Communication-Ratio = 639.960638
+Process 80 contributed MY_TOTAL = 10.688680, my_a = 19.875000, my_b= 20.000000
 Integral: 0 computed
 
 ------------------------------------------------------------------------------
 Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 29.875000, my_b= 30.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 134.772792
-Process 80 contributed MY_TOTAL = 1.228167, my_a = 29.875000, my_b= 30.000000
-Integral: 1 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 39.875000, my_b= 40.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 191.925176
-Process 80 contributed MY_TOTAL = 2.183407, my_a = 39.875000, my_b= 40.000000
-Integral: 2 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 49.875000, my_b= 50.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 244.028730
-Process 80 contributed MY_TOTAL = 3.411574, my_a = 49.875000, my_b= 50.000000
-Integral: 3 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 59.875000, my_b= 60.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 290.923077
-Process 80 contributed MY_TOTAL = 4.912666, my_a = 59.875000, my_b= 60.000000
-Integral: 4 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 69.875000, my_b= 70.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 334.100376
-Process 80 contributed MY_TOTAL = 6.686684, my_a = 69.875000, my_b= 70.000000
-Integral: 5 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 79.875000, my_b= 80.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 373.641496
-Process 80 contributed MY_TOTAL = 8.733628, my_a = 79.875000, my_b= 80.000000
-Integral: 6 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 89.875000, my_b= 90.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 409.308976
-Process 80 contributed MY_TOTAL = 11.053498, my_a = 89.875000, my_b= 90.000000
-Integral: 7 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 99.875000, my_b= 100.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
-Avg-Compute-Communication-Ratio = 443.988003
-Process 80 contributed MY_TOTAL = 13.646294, my_a = 99.875000, my_b= 100.000000
-Integral: 8 computed
-
-------------------------------------------------------------------------------
-Waiting to receive partition information from master !
-Process 80 computing itegral over my_a = 109.875000, my_b= 110.000000
-Called SetLoopLookahead: init: 0, final: 100000000, step: 1, loopDepth: 0, cumulative-num-iterations: 100000000, look-ahead-ns: 518518496
+Process 80 computing itegral over z = [29.875000, 30.000000], y = [20.000000, 30.000000], x = [20.000000, 30.000000]
+Called SetLoopLookahead: init: 1, final: 1001, step: 1, loopDepth: 1, cumulative-num-iterations: 1000000, look-ahead-ns: 10740741
+Called SetLoopLookahead: init: 0, final: 1000, step: 1, loopDepth: 2, cumulative-num-iterations: 1000000000, look-ahead-ns: 4814814720
 Exp finishing. Stopping stack thread with id: 6!
 
 ------------------------- ACTUAL STDOUT FROM EXECUTABLE ENDED -----------------------------

@@ -4,7 +4,9 @@
 # include <stdlib.h>
 # include <time.h>
 
-double f (double x);
+// 3-D integration
+
+double f (double x, double y, double z);
 void timestamp ();
 
 /******************************************************************************/
@@ -14,7 +16,7 @@ int main ( int argc, char *argv[] ) {
   double b;
   double error;
   double exact;
-  int i;
+  int i, j, k;
   int master = 0;
   double my_a;
   double my_b;
@@ -30,7 +32,7 @@ int main ( int argc, char *argv[] ) {
   int target;
   double total;
   double wtime;
-  double x;
+  double x, y, z;
   int integ_no = 0;
 
   a =  0.0;
@@ -55,7 +57,7 @@ int main ( int argc, char *argv[] ) {
   */
   my_n = n / ( p_num - 1 );
   n = ( p_num - 1 ) * my_n;
-  my_n = 100000000;
+  my_n = 1000;
 
   if ( my_id == master ) {
     wtime = MPI_Wtime ( );
@@ -107,6 +109,14 @@ int main ( int argc, char *argv[] ) {
             target = p;
             tag = 2;
             MPI_Send ( &my_b, 1, MPI_DOUBLE, target, tag, MPI_COMM_WORLD );
+
+            target = p;
+            tag = 3;
+            MPI_Send ( &a, 1, MPI_DOUBLE, target, tag, MPI_COMM_WORLD );
+
+            target = p;
+            tag = 4;
+            MPI_Send ( &b, 1, MPI_DOUBLE, target, tag, MPI_COMM_WORLD );
         }
 
         printf ("Waiting to receive integral partitions from workers !\n");
@@ -150,7 +160,16 @@ int main ( int argc, char *argv[] ) {
         tag = 2;
         MPI_Recv ( &my_b, 1, MPI_DOUBLE, source, tag, MPI_COMM_WORLD, &status );
 
-        printf ("Process %d computing itegral over my_a = %f, my_b= %f\n", my_id, my_a, my_b);
+
+        source = master;
+        tag = 3;
+        MPI_Recv ( &a, 1, MPI_DOUBLE, source, tag, MPI_COMM_WORLD, &status );
+
+        source = master;
+        tag = 4;
+        MPI_Recv ( &b, 1, MPI_DOUBLE, source, tag, MPI_COMM_WORLD, &status );
+
+        printf ("Process %d computing itegral over z = [%f, %f], y = [%f, %f], x = [%f, %f]\n", my_id, my_a, my_b, a, b, a, b);
         fflush(stdout);
 
         elapsedTime = MPI_Wtime() - startTime;
@@ -158,12 +177,18 @@ int main ( int argc, char *argv[] ) {
 
         startTime = MPI_Wtime();
         my_total = 0.0;
-        for ( i = 1; i <= my_n; i++ ) {
-            x = ((double)(my_n - i) * my_a  + (double ) (i - 1) * my_b ) / (double) (my_n - 1);
-            my_total = my_total + f(x);
+        for (k = 1; k <= my_n; k++) {
+          z = ((double)(my_n - k) * my_a  + (double ) (k - 1) * my_b ) / (double) (my_n - 1);
+          for (j = 1; j <= my_n; j++) {
+            y = ((double)(my_n - j) * a  + (double ) (j - 1) * b ) / (double) (my_n - 1);
+            for ( i = 1; i <= my_n; i++ ) {
+                x = ((double)(my_n - i) * a  + (double ) (i - 1) * b ) / (double) (my_n - 1);
+                my_total = my_total + f(x, y, z);
+            }
+          }
         }
 
-        my_total = (my_b - my_a) * my_total / ( double ) (my_n);
+        my_total = my_total / ( double ) (my_n * my_n * my_n);
 
         elapsedTime = MPI_Wtime() - startTime;
         avgJobComputationTime += elapsedTime;
@@ -201,14 +226,13 @@ int main ( int argc, char *argv[] ) {
   Purpose:
     F evaluates the function.
 */
-double f ( double x ) {
+double f ( double x, double y, double z ) {
   double pi;
   double value;
 
   pi = 3.141592653589793;
-  //value = 50.0 / ( pi * ( 2500.0 * x * x + 1.0 ) );
-  value = (pi * ( 2500.0 * x * x + 1.0 ) );
-  
+  value = (pi * ( 2500.0 * x * y * z + 1.0 ) );
+
 
   return value;
 }

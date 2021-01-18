@@ -33,6 +33,12 @@ tgen:
 	sudo setcap cap_net_admin,cap_net_raw=eip /usr/bin/tgen
 	sudo setcap cap_net_admin,cap_net_raw=eip tcp_tgen/tgen
 
+tgen_incast:
+	clang -O1 -g tcp_incast_tgen/incast_tgen.c -lvtllogic -lm -lpthread -o tcp_incast_tgen/incast_tgen
+	cp tcp_incast_tgen/incast_tgen /usr/bin/incast_tgen
+	sudo setcap cap_net_admin,cap_net_raw=eip /usr/bin/incast_tgen
+	sudo setcap cap_net_admin,cap_net_raw=eip tcp_incast_tgen/incast_tgen
+
 
 udp_test:
 	clang -O1 -g udp/udp_test.c -lvtllogic -o udp/udp_test
@@ -76,3 +82,5 @@ clean:
 	rm -f mpi_integral/mpi_int > /dev/null
 	rm -f mpi_norm/mpi_norm > /dev/null
 	rm -f mpi_sat/mpi_csat > /dev/null
+	rm -f tcp_incast_tgen/incast_tgen > /dev/null
+	r -f /usr/bin/incast_tgen > /dev/null

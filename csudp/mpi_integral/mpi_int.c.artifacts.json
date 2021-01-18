@@ -1,134 +1,201 @@
 {
   "f": {
     "bbls": {
-      "17": {
+      "21": {
         "called_fns": [],
         "in_edges": [],
         "out_edges": [],
-        "weight": 5
+        "weight": 9
       }
     },
-    "entry_block": 17,
+    "entry_block": 21,
     "loops": {},
     "returning_blocks": [
-      17
+      21
     ]
   },
   "main": {
     "bbls": {
       "1": {
         "called_fns": [
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
+          "dataWriteCacheCallback",
           "MPI_Init",
           "MPI_Comm_rank",
-          "MPI_Comm_size"
+          "MPI_Comm_size",
+          "dataReadCacheCallback"
         ],
         "in_edges": [],
         "out_edges": [
           2,
           3
         ],
-        "weight": 6
+        "weight": 8
       },
       "10": {
-        "called_fns": [
-          "printf",
-          "MPI_Wtime",
-          "printf",
-          "fflush",
-          "puts",
-          "fflush"
-        ],
+        "called_fns": [],
         "in_edges": [
-          14,
-          16
+          9
         ],
         "out_edges": [
-          11
+          11,
+          6
         ],
-        "weight": 9
+        "weight": 3
       },
       "11": {
         "called_fns": [
+          "dataWriteCacheCallback",
           "MPI_Wtime",
-          "puts",
-          "fflush"
+          "MPI_Wtime",
+          "MPI_Send",
+          "MPI_Wtime"
         ],
         "in_edges": [
-          9,
           10
         ],
         "out_edges": [
           12,
+          4
+        ],
+        "weight": 12
+      },
+      "12": {
+        "called_fns": [
+          "printf",
+          "dataReadCacheCallback",
+          "fflush"
+        ],
+        "in_edges": [
+          11
+        ],
+        "out_edges": [
+          4
+        ],
+        "weight": 7
+      },
+      "13": {
+        "called_fns": [],
+        "in_edges": [
+          2
+        ],
+        "out_edges": [
+          15
+        ],
+        "weight": 4
+      },
+      "14": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "printf",
+          "MPI_Wtime",
+          "printf",
+          "dataReadCacheCallback",
+          "fflush",
+          "puts",
+          "dataReadCacheCallback",
+          "fflush"
+        ],
+        "in_edges": [
+          18,
+          20
+        ],
+        "out_edges": [
+          15
+        ],
+        "weight": 11
+      },
+      "15": {
+        "called_fns": [
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "MPI_Wtime",
+          "puts",
+          "dataReadCacheCallback",
+          "fflush",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          13,
+          14
+        ],
+        "out_edges": [
+          16,
+          18
+        ],
+        "weight": 8
+      },
+      "16": {
+        "called_fns": [],
+        "in_edges": [
+          15
+        ],
+        "out_edges": [
+          17
+        ],
+        "weight": 2
+      },
+      "17": {
+        "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "MPI_Send",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataWriteCacheCallback",
+          "MPI_Send",
+          "MPI_Send",
+          "MPI_Send",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          16,
+          17
+        ],
+        "out_edges": [
+          17,
+          18
+        ],
+        "weight": 19
+      },
+      "18": {
+        "called_fns": [
+          "puts",
+          "dataReadCacheCallback",
+          "fflush",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          15,
+          17
+        ],
+        "out_edges": [
+          19,
           14
         ],
         "weight": 5
       },
-      "12": {
+      "19": {
         "called_fns": [],
         "in_edges": [
-          11
+          18
         ],
         "out_edges": [
-          13
+          20
         ],
-        "weight": 1
-      },
-      "13": {
-        "called_fns": [
-          "MPI_Send",
-          "MPI_Send"
-        ],
-        "in_edges": [
-          12,
-          13
-        ],
-        "out_edges": [
-          13,
-          14
-        ],
-        "weight": 14
-      },
-      "14": {
-        "called_fns": [
-          "puts",
-          "fflush"
-        ],
-        "in_edges": [
-          11,
-          13
-        ],
-        "out_edges": [
-          15,
-          10
-        ],
-        "weight": 3
-      },
-      "15": {
-        "called_fns": [],
-        "in_edges": [
-          14
-        ],
-        "out_edges": [
-          16
-        ],
-        "weight": 1
-      },
-      "16": {
-        "called_fns": [
-          "MPI_Recv"
-        ],
-        "in_edges": [
-          15,
-          16
-        ],
-        "out_edges": [
-          16,
-          10
-        ],
-        "weight": 4
+        "weight": 2
       },
       "2": {
         "called_fns": [
+          "dataReadCacheCallback",
           "MPI_Wtime",
           "timestamp",
           "putchar",
@@ -137,22 +204,41 @@
           "puts",
           "puts",
           "putchar",
+          "dataReadCacheCallback",
           "printf",
+          "dataReadCacheCallback",
           "printf",
           "printf",
           "printf",
           "putchar",
           "puts",
-          "puts"
+          "puts",
+          "dataReadCacheCallback"
         ],
         "in_edges": [
           1
         ],
         "out_edges": [
-          9,
+          13,
           3
         ],
-        "weight": 13
+        "weight": 14
+      },
+      "20": {
+        "called_fns": [
+          "MPI_Recv",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
+        ],
+        "in_edges": [
+          19,
+          20
+        ],
+        "out_edges": [
+          20,
+          14
+        ],
+        "weight": 6
       },
       "3": {
         "called_fns": [],
@@ -163,35 +249,54 @@
         "out_edges": [
           5
         ],
-        "weight": 4
+        "weight": 5
       },
       "4": {
         "called_fns": [
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
           "printf",
           "printf",
           "puts",
+          "dataReadCacheCallback",
           "fflush"
         ],
         "in_edges": [
-          7,
-          8
+          11,
+          12
         ],
         "out_edges": [
           5
         ],
-        "weight": 5
+        "weight": 7
       },
       "5": {
         "called_fns": [
           "MPI_Wtime",
           "puts",
+          "dataReadCacheCallback",
           "fflush",
           "MPI_Recv",
           "MPI_Recv",
+          "MPI_Recv",
+          "MPI_Recv",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
           "printf",
+          "dataReadCacheCallback",
           "fflush",
           "MPI_Wtime",
-          "MPI_Wtime"
+          "MPI_Wtime",
+          "dataWriteCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback",
+          "dataReadCacheCallback"
         ],
         "in_edges": [
           3,
@@ -200,60 +305,54 @@
         "out_edges": [
           6
         ],
-        "weight": 8
+        "weight": 13
       },
       "6": {
+        "called_fns": [],
+        "in_edges": [
+          5,
+          10
+        ],
+        "out_edges": [
+          7
+        ],
+        "weight": 12
+      },
+      "7": {
+        "called_fns": [],
+        "in_edges": [
+          6,
+          9
+        ],
+        "out_edges": [
+          8
+        ],
+        "weight": 13
+      },
+      "8": {
         "called_fns": [
           "f"
         ],
         "in_edges": [
-          5,
-          6
-        ],
-        "out_edges": [
           7,
-          6
-        ],
-        "weight": 9
-      },
-      "7": {
-        "called_fns": [
-          "MPI_Wtime",
-          "MPI_Wtime",
-          "MPI_Send",
-          "MPI_Wtime"
-        ],
-        "in_edges": [
-          6
+          8
         ],
         "out_edges": [
-          8,
-          4
+          9,
+          8
         ],
-        "weight": 10
-      },
-      "8": {
-        "called_fns": [
-          "printf",
-          "fflush"
-        ],
-        "in_edges": [
-          7
-        ],
-        "out_edges": [
-          4
-        ],
-        "weight": 8
+        "weight": 13
       },
       "9": {
         "called_fns": [],
         "in_edges": [
-          2
+          8
         ],
         "out_edges": [
-          11
+          10,
+          7
         ],
-        "weight": 4
+        "weight": 3
       }
     },
     "entry_block": 1,
@@ -266,7 +365,29 @@
           6
         ],
         "loop_latches": [
-          6
+          10
+        ]
+      },
+      "2": {
+        "loop_called_fns": [
+          "f"
+        ],
+        "loop_headers": [
+          7
+        ],
+        "loop_latches": [
+          9
+        ]
+      },
+      "3": {
+        "loop_called_fns": [
+          "f"
+        ],
+        "loop_headers": [
+          8
+        ],
+        "loop_latches": [
+          8
         ]
       }
     },
@@ -274,22 +395,23 @@
   },
   "timestamp": {
     "bbls": {
-      "18": {
+      "22": {
         "called_fns": [
           "time",
+          "dataWriteCacheCallback",
           "localtime",
           "strftime",
           "puts"
         ],
         "in_edges": [],
         "out_edges": [],
-        "weight": 4
+        "weight": 6
       }
     },
-    "entry_block": 18,
+    "entry_block": 22,
     "loops": {},
     "returning_blocks": [
-      18
+      22
     ]
   }
 }
