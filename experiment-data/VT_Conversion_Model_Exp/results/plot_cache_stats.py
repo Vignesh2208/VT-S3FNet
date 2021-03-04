@@ -87,7 +87,7 @@ x = ["sysbench", "bzip2", "sjeng", "h264ref"]
 
 data = []
 data.append(
-    go.Bar(name=f"Gem-5: 32KB-2way", x=x, y=[
+    go.Bar(name=f"gem5: 32KB-2way", x=x, y=[
         gem5_cache_stats['sysbench'][0],
         gem5_cache_stats['bzip2'][0],
         gem5_cache_stats['sjeng'][0],
@@ -108,7 +108,7 @@ data.append(
 )
 
 data.append(
-    go.Bar(name=f"Gem-5: 32KB-8way", x=x, y=[
+    go.Bar(name=f"gem5: 32KB-8way", x=x, y=[
         gem5_cache_stats['sysbench'][1],
         gem5_cache_stats['bzip2'][1],
         gem5_cache_stats['sjeng'][1],
@@ -162,7 +162,7 @@ fig.update_layout(
     ),
     legend=go.layout.Legend(
         x=legend_x,
-        y=legend_y,
+        y=legend_y + 0.1,
         font=dict(
             family="sans-serif",
             size=legend_font_size,
@@ -176,7 +176,7 @@ fig.update_layout(
 fig.update_layout(legend_orientation="h")
 fig.update_yaxes(tickfont=dict(family='Courier', size=ylabel_font_size))
 fig.update_xaxes(tickfont=dict(family='Courier', size=xlabel_font_size))
-fig.write_image(f"cache_hits_comparison.jpg", width=900, height=600)
+fig.write_image(f"cache_hits_comparison.jpg", width=900, height=500)
 
 x=['32 KB 2-way', '128 KB 2-way', '32 KB 8-way', '128 KB 8-way']
 

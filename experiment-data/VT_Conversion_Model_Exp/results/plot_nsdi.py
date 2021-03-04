@@ -180,8 +180,8 @@ for cmd in cmds:
 
 
 fig = go.Figure(data=[
-    go.Bar(name='Compiler assisted [Skylake]', x=cmd_labels, y=pmodel_skylake_pct, text=pmodel_skylake_pct,  textangle=-90, textfont=dict(family='Courier', size=20), marker_color='rgb(58, 78, 159)'),
-    go.Bar(name='Compiler assisted [Sandy bridge]', x=cmd_labels, y=pmodel_sb_pct, text=pmodel_sb_pct,  textangle=-90, textfont=dict(family='Courier', size=20), marker_color='indianred'),
+    go.Bar(name='Processor model [Skylake]', x=cmd_labels, y=pmodel_skylake_pct, text=pmodel_skylake_pct,  textangle=-90, textfont=dict(family='Courier', size=20), marker_color='rgb(58, 78, 159)'),
+    go.Bar(name='Processor model [Sandy bridge]', x=cmd_labels, y=pmodel_sb_pct, text=pmodel_sb_pct,  textangle=-90, textfont=dict(family='Courier', size=20), marker_color='indianred'),
     go.Bar(name='Plain ins-counting [Skylake]', x=cmd_labels, y=ins_counting_skylake_pct, text=ins_counting_skylake_pct,  textangle=-90, textfont=dict(family='Courier', size=20), marker_color='rgb(111, 64, 112)'),
     go.Bar(name='Plain ins-counting [Sandy bridge]', x=cmd_labels, y=ins_counting_sb_pct, text=ins_counting_sb_pct,  textangle=-90, textfont=dict(family='Courier', size=20), marker_color='lightsalmon'),
 ])
@@ -234,7 +234,7 @@ fig.update_layout(legend_orientation="h")
 fig.update_traces(texttemplate='%{text:.2s}%', textposition='inside')
 fig.update_yaxes(tickfont=dict(family='Courier', size=ylabel_font_size))
 fig.update_xaxes(tickfont=dict(family='Courier', size=xlabel_font_size))
-fig.write_image("vt_conversion_accuracy_pct.jpg", width=1000, height=600)
+fig.write_image("vt_conversion_accuracy_pct.jpg", width=1000, height=500)
 
 
 
@@ -345,7 +345,7 @@ for i in fig['layout']['annotations']:
 fig.update_layout(legend_orientation="h")
 fig.update_xaxes(title_font=dict(size=xlabel_font_size, family='Courier'), tickfont=dict(family='Courier', size=xlabel_font_size), type="log", dtick=1)
 fig.update_yaxes(title_font=dict(size=xlabel_font_size, family='Courier'), tickfont=dict(family='Courier', size=ylabel_font_size))
-fig.write_image("ins_count_overhead_comparison.png", width=900, height=600)
+fig.write_image("ins_count_overhead_comparison.png", width=900, height=550)
 
 
 

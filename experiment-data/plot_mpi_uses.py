@@ -42,9 +42,9 @@ for exp in EXP_TYPES:
 
 x = ARCHS
 fig = go.Figure(data=[
-    go.Bar(name='MPI Integration', x=x, y=timings['INT'], text=timings['INT'], textfont=dict(family='Courier', size=20)),
-    go.Bar(name='MPI Circuit SAT', x=x, y=timings['SAT'], text=timings['SAT'], textfont=dict(family='Courier', size=20)),
-    go.Bar(name='MPI Matrix Multiply', x=x, y=timings['MM'], text=timings['MM'], textfont=dict(family='Courier', size=20))
+    go.Bar(name='MPI Integration', x=x, y=timings['INT'], text=timings['INT'], textfont=dict(family='Courier', size=20), marker_color='rgb(58, 78, 159)'),
+    go.Bar(name='MPI Circuit SAT', x=x, y=timings['SAT'], text=timings['SAT'], textfont=dict(family='Courier', size=20), marker_color='rgb(111, 64, 112)'),
+    go.Bar(name='MPI Matrix Multiply', x=x, y=timings['MM'], text=timings['MM'], textfont=dict(family='Courier', size=20), marker_color='indianred')
 ])
 # Change the bar mode
 fig.update_layout(barmode='group')
@@ -78,7 +78,7 @@ fig.update_layout(
         )
     ),
     legend=go.layout.Legend(
-        x=0.02,
+        x=0.0,
         y=1.2,
         font=dict(
             family="sans-serif",
@@ -87,7 +87,7 @@ fig.update_layout(
         ),
     )
 )
-fig.update_traces(texttemplate='%{text:.2s}sec', textposition='inside')
+fig.update_traces(texttemplate='%{text:.2f}sec', textposition='outside')
 fig.update_layout(legend_orientation="h")
 fig.update_yaxes(tickfont=dict(family='Courier', size=25))
 fig.update_xaxes(tickfont=dict(family='Courier', size=25))
@@ -96,11 +96,14 @@ fig.write_image(f"{home}/VT-S3FNet/experiment-data/figs/mpi_arch_timings.jpg", w
 
 x = ["MPI Matrix Multiply", "MPI Circuit SAT", "MPI Integration"]
 data = []
+colors = ['rgb(58, 78, 159)', 'rgb(111, 64, 112)', 'indianred', 'lightsalmon']
+i = 0
 for size in CACHE_SIZES:
     for assoc in CACHE_ASSOCS:
         data.append(
-            go.Bar(name=f"CACHE: {size}-{assoc}way", x=x, y=cache_hits[f"{size}_{assoc}"], textfont=dict(family='Courier', size=20))
+            go.Bar(name=f"CACHE: {size}-{assoc}way", x=x, y=cache_hits[f"{size}_{assoc}"], textfont=dict(family='Courier', size=20), marker_color=colors[i])
         )
+        i += 1
 fig = go.Figure(data=data)
 # Change the bar mode
 fig.update_layout(barmode='group')
@@ -135,7 +138,7 @@ fig.update_layout(
         )
     ),
     legend=go.layout.Legend(
-        x=0.1,
+        x=0.0,
         y=1.3,
         font=dict(
             family="sans-serif",
