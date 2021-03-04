@@ -2,8 +2,6 @@
  * \file lxc_proxy.h
  *
  * \brief LXC Proxy
- *
- * authors : Vignesh Babu
  */
 
 #ifndef __TIMEKEEPER_LXCPROXY_H__

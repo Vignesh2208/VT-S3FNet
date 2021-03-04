@@ -430,25 +430,9 @@ def main():
         lookahead_status = "LA_Disabled"
 
     if total_num_timelines > 1:
-       
-        log_dir = f"MPI_{lookahead_status}_nemus_{total_num_timelines - 1}_mpi_{args.exp_type}"
-        if args.exp_type == 'mm':
-            mpiCmd = f"{home}/VT-S3FNet/csudp/mpi_matrix/mpi_mm"
-            ttnProject = 'mpi_mat'
-        elif args.exp_type == 'int':
-            mpiCmd = f"{home}/VT-S3FNet/csudp/mpi_integral/mpi_int"
-            ttnProject = 'mpi_int'
-        elif args.exp_type == 'sat':
-            mpiCmd = f"{home}/VT-S3FNet/csudp/mpi_sat/mpi_csat"
-            ttnProject = 'mpi_sat'
-        elif args.exp_type == 'norm':
-            mpiCmd = f"{home}/VT-S3FNet/csudp/mpi_norm/mpi_norm"
-            ttnProject = 'mpi_norm'
-        else:
-            mpiCmd = f"{home}/VT-S3FNet/csudp/tcp_incast_tgen/incast_tgen"
-            ttnProject = "incast_tgen"
-            log_dir = f"TCP_{lookahead_status}_incast_tgen_nemus_{total_num_timelines - 1}_txSize_{args.incast_bsize_kb}_mu_{args.incast_period_us}"
-
+        mpiCmd = f"{home}/VT-S3FNet/csudp/tcp_incast_tgen/incast_tgen"
+        ttnProject = "incast_tgen"
+        log_dir = f"TCP_{lookahead_status}_incast_tgen_nemus_{total_num_timelines - 1}_txSize_{args.incast_bsize_kb}_mu_{args.incast_period_us}"
     else:
         log_dir = "MPI_FullSim"
         mpiCmd = f"{home}/VT-S3FNet/csudp/mpi_mm/mpi_test"

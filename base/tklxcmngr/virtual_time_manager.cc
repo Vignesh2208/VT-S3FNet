@@ -1,4 +1,10 @@
 
+/**
+ * \file virtual_time_manager.cc
+ *
+ * \brief Virtual Time Manager Interface
+ */
+
 #include <s3f.h>
 #include "virtual_time_manager.h"
 

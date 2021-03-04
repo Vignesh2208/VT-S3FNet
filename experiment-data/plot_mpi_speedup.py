@@ -26,8 +26,8 @@ tick_font_size = 25
 legend_font_size = 25
 tickwidth = 5
 ticklength = 10
-colorbar_tickfont = 20
-colorbar_titlefont = 20
+colorbar_tickfont = 25
+colorbar_titlefont = 25
 marker_size=20
 
 def get_stats(log_dir):
@@ -152,15 +152,15 @@ def update_save_fig(fig, colorbar_title, plot_title, xlabel, ylabel, title_x,
             })
 
     fig.update_layout(
-        title=go.layout.Title(
-            text=plot_title,
-        font=dict(
-                    family="Courier",
-                    size=title_font_size
-                ),
-        xanchor = "auto",
-        yanchor = "middle",
-        x=title_x),
+        #title=go.layout.Title(
+        #    text=plot_title,
+        #font=dict(
+        #            family="Courier",
+        #            size=title_font_size
+        #        ),
+        #xanchor = "auto",
+        #yanchor = "middle",
+        #x=title_x),
         xaxis=go.layout.XAxis(
             title=go.layout.xaxis.Title(
                 text=xlabel,
@@ -241,9 +241,9 @@ update_save_fig(
     title_x=0.1,
     fname="mpi_nemus_speedup.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=1000,
+    height=600,
     enabled_border=False)
 
 fig = go.Figure()
@@ -266,9 +266,9 @@ update_save_fig(
     title_x=0.1,
     fname="mpi_compute_comm_ratio.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=900,
+    height=600,
     disable_color_axis=True,
     enabled_border=False,
     logy=True)

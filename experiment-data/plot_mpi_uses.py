@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 
 home = os.path.expanduser('~')
 EXP_TYPES = ['MM', 'SAT', 'INT']
-ARCHS = ['Skylake', 'Sandy_Bridge', 'Ivy_Bridge', 'Broadwell']
+ARCHS = ['Skylake', 'Sandy_Bridge', 'Broadwell']
 CACHE_SIZES = ['128kb', '256kb']
 CACHE_ASSOCS = [4, 8]
 
@@ -49,19 +49,19 @@ fig = go.Figure(data=[
 # Change the bar mode
 fig.update_layout(barmode='group')
 fig.update_layout(
-    title=go.layout.Title(
-        text="Job completion times across target architectures",
-        font=dict(
-                    family="Courier",
-                    size=30
-                ),
-        xanchor = "auto",
-        yanchor = "middle",
-        #x=0.25
-    ),
+    #title=go.layout.Title(
+    #    text="Job completion times across target architectures",
+    #    font=dict(
+    #                family="Courier",
+    #                size=30
+    #            ),
+    #    xanchor = "auto",
+    #    yanchor = "middle",
+    #    #x=0.25
+    #),
     xaxis=go.layout.XAxis(
         title=go.layout.xaxis.Title(
-            text="Target processor architecture",
+            text="Target processor micro-architecture",
             font=dict(
                 family="Courier",
                 size=25
@@ -79,10 +79,10 @@ fig.update_layout(
     ),
     legend=go.layout.Legend(
         x=0.02,
-        y=1.05,
+        y=1.2,
         font=dict(
             family="sans-serif",
-            size=20,
+            size=25,
             color="black"
         ),
     )
@@ -105,17 +105,17 @@ fig = go.Figure(data=data)
 # Change the bar mode
 fig.update_layout(barmode='group')
 fig.update_layout(
-    title=go.layout.Title(
-        text="Cache hit rate across jobs",
-        font=dict(
-                    family="Courier",
-                    size=30
-                ),
-        xanchor = "auto",
-        yanchor = "middle",
-        #x=0.25
-        y=0.95
-    ),
+    #title=go.layout.Title(
+    #    text="Cache hit rate across jobs",
+    #    font=dict(
+    #                family="Courier",
+    #                size=30
+    #            ),
+    #    xanchor = "auto",
+    #    yanchor = "middle",
+    #    #x=0.25
+    #    y=0.95
+    #),
     xaxis=go.layout.XAxis(
         title=go.layout.xaxis.Title(
             text="MPI Job Type",
@@ -136,10 +136,10 @@ fig.update_layout(
     ),
     legend=go.layout.Legend(
         x=0.1,
-        y=1.12,
+        y=1.3,
         font=dict(
             family="sans-serif",
-            size=20,
+            size=25,
             color="black"
         ),
     )

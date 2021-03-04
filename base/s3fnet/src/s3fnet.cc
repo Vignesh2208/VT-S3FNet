@@ -246,7 +246,7 @@ int main(int argc, char** argv)
       }
     }
   #else
-    vtManagerType = VirtualTimeManager::KRONOS;
+    vtManagerType = VirtualTimeManagerType::KRONOS;
   #endif
 
   if (vtManagerType == VirtualTimeManagerType::TITAN) {

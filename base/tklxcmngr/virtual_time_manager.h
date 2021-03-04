@@ -1,3 +1,9 @@
+/**
+ * \file virtual_time_manager.h
+ *
+ * \brief virtual Time Manager Interface
+ */
+
 #ifndef __VIRTUAL_TIME_MANAGER_H
 #define __VIRTUAL_TIME_MANAGER_H
 

@@ -1,14 +1,18 @@
 #!/bin/bash
 
+# Runs all Map-Reduce style jobs presented in the paper.
+# To run without lookahead: ./runMPIExperiments.sh 0
+# To run with lookahead: ./runMPIExperiments.sh 1
+
 ENABLE_LOOKAHEAD=$1
 S3FNET_DIR=$HOME/VT-S3FNet/base
 TEST_DIR=$S3FNET_DIR/s3fnet/test/lxc_tests/fat_tree
 TITAN_DIR=$HOME/Titan
 
 
-declare -a mpiType=("int")
-#declare -a NumEmuHosts=(21 41 61 81 101)
-declare -a NumEmuHosts=(21)
+declare -a mpiType=("int" "sat" "mm")
+declare -a NumEmuHosts=(21 41 61 81 101)
+
 
 cd $TITAN_DIR
 sudo make unload

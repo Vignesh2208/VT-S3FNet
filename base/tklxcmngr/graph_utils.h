@@ -1,5 +1,10 @@
-#ifndef __GRAPH_UTILS__
+/**
+ * \file graph_utils.h
+ *
+ * \brief Graph Utils
+ */
 
+#ifndef __GRAPH_UTILS__
 #define __GRAPH_UTILS__
 
 #include <iostream>
@@ -16,7 +21,7 @@ class Graph;
 
 // Data structure to store graph edges
 typedef struct EdgeStruct {
-	int endpoint_1, endpoint_2;
+    int endpoint_1, endpoint_2;
     int endpoint_1_timeline, endpoint_2_timeline;
     bool isEndpoint1Router, isEndpoint2Router; 
     long weight;
@@ -25,7 +30,7 @@ typedef struct EdgeStruct {
 // Data structure to store Adjacency list nodes
 class Node {
     private:
-	    
+        
         long nearestHostDist;
         std::vector<Edge> edges;
         std::unordered_map<int, long> nearestTimelineDist;
@@ -101,8 +106,8 @@ public:
     void populateAllShortestPaths();
  
 
-	// Constructor
-	Graph(int numVertices, int numTimelines)
+    // Constructor
+    Graph(int numVertices, int numTimelines)
         : numVertices(numVertices), numTimelines(numTimelines) {
         shortestDist = new long*[numVertices];
         cost = new long*[numVertices];
@@ -122,8 +127,8 @@ public:
         }
     };
 
-	// Destructor
-	~Graph() {
+    // Destructor
+    ~Graph() {
         for(int i = 0; i < numVertices; ++i) {
             delete [] shortestDist[i];
             delete [] cost[i];

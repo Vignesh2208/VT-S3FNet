@@ -23,15 +23,16 @@ rate_nemus_speedup = {}
 mixed_nemus_speedup = {}
 
 
-
+fig_width=900
+fig_height=600
 title_font_size = 30
 axis_label_font_size = 25
 tick_font_size = 25
 legend_font_size = 25
 tickwidth = 5
 ticklength = 10
-colorbar_tickfont = 20
-colorbar_titlefont = 20
+colorbar_tickfont = 25
+colorbar_titlefont = 25
 marker_size=20
 
 def get_stats(log_dir):
@@ -353,15 +354,15 @@ def update_save_fig(fig, colorbar_title, plot_title, xlabel, ylabel, title_x,
             })
 
     fig.update_layout(
-        title=go.layout.Title(
-            text=plot_title,
-        font=dict(
-                    family="Courier",
-                    size=title_font_size
-                ),
-        xanchor = "auto",
-        yanchor = "middle",
-        x=title_x),
+        #title=go.layout.Title(
+        #    text=plot_title,
+        #font=dict(
+        #            family="Courier",
+        #            size=title_font_size
+        #        ),
+        #xanchor = "auto",
+        #yanchor = "middle",
+        #x=title_x),
         xaxis=go.layout.XAxis(
             title=go.layout.xaxis.Title(
                 text=xlabel,
@@ -450,9 +451,9 @@ update_save_fig(
     title_x=0.1,
     fname="periodic_params_speedup.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False)
 
 fig = go.Figure()
@@ -479,9 +480,9 @@ update_save_fig(
     title_x=0.1,
     fname="periodic_params_exec_burst_lengths.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_color_axis=True)
 
@@ -490,10 +491,12 @@ update_save_fig(
 #   Periodic Traffic
 #
 
+nemu_flows = [10, 20, 30, 40, 50]
+
 fig = go.Figure()
 for tx_size in tx_sizes:
     fig.add_trace(go.Scatter(
-        x=[20, 40, 60, 80, 100],
+        x=nemu_flows,
         y=periodic_nemus_speedup[tx_size]['rel_ovr_mu'],
         error_y=dict(type='data',
             array=periodic_nemus_speedup[tx_size]['rel_ovr_std'],
@@ -509,21 +512,21 @@ update_save_fig(
     fig=fig,
     colorbar_title="Absolute Overhead Ratio",
     plot_title="Relative Speedup with Lookahead - Periodic Traffic",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of emulated flows [units]", 
     ylabel="Relative Speedup [units]",
     title_x=0.1,
     fname="periodic_nemus_speedup.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False)
 
 
 fig = go.Figure()
 for tx_size in tx_sizes:
     fig.add_trace(go.Scatter(
-        x=[20, 40, 60, 80, 100],
+        x=nemu_flows,
         y=periodic_nemus_speedup[tx_size]['mu_blen_en'],
         error_y=dict(type='data',
             array=periodic_nemus_speedup[tx_size]['std_blen_en'],
@@ -539,14 +542,14 @@ update_save_fig(
     fig=fig,
     colorbar_title="Absolute Overhead Ratio",
     plot_title="Timeline Avg Execution Burst Lengths",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of emulated flows [units]", 
     ylabel="Execution Burst Lengths [usec]",
     title_x=0.1,
     fname="periodic_nemus_exec_burst_lengths.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_color_axis=True)
 
@@ -578,9 +581,9 @@ update_save_fig(
     title_x=0.1,
     fname="poisson_params_speedup.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False)
 
 fig = go.Figure()
@@ -607,16 +610,16 @@ update_save_fig(
     title_x=0.1,
     fname="poisson_params_exec_burst_lengths.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_color_axis=True)
 
 fig = go.Figure()
 for tx_size in tx_sizes:
     fig.add_trace(go.Scatter(
-        x=[20, 40, 60, 80, 100],
+        x=nemu_flows,
         y=poisson_nemus_speedup[tx_size]['rel_ovr_mu'],
         error_y=dict(type='data',
             array=poisson_nemus_speedup[tx_size]['rel_ovr_std'],
@@ -632,21 +635,21 @@ update_save_fig(
     fig=fig,
     colorbar_title="Absolute Overhead Ratio",
     plot_title="Relative Speedup with Lookahead - Poisson Traffic",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of poisson bursty emulated TCP flows [units]", 
     ylabel="Relative Speedup [units]",
     title_x=0.1,
     fname="poisson_nemus_speedup.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False)
 
 
 fig = go.Figure()
 for tx_size in tx_sizes:
     fig.add_trace(go.Scatter(
-        x=[20, 40, 60, 80, 100],
+        x=nemu_flows,
         y=poisson_nemus_speedup[tx_size]['mu_blen_en'],
         error_y=dict(type='data',
             array=poisson_nemus_speedup[tx_size]['std_blen_en'],
@@ -662,14 +665,14 @@ update_save_fig(
     fig=fig,
     colorbar_title="Absolute Overhead Ratio",
     plot_title="Timeline Avg Execution Burst Lengths",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of emulated flows [units]", 
     ylabel="Execution Burst Lengths [usec]",
     title_x=0.1,
     fname="poisson_nemus_exec_burst_lengths.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_color_axis=True)
 
@@ -681,7 +684,7 @@ update_save_fig(
 fig = go.Figure()
 for rate in rates:
     fig.add_trace(go.Scatter(
-        x=[20, 40, 60, 80, 100],
+        x=nemu_flows,
         y=rate_nemus_speedup[rate]['rel_ovr_mu'],
         error_y=dict(type='data',
             array=rate_nemus_speedup[rate]['rel_ovr_std'],
@@ -697,14 +700,14 @@ update_save_fig(
     fig=fig,
     colorbar_title="Absolute Overhead Ratio",
     plot_title="Relative Speedup with Lookahead: Rate-limited Traffic",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of rate limited emulated TCP flows [units]", 
     ylabel="Relative Speedup [units]",
     title_x=0.1,
     fname="rate_nemus_speedup.jpg",
     legend_x=-0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False)
 
 
@@ -712,7 +715,7 @@ update_save_fig(
 fig = go.Figure()
 for rate in rates:
     fig.add_trace(go.Scatter(
-        x=[20, 40, 60, 80, 100],
+        x=nemu_flows,
         y=rate_nemus_speedup[rate]['mu_blen_en'],
         error_y=dict(type='data',
             array=rate_nemus_speedup[rate]['std_blen_en'],
@@ -729,14 +732,14 @@ update_save_fig(
     fig=fig,
     colorbar_title=None,
     plot_title="Timeline Avg Execution Burst Lengths",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of emulated flows [units]", 
     ylabel="Execution Burst Lengths [usec]",
     title_x=0.1,
     fname="rate_nemus_exec_burst_lengths.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_color_axis=True)
 
@@ -749,7 +752,7 @@ update_save_fig(
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(
-    x=[20, 40, 60, 80, 100],
+    x=nemu_flows,
     y=mixed_nemus_speedup['rel_ovr_mu'],
     error_y=dict(type='data',
         array=mixed_nemus_speedup['rel_ovr_std'],
@@ -764,14 +767,14 @@ update_save_fig(
     fig=fig,
     colorbar_title="Absolute Overhead Ratio",
     plot_title="Relative Speedup with Lookahead: Mixed Traffic",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of emulated TCP flows [units]", 
     ylabel="Relative Speedup [units]",
-    title_x=0.1,
+    title_x=0.0,
     fname="mixed_nemus_speedup.jpg",
     legend_x=-0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_legend=True)
 
@@ -780,7 +783,7 @@ update_save_fig(
 fig = go.Figure()
 
 fig.add_trace(go.Scatter(
-    x=[20, 40, 60, 80, 100],
+    x=nemu_flows,
     y=mixed_nemus_speedup['mu_blen_en'],
     error_y=dict(type='data',
         array=mixed_nemus_speedup['std_blen_en'],
@@ -796,14 +799,14 @@ update_save_fig(
     fig=fig,
     colorbar_title=None,
     plot_title="Timeline Avg Execution Burst Lengths",
-    xlabel="Number of emulated hosts [units]", 
+    xlabel="Number of emulated flows [units]", 
     ylabel="Execution Burst Lengths [usec]",
     title_x=0.1,
     fname="mixed_nemus_exec_burst_lengths.jpg",
     legend_x=0.02,
-    legend_y=1.02,
-    width=1100,
-    height=900,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
     enabled_border=False,
     disable_color_axis=True,
     disable_legend=True)

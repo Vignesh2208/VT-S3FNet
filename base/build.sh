@@ -74,7 +74,7 @@ echo "Buidling s3f/api ... "
 echo "--------------------------------"
 cd api
 if [ $inc -eq 0 ]; then
-rm *.o *.a
+rm -f *.o *.a > /dev/null
 fi
 make -j$nc
 cd ..
@@ -84,7 +84,7 @@ echo "Buidling s3f/rng ... "
 echo "--------------------------------"
 cd rng
 if [ $inc -eq 0 ]; then
-rm *.o *.a
+rm -f *.o *.a > /dev/null
 fi
 make -j$nc
 cd ..
@@ -94,7 +94,7 @@ echo "Buidling s3f/aux ... "
 echo "--------------------------------"
 cd aux
 if [ $inc -eq 0 ]; then
-rm *.o *.a
+rm -f *.o *.a > /dev/null
 fi
 make -j$nc
 cd ..
@@ -122,7 +122,7 @@ aclocal
 autoconf
 automake
 automake --add-missing
-./configure
+./configure CFLAGS=-Wno-write-strings
 make clean
 make
 cd ..

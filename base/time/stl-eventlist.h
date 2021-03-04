@@ -89,7 +89,6 @@ public:
 	EventPtr nxt_relevant_wait_appt_event() {
 		std::vector<EventPtr> tmpHolder;
 		EventPtr relevant_netsim_event = NULL;
-		bool force = false;
 		if (evtList.empty())
 			return relevant_netsim_event;
 		pthread_mutex_lock(&MUTEX);
@@ -116,7 +115,6 @@ public:
 		vector<int>& dependantTimelines) {
 		std::vector<EventPtr> tmpHolder;
 		EventPtr relevant_netsim_event = NULL;
-		bool force = false;
 		if (evtList.empty())
 			return relevant_netsim_event;
 		pthread_mutex_lock(&MUTEX);
@@ -132,8 +130,8 @@ public:
 					found = true;
 					break;
 				} else {
-					for (int i = 0; i < dependantTimelines.size(); i++) {
-						if (relevant_netsim_event->get_tl() == dependantTimelines[i]) {
+					for (int i = 0; i < (int)dependantTimelines.size(); i++) {
+						if ((int)relevant_netsim_event->get_tl() == dependantTimelines[i]) {
 							found = true;
 							break;
 						}

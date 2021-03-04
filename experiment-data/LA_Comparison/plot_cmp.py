@@ -105,7 +105,8 @@ def aggregate(ls, agg_window):
         else:
             res.append(sum(agg))
             agg = []
-    if not agg:
+            agg.append(value)
+    if agg:
         res.append(sum(agg))
     return res
 
@@ -316,53 +317,53 @@ update_save_fig(
 
 from plotly.subplots import make_subplots
 
-fig = make_subplots(rows=3, cols=1,
+fig = make_subplots(rows=2, cols=1,
                     shared_xaxes=True,
                     vertical_spacing=0.1,
                     x_title='Time [sec]',
                     y_title='Number of pkts sent')
 
-fig.add_trace(go.Scatter(
-    x=ts,
-    y=la_disabled_periodic_pkt_ts,
-    name="Periodic - Lookahead Disabled",
-    line=dict(color="red", width=4.0, dash="longdash"),
-    mode="lines"), row=1, col=1)
+#fig.add_trace(go.Scatter(
+#    x=ts,
+#    y=la_disabled_periodic_pkt_ts,
+#    name="Periodic - Lookahead Disabled",
+#    line=dict(color="red", width=4.0, dash="longdash"),
+#    mode="lines"), row=1, col=1)
 
-fig.add_trace(go.Scatter(
-    x=ts,
-    y=la_enabled_periodic_pkt_ts,
-    name="Periodic - Lookahead Enabled",
-    line=dict(color="green", width=2.0, dash="solid"),
-    mode="lines"), row=1, col=1)
+#fig.add_trace(go.Scatter(
+#    x=ts,
+#    y=la_enabled_periodic_pkt_ts,
+#    name="Periodic - Lookahead Enabled",
+#    line=dict(color="green", width=2.0, dash="solid"),
+#    mode="lines"), row=1, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_disabled_poisson_pkt_ts,
-    name="Poisson - Lookahead Disabled",
+    name="Poisson - LA Disabled",
     line=dict(color="royalblue", width=4.0, dash="dot"),
-    mode="lines"), row=2, col=1)
+    mode="lines"), row=1, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_enabled_poisson_pkt_ts,
-    name="Poisson - Lookahead Enabled",
+    name="Poisson - LA Enabled",
     line=dict(color="magenta", width=2.0, dash="solid"),
-    mode="lines"), row=2, col=1)
+    mode="lines"), row=1, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_disabled_ratelim_pkt_ts,
-    name="10Mbps - Lookahead Disabled",
+    name="10Mbps - LA Disabled",
     line=dict(color="goldenrod", width=4.0, dash="dash"),
-    mode="lines"), row=3, col=1)
+    mode="lines"), row=2, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_enabled_ratetim_pkt_ts,
-    name="10Mbps - Lookahead Enabled",
+    name="10Mbps - LA Enabled",
     line=dict(color="orange", width=2.0, dash="solid"),
-    mode="lines"), row=3, col=1)
+    mode="lines"), row=2, col=1)
 
 """
 update_save_fig(
@@ -382,24 +383,24 @@ update_save_fig(
 """
 
 
-fig.update_layout(legend = dict(font = dict(family = "Courier", size = 15, color = "black")))
+fig.update_layout(legend = dict(font = dict(family = "Courier", size = 25, color = "black"), orientation="h", x = 0.0, y=1.3))
 #fig.update_layout(title_text= "Flow comparison (Lookahead Enabled vs Disabled)")
-fig.update_layout(
-        title=go.layout.Title(
-            text="Flow comparison (Lookahead Enabled vs Disabled)",
-            font=dict(
-                    family="Courier",
-                    size=title_font_size
-                ),
-        xanchor = "auto",
-        yanchor = "middle"))
+#fig.update_layout(
+#        title=go.layout.Title(
+#            text="Flow comparison (Lookahead Enabled vs Disabled)",
+#            font=dict(
+#                    family="Courier",
+#                    size=title_font_size
+#                ),
+#        xanchor = "auto",
+#        yanchor = "middle"))
         
 for i in fig['layout']['annotations']:
-    i['font'] = dict(size=20)
+    i['font'] = dict(size=25)
 
-fig.update_xaxes(title_font=dict(size=25, family='Courier'), tickfont=dict(family='Courier', size=19), nticks=5)
-fig.update_yaxes(title_font=dict(size=25, family='Courier'), tickfont=dict(family='Courier', size=19))
+fig.update_xaxes(title_font=dict(size=25, family='Courier'), tickfont=dict(family='Courier', size=23), nticks=5)
+fig.update_yaxes(title_font=dict(size=25, family='Courier'), tickfont=dict(family='Courier', size=23))
 fig.update_xaxes(ticks="outside", tickwidth=5, ticklen=0)
 fig.update_yaxes(ticks="outside", tickwidth=5, ticklen=0)
 
-fig.write_image(f"{home}/VT-S3FNet/experiment-data/figs/flow_cmp.jpg", width=1100, height=600)
+fig.write_image(f"{home}/VT-S3FNet/experiment-data/figs/flow_cmp.jpg", width=1000, height=500)

@@ -11,7 +11,7 @@ MY_INCLUDES += -I../s3fnet/src
 MY_INCLUDES += -I../dml
 
 
-CFLAGS  := -Wall $(DEBUG) 
+CFLAGS  := -Wall $(DEBUG) -Wno-reorder -Wno-sign-compare -Wno-unused-but-set-variable -Wno-unused-variable -Wno-format-security
 
 all	: lxcmanagermodule.a
 
