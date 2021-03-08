@@ -6,7 +6,7 @@ S3FNet was originally designed as a parallel discrete event network simulation
 framework. It accepts simulation models through dml files. Entities are aligned
 on logical constructs called timelines. Execution of timelines is synchronized
 using a composite synchronization algorithm which is a combination of barrier
-and appointment based synchronizations [paper].
+and appointment based synchronizations [`link <https://s3f.iti.illinois.edu/usrman/composite-sync.html#composite-synchronization>`_].
 
 This is an extension of S3FNet to support co-simulated models i.e models of 
 networked systems where some or all hosts are emulated while the underlying
