@@ -54,9 +54,11 @@ To get started, perform the following steps:
 
 * Install Titan using the installation steps described `here <https://titan-vt.readthedocs.io/en/latest/installation.html>`_.
 
-* Clone the VT-S3FNet repository::
+.. * Clone the VT-S3FNet repository::
 
-    git clone https://github.com/Vignesh2208/VT-S3FNet.git
+..    git clone https://github.com/Vignesh2208/VT-S3FNet.git
+
+* Download version 1.0 of the code from `here <https://github.com/Vignesh2208/VT-S3FNet/archive/v1.0.tar.gz>`_ and extract it to the $HOME directory to a folder with name **VT-S3FNet**.
 
 * Build and install::
 
@@ -70,9 +72,11 @@ To get started, perform the following steps:
 
 * Install Kronos using the installation steps described `here <https://kronoz.readthedocs.io/en/latest/installation.html>`_.
 
-* Clone the VT-S3FNet repository::
+.. Clone the VT-S3FNet repository::
 
-    git clone https://github.com/Vignesh2208/VT-S3FNet.git
+.. git clone https://github.com/Vignesh2208/VT-S3FNet.git
+
+* Download version 1.0 of the code from `here <https://github.com/Vignesh2208/VT-S3FNet/archive/v1.0.tar.gz>`_ and extract it to the $HOME directory to a folder with name **VT-S3FNet**.
 
 * Before the fullbuild step, remove all defines "-DENABLED_VT_MANAGER_TITAN" in all
   makefiles inside the ~/VT-S3FNet/base directory. This may be done with the
