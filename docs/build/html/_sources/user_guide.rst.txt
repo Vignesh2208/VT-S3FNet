@@ -217,8 +217,8 @@ support **co-simulation**. These fields are described below:
   on a network with id 0.
 
 * **ttnProject**. This field specifies the titan project associated with code that needs to be emulated on
-  the lxc in question. For information on titan projects, refer this link. It may be left un-specified if the 
-  virtual time manager used is Kronos. 
+  the lxc in question. For information on titan projects, refer this `link <https://titan-vt.readthedocs.io/en/latest/compilation.html>`_. 
+  It may be left un-specified if the virtual time manager used is Kronos. 
 
   In the running example, a project with the name "tcp_tgen" is assumed to exist before running this co-simulation.
   It is also assumed that the binary ~/VT-S3FNet/csudp/tcp_tgen/tgen has been compiled with under this titan project.

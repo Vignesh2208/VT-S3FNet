@@ -13,7 +13,8 @@ networked systems where some or all hosts are emulated while the underlying
 network is simulated. Synchronization between emulated and simulated Entities
 of the co-simulated model relies on the use of virtual time management tools.
 
-VT-S3FNet can work with two virtual time systems **Titan** and **Kronos** to
+VT-S3FNet can work with two virtual time systems `Titan <https://titan-vt.readthedocs.io/en/latest/index.html>`_ and 
+`Kronos <https://kronoz.readthedocs.io/en/latest/index.html>`_ to 
 execute co-simulated models. This documentation describes how to specify and
 launch co-simulated models.
 

@@ -8,7 +8,8 @@ These examples rely on binaries present in the **~/VT-S3FNet/csudp** directory.
 
 
 Separate titan projects need to be created for each of these binaries to run
-the corresponding co-simulations. Refer to the link here for information on 
+the corresponding co-simulations. Refer to the link 
+`here <https://titan-vt.readthedocs.io/en/latest/compilation.html>`_ for information on 
 creating and configuring titan projects. 
 
 These emulated applications are briefly described here:

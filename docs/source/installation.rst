@@ -52,7 +52,7 @@ Installation with Titan
 
 To get started, perform the following steps:
 
-* Install Titan using the installation steps described here.
+* Install Titan using the installation steps described `here <https://titan-vt.readthedocs.io/en/latest/installation.html>`_.
 
 * Clone the VT-S3FNet repository::
 
@@ -68,7 +68,7 @@ Installation with Kronos
 
 To get started, perform the following steps:
 
-* Install Kronos using the installation steps described here.
+* Install Kronos using the installation steps described `here <https://kronoz.readthedocs.io/en/latest/installation.html>`_.
 
 * Clone the VT-S3FNet repository::
 
