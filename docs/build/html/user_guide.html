@@ -48,8 +48,7 @@
 Domain Modelling Language (DML). The reader is assumed to have some
 familiarity with S3FNet specific DML constructs described
 <a class="reference external" href="https://s3f.iti.illinois.edu/usrman/s3fnet.html#dml">here</a>.</p>
-<p>Throughout this section, we will use a running example defined
-<a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml/">here</a>.</p>
+<p>Throughout this section, we will use a running example defined in <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml</span></code>.</p>
 <p>This is copied below for convenience:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total_timeline</span> <span class="mi">5</span>
 <span class="n">tick_per_second</span> <span class="mi">6</span>
@@ -242,10 +241,10 @@ by a colon (e.g 0:0). These numbers should be interpreted as network-id:host-id 
 a specific network and a specific host aligned on the network. Thus 0:0 refers to host with id 0 aligned
 on a network with id 0.</p></li>
 <li><p><strong>ttnProject</strong>. This field specifies the titan project associated with code that needs to be emulated on
-the lxc in question. For information on titan projects, refer this <a class="reference external" href="https://titan-vt.readthedocs.io/en/latest/compilation.html">link</a>.
-It may be left un-specified if the virtual time manager used is Kronos.</p>
+the lxc in question. For information on creating titan projects, refer this <a class="reference external" href="https://titan-vt.readthedocs.io/en/latest/compilation.html">link</a>.
+This field may be left un-specified if the virtual time manager used is Kronos.</p>
 <p>In the running example, a project with the name “tcp_tgen” is assumed to exist before running this co-simulation.
-It is also assumed that the binary ~/VT-S3FNet/csudp/tcp_tgen/tgen has been compiled with under this titan project.</p>
+It is also assumed that the binary <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/csudp/tcp_tgen/tgen</span></code> has been compiled with under this titan project.</p>
 </li>
 <li><p><strong>dependants</strong>. This field specifies a comma separated list of timelines which may influence/affect the LXC in
 question. For instance, in the running example, lxc 0:0 can be influenced by any emulated host aligned on timeline 1 and
@@ -294,8 +293,8 @@ and its configuration.</p>
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>The <strong>emuHost</strong> definition can be found <a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/aux/mydictionary.dml/">here</a>.
-This is expected to be common among all emulated hosts. It defines the ProtocolSession to be used for emulated hosts.</p>
+<p>The <strong>emuHost</strong> definition can be found in the file <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/aux/mydictionary.dml</span></code>.</p>
+<p>This is expected to be common among all emulated hosts. It defines the ProtocolSession to be used for emulated hosts.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The current implementation requires all hosts aligned on a timeline to be exclusively emulated or simulated i.e, they cannot be a mix of both. Futher, the lookahead algorithm currently only supports alignment of simulated hosts to one timeline.</p>
@@ -393,9 +392,7 @@ DML specification and is explained futher in the linked tutorials.</p>
 </div>
 <div class="section" id="running-the-co-simulation">
 <h2>Running the co-simulation<a class="headerlink" href="#running-the-co-simulation" title="Permalink to this headline">¶</a></h2>
-<p>To run a co-simulation, the dml file (such as the one above) must be placed in a
-directory containing a makefile such as the one linked
-<a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile/">here</a>.</p>
+<p>To run a co-simulation, the dml file (such as the one above) must be placed in a  directory containing a makefile such as the one found in the path <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile</span></code>.</p>
 <p>Please follow this template to define makefiles for other co-simulations as well.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

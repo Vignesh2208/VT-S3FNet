@@ -41,17 +41,17 @@
   <div class="section" id="advanced-examples">
 <h1>Advanced Examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline">¶</a></h1>
 <p>The VT-S3FNet repository also contains some large co-simulation examples.
-These examples rely on binaries present in the <strong>~/VT-S3FNet/csudp</strong> directory.</p>
+These examples rely on binaries present in the <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/csudp</span></code> directory.</p>
 <p>Separate titan projects need to be created for each of these binaries to run
 the corresponding co-simulations. Refer to the link
 <a class="reference external" href="https://titan-vt.readthedocs.io/en/latest/compilation.html">here</a> for information on
 creating and configuring titan projects.</p>
 <p>These emulated applications are briefly described here:</p>
 <ul class="simple">
-<li><p><strong>cusdup/tcp_tgen</strong>. This folder contains a tcp traffic generator which can generate
+<li><p><strong>cusdp/tcp_tgen</strong>. This folder contains a tcp traffic generator which can generate
 periodic, poisson bursty and constant rate limited traffic. Refer to <strong>tgen.c</strong> file
 inside the folder for more information on its command line arguments.</p></li>
-<li><p><strong>csudup/tcp_incast_tgen</strong>. This folder contains a tcp traffic generator which can generate
+<li><p><strong>csudp/tcp_incast_tgen</strong>. This folder contains a tcp traffic generator which can generate
 periodic, poisson bursty and constant rate limited traffic. The number of in-cast to a server
 is also configurable. Refer to <strong>incast_tgen.c</strong> file
 inside the folder for more information on its command line arguments.</p></li>
@@ -76,10 +76,10 @@ be created for each of them. The following project names are expected.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>csudup/tcp_tgen</p></td>
+<tr class="row-even"><td><p>csudp/tcp_tgen</p></td>
 <td><p>tcp_tgen</p></td>
 </tr>
-<tr class="row-odd"><td><p>csudup/tcp_incast_tgen</p></td>
+<tr class="row-odd"><td><p>csudp/tcp_incast_tgen</p></td>
 <td><p>incast_tgen</p></td>
 </tr>
 <tr class="row-even"><td><p>csudp/mpi_sat</p></td>
@@ -88,7 +88,7 @@ be created for each of them. The following project names are expected.</p>
 <tr class="row-odd"><td><p>csudp/mpi_integral</p></td>
 <td><p>mpi_integral</p></td>
 </tr>
-<tr class="row-even"><td><p>csudup/mpi_matrix</p></td>
+<tr class="row-even"><td><p>csudp/mpi_matrix</p></td>
 <td><p>mpi_mm</p></td>
 </tr>
 </tbody>
@@ -110,8 +110,7 @@ on a large simulated campus network.</p></li>
 <li><p><strong>Fat tree network</strong>. This co-simulation involves emulation of MPI map-reduce style jobs
 on a large simulated fat tree topology.</p></li>
 </ul>
-<p>To run these examples, refer to the files <a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/runTCPExperiments.sh/">runTCPExperiments.sh</a> and
-<a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/runMPIExperiments.sh/">runMPIExperiments.sh</a>.</p>
+<p>To run these examples, refer to the files <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/runTCPExperiments.sh</span></code> and <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/runMPIExperiments.sh</span></code>.</p>
 <p>These scripts launch several co-simulations one after the other. In each co-simulation the type
 of workload is changed. Comment out co-simulations which are not needed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run tcp traffic generation experiments with lookahead enabled</span>

@@ -7,8 +7,9 @@ familiarity with S3FNet specific DML constructs described
 `here <https://s3f.iti.illinois.edu/usrman/s3fnet.html#dml>`_.
 
 
-Throughout this section, we will use a running example defined
-`here <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml/>`_.
+Throughout this section, we will use a running example defined in :file:`$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml`.
+
+.. Throughout this section, we will use a running example defined `here <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml/>`_.
 
 This is copied below for convenience::
 
@@ -217,11 +218,11 @@ support **co-simulation**. These fields are described below:
   on a network with id 0.
 
 * **ttnProject**. This field specifies the titan project associated with code that needs to be emulated on
-  the lxc in question. For information on titan projects, refer this `link <https://titan-vt.readthedocs.io/en/latest/compilation.html>`_. 
-  It may be left un-specified if the virtual time manager used is Kronos. 
+  the lxc in question. For information on creating titan projects, refer this `link <https://titan-vt.readthedocs.io/en/latest/compilation.html>`_. 
+  This field may be left un-specified if the virtual time manager used is Kronos. 
 
   In the running example, a project with the name "tcp_tgen" is assumed to exist before running this co-simulation.
-  It is also assumed that the binary ~/VT-S3FNet/csudp/tcp_tgen/tgen has been compiled with under this titan project.
+  It is also assumed that the binary :file:`$HOME/VT-S3FNet/csudp/tcp_tgen/tgen` has been compiled with under this titan project.
 
 
 * **dependants**. This field specifies a comma separated list of timelines which may influence/affect the LXC in
@@ -276,7 +277,11 @@ Similarly the example below corresponds to lxcNHI 1:0::
 		]
 	]
 
-The **emuHost** definition can be found `here <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/aux/mydictionary.dml/>`_.
+
+The **emuHost** definition can be found in the file :file:`$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/aux/mydictionary.dml`.
+
+.. The **emuHost** definition can be found `here <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/aux/mydictionary.dml/>`_.
+
 This is expected to be common among all emulated hosts. It defines the ProtocolSession to be used for emulated hosts.
 
 .. note:: The current implementation requires all hosts aligned on a timeline to be exclusively emulated or simulated i.e, they cannot be a mix of both. Futher, the lookahead algorithm currently only supports alignment of simulated hosts to one timeline.
@@ -377,9 +382,10 @@ DML specification and is explained futher in the linked tutorials.
 Running the co-simulation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To run a co-simulation, the dml file (such as the one above) must be placed in a 
-directory containing a makefile such as the one linked
-`here <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile/>`_. 
+.. To run a co-simulation, the dml file (such as the one above) must be placed in a  directory containing a makefile such as the one linked `here <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile/>`_. 
+
+
+To run a co-simulation, the dml file (such as the one above) must be placed in a  directory containing a makefile such as the one found in the path :file:`$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile`. 
 
 
 Please follow this template to define makefiles for other co-simulations as well.

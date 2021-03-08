@@ -3,7 +3,7 @@ Advanced Examples
 
 
 The VT-S3FNet repository also contains some large co-simulation examples.
-These examples rely on binaries present in the **~/VT-S3FNet/csudp** directory.
+These examples rely on binaries present in the :file:`$HOME/VT-S3FNet/csudp` directory.
 
 
 
@@ -14,11 +14,11 @@ creating and configuring titan projects.
 
 These emulated applications are briefly described here:
 
-* **cusdup/tcp_tgen**. This folder contains a tcp traffic generator which can generate
+* **cusdp/tcp_tgen**. This folder contains a tcp traffic generator which can generate
   periodic, poisson bursty and constant rate limited traffic. Refer to **tgen.c** file 
   inside the folder for more information on its command line arguments.
 
-* **csudup/tcp_incast_tgen**. This folder contains a tcp traffic generator which can generate
+* **csudp/tcp_incast_tgen**. This folder contains a tcp traffic generator which can generate
   periodic, poisson bursty and constant rate limited traffic. The number of in-cast to a server
   is also configurable. Refer to **incast_tgen.c** file 
   inside the folder for more information on its command line arguments.
@@ -40,11 +40,11 @@ be created for each of them. The following project names are expected.
     ======================      ===========================
     Application                 Expected titan project name
     ======================      ===========================
-    csudup/tcp_tgen             tcp_tgen
-    csudup/tcp_incast_tgen      incast_tgen
+    csudp/tcp_tgen              tcp_tgen
+    csudp/tcp_incast_tgen       incast_tgen
     csudp/mpi_sat               mpi_sat
     csudp/mpi_integral          mpi_integral
-    csudup/mpi_matrix           mpi_mm
+    csudp/mpi_matrix            mpi_mm
     ======================      ===========================
 
 .. note:: When creating these projects, make sure the project source directory is correctly specified. Other project options may also be configured as per your needs.
@@ -64,8 +64,12 @@ Once the previous step is complete, the advanced examples may be run. In particu
   on a large simulated fat tree topology.
 
 
-To run these examples, refer to the files `runTCPExperiments.sh <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/runTCPExperiments.sh/>`_ and
-`runMPIExperiments.sh <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/runMPIExperiments.sh/>`_.
+
+To run these examples, refer to the files :file:`$HOME/VT-S3FNet/base/runTCPExperiments.sh` and :file:`$HOME/VT-S3FNet/base/runMPIExperiments.sh`.
+
+.. To run these examples, refer to the files `runTCPExperiments.sh <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/runTCPExperiments.sh/>`_ and `runMPIExperiments.sh <https://github.com/Vignesh2208/VT-S3FNet/tree/master/base/runMPIExperiments.sh/>`_.
+
+   
 
 These scripts launch several co-simulations one after the other. In each co-simulation the type
 of workload is changed. Comment out co-simulations which are not needed::
