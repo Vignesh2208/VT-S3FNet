@@ -476,7 +476,7 @@ run_time {args.run_time + 0.1}
 seed 1	
 log_dir "{log_dir}"		
 virtual_time_manager "TITAN"
-max_lookahead_us 1000
+eat_update_period_us 1000
 enable_lookahead {args.enable_lookahead}
 
 Net [
@@ -509,7 +509,7 @@ run_time {args.run_time + 0.1}
 seed 1	
 log_dir "{log_dir}"		
 virtual_time_manager "TITAN"
-max_lookahead_us 1000
+eat_update_period_us 1000
 enable_lookahead {args.enable_lookahead}
 
 Net [

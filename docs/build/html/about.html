@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About &#8212; VT-S3FNet 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="author" title="About these documents" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="S3FNet with virtual time support" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="S3FNet with virtual time support"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">About</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="about">
+<h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<p>S3FNet was originally designed as a parallel discrete event network simulation
+framework. It accepts simulation models through dml files. Entities are aligned
+on logical constructs called timelines. Execution of timelines is synchronized
+using a composite synchronization algorithm which is a combination of barrier
+and appointment based synchronizations [paper].</p>
+<p>This is an extension of S3FNet to support co-simulated models i.e models of
+networked systems where some or all hosts are emulated while the underlying
+network is simulated. Synchronization between emulated and simulated Entities
+of the co-simulated model relies on the use of virtual time management tools.</p>
+<p>VT-S3FNet can work with two virtual time systems <strong>Titan</strong> and <strong>Kronos</strong> to
+execute co-simulated models. This documentation describes how to specify and
+launch co-simulated models.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/parallel_simulation.jpg"><img alt="Parallel simulation architecture in S3FNet" src="_images/parallel_simulation.jpg" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Figure 1. General architecture of parallel network simulation with S3FNet</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Figure-1 shows the general architecure of simulating networks with S3FNet. Entities (hosts + routers)
+are aligned on timelines. Timelines are connected by channels. Entities aligned on timelines
+can send events to each other. A composite synchronization protocol synchronizes timelines
+execution.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/vt_s3fnet.jpg"><img alt="Virtual time integrated S3FNet" src="_images/vt_s3fnet.jpg" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Figure 2. VT-S3FNet architecture</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Figure-2 shows the architecture of the virtual time integrated S3FNet implementation. It supports
+co-simulation. Emulated hosts are aligned on a group of timelines (TE) while the simulated network
+(simulated hosts + routes) are aligned on a separate timeline (TS). Timelines in TE interact with
+the virtual time manager (Titan or Kronos) for synchronized execution.</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">S3FNet with virtual time support</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/about.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="S3FNet with virtual time support"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">About</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, project_moses.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+    </div>
+  </body>
+</html>

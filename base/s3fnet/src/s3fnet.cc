@@ -215,7 +215,7 @@ int main(int argc, char** argv)
       error_quit("ERROR: seed attribute must be a non-negative integer.\n");
   }
 
-  str = (char*)dml_cfg->findSingle("max_lookahead_us");
+  str = (char*)dml_cfg->findSingle("eat_update_period_us");
   if(!str) maxLookaheadUs = DEFAULT_MAX_LOOKAHEAD_US;
   else {
     maxLookaheadUs = atoi(str);

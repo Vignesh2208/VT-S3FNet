@@ -38,6 +38,9 @@ tgen_incast:
 	sudo setcap cap_net_admin,cap_net_raw=eip tcp_incast_tgen/incast_tgen
 	${HOME}/Titan/tools/ttn/ttn.sh extract -p incast_tgen
 
+
+build: tgen tgen_incast mpi_csat mpi_int mpi_mat
+
 clean:
 	rm -f tcp_tgen/tgen > /dev/null
 	rm -f /usr/bin/tgen > /dev/null
