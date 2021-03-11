@@ -30,6 +30,16 @@ tgen:
 	sudo setcap cap_net_admin,cap_net_raw=eip tcp_tgen/tgen
 	${HOME}/Titan/tools/ttn/ttn.sh extract -p tcp_tgen
 
+tgen_rand:
+	${HOME}/Titan/tools/ttn/ttn.sh activate -p tcp_rand
+	clang -O1 -g tcp_rand/rand_tgen.c -lvtllogic -lm -lpthread -o tcp_rand/rand_tgen
+	cp tcp_rand/rand_tgen /usr/bin/rand_tgen
+	sudo setcap cap_net_admin,cap_net_raw=eip /usr/bin/rand_tgen
+	sudo setcap cap_net_admin,cap_net_raw=eip tcp_rand/rand_tgen
+	${HOME}/Titan/tools/ttn/ttn.sh extract -p tcp_rand
+
+
+
 tgen_incast:
 	${HOME}/Titan/tools/ttn/ttn.sh extract -p incast_tgen
 	clang -O1 -g tcp_incast_tgen/incast_tgen.c -lvtllogic -lm -lpthread -o tcp_incast_tgen/incast_tgen
@@ -49,4 +59,6 @@ clean:
 	rm -f mpi_norm/mpi_norm > /dev/null
 	rm -f mpi_sat/mpi_csat > /dev/null
 	rm -f tcp_incast_tgen/incast_tgen > /dev/null
+	rm -f tcp_rand/rand_tgen > /dev/null
+	rm -f /usr/bin/rand_tgen > /dev/null
 	rm -f /usr/bin/incast_tgen > /dev/null
