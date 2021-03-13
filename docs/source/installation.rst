@@ -21,7 +21,7 @@ Installing Common Dependencies
 
     wget -P ~/Downloads https://linuxcontainers.org/downloads/lxc/lxc-3.0.3.tar.gz
     tar -xvf ~/Downloads/lxc-3.0.3.tar.gz
-    cd ~/Downloads/lxc-3.0.3
+    cd ~/lxc-3.0.3
     ./configure
     sudo make install
 
@@ -40,7 +40,7 @@ Installing Common Dependencies
 
 * Install iptables::
 
-    sudo apt-get install iptables
+    sudo apt-get install iptables net-tools
 
 
 VT-S3FNet can work with **Titan** and **Kronos**. The installation procedure

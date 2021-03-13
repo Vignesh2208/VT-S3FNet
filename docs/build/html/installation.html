@@ -1,25 +1,33 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Installation &#8212; VT-S3FNet 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Guide" href="user_guide.html" />
     <link rel="prev" title="About" href="about.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -32,8 +40,7 @@
         <li class="right" >
           <a href="about.html" title="About"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,42 +56,42 @@
 <p>VT-S3FNet has been tested on Ubuntu 16.04.5 and 18.04 LTS. It is advisable to run it on a
 system or VM with atleast 4 cores and 4GB of RAM.</p>
 <ul class="simple">
-<li><p>Default python version on the system must be &gt;= 3.6.9</p></li>
+<li>Default python version on the system must be &gt;= 3.6.9</li>
 </ul>
 </div>
 <div class="section" id="installing-common-dependencies">
 <h2>Installing Common Dependencies<a class="headerlink" href="#installing-common-dependencies" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p>Install flex:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">flex</span>
+<li><p class="first">Install flex:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">flex</span>
 </pre></div>
 </div>
 </li>
-<li><p>Install lxc version 3.0.3:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">P</span> <span class="o">~/</span><span class="n">Downloads</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">linuxcontainers</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">lxc</span><span class="o">/</span><span class="n">lxc</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mf">3.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<li><p class="first">Install lxc version 3.0.3:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">P</span> <span class="o">~/</span><span class="n">Downloads</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">linuxcontainers</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">lxc</span><span class="o">/</span><span class="n">lxc</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mf">3.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 <span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="o">~/</span><span class="n">Downloads</span><span class="o">/</span><span class="n">lxc</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mf">3.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">Downloads</span><span class="o">/</span><span class="n">lxc</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">lxc</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">3</span>
 <span class="o">./</span><span class="n">configure</span>
 <span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
 </pre></div>
 </div>
 <p>To get lxc-start to work, Apparmor profile must be disabled:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apparmor</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">usr</span><span class="o">.</span><span class="n">bin</span><span class="o">.</span><span class="n">lxc</span><span class="o">-</span><span class="n">start</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apparmor</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">disable</span><span class="o">/</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apparmor</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">usr</span><span class="o">.</span><span class="n">bin</span><span class="o">.</span><span class="n">lxc</span><span class="o">-</span><span class="n">start</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apparmor</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">disable</span><span class="o">/</span>
 <span class="n">sudo</span> <span class="n">apparmor_parser</span> <span class="o">-</span><span class="n">R</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apparmor</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">usr</span><span class="o">.</span><span class="n">bin</span><span class="o">.</span><span class="n">lxc</span><span class="o">-</span><span class="n">start</span>
 </pre></div>
 </div>
 <p>Verify that lxc-start profile no longer exists with the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">aa</span><span class="o">-</span><span class="n">status</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">aa</span><span class="o">-</span><span class="n">status</span>
 </pre></div>
 </div>
 </li>
-<li><p>Install tunctl:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">uml</span><span class="o">-</span><span class="n">utilities</span> <span class="n">bridge</span><span class="o">-</span><span class="n">utils</span>
+<li><p class="first">Install tunctl:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">uml</span><span class="o">-</span><span class="n">utilities</span> <span class="n">bridge</span><span class="o">-</span><span class="n">utils</span>
 </pre></div>
 </div>
 </li>
-<li><p>Install iptables:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">iptables</span>
+<li><p class="first">Install iptables:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">iptables</span> <span class="n">net</span><span class="o">-</span><span class="n">tools</span>
 </pre></div>
 </div>
 </li>
@@ -96,12 +103,13 @@ varies slightly depending on which virtual time system is used.</p>
 <h2>Installation with Titan<a class="headerlink" href="#installation-with-titan" title="Permalink to this headline">¶</a></h2>
 <p>To get started, perform the following steps:</p>
 <ul class="simple">
-<li><p>Install Titan using the installation steps described <a class="reference external" href="https://titan-vt.readthedocs.io/en/latest/installation.html">here</a>.</p></li>
+<li>Install Titan using the installation steps described <a class="reference external" href="https://titan-vt.readthedocs.io/en/latest/installation.html">here</a>.</li>
 </ul>
 <ul>
-<li><p>Download version 1.0 of the code from <a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/archive/v1.0.tar.gz">here</a> and extract it to the $HOME directory to a folder with name <strong>VT-S3FNet</strong>.</p></li>
-<li><p>Build and install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span>
+<li><p class="first">Download version 1.0 of the code from <a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/archive/v1.0.tar.gz">here</a> and extract it to the $HOME directory to a folder with name <strong>VT-S3FNet</strong>.</p>
+</li>
+<li><p class="first">Build and install:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span>
 <span class="n">sudo</span> <span class="n">make</span> <span class="n">clean</span> <span class="n">fullbuild</span>
 </pre></div>
 </div>
@@ -112,19 +120,20 @@ varies slightly depending on which virtual time system is used.</p>
 <h2>Installation with Kronos<a class="headerlink" href="#installation-with-kronos" title="Permalink to this headline">¶</a></h2>
 <p>To get started, perform the following steps:</p>
 <ul class="simple">
-<li><p>Install Kronos using the installation steps described <a class="reference external" href="https://kronoz.readthedocs.io/en/latest/installation.html">here</a>.</p></li>
+<li>Install Kronos using the installation steps described <a class="reference external" href="https://kronoz.readthedocs.io/en/latest/installation.html">here</a>.</li>
 </ul>
 <ul>
-<li><p>Download version 1.0 of the code from <a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/archive/v1.0.tar.gz">here</a> and extract it to the $HOME directory to a folder with name <strong>VT-S3FNet</strong>.</p></li>
-<li><p>Before the fullbuild step, remove all defines “-DENABLED_VT_MANAGER_TITAN” in all
+<li><p class="first">Download version 1.0 of the code from <a class="reference external" href="https://github.com/Vignesh2208/VT-S3FNet/archive/v1.0.tar.gz">here</a> and extract it to the $HOME directory to a folder with name <strong>VT-S3FNet</strong>.</p>
+</li>
+<li><p class="first">Before the fullbuild step, remove all defines “-DENABLED_VT_MANAGER_TITAN” in all
 makefiles inside the ~/VT-S3FNet/base directory. This may be done with the
 following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span><span class="o">/</span><span class="n">base</span> <span class="o">-</span><span class="nb">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">exec</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/DENABLED_VT_MANAGER_TITAN/UENABLED_VT_MANAGER_TITAN/g&#39;</span> <span class="p">{}</span> \<span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span><span class="o">/</span><span class="n">base</span> <span class="o">-</span><span class="nb">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">exec</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/DENABLED_VT_MANAGER_TITAN/UENABLED_VT_MANAGER_TITAN/g&#39;</span> <span class="p">{}</span> \<span class="p">;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Build and install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span>
+<li><p class="first">Build and install:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span>
 <span class="n">sudo</span> <span class="n">make</span> <span class="n">clean</span> <span class="n">fullbuild</span>
 </pre></div>
 </div>
@@ -138,13 +147,12 @@ following command:</p>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Installation</a><ul>
 <li><a class="reference internal" href="#minimum-system-requirements">Minimum System Requirements</a></li>
@@ -170,15 +178,15 @@ following command:</p>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
+  <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -195,13 +203,12 @@ following command:</p>
         <li class="right" >
           <a href="about.html" title="About"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, project_moses.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
     </div>
   </body>
 </html>

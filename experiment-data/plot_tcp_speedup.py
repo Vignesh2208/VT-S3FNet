@@ -19,6 +19,7 @@ periodic_params_speedup = {}
 poisson_params_speedup = {}
 periodic_nemus_speedup = {}
 poisson_nemus_speedup = {}
+rand_nemus_speedup = {}
 rate_nemus_speedup = {}
 mixed_nemus_speedup = {}
 
@@ -215,6 +216,48 @@ for nemu in nemus:
             rel_ovrs.append(mu_ovrs_dis/float(x))
         poisson_nemus_speedup[tx_size]['rel_ovr_mu'].append(np.mean(rel_ovrs))
         poisson_nemus_speedup[tx_size]['rel_ovr_std'].append(1.96 * np.std(rel_ovrs)/math.sqrt(len(rel_ovrs)))
+
+
+
+for nemu in nemus:
+    period = 1000000
+    for tx_size in tx_sizes:
+        if tx_size not in rand_nemus_speedup:
+            rand_nemus_speedup[tx_size] = {}
+            rand_nemus_speedup[tx_size]['mu_ovr_en'] = []
+            rand_nemus_speedup[tx_size]['std_ovr_en'] = []
+            rand_nemus_speedup[tx_size]['mu_blen_en'] = []
+            rand_nemus_speedup[tx_size]['std_blen_en'] = []
+
+            rand_nemus_speedup[tx_size]['rel_ovr_mu'] = []
+            rand_nemus_speedup[tx_size]['rel_ovr_std'] = []
+
+            rand_nemus_speedup[tx_size]['mu_ovr_dis'] = []
+            rand_nemus_speedup[tx_size]['std_ovr_dis'] = []
+            rand_nemus_speedup[tx_size]['mu_blen_dis'] = []
+            rand_nemus_speedup[tx_size]['std_blen_dis'] = []
+
+        exp_la_en_log_dir = f"{home}/VT-S3FNet/experiment-data/TCP_Experiments/LA_Enabled/rand/TCP_RAND_LA_Enabled_nemus_{nemu}_poisson_mu_{period}_txsize_{tx_size}"
+        exp_la_dis_log_dir = f"{home}/VT-S3FNet/experiment-data/TCP_Experiments/LA_Disabled/rand/TCP_RAND_LA_Disabled_nemus_{nemu}_poisson_mu_{period}_txsize_{tx_size}"
+
+        ovrs_en, mu_blen_en, std_blen_en = get_stats(exp_la_en_log_dir)
+        rand_nemus_speedup[tx_size]['mu_ovr_en'].append(np.mean(ovrs_en))
+        rand_nemus_speedup[tx_size]['std_ovr_en'].append(np.std(ovrs_en))
+        rand_nemus_speedup[tx_size]['mu_blen_en'].append(mu_blen_en)
+        rand_nemus_speedup[tx_size]['std_blen_en'].append(std_blen_en)
+
+        ovrs_dis, mu_blen, std_blen = get_stats(exp_la_dis_log_dir)
+        rand_nemus_speedup[tx_size]['mu_ovr_dis'].append(np.mean(ovrs_dis))
+        rand_nemus_speedup[tx_size]['std_ovr_dis'].append(np.std(ovrs_dis))
+        rand_nemus_speedup[tx_size]['mu_blen_dis'].append(mu_blen)
+        rand_nemus_speedup[tx_size]['std_blen_dis'].append(std_blen)
+
+        mu_ovrs_dis = np.mean(ovrs_dis)
+        rel_ovrs = []
+        for x in ovrs_en:
+            rel_ovrs.append(mu_ovrs_dis/float(x))
+        rand_nemus_speedup[tx_size]['rel_ovr_mu'].append(np.mean(rel_ovrs))
+        rand_nemus_speedup[tx_size]['rel_ovr_std'].append(1.96 * np.std(rel_ovrs)/math.sqrt(len(rel_ovrs)))
 
 
 for nemu in nemus:
@@ -675,6 +718,39 @@ update_save_fig(
     height=fig_height,
     enabled_border=False,
     disable_color_axis=True)
+
+#
+#   TCP RAND experiments
+#
+
+fig = go.Figure()
+for tx_size in tx_sizes:
+    fig.add_trace(go.Scatter(
+        x=nemu_flows,
+        y=rand_nemus_speedup[tx_size]['rel_ovr_mu'],
+        error_y=dict(type='data',
+            array=rand_nemus_speedup[tx_size]['rel_ovr_std'],
+            thickness=1.5, width=3),
+        name=f"Transfer size: {tx_size} Kb" if tx_size != 2000 else f"Transfer size: 2 Mb",
+        marker=dict(
+            size=marker_size, coloraxis="coloraxis", color=rand_nemus_speedup[tx_size]['mu_ovr_en'],
+            symbol=tx_size_markers[tx_size]),
+        line=tx_size_lines[tx_size].copy(),
+        mode="markers+lines"))
+    
+update_save_fig(
+    fig=fig,
+    colorbar_title="Absolute Overhead Ratio",
+    plot_title="Relative Speedup with Lookahead - TCP RAND",
+    xlabel="Number of poisson bursty emulated TCP flows [units]", 
+    ylabel="Relative Speedup [units]",
+    title_x=0.1,
+    fname="rand_nemus_speedup.jpg",
+    legend_x=0.02,
+    legend_y=1.2,
+    width=fig_width,
+    height=fig_height,
+    enabled_border=False)
 
 #
 #   Rate limited Traffic

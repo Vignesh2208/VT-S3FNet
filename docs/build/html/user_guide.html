@@ -1,25 +1,33 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>User Guide &#8212; VT-S3FNet 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Advanced Examples" href="advanced_examples.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -32,8 +40,7 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">User Guide</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -48,9 +55,9 @@
 Domain Modelling Language (DML). The reader is assumed to have some
 familiarity with S3FNet specific DML constructs described
 <a class="reference external" href="https://s3f.iti.illinois.edu/usrman/s3fnet.html#dml">here</a>.</p>
-<p>Throughout this section, we will use a running example defined in <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml</span></code>.</p>
+<p>Throughout this section, we will use a running example defined in <code class="file docutils literal"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/test.dml</span></code>.</p>
 <p>This is copied below for convenience:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total_timeline</span> <span class="mi">5</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">total_timeline</span> <span class="mi">5</span>
 <span class="n">tick_per_second</span> <span class="mi">6</span>
 <span class="n">run_time</span> <span class="mi">5</span>
 <span class="n">seed</span> <span class="mi">1</span>
@@ -216,44 +223,54 @@ DML is available <a class="reference external" href="http://www.ssfnet.org/Inter
 <p>In this section, we only describe additional fields specifically added to the DML language to
 support <strong>co-simulation</strong>. These fields are described below:</p>
 <ul>
-<li><p><strong>total_timeline</strong>. Total number of timelines in the co-simulation. The running example contains 5
-timelines.</p></li>
-<li><p><strong>tick_per_second</strong>. Number of ticks in one second. This controls the time resolution. Setting it
+<li><p class="first"><strong>total_timeline</strong>. Total number of timelines in the co-simulation. The running example contains 5
+timelines.</p>
+</li>
+<li><p class="first"><strong>tick_per_second</strong>. Number of ticks in one second. This controls the time resolution. Setting it
 to a value 6 represents 10^6 ticks in one second. Thus each tick represents 1us. Currently the highest
-resolution supported in a co-simulation is 1us.</p></li>
-<li><p><strong>log_dir</strong>. Specifies a directory which is created inside ~/VT-S3FNet/experiment-data. Any experiment
-logs are stored here.</p></li>
-<li><p><strong>run_time</strong>. Total virtual run time of the co-simulation in seconds.</p></li>
-<li><p><strong>virtual_time_manager</strong>. This field can take the value either “TITAN” or “KRONOS”. Note that
+resolution supported in a co-simulation is 1us.</p>
+</li>
+<li><p class="first"><strong>log_dir</strong>. Specifies a directory which is created inside ~/VT-S3FNet/experiment-data. Any experiment
+logs are stored here.</p>
+</li>
+<li><p class="first"><strong>run_time</strong>. Total virtual run time of the co-simulation in seconds.</p>
+</li>
+<li><p class="first"><strong>virtual_time_manager</strong>. This field can take the value either “TITAN” or “KRONOS”. Note that
 VT-3FNet must have been installed for the chosen virtual time manager. In the running example
-Titan is chosen as the virtual time manager.</p></li>
-<li><p><strong>eat_update_period_us</strong>. This field is relevant only when Titan is the chosen virtual time
+Titan is chosen as the virtual time manager.</p>
+</li>
+<li><p class="first"><strong>eat_update_period_us</strong>. This field is relevant only when Titan is the chosen virtual time
 manager. It controls the earliest arrival time update frequency. This is only relevant when
-lookaheads are enabled. In the running example, this is set to 1ms.</p></li>
-<li><p><strong>enable_lookahead</strong>. This field is relevant only when Titan is chosen as the virtual time
+lookaheads are enabled. In the running example, this is set to 1ms.</p>
+</li>
+<li><p class="first"><strong>enable_lookahead</strong>. This field is relevant only when Titan is chosen as the virtual time
 manager. If set to 1, then lookahead based synchronization would be used. If set to 0, lookaheads
-would be ignored.</p></li>
-<li><p><strong>lxcConfig</strong>. This field groups settings for all emulated hosts/LXCs in the co-simulation.
+would be ignored.</p>
+</li>
+<li><p class="first"><strong>lxcConfig</strong>. This field groups settings for all emulated hosts/LXCs in the co-simulation.
 Each emulated host is configured with a separate <strong>settings</strong> attribute as illustrated in the
-running example.</p></li>
-<li><p><strong>lxcNHI</strong>. This field identifies the specific LXC in question. It is folowed by two numbers separated
+running example.</p>
+</li>
+<li><p class="first"><strong>lxcNHI</strong>. This field identifies the specific LXC in question. It is folowed by two numbers separated
 by a colon (e.g 0:0). These numbers should be interpreted as network-id:host-id i.e they refer to
 a specific network and a specific host aligned on the network. Thus 0:0 refers to host with id 0 aligned
-on a network with id 0.</p></li>
-<li><p><strong>ttnProject</strong>. This field specifies the titan project associated with code that needs to be emulated on
+on a network with id 0.</p>
+</li>
+<li><p class="first"><strong>ttnProject</strong>. This field specifies the titan project associated with code that needs to be emulated on
 the lxc in question. For information on creating titan projects, refer this <a class="reference external" href="https://titan-vt.readthedocs.io/en/latest/compilation.html">link</a>.
 This field may be left un-specified if the virtual time manager used is Kronos.</p>
 <p>In the running example, a project with the name “tcp_tgen” is assumed to exist before running this co-simulation.
-It is also assumed that the binary <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/csudp/tcp_tgen/tgen</span></code> has been compiled with under this titan project.</p>
+It is also assumed that the binary <code class="file docutils literal"><span class="pre">$HOME/VT-S3FNet/csudp/tcp_tgen/tgen</span></code> has been compiled with under this titan project.</p>
 </li>
-<li><p><strong>dependants</strong>. This field specifies a comma separated list of timelines which may influence/affect the LXC in
+<li><p class="first"><strong>dependants</strong>. This field specifies a comma separated list of timelines which may influence/affect the LXC in
 question. For instance, in the running example, lxc 0:0 can be influenced by any emulated host aligned on timeline 1 and
 lxc 1:0 can be influenced by any emulated host aligned on timeline 0.</p>
 <p>If left un-specified, then an lxc is assumed to depend on all timelines hosting other lxcs.
 Multiple dependants may be specified as a comma separated string (e.g “1,2,3,4”).
 This field is ignored if the virtual time manager is Kronos.</p>
 </li>
-<li><p><strong>cmd</strong>. This field specifies the command to emulate on the host/lxc in question.</p></li>
+<li><p class="first"><strong>cmd</strong>. This field specifies the command to emulate on the host/lxc in question.</p>
+</li>
 </ul>
 <div class="section" id="emulated-host-definitions">
 <h2>Emulated host definitions<a class="headerlink" href="#emulated-host-definitions" title="Permalink to this headline">¶</a></h2>
@@ -261,7 +278,7 @@ This field is ignored if the virtual time manager is Kronos.</p>
 attaching a proxy for each emulated host in the simulated network. This is done by adding definitions
 of each emulated host.</p>
 <p>An example is given below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Net</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Net</span>
 <span class="p">[</span>
         <span class="nb">id</span> <span class="mi">0</span>          <span class="c1"># Network-id</span>
         <span class="n">alignment</span> <span class="mi">0</span>   <span class="c1"># Timeline on which this network and all its hosts are aligned</span>
@@ -281,7 +298,7 @@ of each emulated host.</p>
 This host is aligned to timeline 0 (since aligment is 0). This proxy definition corresponds to lxcNHI 0:0
 and its configuration.</p>
 <p>Similarly the example below corresponds to lxcNHI 1:0:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Net</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Net</span>
 <span class="p">[</span>
         <span class="nb">id</span> <span class="mi">1</span>
         <span class="n">alignment</span> <span class="mi">1</span>
@@ -293,26 +310,26 @@ and its configuration.</p>
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>The <strong>emuHost</strong> definition can be found in the file <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/aux/mydictionary.dml</span></code>.</p>
+<p>The <strong>emuHost</strong> definition can be found in the file <code class="file docutils literal"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/aux/mydictionary.dml</span></code>.</p>
 <p>This is expected to be common among all emulated hosts. It defines the ProtocolSession to be used for emulated hosts.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The current implementation requires all hosts aligned on a timeline to be exclusively emulated or simulated i.e, they cannot be a mix of both. Futher, the lookahead algorithm currently only supports alignment of simulated hosts to one timeline.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The current implementation requires all hosts aligned on a timeline to be exclusively emulated or simulated i.e, they cannot be a mix of both. Futher, the lookahead algorithm currently only supports alignment of simulated hosts to one timeline.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In the running example, lxcs 0:0, 1:0, 2:0 and 3:0 are aligned on timelines 0, 1, 2 and 3 respectively. These timelines only host emulated entities.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">In the running example, lxcs 0:0, 1:0, 2:0 and 3:0 are aligned on timelines 0, 1, 2 and 3 respectively. These timelines only host emulated entities.</p>
 </div>
 </div>
 <div class="section" id="defining-a-simulated-network">
 <h2>Defining a simulated network<a class="headerlink" href="#defining-a-simulated-network" title="Permalink to this headline">¶</a></h2>
 <p>Simulated networks may be created as described in the S3FNet and SSFNet tutorials.</p>
 <ul class="simple">
-<li><p>A key restriction is that all simulated network-ids must be aligned to the same timeline.</p></li>
-<li><p>No emulated host must be aligned to this timeline</p></li>
+<li>A key restriction is that all simulated network-ids must be aligned to the same timeline.</li>
+<li>No emulated host must be aligned to this timeline</li>
 </ul>
 <p>In the running example, the simulated network is defined separately and aligned onto one timeline:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Net</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Net</span>
     <span class="p">[</span>
             <span class="nb">id</span> <span class="mi">4</span>           <span class="c1"># Network id 4 contains only simulated routers.</span>
             <span class="n">alignment</span> <span class="mi">4</span>
@@ -392,21 +409,21 @@ DML specification and is explained futher in the linked tutorials.</p>
 </div>
 <div class="section" id="running-the-co-simulation">
 <h2>Running the co-simulation<a class="headerlink" href="#running-the-co-simulation" title="Permalink to this headline">¶</a></h2>
-<p>To run a co-simulation, the dml file (such as the one above) must be placed in a  directory containing a makefile such as the one found in the path <code class="file docutils literal notranslate"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile</span></code>.</p>
+<p>To run a co-simulation, the dml file (such as the one above) must be placed in a  directory containing a makefile such as the one found in the path <code class="file docutils literal"><span class="pre">$HOME/VT-S3FNet/base/s3fnet/test/lxc_tests/small_2_tcp_large_pings/Makefile</span></code>.</p>
 <p>Please follow this template to define makefiles for other co-simulations as well.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Before running a co-simulation, make sure that the corresponding virtual time manager (Titan or Kronos) is loaded.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Before running a co-simulation, make sure that the corresponding virtual time manager (Titan or Kronos) is loaded.</p>
 </div>
 <p>To run a co-simulation, use the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">co</span><span class="o">-</span><span class="n">simulated</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">definition</span><span class="o">-</span><span class="n">directory</span><span class="o">&gt;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">co</span><span class="o">-</span><span class="n">simulated</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">definition</span><span class="o">-</span><span class="n">directory</span><span class="o">&gt;</span>
 <span class="n">make</span> <span class="n">clean</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">test</span>
 </pre></div>
 </div>
 <p>For instance to run this example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">s3fnet</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">lxc_tests</span><span class="o">/</span><span class="n">small_2_tcp_large_pings</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">VT</span><span class="o">-</span><span class="n">S3FNet</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">s3fnet</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">lxc_tests</span><span class="o">/</span><span class="n">small_2_tcp_large_pings</span>
 <span class="n">make</span> <span class="n">clean</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">test</span>
@@ -416,13 +433,12 @@ DML specification and is explained futher in the linked tutorials.</p>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">User Guide</a><ul>
 <li><a class="reference internal" href="#emulated-host-definitions">Emulated host definitions</a></li>
@@ -446,15 +462,15 @@ DML specification and is explained futher in the linked tutorials.</p>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
+  <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -471,13 +487,12 @@ DML specification and is explained futher in the linked tutorials.</p>
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">User Guide</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VT-S3FNet 1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, project_moses.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
     </div>
   </body>
 </html>

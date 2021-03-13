@@ -23,6 +23,11 @@ These emulated applications are briefly described here:
   is also configurable. Refer to **incast_tgen.c** file 
   inside the folder for more information on its command line arguments.
 
+* **csudp/tcp_rand**. This folder contains a tcp traffic generator which can generate
+  poisson bursty traffic. Unlike tcp_tgen, here the server each client connects to is chosen at random.
+  This makes all timelines dependent on each other. Refer to **rand_tgen.c** file 
+  inside the folder for more information on its command line arguments.
+
 * **csudp/mpi_sat**. This folder contains a program which uses the MPI interface to
   solve the Circuit SAT problem.
 
@@ -42,6 +47,7 @@ be created for each of them. The following project names are expected.
     ======================      ===========================
     csudp/tcp_tgen              tcp_tgen
     csudp/tcp_incast_tgen       incast_tgen
+    csudp/tcp_rand              tcp_rand
     csudp/mpi_sat               mpi_sat
     csudp/mpi_integral          mpi_integral
     csudp/mpi_matrix            mpi_mm

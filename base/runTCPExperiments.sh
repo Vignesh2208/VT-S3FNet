@@ -25,12 +25,10 @@ declare -a MuArrivals=(1000000)
 declare -a Rates=(1 10 100 1000)
 
 # List of burst transfer sizes in Kb. Change as necessary
-#declare -a TxSizes=(8 256 2000)
-declare -a TxSizes=(256)
+declare -a TxSizes=(8 256 2000)
 
 # Number of emulated hosts per lan. There are 20 lans.
-#declare -a NumEmuHostsPerLan=(1 2 3 4 5)
-declare -a NumEmuHostsPerLan=(1)
+declare -a NumEmuHostsPerLan=(1 2 3 4 5)
 
 # Total number of incast flows + 1.
 declare -a IncastSizes=(3 5 7 9 11)
@@ -51,7 +49,7 @@ for numEmuPerLan in ${NumEmuHostsPerLan[@]}; do
          echo "Mu (us) = " $mu
          echo "TxSize (kb) = " $txSize
          cd $TEST_DIR
-         python network_gen_rand_tcp.py --num_emu_hosts_per_lan=$numEmuPerLan --emu_flow_mean_arrival_us=$mu --transfer_size_kb=$txSize --enable_lookahead=$ENABLE_LOOKAHEAD 
+         python network_gen_rand_tcp.py --num_emu_hosts_per_lan=$numEmuPerLan --emu_flow_mean_arrival_us=$mu --transfer_size_kb=$txSize --enable_lookahead=$ENABLE_LOOKAHEAD --run_time=5
          cd $S3FNET_DIR
          sudo make campus_run
          cd $TITAN_DIR

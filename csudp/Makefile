@@ -49,7 +49,7 @@ tgen_incast:
 	${HOME}/Titan/tools/ttn/ttn.sh extract -p incast_tgen
 
 
-build: tgen tgen_incast mpi_csat mpi_int mpi_mat
+build: tgen tgen_incast tgen_rand mpi_csat mpi_int mpi_mat
 
 clean:
 	rm -f tcp_tgen/tgen > /dev/null
