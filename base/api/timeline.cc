@@ -544,22 +544,28 @@ ltime_t Timeline::pruneLookahead(int destTimelineID, ltime_t proxies_lookahead,
 	if (ignore_proxies_lookahead) {
 		// Ptr to any events left by this timeline on the destTimeline
 
-		ltime_t smallestInTransitTime = 0;
-		smallestInTransitTime = simCtrl->syncWindowEAts[destTimelineID];
-		smallestInTransitTime = std::min(smallestInTransitTime, now() + simCtrl->maxLookaheadUs);	
-		simCtrl->syncWindowEAts[destTimelineID] = 0;
+		ltime_t eat = 0;
+		eat = simCtrl->syncWindowEAts[destTimelineID];
+		eat = std::min(eat, now() + simCtrl->maxLookaheadUs);	
+		simCtrl->syncWindowEAts[destTimelineID] = 0; // set this to zero so that we don't use it again unless it has been updated
 
-		if (smallestInTransitTime > 0)
-			return smallestInTransitTime;	
+		if (eat > 0) // if eat > 0, then simply use eat because we know that no packet would arrive for any entity on destTimeline before this eat.
+					// This is a useful optimization not explictly discussed in the paper/thesis for the sake of brevity.
+			return eat;
 
-		
-		return next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead;
+		// Note that __stop_before should be interpreted here as another wait event because some event exchange can happen in this implementation
+		// during the global barrier window processing as well. TODO. remove this so that the global barrier window doesn't exchange any events.
+		return std::min(next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead, __stop_before);
 		
 	}
 	
-	
-	return std::min(proxies_lookahead, 
-				next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead);
+	// Sometimes, we may have to look at local event queues for timelines hosting emulated entities
+	// as well. Most of the time this min would return proxies_lookahead but we want to be safe, so we
+	// always cap it to the next relevant local event's timestamp because we are not always sure what will
+	// happen when the next relevant event is processed (this may trigger a pkt send). This is another
+	// optimization/check not explictly discussed in the paper/thesis for the sake of brevity.
+	return std::min(std::min(proxies_lookahead, 
+				next_relevant_netsim_event->get_time() + __out_appt[destTimelineID].lookahead), __stop_before);
 	
 }
 

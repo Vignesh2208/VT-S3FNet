@@ -7,7 +7,7 @@ import numpy as np
 
 home = os.path.expanduser('~')
 
-aggregation_wind_size = 5
+aggregation_wind_size = 2
 
 ts_start = 0.0
 ts_end = 5.0
@@ -317,53 +317,53 @@ update_save_fig(
 
 from plotly.subplots import make_subplots
 
-fig = make_subplots(rows=2, cols=1,
+fig = make_subplots(rows=3, cols=1,
                     shared_xaxes=True,
                     vertical_spacing=0.1,
                     x_title='Time [sec]',
                     y_title='Number of pkts sent')
 
-#fig.add_trace(go.Scatter(
-#    x=ts,
-#    y=la_disabled_periodic_pkt_ts,
-#    name="Periodic - Lookahead Disabled",
-#    line=dict(color="red", width=4.0, dash="longdash"),
-#    mode="lines"), row=1, col=1)
+fig.add_trace(go.Scatter(
+    x=ts,
+    y=la_disabled_periodic_pkt_ts,
+    name="Periodic - LA Disabled",
+    line=dict(color="royalblue", width=2.0, dash="solid"),
+    mode="lines"), row=1, col=1)
 
-#fig.add_trace(go.Scatter(
-#    x=ts,
-#    y=la_enabled_periodic_pkt_ts,
-#    name="Periodic - Lookahead Enabled",
-#    line=dict(color="green", width=2.0, dash="solid"),
-#    mode="lines"), row=1, col=1)
+fig.add_trace(go.Scatter(
+    x=ts,
+    y=la_enabled_periodic_pkt_ts,
+    name="Periodic - LA Enabled",
+    line=dict(color="magenta", width=4.0, dash="dot"),
+    mode="lines"), row=1, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_disabled_poisson_pkt_ts,
     name="Poisson - LA Disabled",
-    line=dict(color="royalblue", width=4.0, dash="dot"),
-    mode="lines"), row=1, col=1)
+    line=dict(color="red", width=2.0, dash="solid"),
+    mode="lines"), row=2, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_enabled_poisson_pkt_ts,
     name="Poisson - LA Enabled",
-    line=dict(color="magenta", width=2.0, dash="solid"),
-    mode="lines"), row=1, col=1)
+    line=dict(color="green", width=4.0, dash="dot"),
+    mode="lines"), row=2, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_disabled_ratelim_pkt_ts,
     name="10Mbps - LA Disabled",
-    line=dict(color="goldenrod", width=4.0, dash="dash"),
-    mode="lines"), row=2, col=1)
+    line=dict(color="goldenrod", width=2.0, dash="solid"),
+    mode="lines"), row=3, col=1)
 
 fig.add_trace(go.Scatter(
     x=ts,
     y=la_enabled_ratetim_pkt_ts,
     name="10Mbps - LA Enabled",
-    line=dict(color="orange", width=2.0, dash="solid"),
-    mode="lines"), row=2, col=1)
+    line=dict(color="orange", width=4.0, dash="dot"),
+    mode="lines"), row=3, col=1)
 
 """
 update_save_fig(
@@ -383,7 +383,9 @@ update_save_fig(
 """
 
 
-fig.update_layout(legend = dict(font = dict(family = "Courier", size = 25, color = "black"), orientation="h", x = 0.0, y=1.3))
+fig.update_layout(legend = dict(font = dict(family = "Courier", size = 20, color = "black"), orientation="h", x = 0.0, y=1.35))
+#fig.update_layout(legend = dict(font = dict(family = "Courier", size = 25, color = "black")))
+
 #fig.update_layout(title_text= "Flow comparison (Lookahead Enabled vs Disabled)")
 #fig.update_layout(
 #        title=go.layout.Title(

@@ -1068,11 +1068,13 @@ ltime_t LxcManager::getProxiesLookahead(int srcTimelineID, int destTimelineID) {
         simulationStartMicroSec = proxyOnTimeline->simulationStartMicroSec;
         timelineAlignedOn = proxyOnTimeline->timelineLXCAlignedOn;
             
-        // set eat here. This could be used by emulated processes when they run
-        // this round.
+        // Update eat here as well. Note that this update takes effect only if this eat estimate is higher than any
+        // previously set eat value. This is a minor optimization not discussed in the paper/thesis for the sake of brevity.
+        // It should merely keep the eat values a bit more fresher/up-to-date incase the EAT update period is large.
         this->vtManagerInterface->SetTracerEarliestArrivalTime(
             proxyOnTimeline->eqTracerID,
             proxyOnTimeline->getNextEarliestArrivalTime(true));
+        
         curr_lookahead = 
             this->vtManagerInterface->GetTracerLookaheadTimestamp(
                 proxyOnTimeline->eqTracerID);
@@ -1089,6 +1091,8 @@ ltime_t LxcManager::getProxiesLookahead(int srcTimelineID, int destTimelineID) {
 
 
     assert(timelineAlignedOn != NULL);
+
+    // lookahead is capped to current time + maxLookaheadUS
     if (elapsedMicroSec > timelineAlignedOn->now() + maxLookaheadUs)
         return timelineAlignedOn->now() + maxLookaheadUs;
     
