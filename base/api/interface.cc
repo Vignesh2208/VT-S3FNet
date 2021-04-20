@@ -145,7 +145,15 @@ void Interface::InitModel() {
 	// as a heuristic, set the window threshold equal to the number
 	// of timelines times this minimum
 #ifdef COMPOSITE_SYNC
-	thrs = Timeline::__num_timelines*mxtd;
+	//thrs = Timeline::__num_timelines*mxtd;
+	
+	// This threshold controls which channels are marked as synchronous and which are marked as asynchronous.
+	// Here __max_lookahead_us is same as EAT Update period. For correctness, we require all channels to be
+	// treated as asynchronous so that all timelines use appointments for synchronization. This means that 
+	// EAT update period (thus the threshold) must be higher than all link latencies in the network. 
+	// TODO: Currently this check is not enforced. This enforcement (i.e checking if max_lookahead_us is higher than
+	// all link latencies) needs to be done. For now we assume, that EAT update period and hence max_lookahead_us
+	// are specified by the user to be higher than all link latencies in the co-simulation
 	thrs = __max_lookahead_us;
 #else
 	thrs = 0;
