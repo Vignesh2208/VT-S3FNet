@@ -202,7 +202,9 @@ support **co-simulation**. These fields are described below:
 
 * **eat_update_period_us**. This field is relevant only when Titan is the chosen virtual time 
   manager. It controls the earliest arrival time update frequency. This is only relevant when
-  lookaheads are enabled. In the running example, this is set to 1ms.
+  lookaheads are enabled. In the running example, this is set to 1ms. Currently for correct/expected
+  behavior, it needs to be set to any value higher than all link latencies in the co-simulation. This
+  ensures that all timelines use appointments for synchronization.
 
 * **enable_lookahead**. This field is relevant only when Titan is chosen as the virtual time
   manager. If set to 1, then lookahead based synchronization would be used. If set to 0, lookaheads
